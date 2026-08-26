@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -31,6 +32,28 @@ def test_select_model_specs_core_only_returns_only_app_backbone() -> None:
 
     assert _repo_ids(core_only=True) == expected
     assert _repo_ids(core_only=True, skip_grounding_dino=True) == expected
+
+
+def test_snapshot_fingerprint_uses_portable_relative_path_order(tmp_path: Path) -> None:
+    payloads = {
+        ".gitattributes": b"attributes",
+        "README.md": b"readme",
+        "config.json": b"config",
+        "model.safetensors": b"weights",
+    }
+    for relative, payload in payloads.items():
+        (tmp_path / relative).write_bytes(payload)
+
+    expected = hashlib.sha256()
+    for relative in sorted(payloads):
+        expected.update(relative.encode("utf-8"))
+        expected.update(payloads[relative])
+
+    fingerprint, total_bytes, file_count = download_models.snapshot_fingerprint(tmp_path)
+
+    assert fingerprint == expected.hexdigest()
+    assert total_bytes == sum(map(len, payloads.values()))
+    assert file_count == len(payloads)
 
 
 def test_main_core_only_uses_offline_cache_without_network(

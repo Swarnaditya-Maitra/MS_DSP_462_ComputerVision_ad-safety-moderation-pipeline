@@ -89,7 +89,11 @@ def snapshot_fingerprint(snapshot_path: Path) -> tuple[str, int, int]:
     digest = hashlib.sha256()
     total_bytes = 0
     file_count = 0
-    for path in sorted(item for item in snapshot_path.rglob("*") if item.is_file()):
+    files = [item for item in snapshot_path.rglob("*") if item.is_file()]
+    ordered_files = sorted(
+        files, key=lambda item: item.relative_to(snapshot_path).as_posix()
+    )
+    for path in ordered_files:
         digest.update(path.relative_to(snapshot_path).as_posix().encode("utf-8"))
         with path.open("rb") as handle:
             for chunk in iter(lambda: handle.read(1024 * 1024), b""):
