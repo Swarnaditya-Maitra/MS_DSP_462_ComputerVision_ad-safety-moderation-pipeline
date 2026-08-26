@@ -1,5 +1,6 @@
 name: Cross-platform verification
 
+# Pull requests run the offline suite. Main pushes also run the real pinned ViT path.
 on:
   push:
     branches: [main]
