@@ -1,3 +1,7 @@
+# Keep cross-platform text checkouts byte-stable. Windows tools used by this
+# project accept LF, and validation receipts contain hashes of tracked text.
+* text=auto eol=lf
+
 # These two authoritative registries retain the exact CRLF bytes recorded by
 # the saved evaluation provenance. Treat them as byte-preserved artifacts so
 # Git does not rewrite their line endings or report each CR as trailing space.
@@ -9,6 +13,12 @@ data/dataset_registry.csv -text -diff
 *.pdf binary
 *.pptx binary
 *.mp4 binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.webp binary
+*.joblib binary
+*.npz binary
 outputs/video/storyboard.csv -text -diff
 outputs/video/storyboard_actual.csv -text -diff
 
