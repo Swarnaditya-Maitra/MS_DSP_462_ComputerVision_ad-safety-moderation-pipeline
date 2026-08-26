@@ -13,7 +13,7 @@ os.environ.setdefault("XDG_CACHE_HOME", str(_GENERAL_CACHE))
 os.environ.setdefault("KMP_DUPLICATE_LIB_OK", "TRUE")
 os.environ.setdefault("HF_HOME", str(_PROJECT_ROOT / ".cache" / "huggingface"))
 
-from .policy import PolicyDecision, PolicyEngine
+from .policy import PolicyDecision, PolicyEngine  # noqa: E402
 
 __all__ = ["PolicyDecision", "PolicyEngine"]
 __version__ = "1.0.0"

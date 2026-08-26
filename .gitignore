@@ -33,8 +33,11 @@ tmp/
 node_modules/
 *.log
 
-# Model snapshots are downloaded at pinned revisions. Trained heads are rebuilt locally.
+# Model snapshots are downloaded at pinned revisions. Only the two reviewed,
+# hash-pinned course-run heads below are part of the public clone.
 models/*.joblib
+!models/vit_policy_head.joblib
+!models/resnet50_policy_head.joblib
 models/*.pt
 models/*.pth
 models/*.bin
@@ -44,8 +47,25 @@ models/*.safetensors
 data/capstone_dataset/
 data/wikimedia_pilot/
 
-# Coursework media and generated build trees are intentionally outside this source release.
-outputs/
+# Publish only aggregate, image-free evaluation charts and a path-free validation
+# summary. Raw creatives, overlays, rendered slides, and media remain excluded.
+outputs/*
+!outputs/README.md
+!outputs/evaluation/
+outputs/evaluation/*
+!outputs/evaluation/confusion_matrix.png
+!outputs/evaluation/confusion_matrix_resnet50.png
+!outputs/evaluation/confusion_matrix_vit.png
+!outputs/evaluation/dataset_distribution.png
+!outputs/evaluation/model_comparison.png
+!outputs/evaluation/precision_recall_curves.png
+!outputs/evaluation/threshold_calibration.png
+!outputs/validation/
+outputs/validation/*
+!outputs/validation/FINAL_VALIDATION_PASSED.txt
+!outputs/validation/validation_summary.json
+
+# Coursework media and generated build trees remain outside this public release.
 book/_build/
 *.ipynb_checkpoints/
 archive/

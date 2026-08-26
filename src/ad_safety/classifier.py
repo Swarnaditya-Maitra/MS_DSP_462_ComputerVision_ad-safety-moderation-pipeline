@@ -10,6 +10,7 @@ import numpy as np
 from PIL import Image
 
 from .features import BackboneFeatureExtractor
+from .model_assets import trained_head_status
 
 
 @dataclass(frozen=True)
@@ -25,6 +26,11 @@ class PolicyClassifier:
 
     def __init__(self, artifact_path: str | Path, device: str = "auto") -> None:
         self.artifact_path = Path(artifact_path)
+        artifact_ready, artifact_detail = trained_head_status(self.artifact_path)
+        if not artifact_ready:
+            raise RuntimeError(
+                f"Trained classifier integrity check failed: {artifact_detail}."
+            )
         artifact: dict[str, Any] = joblib.load(self.artifact_path)
         self.artifact = artifact
         self.class_names = list(artifact["class_names"])

@@ -3,7 +3,6 @@ from __future__ import annotations
 import io
 import re
 from pathlib import Path
-from types import SimpleNamespace
 from typing import Any
 
 import pytest
@@ -46,6 +45,10 @@ def _animated_webp_bytes() -> bytes:
 
 def _mark_model_snapshots_ready(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setattr(api_module, "model_snapshot_ready", lambda repo_id: True)
+
+
+def _mark_classifier_ready(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(api_module, "trained_head_ready", lambda _path: True)
 
 
 def test_health_does_not_construct_heavy_engine(
@@ -143,6 +146,7 @@ def test_missing_vit_snapshot_returns_503_before_engine_load(
     artifact = tmp_path / "vit_policy_head.joblib"
     artifact.write_bytes(b"test sentinel")
     monkeypatch.setattr(api_module, "CLASSIFIER_ARTIFACT", artifact)
+    _mark_classifier_ready(monkeypatch)
     monkeypatch.setattr(api_module, "model_snapshot_ready", lambda repo_id: False)
     monkeypatch.setattr(api_module, "_build_engine", lambda: pytest.fail("engine should not load"))
 
@@ -162,6 +166,7 @@ def test_requested_detector_with_missing_snapshot_returns_503_before_engine_load
     artifact = tmp_path / "vit_policy_head.joblib"
     artifact.write_bytes(b"test sentinel")
     monkeypatch.setattr(api_module, "CLASSIFIER_ARTIFACT", artifact)
+    _mark_classifier_ready(monkeypatch)
     monkeypatch.setattr(
         api_module,
         "model_snapshot_ready",
@@ -187,6 +192,7 @@ def test_valid_request_returns_audit_with_fake_engine(
     artifact = tmp_path / "vit_policy_head.joblib"
     artifact.write_bytes(b"test sentinel")
     monkeypatch.setattr(api_module, "CLASSIFIER_ARTIFACT", artifact)
+    _mark_classifier_ready(monkeypatch)
     _mark_model_snapshots_ready(monkeypatch)
 
     class FakeResult:
@@ -238,6 +244,7 @@ def test_runtime_error_does_not_expose_internal_detail(
     artifact = tmp_path / "vit_policy_head.joblib"
     artifact.write_bytes(b"test sentinel")
     monkeypatch.setattr(api_module, "CLASSIFIER_ARTIFACT", artifact)
+    _mark_classifier_ready(monkeypatch)
     _mark_model_snapshots_ready(monkeypatch)
     monkeypatch.setattr(
         api_module,
@@ -260,6 +267,7 @@ def test_unexpected_error_returns_opaque_reference(
     artifact = tmp_path / "vit_policy_head.joblib"
     artifact.write_bytes(b"test sentinel")
     monkeypatch.setattr(api_module, "CLASSIFIER_ARTIFACT", artifact)
+    _mark_classifier_ready(monkeypatch)
     _mark_model_snapshots_ready(monkeypatch)
     monkeypatch.setattr(
         api_module,

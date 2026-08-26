@@ -25,8 +25,8 @@ from ad_safety.paths import CONFIG_DIR, MODEL_DIR  # noqa: E402
 from ad_safety.model_assets import (  # noqa: E402
     DETECTOR_REPO_ID,
     VISUAL_BACKBONE_REPO_ID,
-    file_ready,
     model_snapshot_ready,
+    trained_head_ready,
 )
 from ad_safety.preprocessing import ImageValidationError, load_image  # noqa: E402
 
@@ -535,13 +535,13 @@ def _render_sidebar(config: Mapping[str, Any], bundle: Mapping[str, Any]) -> tup
     st.sidebar.markdown("---")
     st.sidebar.markdown("## System readiness")
     artifact = MODEL_DIR / "vit_policy_head.joblib"
-    classifier_ready = file_ready(artifact)
+    classifier_ready = trained_head_ready(artifact)
     backbone_ready = model_snapshot_ready(VISUAL_BACKBONE_REPO_ID)
     detector_ready = model_snapshot_ready(DETECTOR_REPO_ID)
     if classifier_ready:
         st.sidebar.success("Classifier head ready")
     else:
-        st.sidebar.warning("Classifier head missing")
+        st.sidebar.warning("Classifier head missing or invalid")
     if backbone_ready:
         st.sidebar.success("ViT backbone snapshot ready")
     else:
@@ -916,10 +916,11 @@ def _render_analyze(
     run_clicked = st.button("Run policy analysis", type="primary", width="stretch")
     if run_clicked:
         artifact = MODEL_DIR / "vit_policy_head.joblib"
-        if not file_ready(artifact):
+        if not trained_head_ready(artifact):
             st.error(
-                "The trained classifier artifact models/vit_policy_head.joblib is missing. "
-                "Complete the documented model setup before running moderation."
+                "The trained classifier artifact models/vit_policy_head.joblib is missing or "
+                "failed its integrity check. Restore the tracked file and run preflight before "
+                "running moderation."
             )
             return
         if not model_snapshot_ready(VISUAL_BACKBONE_REPO_ID):
@@ -1063,9 +1064,9 @@ def main() -> None:
     _inject_styles()
     config = load_policy_config()
     bundle = load_benchmark_data()
-    model_ready = file_ready(MODEL_DIR / "vit_policy_head.joblib") and model_snapshot_ready(
-        VISUAL_BACKBONE_REPO_ID
-    )
+    model_ready = trained_head_ready(
+        MODEL_DIR / "vit_policy_head.joblib"
+    ) and model_snapshot_ready(VISUAL_BACKBONE_REPO_ID)
     _render_header(model_ready=model_ready, evidence_ready=bool(bundle.get("available")))
     run_detector, run_ocr, explain = _render_sidebar(config, bundle)
 

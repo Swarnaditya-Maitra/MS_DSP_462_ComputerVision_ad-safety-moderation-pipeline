@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "source_validation_sha256": "8483fbcea23ae9ca2f64029c0f13f19e06fa5c2a5d28d8220126bff8a36ca1b5",
+  "all_checks_passed": true,
+  "check_count": 15,
+  "checks": [
+    "app_browser_evidence",
+    "automated_tests",
+    "dataset_registry",
+    "evaluation_output_checksums_recomputed",
+    "executed_notebook_and_book",
+    "external_diagnostic_recomputed",
+    "management_presentation",
+    "measured_evidence_recomputed",
+    "narrated_demo_video",
+    "pinned_model_identities_and_snapshots",
+    "python_compilation",
+    "representative_demo_cases",
+    "required_files",
+    "strict_two_page_report",
+    "train_only_fit_and_validation_calibration_reproduced"
+  ],
+  "note": "The detailed local validation log is omitted because it contains machine-specific absolute paths. This summary records the completed course-run validation; it is not a readiness check for a new clone."
+}

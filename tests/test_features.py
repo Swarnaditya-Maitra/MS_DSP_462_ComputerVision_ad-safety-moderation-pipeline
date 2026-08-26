@@ -9,21 +9,18 @@ import torch
 from ad_safety import features
 
 
-def test_pinned_backbones_resolve_to_local_safetensors() -> None:
-    missing = []
-    for model_name in (features.VIT_MODEL_NAME, features.CNN_MODEL_NAME):
-        try:
-            features.resolve_local_pretrained_file(model_name)
-        except features.BackboneArtifactError:
-            missing.append(model_name)
-    if missing:
-        pytest.skip("requires pinned snapshots from scripts/download_models.py")
-
-    for model_name in (features.VIT_MODEL_NAME, features.CNN_MODEL_NAME):
+@pytest.mark.parametrize(
+    "model_name", [features.VIT_MODEL_NAME, features.CNN_MODEL_NAME]
+)
+def test_pinned_backbone_resolves_to_local_safetensors(model_name: str) -> None:
+    try:
         weights = features.resolve_local_pretrained_file(model_name)
-        assert weights.is_file()
-        assert weights.name == "model.safetensors"
-        assert "snapshots" in weights.parts
+    except features.BackboneArtifactError:
+        pytest.skip(f"requires the pinned {model_name} snapshot")
+
+    assert weights.is_file()
+    assert weights.name == "model.safetensors"
+    assert "snapshots" in weights.parts
 
 
 def test_feature_extractor_passes_exact_local_file_to_timm(

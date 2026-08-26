@@ -27,8 +27,8 @@ from ad_safety.preprocessing import (  # noqa: E402
 from ad_safety.model_assets import (  # noqa: E402
     DETECTOR_REPO_ID,
     VISUAL_BACKBONE_REPO_ID,
-    file_ready,
     model_snapshot_ready,
+    trained_head_ready,
 )
 
 
@@ -75,7 +75,7 @@ def get_engine() -> Any:
 
 
 def _classifier_artifact_ready() -> bool:
-    return file_ready(CLASSIFIER_ARTIFACT)
+    return trained_head_ready(CLASSIFIER_ARTIFACT)
 
 
 def _perform_analysis(payload: bytes, run_detector: bool, run_ocr: bool, explain: bool) -> Any:
@@ -147,7 +147,10 @@ async def analyze(
     if not _classifier_artifact_ready():
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="The trained classifier artifact models/vit_policy_head.joblib is missing.",
+            detail=(
+                "The trained classifier artifact models/vit_policy_head.joblib is missing "
+                "or failed its integrity check."
+            ),
         )
     if not model_snapshot_ready(VISUAL_BACKBONE_REPO_ID):
         raise HTTPException(

@@ -19,7 +19,6 @@ import random
 import subprocess
 import sys
 import tempfile
-from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from time import perf_counter
@@ -126,7 +125,6 @@ import pandas as pd  # noqa: E402
 import timm  # noqa: E402
 import torch  # noqa: E402
 from PIL import Image, ImageDraw, ImageFont  # noqa: E402
-from sklearn.linear_model import LogisticRegression  # noqa: E402
 from sklearn.metrics import (  # noqa: E402
     accuracy_score,
     average_precision_score,
@@ -140,7 +138,7 @@ from sklearn.metrics import (  # noqa: E402
     roc_auc_score,
 )
 from sklearn.pipeline import Pipeline  # noqa: E402
-from sklearn.preprocessing import StandardScaler, label_binarize  # noqa: E402
+from sklearn.preprocessing import label_binarize  # noqa: E402
 
 from ad_safety.features import CNN_MODEL_NAME, VIT_MODEL_NAME, select_device  # noqa: E402
 
