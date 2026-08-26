@@ -1,0 +1,211 @@
+[
+  {
+    "sequence": 1,
+    "scene_id": "01_executive_summary",
+    "section": "Executive Summary",
+    "presenter": "Swarnaditya Maitra",
+    "title": "Ad safety at a decision point",
+    "narration_words": 54,
+    "audio_duration_seconds": 18.639875,
+    "start_seconds": 0.0,
+    "end_seconds": 18.639875
+  },
+  {
+    "sequence": 2,
+    "scene_id": "02_team",
+    "section": "Team",
+    "presenter": "Vijay Agnihotri",
+    "title": "Four presenters, one evidence chain",
+    "narration_words": 31,
+    "audio_duration_seconds": 13.075125,
+    "start_seconds": 18.639875,
+    "end_seconds": 31.715
+  },
+  {
+    "sequence": 3,
+    "scene_id": "03_business_problem",
+    "section": "Business Problem",
+    "presenter": "Swarnaditya Maitra",
+    "title": "Manual review fails on ambiguous creatives",
+    "narration_words": 48,
+    "audio_duration_seconds": 17.614042,
+    "start_seconds": 31.715,
+    "end_seconds": 49.329042
+  },
+  {
+    "sequence": 4,
+    "scene_id": "04_policy_boundary",
+    "section": "Policy Boundary",
+    "presenter": "Myetchae Thu",
+    "title": "Four labels are not a full ad policy",
+    "narration_words": 53,
+    "audio_duration_seconds": 21.5,
+    "start_seconds": 49.329042,
+    "end_seconds": 70.829042
+  },
+  {
+    "sequence": 5,
+    "scene_id": "05_data_profile",
+    "section": "Data Profile",
+    "presenter": "Vijay Agnihotri",
+    "title": "Balanced counts, unbalanced sources",
+    "narration_words": 51,
+    "audio_duration_seconds": 19.63425,
+    "start_seconds": 70.829042,
+    "end_seconds": 90.463292
+  },
+  {
+    "sequence": 6,
+    "scene_id": "06_eda",
+    "section": "EDA",
+    "presenter": "Vijay Agnihotri",
+    "title": "Source style predicts labels",
+    "narration_words": 50,
+    "audio_duration_seconds": 18.341875,
+    "start_seconds": 90.463292,
+    "end_seconds": 108.805167
+  },
+  {
+    "sequence": 7,
+    "scene_id": "07_architecture",
+    "section": "Architecture",
+    "presenter": "Myetchae Thu",
+    "title": "Separate evidence streams before policy",
+    "narration_words": 58,
+    "audio_duration_seconds": 21.665208,
+    "start_seconds": 108.805167,
+    "end_seconds": 130.470375
+  },
+  {
+    "sequence": 8,
+    "scene_id": "08_methodology",
+    "section": "Methodology",
+    "presenter": "Bickramjit Basu",
+    "title": "Test evidence stayed untouched",
+    "narration_words": 53,
+    "audio_duration_seconds": 19.539625,
+    "start_seconds": 130.470375,
+    "end_seconds": 150.01
+  },
+  {
+    "sequence": 9,
+    "scene_id": "09_literature",
+    "section": "Literature",
+    "presenter": "Bickramjit Basu",
+    "title": "Research supports components, not claims",
+    "narration_words": 43,
+    "audio_duration_seconds": 17.388958,
+    "start_seconds": 150.01,
+    "end_seconds": 167.398958
+  },
+  {
+    "sequence": 10,
+    "scene_id": "10_formal_results",
+    "section": "Formal Results",
+    "presenter": "Swarnaditya Maitra",
+    "title": "ViT wins accuracy, not speed",
+    "narration_words": 141,
+    "audio_duration_seconds": 70.36175,
+    "start_seconds": 167.398958,
+    "end_seconds": 237.760708
+  },
+  {
+    "sequence": 11,
+    "scene_id": "11_known_formal_error",
+    "section": "Class and Failure Analysis",
+    "presenter": "Vijay Agnihotri",
+    "title": "One grenade crossed the class boundary",
+    "narration_words": 64,
+    "audio_duration_seconds": 23.855292,
+    "start_seconds": 237.760708,
+    "end_seconds": 261.616
+  },
+  {
+    "sequence": 12,
+    "scene_id": "12_external_audit",
+    "section": "External Generalization Audit",
+    "presenter": "Myetchae Thu",
+    "title": "External audit breaks confidence",
+    "narration_words": 83,
+    "audio_duration_seconds": 30.074833,
+    "start_seconds": 261.616,
+    "end_seconds": 291.690833
+  },
+  {
+    "sequence": 13,
+    "scene_id": "13_demo_workflow",
+    "section": "Demo Workflow",
+    "presenter": "Bickramjit Basu",
+    "title": "One workspace carries a case from upload to audit",
+    "narration_words": 49,
+    "audio_duration_seconds": 18.044083,
+    "start_seconds": 291.690833,
+    "end_seconds": 309.734917
+  },
+  {
+    "sequence": 14,
+    "scene_id": "14_safe_approve",
+    "section": "Demo Case",
+    "presenter": "Bickramjit Basu",
+    "title": "Safe creative routes to APPROVE",
+    "narration_words": 50,
+    "audio_duration_seconds": 18.740375,
+    "start_seconds": 309.734917,
+    "end_seconds": 328.475292
+  },
+  {
+    "sequence": 15,
+    "scene_id": "15_firearm_block",
+    "section": "Demo Case",
+    "presenter": "Bickramjit Basu",
+    "title": "Firearm evidence routes to BLOCK",
+    "narration_words": 45,
+    "audio_duration_seconds": 19.770042,
+    "start_seconds": 328.475292,
+    "end_seconds": 348.245333
+  },
+  {
+    "sequence": 16,
+    "scene_id": "16_explosive_block",
+    "section": "Demo Case",
+    "presenter": "Bickramjit Basu",
+    "title": "Explosive evidence routes to BLOCK",
+    "narration_words": 52,
+    "audio_duration_seconds": 19.0295,
+    "start_seconds": 348.245333,
+    "end_seconds": 367.274833
+  },
+  {
+    "sequence": 17,
+    "scene_id": "17_financial_review",
+    "section": "Demo Case",
+    "presenter": "Bickramjit Basu",
+    "title": "Financial promotion routes to REVIEW",
+    "narration_words": 53,
+    "audio_duration_seconds": 20.925708,
+    "start_seconds": 367.274833,
+    "end_seconds": 388.200542
+  },
+  {
+    "sequence": 18,
+    "scene_id": "18_risks_controls",
+    "section": "Risks and Controls",
+    "presenter": "Myetchae Thu",
+    "title": "Controls needed before an MVP trial",
+    "narration_words": 77,
+    "audio_duration_seconds": 31.525208,
+    "start_seconds": 388.200542,
+    "end_seconds": 419.72575
+  },
+  {
+    "sequence": 19,
+    "scene_id": "19_next_steps",
+    "section": "Next Steps to MVP",
+    "presenter": "Swarnaditya Maitra",
+    "title": "A recommended 10-week path to MVP",
+    "narration_words": 92,
+    "audio_duration_seconds": 34.380292,
+    "start_seconds": 419.72575,
+    "end_seconds": 454.106042
+  }
+]

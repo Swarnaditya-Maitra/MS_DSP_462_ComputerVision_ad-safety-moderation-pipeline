@@ -1,0 +1,21 @@
+title: "Ad Safety Moderation Pilot"
+author: "Swarnaditya Maitra, Vijay Agnihotri, Myetchae Thu, and Bickramjit Basu"
+copyright: "2026"
+only_build_toc_files: true
+
+execute:
+  execute_notebooks: "off"
+
+html:
+  use_repository_button: false
+  use_issues_button: false
+  extra_footer: >-
+    Bounded educational pilot. Results apply only to the recorded evaluation
+    artifacts and do not establish production readiness.
+
+sphinx:
+  config:
+    html_static_path:
+      - "_static"
+    html_css_files:
+      - "custom.css"

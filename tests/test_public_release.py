@@ -33,21 +33,29 @@ def test_published_trained_heads_match_manifest() -> None:
         assert _sha256(artifact) == row["sha256"]
 
 
-def test_curated_output_contract_is_complete_and_path_free() -> None:
+def test_canonical_output_contract_is_complete_and_path_free() -> None:
     summary_path = PROJECT_ROOT / "outputs" / "validation" / "validation_summary.json"
+    detail_path = PROJECT_ROOT / "outputs" / "validation" / "final_validation.json"
     summary_text = summary_path.read_text(encoding="utf-8")
+    detail_text = detail_path.read_text(encoding="utf-8")
     summary = json.loads(summary_text)
+    detail = json.loads(detail_text)
 
     assert summary["all_checks_passed"] is True
-    assert summary["check_count"] == len(summary["checks"]) == 15
-    assert "/Users/" not in summary_text
-    assert "C:\\Users\\" not in summary_text
-    assert (PROJECT_ROOT / "outputs" / "validation" / "FINAL_VALIDATION_PASSED.txt").is_file()
+    assert detail["all_checks_passed"] is True
+    assert summary["check_count"] == len(summary["checks"]) == detail["check_count"] == 16
+    assert summary["checks"] == sorted(detail["checks"])
+    assert summary["source_validation_sha256"] == _sha256(detail_path)
+    for payload in (summary_text, detail_text):
+        assert str(PROJECT_ROOT.resolve()) not in payload
+        assert "/Users/" not in payload
+        assert "C:\\Users\\" not in payload
+    marker = PROJECT_ROOT / "outputs" / "validation" / "FINAL_VALIDATION_PASSED.txt"
+    assert marker.read_text(encoding="utf-8") == "FINAL_VALIDATION_PASSED\n"
 
 
-def test_curated_evaluation_charts_are_readable_pngs() -> None:
+def test_canonical_evaluation_charts_are_readable_pngs() -> None:
     expected = {
-        "confusion_matrix.png",
         "confusion_matrix_resnet50.png",
         "confusion_matrix_vit.png",
         "dataset_distribution.png",
@@ -56,7 +64,7 @@ def test_curated_evaluation_charts_are_readable_pngs() -> None:
         "threshold_calibration.png",
     }
     evaluation_dir = PROJECT_ROOT / "outputs" / "evaluation"
-    checksum_path = PROJECT_ROOT / "results" / "evaluation" / "output_checksums.csv"
+    checksum_path = evaluation_dir / "output_checksums.csv"
     with checksum_path.open(newline="", encoding="utf-8") as handle:
         checksum_rows = {row["path"]: row for row in csv.DictReader(handle)}
 

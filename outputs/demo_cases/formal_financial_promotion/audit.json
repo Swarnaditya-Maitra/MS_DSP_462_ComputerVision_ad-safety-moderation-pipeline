@@ -1,0 +1,239 @@
+{
+  "analysis": {
+    "applied_thresholds": {
+      "explosives": 0.1727632618375518,
+      "financial_promotion": 0.9946029323485182,
+      "firearms": 0.9913563345650912,
+      "review": 0.35,
+      "safe": 0.5,
+      "uncertainty_margin": 0.12
+    },
+    "classifier_scores": {
+      "explosives": 0.00024972511071498125,
+      "financial_promotion": 0.9992061362760161,
+      "firearms": 0.00012409756168720279,
+      "safe": 0.00042004105158180004
+    },
+    "decision": {
+      "classifier_scores": {
+        "explosives": 0.00024972511071498125,
+        "financial_promotion": 0.9992061362760161,
+        "firearms": 0.00012409756168720279,
+        "safe": 0.00042004105158180004
+      },
+      "fused_scores": {
+        "explosives": 0.00024972511071497117,
+        "financial_promotion": 0.9992061362760161,
+        "firearms": 0.00012409756168718644,
+        "safe": 0.00042004105158180004
+      },
+      "model_version": "vit-frozen-063c6c38a5d8-logreg-v1",
+      "policy_version": "1.0.0-pilot",
+      "primary_label": "financial_promotion",
+      "primary_score": 0.9992061362760161,
+      "review_reasons": [
+        "Financial imagery requires human policy and jurisdiction review"
+      ],
+      "verdict": "REVIEW"
+    },
+    "detections": [],
+    "input_size": [
+      640,
+      640
+    ],
+    "latency_ms": {
+      "classification": 78.81345809437335,
+      "detection": 0.0,
+      "explanation": 730.4994589649141,
+      "ocr": 181.233124807477,
+      "total": 993.906166870147
+    },
+    "ocr": {
+      "engine": "tesseract",
+      "text": "JADE MARKETS M. <ET ANALYTICS Research before you trade Live sample chart SIMULATED CREATIVE NOT FINANCIAL ADVICE",
+      "tokens": [
+        {
+          "box": [
+            59,
+            64,
+            130,
+            84
+          ],
+          "confidence": 96.889023,
+          "text": "JADE"
+        },
+        {
+          "box": [
+            139,
+            64,
+            267,
+            84
+          ],
+          "confidence": 94.943962,
+          "text": "MARKETS"
+        },
+        {
+          "box": [
+            59,
+            107,
+            73,
+            121
+          ],
+          "confidence": 44.858662,
+          "text": "M."
+        },
+        {
+          "box": [
+            107,
+            107,
+            136,
+            121
+          ],
+          "confidence": 91.712585,
+          "text": "<ET"
+        },
+        {
+          "box": [
+            141,
+            107,
+            247,
+            121
+          ],
+          "confidence": 96.616493,
+          "text": "ANALYTICS"
+        },
+        {
+          "box": [
+            62,
+            188,
+            245,
+            222
+          ],
+          "confidence": 96.820549,
+          "text": "Research"
+        },
+        {
+          "box": [
+            261,
+            188,
+            390,
+            222
+          ],
+          "confidence": 96.212715,
+          "text": "before"
+        },
+        {
+          "box": [
+            403,
+            198,
+            477,
+            231
+          ],
+          "confidence": 96.186836,
+          "text": "you"
+        },
+        {
+          "box": [
+            58,
+            243,
+            163,
+            277
+          ],
+          "confidence": 96.954475,
+          "text": "trade"
+        },
+        {
+          "box": [
+            437,
+            461,
+            472,
+            475
+          ],
+          "confidence": 96.824593,
+          "text": "Live"
+        },
+        {
+          "box": [
+            476,
+            460,
+            541,
+            479
+          ],
+          "confidence": 96.62574,
+          "text": "sample"
+        },
+        {
+          "box": [
+            546,
+            460,
+            590,
+            480
+          ],
+          "confidence": 95.852486,
+          "text": "chart"
+        },
+        {
+          "box": [
+            292,
+            538,
+            401,
+            552
+          ],
+          "confidence": 96.655182,
+          "text": "SIMULATED"
+        },
+        {
+          "box": [
+            407,
+            538,
+            498,
+            552
+          ],
+          "confidence": 96.532867,
+          "text": "CREATIVE"
+        },
+        {
+          "box": [
+            293,
+            564,
+            333,
+            578
+          ],
+          "confidence": 96.442352,
+          "text": "NOT"
+        },
+        {
+          "box": [
+            339,
+            564,
+            438,
+            578
+          ],
+          "confidence": 95.103043,
+          "text": "FINANCIAL"
+        },
+        {
+          "box": [
+            444,
+            564,
+            512,
+            578
+          ],
+          "confidence": 96.881226,
+          "text": "ADVICE"
+        }
+      ]
+    }
+  },
+  "case": {
+    "case_id": "formal_financial_promotion",
+    "detector": false,
+    "expected_label": "financial_promotion",
+    "explain": true,
+    "ocr": true,
+    "path": "data/capstone_dataset/test/financial_promotion/financial_promotion-ff884f7cd86b4295.jpg",
+    "scope": "formal grouped test"
+  },
+  "classifier_prediction": "financial_promotion",
+  "expected_label": "financial_promotion"
+}

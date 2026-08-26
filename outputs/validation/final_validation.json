@@ -1,0 +1,4093 @@
+{
+  "all_checks_passed": true,
+  "check_count": 16,
+  "checks": {
+    "app_browser_evidence": {
+      "console_errors": [],
+      "console_warnings": [],
+      "deprecated_width_api": false,
+      "horizontal_overflow": false,
+      "interface_validation": {
+        "accessible_chart_data_table": true,
+        "accessible_chart_data_tables": 4,
+        "accessible_confusion_matrix_cells": 16,
+        "audit_download": {
+          "applied_threshold_keys": [
+            "explosives",
+            "financial_promotion",
+            "firearms",
+            "review",
+            "safe",
+            "uncertainty_margin"
+          ],
+          "filename": "firearms-08b5814b3661e772.jpg",
+          "input_sha256": "2e36d9086df38d2e999f36a81ff643970c1a4a941a6f82c4325035f321a85c85",
+          "options": {
+            "detector": true,
+            "explanation": true,
+            "ocr": false
+          },
+          "schema_version": "1.1",
+          "verdict": "BLOCK"
+        },
+        "changed_options_mark_result_stale": true,
+        "completed_result_plotly_charts": 7,
+        "core_readiness_checks_head_and_vit_snapshot": true,
+        "corrupt_upload_rejected_before_analysis": true,
+        "current_browser_case": {
+          "detector_enabled": false,
+          "file": "data/capstone_dataset/test/financial_promotion/financial_promotion-002cf2ebd1547008.jpg",
+          "observed_total_latency_ms": 557,
+          "observed_verdict": "REVIEW",
+          "occlusion_explanation_enabled": false,
+          "ocr_enabled": true,
+          "persisted_after_workspace_navigation": true
+        },
+        "detector_snapshot_status_visible": true,
+        "formal_and_external_scopes_separated": true,
+        "formal_metric_delta_elements": 0,
+        "invalid_replacement_clears_previous_result": true,
+        "navigation_sections": [
+          "Analyze",
+          "Pilot evidence",
+          "How it works"
+        ],
+        "new_upload_clears_previous_result": true,
+        "option_change_did_not_reanalyze": true,
+        "pilot_evidence_plotly_charts": 5,
+        "reduced_motion_css_present": true,
+        "result_metric_delta_elements": 0,
+        "result_persists_across_workspace_navigation": true,
+        "result_persists_after_option_rerun": true,
+        "same_file_reupload_does_not_resurrect_result": true
+      },
+      "live_api_validation": {
+        "cold_engine_loaded": false,
+        "cold_health_ready": true,
+        "corrupt_input_rejected": true,
+        "financial_verdict": "REVIEW",
+        "firearm_detector_boxes": 3,
+        "firearm_verdict": "BLOCK",
+        "missing_requested_detector_returns_503_tested": true,
+        "missing_visual_backbone_returns_503_tested": true,
+        "post_firearm_detector_loaded": true,
+        "post_safe_engine_loaded": true,
+        "safe_verdict": "APPROVE",
+        "schema_version": "1.1",
+        "unexpected_error_opaque_reference_tested": true,
+        "unsupported_media_rejected": true,
+        "url": "http://127.0.0.1:8511"
+      },
+      "passed": true,
+      "provenance_hash_failures": [],
+      "screenshot_sizes": [
+        [
+          1280,
+          720
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          1280,
+          720
+        ],
+        [
+          1280,
+          720
+        ]
+      ],
+      "verdicts": {
+        "formal_financial_promotion": "REVIEW",
+        "formal_firearms": "BLOCK",
+        "formal_safe": "APPROVE"
+      }
+    },
+    "automated_tests": {
+      "output": "........................................................................ [ 67%]\n...................................                                      [100%]\n=============================== warnings summary ===============================\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n  <PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852: DeprecationWarning: label() is deprecated. Use is_required() or is_repeated() instead.\n    self._ParseOrMerge(lines, message)\n\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n  <PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876: DeprecationWarning: label() is deprecated. Use is_required() or is_repeated() instead.\n    self._MergeField(tokenizer, message)\n\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1011\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1011\n  <PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1011: DeprecationWarning: label() is deprecated. Use is_required() or is_repeated() instead.\n    merger(tokenizer, message, field)\n\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1092\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1092\n  <PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1092: DeprecationWarning: label() is deprecated. Use is_required() or is_repeated() instead.\n    self._MergeField(tokenizer, sub_message)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n107 passed, 16 warnings in 9.27s",
+      "passed": true,
+      "returncode": 0
+    },
+    "dataset_registry": {
+      "counts": {
+        "explosives:test": 12,
+        "explosives:train": 48,
+        "explosives:val": 12,
+        "financial_promotion:test": 12,
+        "financial_promotion:train": 48,
+        "financial_promotion:val": 12,
+        "firearms:test": 12,
+        "firearms:train": 48,
+        "firearms:val": 12,
+        "safe:test": 12,
+        "safe:train": 48,
+        "safe:val": 12
+      },
+      "declared_near_duplicate_hamming_threshold": 2,
+      "decode_failures": [],
+      "decoded_pixel_dhash_overlap_count": 0,
+      "diagnostic_band_interpretation": "synthetic financial creatives reuse a shared visual grammar; this is reported as source-style confounding, not treated as proof of pixel duplication",
+      "diagnostic_cross_split_hamming_3_to_4_count": 15,
+      "diagnostic_hamming_3_to_4_pairs": [
+        {
+          "both_declared_synthetic": true,
+          "hamming_distance": 3,
+          "left_label": "financial_promotion",
+          "left_sample_id": "financial_promotion-18a74a75b560e790",
+          "left_source_group": "pil-financial-campaign::delta-dividend",
+          "left_split": "train",
+          "right_label": "financial_promotion",
+          "right_sample_id": "financial_promotion-002cf2ebd1547008",
+          "right_source_group": "pil-financial-campaign::mint-money",
+          "right_split": "test"
+        },
+        {
+          "both_declared_synthetic": true,
+          "hamming_distance": 4,
+          "left_label": "financial_promotion",
+          "left_sample_id": "financial_promotion-19c51cd84f0d8980",
+          "left_source_group": "pil-financial-campaign::harbor-savings",
+          "left_split": "train",
+          "right_label": "financial_promotion",
+          "right_sample_id": "financial_promotion-3d78e80cc6d28821",
+          "right_source_group": "pil-financial-campaign::unity-wealth",
+          "right_split": "test"
+        },
+        {
+          "both_declared_synthetic": true,
+          "hamming_distance": 4,
+          "left_label": "financial_promotion",
+          "left_sample_id": "financial_promotion-26f326b2921028dd",
+          "left_source_group": "pil-financial-campaign::orbit-portfolio",
+          "left_split": "train",
+          "right_label": "financial_promotion",
+          "right_sample_id": "financial_promotion-242b15ff33190eea",
+          "right_source_group": "pil-financial-campaign::jade-markets",
+          "right_split": "test"
+        },
+        {
+          "both_declared_synthetic": true,
+          "hamming_distance": 4,
+          "left_label": "financial_promotion",
+          "left_sample_id": "financial_promotion-26f326b2921028dd",
+          "left_source_group": "pil-financial-campaign::orbit-portfolio",
+          "left_split": "train",
+          "right_label": "financial_promotion",
+          "right_sample_id": "financial_promotion-ff884f7cd86b4295",
+          "right_source_group": "pil-financial-campaign::jade-markets",
+          "right_split": "test"
+        },
+        {
+          "both_declared_synthetic": true,
+          "hamming_distance": 4,
+          "left_label": "financial_promotion",
+          "left_sample_id": "financial_promotion-4f62bca4c4cceb59",
+          "left_source_group": "pil-financial-campaign::quartz-quant",
+          "left_split": "train",
+          "right_label": "financial_promotion",
+          "right_sample_id": "financial_promotion-3d78e80cc6d28821",
+          "right_source_group": "pil-financial-campaign::unity-wealth",
+          "right_split": "test"
+        },
+        {
+          "both_declared_synthetic": true,
+          "hamming_distance": 3,
+          "left_label": "financial_promotion",
+          "left_sample_id": "financial_promotion-527b289322dcc76f",
+          "left_source_group": "pil-financial-campaign::lumen-loans",
+          "left_split": "train",
+          "right_label": "financial_promotion",
+          "right_sample_id": "financial_promotion-002cf2ebd1547008",
+          "right_source_group": "pil-financial-campaign::mint-money",
+          "right_split": "test"
+        },
+        {
+          "both_declared_synthetic": true,
+          "hamming_distance": 3,
+          "left_label": "financial_promotion",
+          "left_sample_id": "financial_promotion-5dfe6796a85c2b3e",
+          "left_source_group": "pil-financial-campaign::delta-dividend",
+          "left_split": "train",
+          "right_label": "financial_promotion",
+          "right_sample_id": "financial_promotion-002cf2ebd1547008",
+          "right_source_group": "pil-financial-campaign::mint-money",
+          "right_split": "test"
+        },
+        {
+          "both_declared_synthetic": true,
+          "hamming_distance": 3,
+          "left_label": "financial_promotion",
+          "left_sample_id": "financial_promotion-5dfe6796a85c2b3e",
+          "left_source_group": "pil-financial-campaign::delta-dividend",
+          "left_split": "train",
+          "right_label": "financial_promotion",
+          "right_sample_id": "financial_promotion-242b15ff33190eea",
+          "right_source_group": "pil-financial-campaign::jade-markets",
+          "right_split": "test"
+        },
+        {
+          "both_declared_synthetic": true,
+          "hamming_distance": 4,
+          "left_label": "financial_promotion",
+          "left_sample_id": "financial_promotion-70af24b4e6958eb8",
+          "left_source_group": "pil-financial-campaign::ion-invest",
+          "left_split": "train",
+          "right_label": "financial_promotion",
+          "right_sample_id": "financial_promotion-2cdff0da9fef3590",
+          "right_source_group": "pil-financial-campaign::nova-options",
+          "right_split": "test"
+        },
+        {
+          "both_declared_synthetic": true,
+          "hamming_distance": 4,
+          "left_label": "financial_promotion",
+          "left_sample_id": "financial_promotion-74f3cbd7b64097a8",
+          "left_source_group": "pil-financial-campaign::harbor-savings",
+          "left_split": "train",
+          "right_label": "financial_promotion",
+          "right_sample_id": "financial_promotion-5e3fb17f6be733b0",
+          "right_source_group": "pil-financial-campaign::unity-wealth",
+          "right_split": "test"
+        },
+        {
+          "both_declared_synthetic": true,
+          "hamming_distance": 4,
+          "left_label": "financial_promotion",
+          "left_sample_id": "financial_promotion-a8c6cedcb4753f05",
+          "left_source_group": "pil-financial-campaign::lumen-loans",
+          "left_split": "train",
+          "right_label": "financial_promotion",
+          "right_sample_id": "financial_promotion-002cf2ebd1547008",
+          "right_source_group": "pil-financial-campaign::mint-money",
+          "right_split": "test"
+        },
+        {
+          "both_declared_synthetic": true,
+          "hamming_distance": 4,
+          "left_label": "financial_promotion",
+          "left_sample_id": "financial_promotion-b0e05feeb26a6b87",
+          "left_source_group": "pil-financial-campaign::orbit-portfolio",
+          "left_split": "train",
+          "right_label": "financial_promotion",
+          "right_sample_id": "financial_promotion-242b15ff33190eea",
+          "right_source_group": "pil-financial-campaign::jade-markets",
+          "right_split": "test"
+        },
+        {
+          "both_declared_synthetic": true,
+          "hamming_distance": 3,
+          "left_label": "financial_promotion",
+          "left_sample_id": "financial_promotion-bbfbf653ca8386de",
+          "left_source_group": "pil-financial-campaign::kite-capital",
+          "left_split": "train",
+          "right_label": "financial_promotion",
+          "right_sample_id": "financial_promotion-002cf2ebd1547008",
+          "right_source_group": "pil-financial-campaign::mint-money",
+          "right_split": "test"
+        },
+        {
+          "both_declared_synthetic": true,
+          "hamming_distance": 3,
+          "left_label": "financial_promotion",
+          "left_sample_id": "financial_promotion-cce6f433645659f6",
+          "left_source_group": "pil-financial-campaign::harbor-savings",
+          "left_split": "train",
+          "right_label": "financial_promotion",
+          "right_sample_id": "financial_promotion-3d78e80cc6d28821",
+          "right_source_group": "pil-financial-campaign::unity-wealth",
+          "right_split": "test"
+        },
+        {
+          "both_declared_synthetic": true,
+          "hamming_distance": 4,
+          "left_label": "financial_promotion",
+          "left_sample_id": "financial_promotion-cce6f433645659f6",
+          "left_source_group": "pil-financial-campaign::harbor-savings",
+          "left_split": "train",
+          "right_label": "financial_promotion",
+          "right_sample_id": "financial_promotion-579b58a29a7d955f",
+          "right_source_group": "pil-financial-campaign::mint-money",
+          "right_split": "test"
+        }
+      ],
+      "exact_hash_overlap_count": 0,
+      "group_overlap_count": 0,
+      "hash_mismatches": [],
+      "passed": true,
+      "rejected_cross_split_near_duplicate_count": 0,
+      "rows": 288,
+      "source_groups": 215,
+      "stored_pre_encoding_dhash_overlap_count": 0,
+      "stored_pre_encoding_vs_decoded_dhash_mismatch_count": 34,
+      "stored_pre_encoding_vs_decoded_dhash_mismatch_sample_ids": [
+        "safe-1c9027c523e4a7fe",
+        "safe-a89f6190fb7133ed",
+        "safe-b70eb9145119416c",
+        "firearms-b1dd3567cd4a4671",
+        "firearms-bad92b6d4fa57178",
+        "explosives-1625e9b4fe61f1e7",
+        "explosives-ab70509d79867eb1",
+        "explosives-d2f14ad723dc51f0",
+        "explosives-f4b4c158d76b28a5",
+        "financial_promotion-08ed8395231a9a35",
+        "financial_promotion-24f146a5bbc09f42",
+        "financial_promotion-2dbdbcd8e33f4f2d",
+        "financial_promotion-317e78e007be88e7",
+        "financial_promotion-4f62bca4c4cceb59",
+        "financial_promotion-60669e4f6af12230",
+        "financial_promotion-74f3cbd7b64097a8",
+        "financial_promotion-9e3b6e56c9aab9bf",
+        "financial_promotion-a82668e8eb866b2b",
+        "financial_promotion-bdecdb46db3afae7",
+        "financial_promotion-f2c296362055c9e3",
+        "safe-2757162495978b1a",
+        "safe-28c0b9784ad9fbf2",
+        "safe-360282e708ce5353",
+        "explosives-1545787978a909e4",
+        "explosives-65372b87a2140343",
+        "financial_promotion-140d9bdd6d90de0f",
+        "financial_promotion-6d485a78c36a6abe",
+        "financial_promotion-8f64e1cb1779138a",
+        "financial_promotion-b6ba385d6221bbbc",
+        "financial_promotion-c1af96186e6d9cd2",
+        "firearms-6674b9cb87143b33",
+        "financial_promotion-242b15ff33190eea",
+        "financial_promotion-2cdff0da9fef3590",
+        "financial_promotion-579b58a29a7d955f"
+      ]
+    },
+    "evaluation_output_checksums_recomputed": {
+      "entries": 26,
+      "failures": [],
+      "passed": true,
+      "path_set_matches": true,
+      "unique_paths": 26
+    },
+    "executed_notebook_and_book": {
+      "code_cells": 22,
+      "error_outputs": 0,
+      "execution_counts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "missing_executed_output_facts": [],
+      "missing_required_facts": [],
+      "output_count": 53,
+      "passed": true,
+      "sha256": "32c8d116e4b5281588261ea2cbf1f42c0b1f0656404d9f03275c06783929af12",
+      "temporary_book_build": {
+        "chapter_present": true,
+        "index_present": true,
+        "output": "WARNING: --no-execute creates a source-only site without refreshed outputs.\nSaved canonical executed notebook: <ABSOLUTE_PATH>/private<TMP>/ad-safety-book-validation-ab5u23p7/project/ad_safety_moderation_pipeline.ipynb\nStatic book built with nbconvert: <ABSOLUTE_PATH>/private<TMP>/ad-safety-book-validation-ab5u23p7/project/book/_build/html/index.html",
+        "returncode": 0
+      }
+    },
+    "external_diagnostic_recomputed": {
+      "classifier_accuracy": 0.6538461538461539,
+      "classifier_macro_f1": 0.5548871063576946,
+      "csv_sha256": "01592cd3b212a2495af07165434637adc3129f5f9774a6146cf7644e79285ed6",
+      "detector_nonweapon_false_positive_rate": 0.9,
+      "detector_weapon_image_recall": 1.0,
+      "financial_review_rate": 0.3333333333333333,
+      "fresh_current_pipeline_inference": {
+        "classifier_accuracy": 0.6538461538461539,
+        "classifier_macro_f1": 0.5548871063576946,
+        "classifier_max_abs_saved_score_difference": 0.0,
+        "detector_nonweapon_false_positive_rate": 0.9,
+        "detector_weapon_image_recall": 1.0,
+        "financial_review_rate": 0.3333333333333333,
+        "image_sha256": [
+          {
+            "local_path": "data/wikimedia_pilot/train/safe/safe_train_9d2e2ef3fe4a.jpg",
+            "sha256": "81c804e17c4dfff3629b54377d72c84b8e9795590756554bea80afb4178a3c6d"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/train/safe/safe_train_617511ad1a2f.jpg",
+            "sha256": "ed5b76c9885ed87fc903784ad16aed971e3d4cf86e86a07617321acd97e6bce2"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/train/safe/safe_train_eb77534129f9.jpg",
+            "sha256": "112a9838ad1f1df64609a3c7675d05466250efb7d55def4a6b75d61ee27980e5"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/train/safe/safe_train_c456321d7b18.jpg",
+            "sha256": "6f948ff1afcc3bc44dbb089548edd95f8d2d8499a8a9fcbd470b166557178101"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/val/safe/safe_val_8b0372d1ceac.jpg",
+            "sha256": "45e28239a2734667da336bc446ef522ec56410dcc0d86a7678e025698c2fdd17"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/val/safe/safe_val_b8676660a3e4.jpg",
+            "sha256": "17fe29737ec11053a6d97742c8d12780e78dc3a2e7453ed836a890bd18a64f2b"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/test/safe/safe_test_5f8657d82e0b.jpg",
+            "sha256": "71604fa4bd442800740e9d8457e524641f4c891d5be49039c99ff259e220b835"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/train/firearms/firearms_train_01b73dfab038.jpg",
+            "sha256": "650dd09c578ee32578e5b5618676ff1589f3427aa36e31385f9db80c7954af22"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/train/firearms/firearms_train_83fbf1b12e72.jpg",
+            "sha256": "78918819a9c7cf910db6fe73d24f0319dde6185d3fb2a7056ef5091918dcef18"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/train/firearms/firearms_train_a0c6005948ed.jpg",
+            "sha256": "ff83bbd0eed08e1ea8e756392bbce73c35509197132923be00b03514ae2327e0"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/train/firearms/firearms_train_dc65943ea0be.jpg",
+            "sha256": "9fb25b88a9a89baa32370eaab6d429eb9fe968120349fb5c9b68ac8552be6ae0"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/val/firearms/firearms_val_a1b84b3316e8.jpg",
+            "sha256": "3660426479520800316180d38c9ac35e3a04cbbc26601079deb9087e0f9b6346"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/val/firearms/firearms_val_381b071aca85.jpg",
+            "sha256": "bfa927a4a436c7ff66cd4ac0979236cc144f0233e66b1b04f70c31bd7fc21ccc"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/val/firearms/firearms_val_a7122c3120ca.jpg",
+            "sha256": "6bf8dde981538a9345b2e98176f1b3b1a506e55e905116cd9d56a0e330a580ee"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/val/firearms/firearms_val_21db7f2e05ab.jpg",
+            "sha256": "183093138c7b3e345f40548dd47d60d15451544f37d840d440a054470f73a009"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/test/firearms/firearms_test_7d806f2bc687.jpg",
+            "sha256": "31a7826d81b04ed2467897e21193c5a7fd528d61ccca44a970ba893baab8ee48"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/test/firearms/firearms_test_b97b4eccd9c2.jpg",
+            "sha256": "1c35a5dfd88bb280a06c6894e8fed154ea8e312443ce1a9dd00be05a2a0fad25"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/test/firearms/firearms_test_8f545103cb00.jpg",
+            "sha256": "7d1cf828fba39500980d405019d6ecd3019e4193689bd54f16c9218e8f0f7441"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/train/explosives/explosives_train_15618430cce2.jpg",
+            "sha256": "74c9ee2a4cb221faa2bb5836e24bc38a4607c20047eab9f7ef306ee069279358"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/train/explosives/explosives_train_73cb665d7a67.jpg",
+            "sha256": "ee10d292af4a47a536d1ee2634791ac2e04b955749723b3e227794497e10aeae"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/val/explosives/explosives_val_dd020909c102.jpg",
+            "sha256": "dbf1814f578d8bbcb606b343540a47c062ecb5c1c9d13de00e8fa858bca772eb"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/val/explosives/explosives_val_1599c9e8a92a.jpg",
+            "sha256": "30ef8da2583e01c0631b37555d9bd497e682f6f247aa67e9feb96eab14c9ba8b"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/test/explosives/explosives_test_f3d73765d23b.jpg",
+            "sha256": "675819d7b11650512b952fd27e0322e7984924fe8270f8f753762d406ea3dcbb"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/train/financial_promotion/financial_promotion_train_cf68dfd0fea9.jpg",
+            "sha256": "ea327ac9b4c3300577f31ba77845ea24a122c7fa8dd9e3f4c505dcf3076932c0"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/train/financial_promotion/financial_promotion_train_1aed323c38cb.jpg",
+            "sha256": "cc8d4e6c1f240b9db51d8572656aa0b4b213dc0d290b8a060e6b9717338c7c3c"
+          },
+          {
+            "local_path": "data/wikimedia_pilot/test/financial_promotion/financial_promotion_test_128923d1c757.jpg",
+            "sha256": "0d567cbb6a184d8d07ab8898fc7f828da78fed6c73983111c95831c2c0489a2f"
+          }
+        ],
+        "issues": [],
+        "records": [
+          {
+            "detection_count": 2,
+            "expected_label": "safe",
+            "local_path": "data/wikimedia_pilot/train/safe/safe_train_9d2e2ef3fe4a.jpg",
+            "policy_primary_label": "safe",
+            "policy_verdict": "APPROVE",
+            "predicted_label": "safe",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 4,
+            "expected_label": "safe",
+            "local_path": "data/wikimedia_pilot/train/safe/safe_train_617511ad1a2f.jpg",
+            "policy_primary_label": "safe",
+            "policy_verdict": "APPROVE",
+            "predicted_label": "safe",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 5,
+            "expected_label": "safe",
+            "local_path": "data/wikimedia_pilot/train/safe/safe_train_eb77534129f9.jpg",
+            "policy_primary_label": "explosives",
+            "policy_verdict": "BLOCK",
+            "predicted_label": "explosives",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 3,
+            "expected_label": "safe",
+            "local_path": "data/wikimedia_pilot/train/safe/safe_train_c456321d7b18.jpg",
+            "policy_primary_label": "explosives",
+            "policy_verdict": "BLOCK",
+            "predicted_label": "explosives",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 0,
+            "expected_label": "safe",
+            "local_path": "data/wikimedia_pilot/val/safe/safe_val_8b0372d1ceac.jpg",
+            "policy_primary_label": "safe",
+            "policy_verdict": "APPROVE",
+            "predicted_label": "safe",
+            "weapon_detector_signal": false
+          },
+          {
+            "detection_count": 1,
+            "expected_label": "safe",
+            "local_path": "data/wikimedia_pilot/val/safe/safe_val_b8676660a3e4.jpg",
+            "policy_primary_label": "safe",
+            "policy_verdict": "APPROVE",
+            "predicted_label": "safe",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 3,
+            "expected_label": "safe",
+            "local_path": "data/wikimedia_pilot/test/safe/safe_test_5f8657d82e0b.jpg",
+            "policy_primary_label": "explosives",
+            "policy_verdict": "REVIEW",
+            "predicted_label": "safe",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 5,
+            "expected_label": "firearms",
+            "local_path": "data/wikimedia_pilot/train/firearms/firearms_train_01b73dfab038.jpg",
+            "policy_primary_label": "firearms",
+            "policy_verdict": "REVIEW",
+            "predicted_label": "firearms",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 8,
+            "expected_label": "firearms",
+            "local_path": "data/wikimedia_pilot/train/firearms/firearms_train_83fbf1b12e72.jpg",
+            "policy_primary_label": "firearms",
+            "policy_verdict": "BLOCK",
+            "predicted_label": "firearms",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 4,
+            "expected_label": "firearms",
+            "local_path": "data/wikimedia_pilot/train/firearms/firearms_train_a0c6005948ed.jpg",
+            "policy_primary_label": "explosives",
+            "policy_verdict": "BLOCK",
+            "predicted_label": "explosives",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 7,
+            "expected_label": "firearms",
+            "local_path": "data/wikimedia_pilot/train/firearms/firearms_train_dc65943ea0be.jpg",
+            "policy_primary_label": "firearms",
+            "policy_verdict": "REVIEW",
+            "predicted_label": "firearms",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 8,
+            "expected_label": "firearms",
+            "local_path": "data/wikimedia_pilot/val/firearms/firearms_val_a1b84b3316e8.jpg",
+            "policy_primary_label": "firearms",
+            "policy_verdict": "REVIEW",
+            "predicted_label": "firearms",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 7,
+            "expected_label": "firearms",
+            "local_path": "data/wikimedia_pilot/val/firearms/firearms_val_381b071aca85.jpg",
+            "policy_primary_label": "firearms",
+            "policy_verdict": "REVIEW",
+            "predicted_label": "firearms",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 6,
+            "expected_label": "firearms",
+            "local_path": "data/wikimedia_pilot/val/firearms/firearms_val_a7122c3120ca.jpg",
+            "policy_primary_label": "firearms",
+            "policy_verdict": "BLOCK",
+            "predicted_label": "firearms",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 4,
+            "expected_label": "firearms",
+            "local_path": "data/wikimedia_pilot/val/firearms/firearms_val_21db7f2e05ab.jpg",
+            "policy_primary_label": "firearms",
+            "policy_verdict": "BLOCK",
+            "predicted_label": "firearms",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 3,
+            "expected_label": "firearms",
+            "local_path": "data/wikimedia_pilot/test/firearms/firearms_test_7d806f2bc687.jpg",
+            "policy_primary_label": "firearms",
+            "policy_verdict": "BLOCK",
+            "predicted_label": "firearms",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 4,
+            "expected_label": "firearms",
+            "local_path": "data/wikimedia_pilot/test/firearms/firearms_test_b97b4eccd9c2.jpg",
+            "policy_primary_label": "firearms",
+            "policy_verdict": "BLOCK",
+            "predicted_label": "firearms",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 7,
+            "expected_label": "firearms",
+            "local_path": "data/wikimedia_pilot/test/firearms/firearms_test_8f545103cb00.jpg",
+            "policy_primary_label": "firearms",
+            "policy_verdict": "REVIEW",
+            "predicted_label": "firearms",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 2,
+            "expected_label": "explosives",
+            "local_path": "data/wikimedia_pilot/train/explosives/explosives_train_15618430cce2.jpg",
+            "policy_primary_label": "safe",
+            "policy_verdict": "APPROVE",
+            "predicted_label": "safe",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 2,
+            "expected_label": "explosives",
+            "local_path": "data/wikimedia_pilot/train/explosives/explosives_train_73cb665d7a67.jpg",
+            "policy_primary_label": "firearms",
+            "policy_verdict": "REVIEW",
+            "predicted_label": "firearms",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 3,
+            "expected_label": "explosives",
+            "local_path": "data/wikimedia_pilot/val/explosives/explosives_val_dd020909c102.jpg",
+            "policy_primary_label": "safe",
+            "policy_verdict": "APPROVE",
+            "predicted_label": "safe",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 5,
+            "expected_label": "explosives",
+            "local_path": "data/wikimedia_pilot/val/explosives/explosives_val_1599c9e8a92a.jpg",
+            "policy_primary_label": "explosives",
+            "policy_verdict": "REVIEW",
+            "predicted_label": "safe",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 4,
+            "expected_label": "explosives",
+            "local_path": "data/wikimedia_pilot/test/explosives/explosives_test_f3d73765d23b.jpg",
+            "policy_primary_label": "explosives",
+            "policy_verdict": "BLOCK",
+            "predicted_label": "explosives",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 4,
+            "expected_label": "financial_promotion",
+            "local_path": "data/wikimedia_pilot/train/financial_promotion/financial_promotion_train_cf68dfd0fea9.jpg",
+            "policy_primary_label": "explosives",
+            "policy_verdict": "REVIEW",
+            "predicted_label": "safe",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 1,
+            "expected_label": "financial_promotion",
+            "local_path": "data/wikimedia_pilot/train/financial_promotion/financial_promotion_train_1aed323c38cb.jpg",
+            "policy_primary_label": "safe",
+            "policy_verdict": "APPROVE",
+            "predicted_label": "safe",
+            "weapon_detector_signal": true
+          },
+          {
+            "detection_count": 2,
+            "expected_label": "financial_promotion",
+            "local_path": "data/wikimedia_pilot/test/financial_promotion/financial_promotion_test_128923d1c757.jpg",
+            "policy_primary_label": "financial_promotion",
+            "policy_verdict": "REVIEW",
+            "predicted_label": "financial_promotion",
+            "weapon_detector_signal": true
+          }
+        ],
+        "rows": 26,
+        "safe_nonapprove_rate": 0.42857142857142855,
+        "weapon_block_rate": 0.4375
+      },
+      "json_sha256": "33bd72d1f83cca3dea2a2eb7e86712356c6e3ebcd3a64f4032bf8f9b3f3cf5d3",
+      "manifest_included_rows": 26,
+      "passed": true,
+      "reviewed_manifest_sha256": "7aeaedce0ce6f047d7260fe946293c40f1d08f60c2917c0f51832db4014215c1",
+      "row_issues": [],
+      "rows": 26,
+      "safe_nonapprove_rate": 0.42857142857142855,
+      "weapon_block_rate": 0.4375
+    },
+    "full_local_dataset_available": {
+      "expected_images": 288,
+      "missing_images": 0,
+      "passed": true,
+      "present_images": 288
+    },
+    "management_presentation": {
+      "archive_error": null,
+      "current_pptx_rerender": {
+        "conversion_returncode": 0,
+        "page_count": 15,
+        "pdftoppm_binary": "pdftoppm",
+        "render_evidence": [
+          {
+            "format": "PNG",
+            "gray_extrema": [
+              0,
+              255
+            ],
+            "gray_stddev": 31.255496822240847,
+            "height": 900,
+            "nonblank": true,
+            "pixel_sha256": "2e5744e26202a556c2ca56535556af87f05b251ef339401e3cb24853481dae4e",
+            "slide": 1,
+            "width": 1601
+          },
+          {
+            "format": "PNG",
+            "gray_extrema": [
+              0,
+              255
+            ],
+            "gray_stddev": 33.075514698616736,
+            "height": 900,
+            "nonblank": true,
+            "pixel_sha256": "b7d51a3498411157d9f339e8cd494526222f8e6c77d99a4703578d361222770e",
+            "slide": 2,
+            "width": 1601
+          },
+          {
+            "format": "PNG",
+            "gray_extrema": [
+              0,
+              255
+            ],
+            "gray_stddev": 27.41925427157385,
+            "height": 900,
+            "nonblank": true,
+            "pixel_sha256": "34f957eb834a9267e92f04babde9a41a35b82b574957820e34cf7ec9f1497f20",
+            "slide": 3,
+            "width": 1601
+          },
+          {
+            "format": "PNG",
+            "gray_extrema": [
+              0,
+              255
+            ],
+            "gray_stddev": 27.737173762091313,
+            "height": 900,
+            "nonblank": true,
+            "pixel_sha256": "e210c9d7626a5f197d62f8076023439731ec532b25965e16dd78d19e029bcb9e",
+            "slide": 4,
+            "width": 1601
+          },
+          {
+            "format": "PNG",
+            "gray_extrema": [
+              14,
+              255
+            ],
+            "gray_stddev": 40.10000023398911,
+            "height": 900,
+            "nonblank": true,
+            "pixel_sha256": "3b733f03bea29835a1764f86ba14f82bdae517ca8a216c008f355ec3c0915443",
+            "slide": 5,
+            "width": 1601
+          },
+          {
+            "format": "PNG",
+            "gray_extrema": [
+              0,
+              255
+            ],
+            "gray_stddev": 52.99526715983054,
+            "height": 900,
+            "nonblank": true,
+            "pixel_sha256": "a5682d4f18730e28c85a12afc8d21c5f88f81956b4645b3acc4856e6c1147d0c",
+            "slide": 6,
+            "width": 1601
+          },
+          {
+            "format": "PNG",
+            "gray_extrema": [
+              0,
+              255
+            ],
+            "gray_stddev": 27.178055762039005,
+            "height": 900,
+            "nonblank": true,
+            "pixel_sha256": "12e56c466a9630e7cbdfc38f155cbc59dd86e863f73e7e4224060228c953fc4a",
+            "slide": 7,
+            "width": 1601
+          },
+          {
+            "format": "PNG",
+            "gray_extrema": [
+              9,
+              255
+            ],
+            "gray_stddev": 26.2497597976069,
+            "height": 900,
+            "nonblank": true,
+            "pixel_sha256": "920398e95e384a2ef61d44120930b5a61d66af64b968240c8f9155fea52b109a",
+            "slide": 8,
+            "width": 1601
+          },
+          {
+            "format": "PNG",
+            "gray_extrema": [
+              25,
+              255
+            ],
+            "gray_stddev": 27.329568265843193,
+            "height": 900,
+            "nonblank": true,
+            "pixel_sha256": "7094f419de417e8daf7379d01003ae2fd1b44733cb7ab6aec5e0b67ff72c149e",
+            "slide": 9,
+            "width": 1601
+          },
+          {
+            "format": "PNG",
+            "gray_extrema": [
+              0,
+              255
+            ],
+            "gray_stddev": 39.07237068846335,
+            "height": 900,
+            "nonblank": true,
+            "pixel_sha256": "2750b1cda2e20497b768ac4fd257ca6396b4189eaff5845d0006810d6ef9f260",
+            "slide": 10,
+            "width": 1601
+          },
+          {
+            "format": "PNG",
+            "gray_extrema": [
+              9,
+              255
+            ],
+            "gray_stddev": 45.40682791628916,
+            "height": 900,
+            "nonblank": true,
+            "pixel_sha256": "5a1409863617973424617a4ce83b9d06adf1547ff956888a5e01e57a05b0e1ea",
+            "slide": 11,
+            "width": 1601
+          },
+          {
+            "format": "PNG",
+            "gray_extrema": [
+              0,
+              255
+            ],
+            "gray_stddev": 56.230424187943854,
+            "height": 900,
+            "nonblank": true,
+            "pixel_sha256": "e8e8c11df50919a86d556c33e165e7614a91a28bdbbfcd3107323f9fe8e23621",
+            "slide": 12,
+            "width": 1601
+          },
+          {
+            "format": "PNG",
+            "gray_extrema": [
+              12,
+              255
+            ],
+            "gray_stddev": 30.17604952120528,
+            "height": 900,
+            "nonblank": true,
+            "pixel_sha256": "f3a87745170e49f24b557b7152a8175103506825c2f3ccd20a8e73905f22a609",
+            "slide": 13,
+            "width": 1601
+          },
+          {
+            "format": "PNG",
+            "gray_extrema": [
+              9,
+              255
+            ],
+            "gray_stddev": 27.70582416892351,
+            "height": 900,
+            "nonblank": true,
+            "pixel_sha256": "440b83be93d334995065e8493191678d887f503f324ea75c6670600144b84d86",
+            "slide": 14,
+            "width": 1601
+          },
+          {
+            "format": "PNG",
+            "gray_extrema": [
+              0,
+              255
+            ],
+            "gray_stddev": 29.932623113480105,
+            "height": 900,
+            "nonblank": true,
+            "pixel_sha256": "39560fbd6333da56109173de007e8b100ed166de60444293d69c440d9b9c9d1c",
+            "slide": 15,
+            "width": 1601
+          }
+        ],
+        "render_failures": [],
+        "slides_validated": 15,
+        "soffice_binary": "soffice"
+      },
+      "manual_visual_inspection": "PASS: inspected both current montages and all 15 independently reopened full-size slides; typography is projection-readable, no visible clipping or unintended overlap remains, and the enlarged slide 8 calibration view is legible.",
+      "missing_mvp_roadmap_facts": [],
+      "missing_required_facts": [],
+      "montage_sizes": [
+        [
+          2096,
+          781
+        ],
+        [
+          2096,
+          781
+        ]
+      ],
+      "mvp_roadmap_plan": {
+        "phase_windows": [
+          "weeks 1-3",
+          "weeks 4-6",
+          "weeks 7-10"
+        ],
+        "resource_requirements": [
+          "data lead, policy reviewer, and two annotators",
+          "one ML engineer, reviewer, and CPU/GPU test capacity",
+          "product lead, app/MLOps engineer, and reviewer rotation"
+        ],
+        "scale_gate": {
+          "concurrent_requests": 10,
+          "measurements": [
+            "end-to-end p95",
+            "CPU",
+            "GPU",
+            "RAM"
+          ]
+        },
+        "status": "recommended plan, not a measured commitment",
+        "timeline_weeks": 10
+      },
+      "notes_portable": true,
+      "notes_relationship_count": 15,
+      "notes_slides": 15,
+      "passed": true,
+      "presenters_found": {
+        "Bickramjit Basu": true,
+        "Myetchae Thu": true,
+        "Swarnaditya Maitra": true,
+        "Vijay Agnihotri": true
+      },
+      "qa_sha256": "9d09685c956551795e076497f2cb31e3c7ea6dac0b834e2e871f33b86726870e",
+      "sha256": "9d09685c956551795e076497f2cb31e3c7ea6dac0b834e2e871f33b86726870e",
+      "slide_size_emu": [
+        12192000,
+        6858000
+      ],
+      "slides": 15,
+      "sources_blocks": 15,
+      "support_hashes_match": true,
+      "validation_sha256": "9d09685c956551795e076497f2cb31e3c7ea6dac0b834e2e871f33b86726870e"
+    },
+    "measured_evidence_recomputed": {
+      "argmax_issues": [],
+      "argmax_restricted_mean": 0.9722222222222222,
+      "argmax_restricted_recalls": {
+        "explosives": 0.9166666666666666,
+        "financial_promotion": 1.0,
+        "firearms": 1.0
+      },
+      "external_detector_nonweapon_fpr": 0.9,
+      "external_macro_f1": 0.5548871063576946,
+      "passed": true,
+      "per_class_recall_target_gt_0_95_met": false,
+      "prediction_registry_issues": [],
+      "prediction_rows": 96,
+      "probability_issues": [],
+      "recomputed": {
+        "resnet50": {
+          "accuracy": 0.875,
+          "macro_f1": 0.8731521739130435,
+          "per_class": {
+            "explosives": {
+              "f1": 0.75,
+              "fn": 3,
+              "fp": 3,
+              "precision": 0.75,
+              "recall": 0.75,
+              "support": 12,
+              "tp": 9
+            },
+            "financial_promotion": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "support": 12,
+              "tp": 12
+            },
+            "firearms": {
+              "f1": 0.9600000000000001,
+              "fn": 0,
+              "fp": 1,
+              "precision": 0.9230769230769231,
+              "recall": 1.0,
+              "support": 12,
+              "tp": 12
+            },
+            "safe": {
+              "f1": 0.7826086956521738,
+              "fn": 3,
+              "fp": 2,
+              "precision": 0.8181818181818182,
+              "recall": 0.75,
+              "support": 12,
+              "tp": 9
+            }
+          },
+          "rows": 48
+        },
+        "vit": {
+          "accuracy": 0.9791666666666666,
+          "macro_f1": 0.9791304347826086,
+          "per_class": {
+            "explosives": {
+              "f1": 0.9565217391304348,
+              "fn": 1,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 0.9166666666666666,
+              "support": 12,
+              "tp": 11
+            },
+            "financial_promotion": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "support": 12,
+              "tp": 12
+            },
+            "firearms": {
+              "f1": 0.9600000000000001,
+              "fn": 0,
+              "fp": 1,
+              "precision": 0.9230769230769231,
+              "recall": 1.0,
+              "support": 12,
+              "tp": 12
+            },
+            "safe": {
+              "f1": 1.0,
+              "fn": 0,
+              "fp": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "support": 12,
+              "tp": 12
+            }
+          },
+          "rows": 48
+        }
+      },
+      "resnet_cpu_p95_ms": 40.06439546355978,
+      "resnet_macro_f1": 0.8731521739130435,
+      "safe_ad_false_flag_rate_one_minus_safe_recall": 0.0,
+      "safe_precision": 1.0,
+      "safe_precision_target_gt_0_98_met": true,
+      "threshold_flag_issues": [],
+      "threshold_operating_mean": 0.9444444444444443,
+      "threshold_operating_min": 0.9166666666666666,
+      "threshold_operating_recalls": {
+        "explosives": 0.9166666666666666,
+        "financial_promotion": 1.0,
+        "firearms": 0.9166666666666666
+      },
+      "threshold_provenance_ok": true,
+      "threshold_selection_validation_recall_floor": 0.9,
+      "vit_accuracy": 0.9791666666666666,
+      "vit_cpu_p95_ms": 71.52729103690945,
+      "vit_macro_f1": 0.9791304347826086
+    },
+    "narrated_demo_video": {
+      "audio_codec": "aac",
+      "audio_max_volume_db": -5.0,
+      "audio_mean_volume_db": -22.5,
+      "audio_signal_ok": true,
+      "caption_cues": 99,
+      "duration_seconds": 454.17,
+      "ffmpeg": "<PYTHON_PREFIX>/lib/python3.10/site-packages/imageio_ffmpeg/binaries/ffmpeg-macos-aarch64-v7.1",
+      "has_audio_stream": true,
+      "has_subtitle_stream": true,
+      "has_video_stream": true,
+      "height": 720,
+      "independent_decode_returncode": 0,
+      "independent_decode_stderr": "",
+      "manual_visual_inspection": "PASS: I inspected the current representative montage and final MP4 frames for the safe, firearm, and financial decision scenes after the final deck rebuild; verdicts, evidence panels, captions, framing, and text are legible with no clipping or stale visuals.",
+      "missing_required_facts": [],
+      "narration_stale_text_absent": true,
+      "offline_disclosure_ok": true,
+      "passed": true,
+      "representative_frame_evidence": [
+        {
+          "format": "JPEG",
+          "gray_extrema": [
+            0,
+            255
+          ],
+          "gray_stddev": 30.978224841800138,
+          "height": 720,
+          "nonblank": true,
+          "pixel_sha256": "ad8edab239b35f763240103a117568c8d6d725aaab9b78cbab6789138d62d7ff",
+          "timestamp_seconds": 5.0,
+          "width": 1280
+        },
+        {
+          "format": "JPEG",
+          "gray_extrema": [
+            0,
+            255
+          ],
+          "gray_stddev": 52.61914199084493,
+          "height": 720,
+          "nonblank": true,
+          "pixel_sha256": "68c2207f5401fd35c587deca6a6d90f47069439f6869545a166697b73d506641",
+          "timestamp_seconds": 90.83,
+          "width": 1280
+        },
+        {
+          "format": "JPEG",
+          "gray_extrema": [
+            0,
+            255
+          ],
+          "gray_stddev": 37.4770952729868,
+          "height": 720,
+          "nonblank": true,
+          "pixel_sha256": "0780abed6a52027367946f3d7daa0b7fa8b7995502f4494af8ddc5ff25cb4695",
+          "timestamp_seconds": 181.67,
+          "width": 1280
+        },
+        {
+          "format": "JPEG",
+          "gray_extrema": [
+            5,
+            255
+          ],
+          "gray_stddev": 43.03331304437706,
+          "height": 720,
+          "nonblank": true,
+          "pixel_sha256": "37adaceeb33f6deeb2cbb3eda1654552706ef281aab0609066d97d055ffe6d7e",
+          "timestamp_seconds": 272.5,
+          "width": 1280
+        },
+        {
+          "format": "JPEG",
+          "gray_extrema": [
+            0,
+            255
+          ],
+          "gray_stddev": 87.46553067681496,
+          "height": 720,
+          "nonblank": true,
+          "pixel_sha256": "97f247dc279481a0bd87e0aa86549a67032e1c25408afbdea60ab8daf395197a",
+          "timestamp_seconds": 363.34,
+          "width": 1280
+        },
+        {
+          "format": "JPEG",
+          "gray_extrema": [
+            0,
+            255
+          ],
+          "gray_stddev": 29.32039133538971,
+          "height": 720,
+          "nonblank": true,
+          "pixel_sha256": "f354ea652e33c3c546680a3c89e521d7829e4c10ca3e700cc28ec633dca9ecdb",
+          "timestamp_seconds": 449.17,
+          "width": 1280
+        }
+      ],
+      "representative_frame_failures": [],
+      "representative_frames_regenerated": true,
+      "sha256": "bd50a24dcf23cbbdc6a00b8cd236b31f1956878e8a76e1f9337719ecbe0b75a3",
+      "subtitle_roundtrip_ok": true,
+      "video_checksum_failures": [],
+      "video_codec": "h264",
+      "video_qa_status": "PASS",
+      "width": 1280,
+      "workflow_narration_provenance": {
+        "aiff_sha256": "e296984cc1200d978ad4d9344357bdacf10ffb4bacc75f4fd360f40c61ec0d8c",
+        "audio_duration_seconds": 18.044083,
+        "forced_regeneration": true,
+        "narration_text": "The workspace has four steps. I upload one J-P-E-G, P-N-G, or WebP image, configure optional object context, O-C-R, and occlusion, review raw and fused scores with reasons and timing, then export a case-level audit record. The policy returns APPROVE, REVIEW, or BLOCK. I use four saved formal examples next.",
+        "narration_text_sha256": "bf63e181470e64465c7db91b88fc360e39b21b5ea10a60738377723d03e70355",
+        "scene_id": "13_demo_workflow",
+        "text_file_sha256": "be80a9738a7dff4a822f5fec849ea31341a6176ac1f427dae0d7939507fd018e",
+        "wav_sha256": "241cf279821aab79603330c72b8717bbdcb3da7b7204b44885fec8a0ccdafb80"
+      },
+      "workflow_narration_provenance_ok": true
+    },
+    "pinned_model_identities_and_snapshots": {
+      "issues": [],
+      "models": {
+        "grounding_dino": {
+          "expected_feature_dim": null,
+          "model_safetensors_sha256": "1a2412ef99bd74bcd3c2a246fa1e48581f8889a1300c9051974741314fc042f3",
+          "repo_id": "IDEA-Research/grounding-dino-tiny",
+          "revision": "a2bb814dd30d776dcf7e30523b00659f4f141c71",
+          "snapshot_bytes": 1382224246,
+          "snapshot_files": 11,
+          "snapshot_path": ".cache/huggingface/hub/models--IDEA-Research--grounding-dino-tiny/snapshots/a2bb814dd30d776dcf7e30523b00659f4f141c71",
+          "snapshot_sha256": "1d9b6d4538c3dfbc30cc8c1a9defeedfde8e57e540c4901e4ee3e6bf16b804d8"
+        },
+        "resnet50": {
+          "expected_feature_dim": 2048,
+          "model_safetensors_sha256": "773525d5821de224f8f30c33377b7a795d7863e08522698200d3217d3f2a41bb",
+          "repo_id": "timm/resnet50.a1_in1k",
+          "revision": "767268603ca0cb0bfe326fa87277f19c419566ef",
+          "snapshot_bytes": 205055737,
+          "snapshot_files": 5,
+          "snapshot_path": ".cache/huggingface/hub/models--timm--resnet50.a1_in1k/snapshots/767268603ca0cb0bfe326fa87277f19c419566ef",
+          "snapshot_sha256": "4421e496a8e63ea21d10d905320a5d8d1442996f91bed429e9f2f0f000390488"
+        },
+        "vit": {
+          "expected_feature_dim": 768,
+          "model_safetensors_sha256": "32aa17d6e17b43500f531d5f6dc9bc93e56ed8841b8a75682e1bb295d722405b",
+          "repo_id": "timm/vit_base_patch16_224.augreg2_in21k_ft_in1k",
+          "revision": "063c6c38a5d8510b2e57df480445e94b231dad2c",
+          "snapshot_bytes": 692616164,
+          "snapshot_files": 5,
+          "snapshot_path": ".cache/huggingface/hub/models--timm--vit_base_patch16_224.augreg2_in21k_ft_in1k/snapshots/063c6c38a5d8510b2e57df480445e94b231dad2c",
+          "snapshot_sha256": "e19b7516e8c2b523f452598f6add160b8f80450f1412feb68924e6a957a1ea9f"
+        }
+      },
+      "passed": true
+    },
+    "python_compilation": {
+      "output": "",
+      "passed": true,
+      "returncode": 0
+    },
+    "representative_demo_cases": {
+      "cases": 6,
+      "decisions": {
+        "APPROVE": 1,
+        "BLOCK": 3,
+        "REVIEW": 2
+      },
+      "passed": true
+    },
+    "required_files": {
+      "expected": 50,
+      "missing": [],
+      "passed": true
+    },
+    "strict_two_page_report": {
+      "current_pdf_render_valid": true,
+      "missing_required_facts": [],
+      "page_sizes": [
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ]
+      ],
+      "pages": 2,
+      "passed": true,
+      "pdftoppm_binary": "pdftoppm",
+      "render_evidence": [
+        {
+          "format": "PNG",
+          "gray_extrema": [
+            11,
+            255
+          ],
+          "gray_stddev": 71.18815418475997,
+          "height": 1980,
+          "nonblank": true,
+          "pixel_sha256": "47ed58de96c137331bc19a043f4d501ab134adb2afcd43a70aea17e1700f5875",
+          "width": 1530
+        },
+        {
+          "format": "PNG",
+          "gray_extrema": [
+            9,
+            255
+          ],
+          "gray_stddev": 68.66865174314358,
+          "height": 1980,
+          "nonblank": true,
+          "pixel_sha256": "d6baee3a402fa5ba6957e3bf4caac9e29ca936834bd0f8c981137d30407dec64",
+          "width": 1530
+        }
+      ],
+      "render_returncode": 0
+    },
+    "train_only_fit_and_validation_calibration_reproduced": {
+      "issues": [],
+      "models": {
+        "resnet50": {
+          "artifact_path": "models/resnet50_policy_head.joblib",
+          "artifact_sha256": "4690c0fc2c349811dfb14d8d450255bb2b54244a0a7e72a8a254b6893ae381e0",
+          "embedding_path": "outputs/evaluation/embeddings_resnet50.npz",
+          "embedding_sha256": "66049dfa9acb65046d9f2af1e263ef95dd81b1aab47a0765f97daf45f2ae2a9d",
+          "formal_test_output_binding": {
+            "csv_argmax_mismatches": [],
+            "csv_probability_max_abs_difference": 0.0,
+            "csv_probability_mismatches": [],
+            "csv_threshold_flag_mismatches": [],
+            "direct_classification_metrics": {
+              "accuracy": 0.875,
+              "macro_f1": 0.8731521739130435,
+              "per_class": {
+                "explosives": {
+                  "f1": 0.75,
+                  "fn": 3,
+                  "fp": 3,
+                  "precision": 0.75,
+                  "recall": 0.75,
+                  "support": 12,
+                  "tp": 9
+                },
+                "financial_promotion": {
+                  "f1": 1.0,
+                  "fn": 0,
+                  "fp": 0,
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "support": 12,
+                  "tp": 12
+                },
+                "firearms": {
+                  "f1": 0.9600000000000001,
+                  "fn": 0,
+                  "fp": 1,
+                  "precision": 0.9230769230769231,
+                  "recall": 1.0,
+                  "support": 12,
+                  "tp": 12
+                },
+                "safe": {
+                  "f1": 0.7826086956521738,
+                  "fn": 3,
+                  "fp": 2,
+                  "precision": 0.8181818181818182,
+                  "recall": 0.75,
+                  "support": 12,
+                  "tp": 9
+                }
+              },
+              "rows": 48
+            },
+            "direct_threshold_metrics": {
+              "explosives": {
+                "f1": 0.7741935483870968,
+                "false_positive_rate": 0.19444444444444445,
+                "fn": 0,
+                "fp": 7,
+                "negatives": 36,
+                "positives": 12,
+                "precision": 0.631578947368421,
+                "recall": 1.0,
+                "specificity": 0.8055555555555556,
+                "threshold": 0.05629754364128617,
+                "tn": 29,
+                "tp": 12
+              },
+              "financial_promotion": {
+                "f1": 0.7368421052631579,
+                "false_positive_rate": 0.0,
+                "fn": 5,
+                "fp": 0,
+                "negatives": 36,
+                "positives": 12,
+                "precision": 1.0,
+                "recall": 0.5833333333333334,
+                "specificity": 1.0,
+                "threshold": 0.9974236076754509,
+                "tn": 36,
+                "tp": 7
+              },
+              "firearms": {
+                "f1": 0.9090909090909091,
+                "false_positive_rate": 0.0,
+                "fn": 2,
+                "fp": 0,
+                "negatives": 36,
+                "positives": 12,
+                "precision": 1.0,
+                "recall": 0.8333333333333334,
+                "specificity": 1.0,
+                "threshold": 0.9914425479883959,
+                "tn": 36,
+                "tp": 10
+              }
+            },
+            "rows": 48
+          },
+          "issues": [],
+          "max_abs_probability_difference_after_train_only_refit": 0.0,
+          "raw_pixel_backbone_regeneration": {
+            "batch_size": 8,
+            "device": "cpu",
+            "elapsed_seconds": 12.191189417149872,
+            "embedding_cache_exact_match": true,
+            "embedding_cache_max_abs_difference": 0.0,
+            "feature_shape": [
+              288,
+              2048
+            ],
+            "ordered_image_count": 288,
+            "ordered_image_sha256": [
+              {
+                "sample_id": "safe-07b05aeef7604b47",
+                "sha256": "2d469e7a3c393ba7a7b8d46741907796baba0c825bab131f96d4d9063f7fdb36"
+              },
+              {
+                "sample_id": "safe-086bd2772660f1b8",
+                "sha256": "937826d238c3ac53cc7ec9bcea9d72de175574b4009005b249e37aeb8b1b47b5"
+              },
+              {
+                "sample_id": "safe-18fa439c53919884",
+                "sha256": "15f25860b9c24a39fe8b7ca271d39bfe4b357a614b714e248b81fec2217d5f9a"
+              },
+              {
+                "sample_id": "safe-1c9027c523e4a7fe",
+                "sha256": "6782cc5f1c5a4e2b0b9ad04ebd3ffbf49fbf58af44512fb81cfb4bb92ea2ba96"
+              },
+              {
+                "sample_id": "safe-243bf86a30a6fe62",
+                "sha256": "c00ac4ab74e3ab40f3108fa9ad45ccca10d89a7ea334c4356e5e44d509dccdb5"
+              },
+              {
+                "sample_id": "safe-253da52f68cc386f",
+                "sha256": "5439800d8f614b8201de8cab7dae99e374344d550f41481f85ad8accc489cf1d"
+              },
+              {
+                "sample_id": "safe-303211596a97b69b",
+                "sha256": "d3a2044572a07cae9758f10fdb147900c06d7931c7ff3ef8b2b0144fbd571ec3"
+              },
+              {
+                "sample_id": "safe-32993ba9b9223c38",
+                "sha256": "df393bed80487e0485607b470be9eacdb5b08f5cabe43a5f06d21474b614bda0"
+              },
+              {
+                "sample_id": "safe-3b8bb23ab98f2d77",
+                "sha256": "6e62c07ea67cf65564de81322f833cbebb544ff06893690f80de25ec6af67b12"
+              },
+              {
+                "sample_id": "safe-41d4adcf6b36a4e7",
+                "sha256": "90edcd61c85ec71c4f6b24456e9c3c0b9b49690c88889ed6c5564af2370315a2"
+              },
+              {
+                "sample_id": "safe-4b98da29e8cfbb47",
+                "sha256": "0a118c5d1476188d376be0378951374ceec13651099c54058d4b30b89f0b19b1"
+              },
+              {
+                "sample_id": "safe-5572c20ee7c8fc4e",
+                "sha256": "e90d91507327ff74b01ee168945b5a41d077de49b9a63838cd8bd6323270d908"
+              },
+              {
+                "sample_id": "safe-5d94f79eecff2b57",
+                "sha256": "7cf6f44b5061bd5b0daade7ab856c0f70b86735ac941dffe610fef04347b34ad"
+              },
+              {
+                "sample_id": "safe-66839fd70731a31e",
+                "sha256": "8ee295953f1242f84ba668141f6af07997fbbfa8122bd6c51726f1517cefc8d2"
+              },
+              {
+                "sample_id": "safe-66a2b56878347f10",
+                "sha256": "e4f03ed8e7fe853d2c58745c341a7d26f1b7c983b530d3381d26cf5141e57cdb"
+              },
+              {
+                "sample_id": "safe-70e366d283c4447c",
+                "sha256": "050c1cc50bb70ccf5fc15b90c0913afbd159dab34fb645988526dfd15a5e97fc"
+              },
+              {
+                "sample_id": "safe-7934c0eb6158c3ec",
+                "sha256": "48038c08e41024b199053cfe49ef6fc331b2a1f79d9b3b317afd978daeda0bbe"
+              },
+              {
+                "sample_id": "safe-79ed9ef28c939ed1",
+                "sha256": "63ef9b282fd4eb7fe10d8cb2e0ec377ff2d9e96be98eb7df46104dfb30cac836"
+              },
+              {
+                "sample_id": "safe-7ce9f14d0bc3d7f8",
+                "sha256": "77445b84437b68f5a4ab77dcb85b060da1887242ac9d868d0678c7495a9656a9"
+              },
+              {
+                "sample_id": "safe-7e7d4b5594e60bbe",
+                "sha256": "b09f5c0f361976a08c1e677981aedae5fbf153d19da3b5e238556b03a82b44db"
+              },
+              {
+                "sample_id": "safe-81677abb7b1d50cc",
+                "sha256": "8c731a8dc894cc33bb25e7bcb3df82f7473dbd115a2bef9a8174790ad2bcf48b"
+              },
+              {
+                "sample_id": "safe-85cc1b9eaf067f8f",
+                "sha256": "cfefff8fff8a8f284798e0e1c4e3ba7dd0c85ff2859ff944c82d496ca2f4b298"
+              },
+              {
+                "sample_id": "safe-86b7c29580c79cf2",
+                "sha256": "416486c12a3f10cb3de15c985183675bbd0dc267ea61ceb8d2893d39a9f7662e"
+              },
+              {
+                "sample_id": "safe-882bbaf7688b139b",
+                "sha256": "6442956221b491f8ec5b5474f8774387f4f41e030d843513de9f25b3aab58cb1"
+              },
+              {
+                "sample_id": "safe-89190c8684d78bdd",
+                "sha256": "ef1e24b66ca9df811a622b18db1bc96bbf0bd2ff999693727749faee06092494"
+              },
+              {
+                "sample_id": "safe-943ab414891f1d01",
+                "sha256": "738e31df6688e7ca583156fdf615d616c5dcdbd061c5a53500b105568385306f"
+              },
+              {
+                "sample_id": "safe-a12d64c0ae2e76f3",
+                "sha256": "d3e9f2e9876ea647c0259f6ba7807dbc1e316ea9223222118dc06e65bf6209a9"
+              },
+              {
+                "sample_id": "safe-a89f6190fb7133ed",
+                "sha256": "b689cb700605579dd7059561ee5fb5d652c2734d301ddfc1b510545c4c56b8cd"
+              },
+              {
+                "sample_id": "safe-ae40b54fbed88e76",
+                "sha256": "458092960251a8ce6e13f08bd82e1d5020110be44ead725e64d97739e46cfa2f"
+              },
+              {
+                "sample_id": "safe-b38c65f778fb209f",
+                "sha256": "ce3a5383729bfe7df30180b5f16b78337436c9e5b32971a9167e477a1b27f35a"
+              },
+              {
+                "sample_id": "safe-b6056d38f22a2b50",
+                "sha256": "f6d1c3fc354859050cf6dc0d0530c656b6064d58679afb4894a4c0b96fb6f138"
+              },
+              {
+                "sample_id": "safe-b70eb9145119416c",
+                "sha256": "3b341e25cfcbd63de2cf6e20ee404283a9d7c986bc8091310dea99a1d8b9cff6"
+              },
+              {
+                "sample_id": "safe-b85a306cb7e73e78",
+                "sha256": "110afcaf10dd0667df9b11faee8a55bd95e9c023e40717d40cc936f2d8289a13"
+              },
+              {
+                "sample_id": "safe-ba2242f22204ca9e",
+                "sha256": "d5bb890b622cbe50cd2c00289c7f50774c4e68e2ec4fc94d03482529e65ff230"
+              },
+              {
+                "sample_id": "safe-bb99e36d9b833356",
+                "sha256": "d063593e8204b5c62f5dc6018961c54dbaa1aae440ab8e61e43ec014be91f6db"
+              },
+              {
+                "sample_id": "safe-bedccfc1495b404a",
+                "sha256": "1aa5ed63b9517a51acf4a6bf2aba5ec63685478cde0322dbcac2acb216d31eb1"
+              },
+              {
+                "sample_id": "safe-c5dc9eb24e395672",
+                "sha256": "cfd7ac244431a89a2b36a2a31d49ba3d6b99d38fb0074034dc4e97acf84675a6"
+              },
+              {
+                "sample_id": "safe-cad21acd9730f55d",
+                "sha256": "7276f6c1789965c4eed33c8a05278d0f274181bad637206a49d1c0d1f863af90"
+              },
+              {
+                "sample_id": "safe-cc191c6a3bc6e495",
+                "sha256": "927002c44045c9fc244fc9fde6defcc51e470293912b790d4cf76379a570d00a"
+              },
+              {
+                "sample_id": "safe-cdec303752e235b3",
+                "sha256": "efc98d90e97c6789ee8e49590e62416e8562523311eda2a70f52281114ccd0d2"
+              },
+              {
+                "sample_id": "safe-d82ca2ac2ec193a1",
+                "sha256": "0068f94d99c4af84137670717563c35324686b316d59ee039f57fb3855b213a2"
+              },
+              {
+                "sample_id": "safe-d9ecced715b3eb84",
+                "sha256": "1d4d1154416fff37f29c9b1135cb4a4ee9cfb11fd85c45ed7cf3912807656aea"
+              },
+              {
+                "sample_id": "safe-dca8f6cba7ce30db",
+                "sha256": "f995d06be998200580d28e143ebe7b66329c046ea1171e40fe9a7780e109c967"
+              },
+              {
+                "sample_id": "safe-e1c350c33e88a97c",
+                "sha256": "7a630fab3e1dd17d86897abd705b1e88d5aed5cba2fcd034cbb676af368834e9"
+              },
+              {
+                "sample_id": "safe-e310f97ee1816e8b",
+                "sha256": "c4dd7e13810db60a8effde01115ffc31cf467cb263ff866fbc248a9bc3581065"
+              },
+              {
+                "sample_id": "safe-e867f38cc3822c9f",
+                "sha256": "029dddf35b9f57237b67fcd286bd255d297a972f78185077b83656f6f62c2c72"
+              },
+              {
+                "sample_id": "safe-ec95ebe1a3e1953e",
+                "sha256": "4eca1df8cde64baaf95a94c13c537eca72b40419e26665c107eb93bfd39f5670"
+              },
+              {
+                "sample_id": "safe-f3c4d1f9f220c145",
+                "sha256": "e2fc6a475e8f5305e1962f306d1e3008183bdbd2165e1db434294494396077ed"
+              },
+              {
+                "sample_id": "firearms-04bf82b0bf490b2f",
+                "sha256": "24bc73d3ac268a275d107fd10362f0f3b39ef7010329167cebccc1910821de12"
+              },
+              {
+                "sample_id": "firearms-07f819034236b829",
+                "sha256": "e87f3208616281218860fbca4c00d34273406532327a2b1b1a03e78369b876eb"
+              },
+              {
+                "sample_id": "firearms-0b0c5988b94c6658",
+                "sha256": "460c40787b38062c419e7f9718c05dd37ccd55a253818e9ddc2c16ffed031d2a"
+              },
+              {
+                "sample_id": "firearms-0ec0876d701ac8e3",
+                "sha256": "69847b1e15d7e51b7fa5b6d6ee7bbf6057c2e259ea305f81c18e1b429c2bc348"
+              },
+              {
+                "sample_id": "firearms-2ba90b92b1d2e1ec",
+                "sha256": "10c7b9fd217c64993720a06115673514aa3ed976fbc7597a86c57f9ca8379444"
+              },
+              {
+                "sample_id": "firearms-300611d3a6f97742",
+                "sha256": "44b14c9914ac4fff86416d118ee79c6256f2eb8df7d946d08ceca1d2259b39ca"
+              },
+              {
+                "sample_id": "firearms-332a75449afd5eec",
+                "sha256": "8148731c4919cfaea98d71cbf1c13f2245d6abdd30cc85b5bc4b24ef86093f91"
+              },
+              {
+                "sample_id": "firearms-406a1acdaa081876",
+                "sha256": "c1fa915898b9d9f03f9b8cc7af5779407e164037e1a5c47b033e661fef0c56ee"
+              },
+              {
+                "sample_id": "firearms-46677aea10693273",
+                "sha256": "bc68d2cf47b0936664f165791879f98caccb44e5f1846565f30083ccc53ea132"
+              },
+              {
+                "sample_id": "firearms-48e9d42aed7e6ffb",
+                "sha256": "959f65bb61d68b0819d96e8f48ff9e5d61fdc5ff9959ced51329b2e19aea43be"
+              },
+              {
+                "sample_id": "firearms-4ac7af60b77b1a19",
+                "sha256": "f4d18812788dd23957dcd2953c6e0e894c5b1610884ae25f1ac632c24e7c951b"
+              },
+              {
+                "sample_id": "firearms-4dbb6a38eed6a40a",
+                "sha256": "ae5c1fd4ecd7ea2d480a2f8cb654ed692fa5610bf55caa6a51ad3efbedbcb616"
+              },
+              {
+                "sample_id": "firearms-4e4ca6aff50bcefa",
+                "sha256": "cd0dea29362db12c502252dbe95b8cce9b8ee8e0e2ff3c63ea9708d5398bd1e6"
+              },
+              {
+                "sample_id": "firearms-608c32498c1e3d23",
+                "sha256": "652010325f67b29333510e2b7864997dea62af36250c8281b8f61589a5c34800"
+              },
+              {
+                "sample_id": "firearms-672a5c34cb14a436",
+                "sha256": "bde883bae873f3e95f6c353a89c7c836d0fe7a1cee28d1312a59b678814eb4b9"
+              },
+              {
+                "sample_id": "firearms-74ce871bc526b686",
+                "sha256": "1d849037952d1783c97868da470a7ba66f63b3ac1f3641c20281cacad446d248"
+              },
+              {
+                "sample_id": "firearms-75b25cd76dcaad90",
+                "sha256": "dd5d421d8ec81742c34688c646256e720e29dd3bcd07694ff3fccb21d81768dc"
+              },
+              {
+                "sample_id": "firearms-7a6e083d3dc1afa9",
+                "sha256": "a01273c18764fec699fa1b94613891ce71b8257acf307727ced332e9c005bbc1"
+              },
+              {
+                "sample_id": "firearms-7ae84893226ac6ec",
+                "sha256": "d7a9fd2c91b8c5e7d0f17972755966ae345ee0517ecae69466cf34c44f76b834"
+              },
+              {
+                "sample_id": "firearms-8765f25d7d48dc8c",
+                "sha256": "04353fbac4103bb95da6778f191da1b679d4d02d6c546028166e6cb5e9cd3e7d"
+              },
+              {
+                "sample_id": "firearms-8a6c93a86ee9c0fa",
+                "sha256": "b9491cdd4ff0005548a266b22cd6792db60b5ddac3690280f557b7aaf0d6d86b"
+              },
+              {
+                "sample_id": "firearms-8d302f585c42a951",
+                "sha256": "040faae07a6f9f9b5ce905b466b84378b9d9ebd51962763b82b6557efee7df03"
+              },
+              {
+                "sample_id": "firearms-8dfbb84675b6e59b",
+                "sha256": "a4011a9e86b89b42ea3f82a1343064551ef7fe92ee19148f4c6b984515135f37"
+              },
+              {
+                "sample_id": "firearms-94408d86c86b2c8d",
+                "sha256": "db43d67f8a3f6383d17e198a44f3f5278804073d09f71d533f80f1db7b729111"
+              },
+              {
+                "sample_id": "firearms-973d6b80693f0785",
+                "sha256": "4f05d12f8e7ef7192d596ac50dced36b67e4ad13a85575ec9bdc6fe5dfff9063"
+              },
+              {
+                "sample_id": "firearms-9f325a2ef351db2b",
+                "sha256": "43c396c39191c998fb4d64ed52804129ab351c2da0f4d904d5e7c9c6a7f011db"
+              },
+              {
+                "sample_id": "firearms-a011ea4d7db277de",
+                "sha256": "49bd391d4dec754f0907446c15d99219cb94b06d2df07c9b5c6c984ce7ff393e"
+              },
+              {
+                "sample_id": "firearms-a273453206f2eddf",
+                "sha256": "6d1b9a5c44cb743c527b1ff2229c3c2292ea90d096b73b1ac25805f9fb9d8474"
+              },
+              {
+                "sample_id": "firearms-a3e1916dd7ec12fa",
+                "sha256": "843d0494f8e6d34e71e837236e542bab87b66deb508992ff234d9724efc1f2b6"
+              },
+              {
+                "sample_id": "firearms-a537110a16ff5c0b",
+                "sha256": "bc97e49a5f6df2e5f9b0bd59d646b11f0b7f0d50bf7a4a3bcb8b0cfb5546bb90"
+              },
+              {
+                "sample_id": "firearms-a850193dfef23f8e",
+                "sha256": "37ddc9d9a70ee915cf5672848bf35dd94d85e3ef5cd92f4a570fa9c9c0d6efd3"
+              },
+              {
+                "sample_id": "firearms-ac9c4456ceb1b862",
+                "sha256": "f51595642fd908ae3027d59968323e287e7d06aa880d532e33efe6b772562101"
+              },
+              {
+                "sample_id": "firearms-b1dd3567cd4a4671",
+                "sha256": "a1c64aa5ac439bb12360124beb2356bb2437b0b2855b73feaf43fdd2de6488ff"
+              },
+              {
+                "sample_id": "firearms-bad92b6d4fa57178",
+                "sha256": "ed8a4d39460db67c267ef8133ee7cfa1cedff35ec9aec488efbffcadc67d9da2"
+              },
+              {
+                "sample_id": "firearms-c09ef14ccb2d6e91",
+                "sha256": "f221b47ce23e255a361dde2dd5c720ffbd6d72018f664ff892d3d24422849610"
+              },
+              {
+                "sample_id": "firearms-c3e0f18505ad0429",
+                "sha256": "8d5ca07c56d6ee0a6d7c4a8f00610c4183265b2ffd965899bd5a1478d65b165c"
+              },
+              {
+                "sample_id": "firearms-c65c9826e4516129",
+                "sha256": "2fbbe6d4e2bcc7d7aa7c93f0766180053ba7c101cbd2203b0e3a9a69478d5954"
+              },
+              {
+                "sample_id": "firearms-cea1137a2b858653",
+                "sha256": "699dabaf92308d831138ca3db72f03a014882581b7482eebb6c0bff75a0af720"
+              },
+              {
+                "sample_id": "firearms-d36df5c2a3c2b0c6",
+                "sha256": "827915aba740d8c59fb40fa50e80e366d7c59b8c73d10db931063d96c3998a05"
+              },
+              {
+                "sample_id": "firearms-d758d49a9a9eb25d",
+                "sha256": "15e1242360c553c0491b977339c2e3f592bb8e01b3848726b0837ade9585d18a"
+              },
+              {
+                "sample_id": "firearms-d9940f84701476cf",
+                "sha256": "70a655f28d6ef333df99a6de0d2affc16c145a8d2be3449bda3ef83fadb9a48b"
+              },
+              {
+                "sample_id": "firearms-db18a422c608fa50",
+                "sha256": "db028a5207975aeb03b8d1d8c2bdef535ee8df16d6147ba8ec1bff5989e3fe9a"
+              },
+              {
+                "sample_id": "firearms-de97af0906560b37",
+                "sha256": "5b7b8892024a1a432b16d6e7772a4c8db72a3ae209bba29c0fe7cec60c91c735"
+              },
+              {
+                "sample_id": "firearms-deaaf37f7823897f",
+                "sha256": "818cdaaeff140767bffcf5da39d1000789e198375c037ab7b4fdcfb5032b4bd5"
+              },
+              {
+                "sample_id": "firearms-ecba8a61615aa362",
+                "sha256": "41fd438e652f2f248b2cce14d57d725374fdb0b404702d911f6532edd2459c75"
+              },
+              {
+                "sample_id": "firearms-ef54ef97fe2fcbc9",
+                "sha256": "587688c1ef7957542163fb1f1c014c41af509d535c276458b23c22b91d2b5a0e"
+              },
+              {
+                "sample_id": "firearms-f6735be4d9f6cc4c",
+                "sha256": "fc3d959fbf5f63ff635c6ad2db75cdccf1bbadb8bc077f10e5626acad8f70551"
+              },
+              {
+                "sample_id": "firearms-feced188a8627c95",
+                "sha256": "1466cec180573e35b044c9780f9e0e2070d11d9522931f670fe9ffd132b90c4c"
+              },
+              {
+                "sample_id": "explosives-02cde5e6f563cfa3",
+                "sha256": "580af1164ec3d1e322e98912fb2dc37686c0504d33da2dff30f3a005ead67d0e"
+              },
+              {
+                "sample_id": "explosives-055bc7482a4b2d2c",
+                "sha256": "702ec11a5e364a500dd32accd82a58dc846c135b1a520d2a078b8b3fa93642d1"
+              },
+              {
+                "sample_id": "explosives-0d7ed069346a77d4",
+                "sha256": "2d3b7e68376c024cb53ccf639cd9fdac5b72a6289d2d51b573c15daf0920911d"
+              },
+              {
+                "sample_id": "explosives-10c0acdef4611a8c",
+                "sha256": "a42c042bd255ce25ca89e2284d9f5eb628359b6412f44dcaef196c843b7fe4bf"
+              },
+              {
+                "sample_id": "explosives-1625e9b4fe61f1e7",
+                "sha256": "c8013a4a04ddf5088227447f0c055538ccd25e67a7d2aff80ae12b207fb017a3"
+              },
+              {
+                "sample_id": "explosives-29d7bfdf14e8c6ff",
+                "sha256": "9369bff87b61e30d651b0ec6ce784536906fe3d6a836e750e4cef3d1851116ad"
+              },
+              {
+                "sample_id": "explosives-2a93126164f4488e",
+                "sha256": "9ee72db35caa1fe48d9041b4e283ab2064af3897e00fbbbb455b0c8eec0c0e08"
+              },
+              {
+                "sample_id": "explosives-2cb84f988776b081",
+                "sha256": "56d8176325f486ffcffaff0eb26f9993616e4384caa870f8af3c23df3b41595f"
+              },
+              {
+                "sample_id": "explosives-2faf1c8af89008a2",
+                "sha256": "8ac3bbabeaf8224d8bb875b5b2de33ed0272e7f2551ee364666f25be240fff0c"
+              },
+              {
+                "sample_id": "explosives-3bc120fde6bdb2aa",
+                "sha256": "64222b908e7a275ccd2e38311e78aceaec9346cd371ee2e652063967072ff974"
+              },
+              {
+                "sample_id": "explosives-3f2739a0d05f37d8",
+                "sha256": "21d472fc9926bb40a4cd14925137047af7c273f729187af859cf2b652e8d993b"
+              },
+              {
+                "sample_id": "explosives-4acc5e7c9955091c",
+                "sha256": "a78d7771ecd7c69e5dc9c2d507317384fb7639f17a0369db4a886c3d3bba51f7"
+              },
+              {
+                "sample_id": "explosives-4b9a8c6473284073",
+                "sha256": "9264b1d88bf3de8ed0bb2cfc40206ea68948b160780c94dae2be0ee9d22a3e72"
+              },
+              {
+                "sample_id": "explosives-512125083f672957",
+                "sha256": "698ef9f108084e4e93d4a12eb6a4e6cf055a70c2cda831be7cc34398078d171c"
+              },
+              {
+                "sample_id": "explosives-541b9537b80899a8",
+                "sha256": "7253c2bf9e2b7a279a131d76f05b8cab1e70ec092237de951632dc3481a002bc"
+              },
+              {
+                "sample_id": "explosives-5776052b49e96bfb",
+                "sha256": "48495c24e15f796e9cbd3d58f1ba070768e977ea250ed1e1e57cb0a0354a52a7"
+              },
+              {
+                "sample_id": "explosives-5afe88e93ef315c5",
+                "sha256": "5a33c1f446976165ca85a394b9fcdbe21f72eebbe8a59255f2bba74d351bca99"
+              },
+              {
+                "sample_id": "explosives-5e68342bbf9184ed",
+                "sha256": "b9f37e5b968ed0a13112519c4ea664f8a5a8ec4100a306bd75b73de8e033ad28"
+              },
+              {
+                "sample_id": "explosives-614e539226d13075",
+                "sha256": "004af929bddb7478ea9e3d5133e66b18b841f2719a5a22f03ff9d5f2741f949e"
+              },
+              {
+                "sample_id": "explosives-63bacb5829c44c78",
+                "sha256": "e4dfea98585497824047b3cca166a47c5b691a467d68abe6afed5977d9f97f24"
+              },
+              {
+                "sample_id": "explosives-6412d82c04825e38",
+                "sha256": "6d341cc6f7c97f3fcd2c78145824ca51c8fec1d46195711320fc15c5aed01247"
+              },
+              {
+                "sample_id": "explosives-66cf7cdf91bd377d",
+                "sha256": "dd04d71b18798fec61a58a8de2db60f89a31e4409d8efc0510c9b05756fc1054"
+              },
+              {
+                "sample_id": "explosives-67c487c903a6aeba",
+                "sha256": "73ea0b7c9e8b8f96f1ca14dfc105495b995b191c42623ac04b1a04698c079079"
+              },
+              {
+                "sample_id": "explosives-760425a2bd73e32f",
+                "sha256": "867ea307ccfaefbaf5a1f5ba1583fcfe88d15d160e013405f2f911da0e98245f"
+              },
+              {
+                "sample_id": "explosives-78820e7c2feb8c70",
+                "sha256": "0c28dc2e40338f8142b9cff5d031be48ff35c86d73446ee45557a371ac69600a"
+              },
+              {
+                "sample_id": "explosives-8161aa891ece3d96",
+                "sha256": "72b414fc03b130f58766544cfb06d683981d919f5910504c7cad06ed2c0cddb2"
+              },
+              {
+                "sample_id": "explosives-8813e12dca80062f",
+                "sha256": "a538b85d0665e1cb28c3d1363d7740c28edea7939aadc2aae568b3ff16368b9c"
+              },
+              {
+                "sample_id": "explosives-91fa51004996e205",
+                "sha256": "78301bf94571cc9b7fb188ce36f2e525854894ba0d7af0c6e55a6bbddc1479a6"
+              },
+              {
+                "sample_id": "explosives-965c0f57b043b2c5",
+                "sha256": "c215afd121c36267af615614c3532228f8004e14e49912526d3a6f3b583f9062"
+              },
+              {
+                "sample_id": "explosives-9a8ebb1369a17703",
+                "sha256": "a462a64fdd9cf5145e8ba7e555881f036b92144f811cbfa5bc3f3913b7bc0a73"
+              },
+              {
+                "sample_id": "explosives-ab70509d79867eb1",
+                "sha256": "19c5b10b78d8728d0dd6d0417a015f4179e0803835e373844ed50b123fd7b985"
+              },
+              {
+                "sample_id": "explosives-b1927b089222e15f",
+                "sha256": "c322d028568df1a836489b18378e5b28be37b6d10f808fa618ce98b5dcd39c71"
+              },
+              {
+                "sample_id": "explosives-b539171613bc4a7a",
+                "sha256": "c04103322e55dc6f8681f8bd0bc1316dfa5db5315edd4ecc7ac743ceb4e5627d"
+              },
+              {
+                "sample_id": "explosives-c0a593da4b63ed3b",
+                "sha256": "630e363cf188d34b0bfe0faeb394dd77fc8f81a20c58e7983b1f4e56513f1fa3"
+              },
+              {
+                "sample_id": "explosives-cebb7a58dd468212",
+                "sha256": "b95409daa19c3093b5f73708699599bd2474b7d056731249b6c16546a9eda589"
+              },
+              {
+                "sample_id": "explosives-cee34cc1a97d4911",
+                "sha256": "4b75478f0b03cf470453c9794ce556ec3ced93ee40622eb629fd52d204d54743"
+              },
+              {
+                "sample_id": "explosives-d2db825cc3c86bea",
+                "sha256": "9f7c351b03ef2f614c616db499e5cdf366e78278e84fcacc5df3abcc0d3ee8a1"
+              },
+              {
+                "sample_id": "explosives-d2f14ad723dc51f0",
+                "sha256": "1b54da9db9bb0525cd805969b03bf4fb88a6a938e9c1dafdbb6d5d29e476b826"
+              },
+              {
+                "sample_id": "explosives-d41184a8311a39ed",
+                "sha256": "818b14aaef9df180ee69ba1520d0b9d98ff876972e8d49c5c2b59077d5c80dae"
+              },
+              {
+                "sample_id": "explosives-da3798d47e77a933",
+                "sha256": "1b07dc6c88239afa7bdd7eced7f7943e643da080637f5cbbb73072af1cf889bc"
+              },
+              {
+                "sample_id": "explosives-dc96a1bc1e5ae414",
+                "sha256": "5a17785ec543b73e457e30e5691da2bba85640926e01ba5d2e7fa6a75fc84488"
+              },
+              {
+                "sample_id": "explosives-dcdf79d73be39a39",
+                "sha256": "f914cab84025b29037887d7b213cd370e0e7257aee848bd4bcb1ecdf14eeac1c"
+              },
+              {
+                "sample_id": "explosives-f0c667b58d86aab5",
+                "sha256": "918443ea9def0ec4494e062a85fe85dfbf76796e8db077bd8bb846d1b537a3a3"
+              },
+              {
+                "sample_id": "explosives-f0dbe7530955a23e",
+                "sha256": "d922a8c0b8e1db9e6adc4389eb9c01da766f7516fcc70a6dcc6abb038a78d5ed"
+              },
+              {
+                "sample_id": "explosives-f35a95a789048e9a",
+                "sha256": "9586a522882b683b4d1a6bf2ab8a8debfe2c53f788740fec2f2ea52d7546c0fc"
+              },
+              {
+                "sample_id": "explosives-f4b4c158d76b28a5",
+                "sha256": "e0e551523d0032f89210fe6b0df1a047de7144ed145b4f8cf060c849d3565d37"
+              },
+              {
+                "sample_id": "explosives-f79e321dad654e32",
+                "sha256": "e68f9092477ab86098b023c98d67e06c34025b005cc2cb384e54023a22340d71"
+              },
+              {
+                "sample_id": "explosives-f943cec9f2b3f25b",
+                "sha256": "ae57d2690269e4f6465ec635766f2042673ca91ef4f979d48407b168c14769c3"
+              },
+              {
+                "sample_id": "financial_promotion-0089f6be0ad2affd",
+                "sha256": "7710a6587b488e2d37873ce5d4417326cc4a619f1e2f979bc048193a835703ed"
+              },
+              {
+                "sample_id": "financial_promotion-08ed8395231a9a35",
+                "sha256": "b3ddf9825da6432d3de637d0d78e45ddc0be889569990010d602fae3bf1c79d4"
+              },
+              {
+                "sample_id": "financial_promotion-0edeb837e61daae4",
+                "sha256": "ce7acba97e8a292033dfc5d46759d9361d59516d6379b8568e06cc4a2d3a033f"
+              },
+              {
+                "sample_id": "financial_promotion-136c14636862a158",
+                "sha256": "747d961369295273c5606b75ff9e861ad663eb85a1595f0f6a923b3383820327"
+              },
+              {
+                "sample_id": "financial_promotion-14afd2fe12c979f5",
+                "sha256": "f359a0454079d86e0f49365d6587064d93e5460408b60e5cf799cf4810962374"
+              },
+              {
+                "sample_id": "financial_promotion-18a74a75b560e790",
+                "sha256": "009c595071e004578158c4901e0474cc619b264a3befac4ed78bb17841a5a22d"
+              },
+              {
+                "sample_id": "financial_promotion-19c51cd84f0d8980",
+                "sha256": "c59947db6bc56ceaf7553642a0e6d8572aa07df305374ba5cde389b2b5f2cff0"
+              },
+              {
+                "sample_id": "financial_promotion-1c27a3dcb5e9750b",
+                "sha256": "05ca48ff8b29efd494f7225415a5842de3ac35c0a4c044aeeca3034863972e95"
+              },
+              {
+                "sample_id": "financial_promotion-24f146a5bbc09f42",
+                "sha256": "0f10d513cc17d5ca9e38c1b5f3e68d81660f5cff6816c7ff028c6386d3278e26"
+              },
+              {
+                "sample_id": "financial_promotion-25c6e37415456576",
+                "sha256": "0c47c081aa269bdb1414cb43beef6e2a0aff824c9c5637005ae925069597dd92"
+              },
+              {
+                "sample_id": "financial_promotion-26f326b2921028dd",
+                "sha256": "461b4bea985e83ac2909d55100049b69e3921b0c1cc6892dd1626de34397b036"
+              },
+              {
+                "sample_id": "financial_promotion-2dbdbcd8e33f4f2d",
+                "sha256": "4f89133d5f161d10e0edfc62eb48c8a66e7e0602ecfd30f852b6410876b5e8b7"
+              },
+              {
+                "sample_id": "financial_promotion-317e78e007be88e7",
+                "sha256": "34f59996c70f982f6582c09a6d60686d8a593f33755c139c92bade29aab1f5b8"
+              },
+              {
+                "sample_id": "financial_promotion-3fcfd5f48c081713",
+                "sha256": "7a482d1fc319d13b5e230aa0613f7bb0b7fda18c4e18a3c086c4ba8ae45d564c"
+              },
+              {
+                "sample_id": "financial_promotion-48494a74d735504b",
+                "sha256": "7c0b6b1653bd4e7765ebd5988a7c9fa65380c3e717a8401d63825603f8a2ccb8"
+              },
+              {
+                "sample_id": "financial_promotion-4f62bca4c4cceb59",
+                "sha256": "a1e888b6e407183ad01476b5e495d1cadb55003a4a1606e833d9cdcbc91b4cbb"
+              },
+              {
+                "sample_id": "financial_promotion-527b289322dcc76f",
+                "sha256": "30335e66c9f5c4f715db9a2f51f0154e1ca4ddfcb5c524f9559155414f888b66"
+              },
+              {
+                "sample_id": "financial_promotion-55d2730d894287ab",
+                "sha256": "ad397f776a952f97df56730065bc3d61517ad8d003151e57b35a95a9e02ec1ef"
+              },
+              {
+                "sample_id": "financial_promotion-5dfe6796a85c2b3e",
+                "sha256": "a38c10649916b5455b7cf813d49ed63e52e7c7d6195999cce1bde8a3bca54eeb"
+              },
+              {
+                "sample_id": "financial_promotion-5e9b26c70865e092",
+                "sha256": "da8252c099cb9245a79afa63861fdbe123dda2f17d0f9beda3165e5b254c3c73"
+              },
+              {
+                "sample_id": "financial_promotion-60669e4f6af12230",
+                "sha256": "5257700428dd9cb43c3bdb1d5ec935964a51dbf8d1e86d9ed76203db3cfd20ce"
+              },
+              {
+                "sample_id": "financial_promotion-70af24b4e6958eb8",
+                "sha256": "3d54e9f2e3f0eaef41dc93c07fad2343936fa974c3ad93a67208a105dd2ea835"
+              },
+              {
+                "sample_id": "financial_promotion-73c19756a653c4b7",
+                "sha256": "98527291968899b7d1590585e314033b260888667374b4d64c62bbfa93bc61e5"
+              },
+              {
+                "sample_id": "financial_promotion-74f3cbd7b64097a8",
+                "sha256": "fadef4a8c159a4ddbfae52d48a94c8175019f168094bb4c742d67bd5c18f963f"
+              },
+              {
+                "sample_id": "financial_promotion-85dd52830c5e90fb",
+                "sha256": "b559c0db3aa99aca26133cbde72a1b3c282b449c2b4e0954d5a5c83a6dbdf0cd"
+              },
+              {
+                "sample_id": "financial_promotion-93fefbef673ceba2",
+                "sha256": "d78d05b4bf50963da76a8b4b966ffc649755216c6d184095d718c64587940549"
+              },
+              {
+                "sample_id": "financial_promotion-95e82b8aa723b975",
+                "sha256": "739f9740892ec86f6e4818ab6af1500361e4d4a16553949aba1a8bbe27d8c253"
+              },
+              {
+                "sample_id": "financial_promotion-9762bb5763c4e792",
+                "sha256": "3f7125f556ffdad3c63c523d536173184430b87b5f19d3b2b75b20cae1654c7d"
+              },
+              {
+                "sample_id": "financial_promotion-977e2094634d8b78",
+                "sha256": "0af079355cfa95a472d80c39d94d4eed4fc33b98fa96cd965c039455abbb0a16"
+              },
+              {
+                "sample_id": "financial_promotion-9e3b6e56c9aab9bf",
+                "sha256": "9ed0fea2ae78b60ab70702fe555f1f8ae493042997dbbc395112ac599d1a1dec"
+              },
+              {
+                "sample_id": "financial_promotion-a0b7241b3ad4c75e",
+                "sha256": "bbb3cde3449c1d1a78bcef078b2d62c8679802e00a0fb6c75ea71ccbbf6d459e"
+              },
+              {
+                "sample_id": "financial_promotion-a5c88296cc4510dc",
+                "sha256": "2996901f0fc1f12fde7d0530257488a92baf3c9393fa7a9acf1011e60ca585fc"
+              },
+              {
+                "sample_id": "financial_promotion-a82668e8eb866b2b",
+                "sha256": "d554e6502106e88c9662067cc2eb5de1c5c81ba143806a2e10d8f766348a7b1c"
+              },
+              {
+                "sample_id": "financial_promotion-a8c6cedcb4753f05",
+                "sha256": "c69a7afc54aada4c069952d48e7df5423898250fc9e7630582bab7ab2200523c"
+              },
+              {
+                "sample_id": "financial_promotion-ae2438d12a40523c",
+                "sha256": "3cdcb7740bfcc20b107597c89601f919b9ea990b590041b5b20e8dc43e2265b2"
+              },
+              {
+                "sample_id": "financial_promotion-aff8fbf37586de26",
+                "sha256": "8559d7ee8211ce7feaa84fab8f01558f4be18d4eee784cdfb341b0bef38c5456"
+              },
+              {
+                "sample_id": "financial_promotion-b0e05feeb26a6b87",
+                "sha256": "c9d9b1b8def2809e24e56806665068e546d7297a3a468122d272943f479e9e05"
+              },
+              {
+                "sample_id": "financial_promotion-bbfbf653ca8386de",
+                "sha256": "edcbb80e01e32f161165101c745c4cd66f4777880b0cd98a41e1d2300657fb70"
+              },
+              {
+                "sample_id": "financial_promotion-bd8127cdca3aff30",
+                "sha256": "09ca9b44023974a0499b3cb69b879949b265f0e964902f1f2dab743f4f598211"
+              },
+              {
+                "sample_id": "financial_promotion-bdecdb46db3afae7",
+                "sha256": "68a2ca7ff2c35535cc7042311b829cb94c715bc72d461a4f4f617bc4b91b66d3"
+              },
+              {
+                "sample_id": "financial_promotion-c4b8bda0417d5ecd",
+                "sha256": "1bfd8d22bd6b94f25cc3dac50213035324fe8f9d172b924d07a6f811ec0b1cab"
+              },
+              {
+                "sample_id": "financial_promotion-cce6f433645659f6",
+                "sha256": "590caf002094366a8327fed0a0092bd9ad4df863c0e7c01119a2ba399ebcbeab"
+              },
+              {
+                "sample_id": "financial_promotion-e07f01c197b9e820",
+                "sha256": "bd8f32d92c4c4f6883fb10296602fd0f7bf1ed7d438e7a6def932f59a86171f4"
+              },
+              {
+                "sample_id": "financial_promotion-e1423a1bda897693",
+                "sha256": "c51243f4c4c952fc1d49fa318250e4cd7ecedf39c160463ee7630926badc38af"
+              },
+              {
+                "sample_id": "financial_promotion-e29f8c56f1f5cfc5",
+                "sha256": "0b94e2e735ab35dc70f435c976823355e311eb1652ac5c69e7d4a8c0101410c5"
+              },
+              {
+                "sample_id": "financial_promotion-ea2780483592bcd8",
+                "sha256": "511bdc2417887e64f066357415dce5458da275b82bef77499a6190d60a5dcc7b"
+              },
+              {
+                "sample_id": "financial_promotion-ea4e230f7cd32bcc",
+                "sha256": "283efc6fc1cb5620c9f46c2f618cf94dd42e59b4ef615a18eda8750ae597d8f5"
+              },
+              {
+                "sample_id": "financial_promotion-f2c296362055c9e3",
+                "sha256": "981a31c7781b374a85ad71c1cb4b5f82143483f0a484caad2486180113f8a1fe"
+              },
+              {
+                "sample_id": "safe-1ad87162de49fd8c",
+                "sha256": "90ca8d4599fdaf187ee4e4c350ed99346675661c7e655cf31e1b5ada648df9ba"
+              },
+              {
+                "sample_id": "safe-2757162495978b1a",
+                "sha256": "221df5c6dd2a2807b6b88d1b52387b6972f73b93482d69382629d43a4ea13ce9"
+              },
+              {
+                "sample_id": "safe-28c0b9784ad9fbf2",
+                "sha256": "3c61a826595de9745bf9d1310c2eb6a4620cc840a93aaee4171e961cfbd087da"
+              },
+              {
+                "sample_id": "safe-2d6d6a7311bc125f",
+                "sha256": "77f22041557c0aea2469a90bba2f7eb16b423a0402eb3b196b827de7bb47c37b"
+              },
+              {
+                "sample_id": "safe-360282e708ce5353",
+                "sha256": "42f33172a00ed11f2e2c8c57fe985591dedaabbe3f4db113e5029bd56eefd956"
+              },
+              {
+                "sample_id": "safe-459062b67b780633",
+                "sha256": "528e76ff5fd02c186c7b46fbe38d28257f552f8cadae29eb02c934b0247fe48f"
+              },
+              {
+                "sample_id": "safe-4e4565e23e6372b7",
+                "sha256": "4bd5833090dfdf322359af9d36312a4a84925877c2be63c7a16cb2a6e6af25ba"
+              },
+              {
+                "sample_id": "safe-5c34ca5303038924",
+                "sha256": "967269285bae1237f4b805feb410231361e78699d199c86ed75c8dbaee4b818c"
+              },
+              {
+                "sample_id": "safe-87897fac0ba7bffd",
+                "sha256": "8e76bf7f9e2f030c10ebed238139f17f003c24800923eaca25bc4e39091f06b3"
+              },
+              {
+                "sample_id": "safe-ab159ef55f1108eb",
+                "sha256": "0beff1f33f109389bd122ed8ed8bcdc19e6d4faa9462ccb0edbfd35455232e00"
+              },
+              {
+                "sample_id": "safe-bf887f3b4e47e557",
+                "sha256": "76c0f41cc74892c6fa4692483deab7083d4db31e4ba00755d587659e69e70c8f"
+              },
+              {
+                "sample_id": "safe-f33045e638f778e9",
+                "sha256": "ab0ec7f78cde09e3479d07eda27c317593934e2c5bd48c87762ac194ef2ac246"
+              },
+              {
+                "sample_id": "firearms-02aa5a147273960f",
+                "sha256": "5de7a52021e07270715185b774f37aaf792ee4589c46ed87448dfaaeede7372d"
+              },
+              {
+                "sample_id": "firearms-08ea91446ea6078a",
+                "sha256": "73341fc73e8940e81f9d8bc5cf7f90094f4121eb6689c3a438c9d09c1d259b6d"
+              },
+              {
+                "sample_id": "firearms-4044313fbbda6300",
+                "sha256": "61be6921a9872c528ceaa81b0b2ee700d842fe32b2afa86a52d6ced8ebc8f9e0"
+              },
+              {
+                "sample_id": "firearms-4ed5c2ab0a8989c7",
+                "sha256": "6e8549122c65ac6ac4b39c6ef3949716179026d257ae7f1630eb0a1f15f2fe4a"
+              },
+              {
+                "sample_id": "firearms-654887e93cd6cb66",
+                "sha256": "8b9e9a12bbd665f2adcbfcde634b4f408790b953820a67ce81486955fd3141b1"
+              },
+              {
+                "sample_id": "firearms-65daf45b20ff0111",
+                "sha256": "23fe44ac0ebda4e358c110458856aa8f23176f579d95109e616ab54a3363d80a"
+              },
+              {
+                "sample_id": "firearms-6825792fe53adeb3",
+                "sha256": "6b299b9c30b236c5747de1017f95cdbafe7069001f1ee9119a0234a633e09386"
+              },
+              {
+                "sample_id": "firearms-6f71ab535b8ebf9f",
+                "sha256": "e3392f227b311bb652ea4e50ff1eaede86255c2a8caf7900369fad9d1891b261"
+              },
+              {
+                "sample_id": "firearms-9c1a99f7dec1f3ff",
+                "sha256": "43c6b1bd0567c7929def3c414c07a259f55a0023839b0b5b58ff347787c82718"
+              },
+              {
+                "sample_id": "firearms-aed84c5e8fc0fb7e",
+                "sha256": "b0ed11a465e7c2346ae4384e93f73000c1fe0250c4db1e50c5624d2cc9b3c865"
+              },
+              {
+                "sample_id": "firearms-da05920ea9c24f60",
+                "sha256": "a8cc83c30319a454492834d8d078ba68624e39ce3ce82455ae6f47f511caf415"
+              },
+              {
+                "sample_id": "firearms-fdd551a012ece2fd",
+                "sha256": "a58d0564c0fbd552c18510f98a1f3ed02ad539ab7c98b7ffb12b8ca59214ccd0"
+              },
+              {
+                "sample_id": "explosives-01e481fa8d6f655b",
+                "sha256": "b502ebec21a7c3a252886fef71b65daec7b5ba1f6535739c9ea773b2d2603e89"
+              },
+              {
+                "sample_id": "explosives-1545787978a909e4",
+                "sha256": "53a5f67512e24b2c29e555278bdcdac7e8bee696e377af1e29f243cf7c10e2ae"
+              },
+              {
+                "sample_id": "explosives-18392d87b9723cd8",
+                "sha256": "712ea78f182ba52917847cc346ba6efcddac0528cc6c11fb9255c56bb99d8f3f"
+              },
+              {
+                "sample_id": "explosives-287ce9dbad0ed005",
+                "sha256": "30d108286235c86577b27821fa8bb69336510bd069bc60857f118b19703a22c7"
+              },
+              {
+                "sample_id": "explosives-37a15c2440cab970",
+                "sha256": "124141520a348a28fc5818d838b4442806fc0b9fca0a98f8fa24198a4f20b9c8"
+              },
+              {
+                "sample_id": "explosives-65372b87a2140343",
+                "sha256": "70fe4477b8edc1cdcd1a9ffd75ab2385372ffbbb902b9d8111ee93baf9799826"
+              },
+              {
+                "sample_id": "explosives-879005e4e0ad172b",
+                "sha256": "03d1310663683f26ec349de77531e92c90402587f3ce2e27fdae48428b071b7a"
+              },
+              {
+                "sample_id": "explosives-983a5238edfc0bf3",
+                "sha256": "fa1f5c5826c33d4bc20714178ab1f13d854817490a7293a76a470956f410bd23"
+              },
+              {
+                "sample_id": "explosives-9be5e780fea3a471",
+                "sha256": "e22cfc6340e2593d04d16b5b777a6df2654214faf5b8130c45f568e24da620e0"
+              },
+              {
+                "sample_id": "explosives-9dce2b94c21cb783",
+                "sha256": "05e74fc9ee8676ebbe29a0167d11d6fde8168b411b2eed68cca56db2a6b546c0"
+              },
+              {
+                "sample_id": "explosives-dfe605c4427af874",
+                "sha256": "38d55b413a845b9f7096803ad329fb8b22c9a44f4b9892d8d5afc7613f405ee3"
+              },
+              {
+                "sample_id": "explosives-ee6c7039bbbb5493",
+                "sha256": "af9a0f652c73081c8e23e4b281d5d378b3d37b073b0658084e5af875fc98be68"
+              },
+              {
+                "sample_id": "financial_promotion-140d9bdd6d90de0f",
+                "sha256": "b6e08ac2715fec104573f5c43cd1dfec27249d4a5e7a1ea19ee020560b7d5aba"
+              },
+              {
+                "sample_id": "financial_promotion-6d485a78c36a6abe",
+                "sha256": "ed4d8a938f4d68d04bfdb2abe48b6d96d40252c5acd5d73e70995ef0643e19b0"
+              },
+              {
+                "sample_id": "financial_promotion-721f66577d3004c7",
+                "sha256": "197b9777f10f405d992afa34f0ca7d86726d7dfc07e9e84d61b3c45f15ef5da4"
+              },
+              {
+                "sample_id": "financial_promotion-7313827309131a9e",
+                "sha256": "dc852349dfb442cfb622de6fd09da9ffa0072b62e5f701719f9ed309fc18a967"
+              },
+              {
+                "sample_id": "financial_promotion-807d113fe0cb05ce",
+                "sha256": "0654d38c6c53660882d067d47d64f1df793697c1b22035aeec3e9af9be6d0a68"
+              },
+              {
+                "sample_id": "financial_promotion-8407be801a49117b",
+                "sha256": "60b5d4f447bda7bf09e4877e264d3308910c556f131ca5f1c50e09a9a168da44"
+              },
+              {
+                "sample_id": "financial_promotion-8f64e1cb1779138a",
+                "sha256": "793ef950a2c5753273435c78f789f4c1d4c3969eca3a9f7007dd607e5e7f7804"
+              },
+              {
+                "sample_id": "financial_promotion-94f88c8dbf3e4930",
+                "sha256": "045cd29a40a1729b32861ed3c3ab5f40e837d1e7a339915a1c3ef673e876a3d2"
+              },
+              {
+                "sample_id": "financial_promotion-97b2ab77a2e06ce2",
+                "sha256": "75cfd01e449ee38b8d931b71214061a2d6756305876f4638df9711ccbee30ecf"
+              },
+              {
+                "sample_id": "financial_promotion-ac151da207d3201f",
+                "sha256": "58e3bd87b0b30557d32671e2718016f2d166b6c615d1fa74b2fb9e119bc5ee7a"
+              },
+              {
+                "sample_id": "financial_promotion-b6ba385d6221bbbc",
+                "sha256": "51cb4cb7612b11b53a30c8e655e8d65bc8d2dda61ecf6db90f8201332f89fa3a"
+              },
+              {
+                "sample_id": "financial_promotion-c1af96186e6d9cd2",
+                "sha256": "55fc1d6018d324ba939b91312c69e7ef30e6f4afdf273d65a1b11b0a7f2d194d"
+              },
+              {
+                "sample_id": "safe-119c76908e512e1d",
+                "sha256": "d369c40f1ca08506bdb2e04a7c60a3857bd3576a97c9a18a0a7d54147bc87e18"
+              },
+              {
+                "sample_id": "safe-5755b3a59783b620",
+                "sha256": "b94576d8c09e1ab41b758d79ae146bd2267443bddd8e012a566b1d4849253ddc"
+              },
+              {
+                "sample_id": "safe-58f1b7de4334e362",
+                "sha256": "298662e37ab8fe53490162b5976a980d75a214c57902a0d470b07b2ca7a95730"
+              },
+              {
+                "sample_id": "safe-77c35d499df2417f",
+                "sha256": "e42090008fb512a15517055815e8b4e1732066c704e20858741fa6be4eec8915"
+              },
+              {
+                "sample_id": "safe-82d62760a6b2b4ba",
+                "sha256": "6283b1b21627623d9b3e245dc8c55d6a82a75a28d7f7c334925042c02925c8fd"
+              },
+              {
+                "sample_id": "safe-84070467bb672e7d",
+                "sha256": "fbbc25571f38cc98d7f57abe898aa5d582db57b55bb33234f9ba30575e9a4e06"
+              },
+              {
+                "sample_id": "safe-b04555dd1d901aed",
+                "sha256": "e0d446a6641f0568ab55fb3633c491015bb99bb5798a5bb24709ed1bb95dca0f"
+              },
+              {
+                "sample_id": "safe-b236b48fcb65c3ee",
+                "sha256": "a930629a75070e0479b9fd09841812934afb56b79cd7d93bb2e284f80b8db10c"
+              },
+              {
+                "sample_id": "safe-be076e2ff19f3cda",
+                "sha256": "f872193b6c511c905d53920315187c353ddcb9691a9c7a34cc685b42fe955a68"
+              },
+              {
+                "sample_id": "safe-e0252763832e6ebc",
+                "sha256": "d822cc50ca895899af6bac9183c9de6be17fa123ebe7e0b8a7936884702fb727"
+              },
+              {
+                "sample_id": "safe-f92b93e067f4fb84",
+                "sha256": "a180fc973f073d2286d1e691643a720a864cfcae92a44aef624543323812a140"
+              },
+              {
+                "sample_id": "safe-f982e1f0491c781b",
+                "sha256": "59b777dceba41f3f5f7b5fd0464f7b4d8568e62799a4c43e28210cd2b02691d2"
+              },
+              {
+                "sample_id": "firearms-08b5814b3661e772",
+                "sha256": "2e36d9086df38d2e999f36a81ff643970c1a4a941a6f82c4325035f321a85c85"
+              },
+              {
+                "sample_id": "firearms-18e12c64a67ffa81",
+                "sha256": "01ce6abfac977e3d4894a8d1106b6e144bf12fb06614cad8818cd768532173a4"
+              },
+              {
+                "sample_id": "firearms-244718735b55921b",
+                "sha256": "c6a7839ca2bfa73715be0ccfd5a55ceda5eb566b3861355adf952bfa4220de74"
+              },
+              {
+                "sample_id": "firearms-287f5a6280c0d71c",
+                "sha256": "8a62d60b81efa644fe8cff9e20b9bb2f62cad63d1baa1a39674ed2ceb8509785"
+              },
+              {
+                "sample_id": "firearms-633846f757b63476",
+                "sha256": "e6da8ba14513e9862d9d0f3eb82c8168053214092007662966bbac79f4d28c90"
+              },
+              {
+                "sample_id": "firearms-6674b9cb87143b33",
+                "sha256": "11850e8c2133f9e8a73632aba605e821a8c2d8c644254c500d8f83ebc9ccbfe2"
+              },
+              {
+                "sample_id": "firearms-7de3fce8f960ba47",
+                "sha256": "83c314550265f76b2b51e8f50c68e472c942d65f9de78eb00cfa634ee054965b"
+              },
+              {
+                "sample_id": "firearms-7f9900b1c739f70b",
+                "sha256": "d106ab584f971dd653d9a85660399218f3640cfed507fa3d2dddc9c4722bbefc"
+              },
+              {
+                "sample_id": "firearms-91a79fd324d9914b",
+                "sha256": "a4d4264f66a62b99db7b26b2a752f6103acf638511406d26cdb4f220999bc0d4"
+              },
+              {
+                "sample_id": "firearms-ba1e1c4aee478c8f",
+                "sha256": "dd3b5b451f17929acda301fad96ba4ddc115c7c0c5cd26b6109efec2651d212d"
+              },
+              {
+                "sample_id": "firearms-dac98f5079b39393",
+                "sha256": "d0ba207f4c123489ddecc7c379ea9deae5a7cfea29e15ceec1c7ba379e73eb88"
+              },
+              {
+                "sample_id": "firearms-e967e254c2864838",
+                "sha256": "94316da53e58e9ecc1200b3f12da2578e0310c4d8a6a35565d1b289ce4f04e36"
+              },
+              {
+                "sample_id": "explosives-1b9c91ada92d0f82",
+                "sha256": "2006d270c346da84eb021b1bcbb73d58f6dc719783a3c76e416be710ff5dae87"
+              },
+              {
+                "sample_id": "explosives-265b5e8a4b5d9624",
+                "sha256": "df91214dcb37aecb1dec59feca379816284d694d034b8cf3fefb7f5df2ea3ab1"
+              },
+              {
+                "sample_id": "explosives-283ba2c247231d8d",
+                "sha256": "45e0dcbdd017b9bd876de0c4267e7f5bee552e03c78d119feff5bbb4d389b530"
+              },
+              {
+                "sample_id": "explosives-2d8c8a059ed270e4",
+                "sha256": "67e1c0d1bb7edeff359b1071a89aafa854b742fda0cf89d1c53033b71398d5d0"
+              },
+              {
+                "sample_id": "explosives-336be7aca151f967",
+                "sha256": "e0480f691a00d038a5e3d2e1bbf2f84282ffc1e4f12acf7cf88dff24b4d18dfe"
+              },
+              {
+                "sample_id": "explosives-4fb88006ec43ae52",
+                "sha256": "21cf16d0c4955e8e0895fce5870ec90151e1b5b61f2f72618b1f0560a99f5a65"
+              },
+              {
+                "sample_id": "explosives-6a369253a6acf64e",
+                "sha256": "b4d0a7f358b9b1dd5ea6ec6a699239718d5364e531e51bc34efa25389c97ac65"
+              },
+              {
+                "sample_id": "explosives-76fff3797dcd45ea",
+                "sha256": "97568f1141f69c4e4352ae6b766728b370b5e4d5b98bf6a2b82e9316b5ea753e"
+              },
+              {
+                "sample_id": "explosives-808678dfe3e2b9d6",
+                "sha256": "c71b85e31804b14ee6dc2702467a016f990d1316daf6e6223432b07b64786e85"
+              },
+              {
+                "sample_id": "explosives-a847a50b677d3214",
+                "sha256": "e3af480983637c41d26d3f45edb468ef5da6428fde6156351b9886bbe63ccac3"
+              },
+              {
+                "sample_id": "explosives-c0e26c0942ed75ea",
+                "sha256": "f10c7abfcb6b8b6b7002793e251d7f5cec41ad86653ef667856bcb702f907c29"
+              },
+              {
+                "sample_id": "explosives-e8d08fd830595ace",
+                "sha256": "eafb17b0d620da1e0495a17a2e657f393c66356c3270e416be2b711cb7cb8e06"
+              },
+              {
+                "sample_id": "financial_promotion-002cf2ebd1547008",
+                "sha256": "e64314b81e168f54b1a9922c80a3e6d96f6f404e9e805b5fb6574fb418bf7eaa"
+              },
+              {
+                "sample_id": "financial_promotion-23946c22edc030a1",
+                "sha256": "d5e96ba2833271e66c7b6965dc7b070c52b8fc9574166bdaf7d024edf85e356f"
+              },
+              {
+                "sample_id": "financial_promotion-242b15ff33190eea",
+                "sha256": "95e16416eb57864ed78e1de65c4a0479c1807800c6e28caf9ef22c68d73a23ee"
+              },
+              {
+                "sample_id": "financial_promotion-2cdff0da9fef3590",
+                "sha256": "fe3ee39722d4677b27de9aa632ba8964885ad02c8c0944e4aa933e2ad4bd1b5e"
+              },
+              {
+                "sample_id": "financial_promotion-3d78e80cc6d28821",
+                "sha256": "fc3388db1b2f62f02e570998839cb49d38ca1dd39b03f4f59c8a32ceda4c30fa"
+              },
+              {
+                "sample_id": "financial_promotion-4f481738cb3c1bed",
+                "sha256": "2ca7dfb86024613a662a20bc45ba1fdbb9c2afc052f89fe4c8d06249655a1b69"
+              },
+              {
+                "sample_id": "financial_promotion-579b58a29a7d955f",
+                "sha256": "86ab99bb3038424cf239a20b618e8cc6cb7a928f9f08aee7c07aa2dfbb59a8e2"
+              },
+              {
+                "sample_id": "financial_promotion-5e3fb17f6be733b0",
+                "sha256": "06fc2f683c3c4a2d970e2d8ecc91a38139de285593f797f3487b3492b1644e2a"
+              },
+              {
+                "sample_id": "financial_promotion-8671ce21d856cb62",
+                "sha256": "e03f7cf0f20e88cc4c3a5d5e4ab600732c8e9eaaed40b6fbcf36214b30a3db50"
+              },
+              {
+                "sample_id": "financial_promotion-94f6aab8f39043d3",
+                "sha256": "5b1b4d77739a1ff9e180807163e1e40dd3e684bb9b5fb02dc95f2e8e0c637a7e"
+              },
+              {
+                "sample_id": "financial_promotion-faae33202f57c3ca",
+                "sha256": "1f82eccb57963125b00000de8987436e80feec84ccb338c961e9e04c89b83a70"
+              },
+              {
+                "sample_id": "financial_promotion-ff884f7cd86b4295",
+                "sha256": "fd48a3e07198ad2b96297324aca25b4d41f3d247a40db55b6e7fdcc476fdae94"
+              }
+            ],
+            "resolved_data_config": {
+              "crop_mode": "center",
+              "crop_pct": 0.95,
+              "input_size": [
+                3,
+                224,
+                224
+              ],
+              "interpolation": "bicubic",
+              "mean": [
+                0.485,
+                0.456,
+                0.406
+              ],
+              "std": [
+                0.229,
+                0.224,
+                0.225
+              ]
+            },
+            "timm_version": "1.0.28",
+            "torch_version": "2.12.1",
+            "transform": "Compose(\n    Resize(size=235, interpolation=bicubic, max_size=None, antialias=True)\n    CenterCrop(size=(224, 224))\n    MaybeToTensor()\n    Normalize(mean=tensor([0.4850, 0.4560, 0.4060]), std=tensor([0.2290, 0.2240, 0.2250]))\n)",
+            "weight_path": ".cache/huggingface/hub/models--timm--resnet50.a1_in1k/snapshots/767268603ca0cb0bfe326fa87277f19c419566ef/model.safetensors",
+            "weight_sha256": "773525d5821de224f8f30c33377b7a795d7863e08522698200d3217d3f2a41bb"
+          },
+          "reproduced_thresholds": {
+            "explosives": {
+              "candidate_count": 50,
+              "f1": 0.8461538461538461,
+              "false_positive_rate": 0.08333333333333333,
+              "fn": 1,
+              "fp": 3,
+              "negatives": 36,
+              "positives": 12,
+              "precision": 0.7857142857142857,
+              "recall": 0.9166666666666666,
+              "selection_rule": "validation recall >= 0.90; then maximize precision, F1, and threshold",
+              "specificity": 0.9166666666666666,
+              "threshold": 0.05629754364128617,
+              "tn": 33,
+              "tp": 11
+            },
+            "financial_promotion": {
+              "candidate_count": 50,
+              "f1": 1.0,
+              "false_positive_rate": 0.0,
+              "fn": 0,
+              "fp": 0,
+              "negatives": 36,
+              "positives": 12,
+              "precision": 1.0,
+              "recall": 1.0,
+              "selection_rule": "validation recall >= 0.90; then maximize precision, F1, and threshold",
+              "specificity": 1.0,
+              "threshold": 0.9974236076754509,
+              "tn": 36,
+              "tp": 12
+            },
+            "firearms": {
+              "candidate_count": 50,
+              "f1": 1.0,
+              "false_positive_rate": 0.0,
+              "fn": 0,
+              "fp": 0,
+              "negatives": 36,
+              "positives": 12,
+              "precision": 1.0,
+              "recall": 1.0,
+              "selection_rule": "validation recall >= 0.90; then maximize precision, F1, and threshold",
+              "specificity": 1.0,
+              "threshold": 0.9914425479883959,
+              "tn": 36,
+              "tp": 12
+            }
+          },
+          "split_rows": {
+            "test_excluded_from_fit_and_calibration": 48,
+            "train_fit_only": 192,
+            "validation_calibration_only": 48
+          }
+        },
+        "vit": {
+          "artifact_path": "models/vit_policy_head.joblib",
+          "artifact_sha256": "3473f8f6817a007fe4ede49e10f571a6b1942c468c09dfebec5037fa5da1c192",
+          "embedding_path": "outputs/evaluation/embeddings_vit.npz",
+          "embedding_sha256": "000a858f86eaffbd20b5a84ef9938dddcd60684731e03e954dea2ae2650720ff",
+          "formal_test_output_binding": {
+            "csv_argmax_mismatches": [],
+            "csv_probability_max_abs_difference": 0.0,
+            "csv_probability_mismatches": [],
+            "csv_threshold_flag_mismatches": [],
+            "direct_classification_metrics": {
+              "accuracy": 0.9791666666666666,
+              "macro_f1": 0.9791304347826086,
+              "per_class": {
+                "explosives": {
+                  "f1": 0.9565217391304348,
+                  "fn": 1,
+                  "fp": 0,
+                  "precision": 1.0,
+                  "recall": 0.9166666666666666,
+                  "support": 12,
+                  "tp": 11
+                },
+                "financial_promotion": {
+                  "f1": 1.0,
+                  "fn": 0,
+                  "fp": 0,
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "support": 12,
+                  "tp": 12
+                },
+                "firearms": {
+                  "f1": 0.9600000000000001,
+                  "fn": 0,
+                  "fp": 1,
+                  "precision": 0.9230769230769231,
+                  "recall": 1.0,
+                  "support": 12,
+                  "tp": 12
+                },
+                "safe": {
+                  "f1": 1.0,
+                  "fn": 0,
+                  "fp": 0,
+                  "precision": 1.0,
+                  "recall": 1.0,
+                  "support": 12,
+                  "tp": 12
+                }
+              },
+              "rows": 48
+            },
+            "direct_threshold_metrics": {
+              "explosives": {
+                "f1": 0.9565217391304348,
+                "false_positive_rate": 0.0,
+                "fn": 1,
+                "fp": 0,
+                "negatives": 36,
+                "positives": 12,
+                "precision": 1.0,
+                "recall": 0.9166666666666666,
+                "specificity": 1.0,
+                "threshold": 0.1727632618375518,
+                "tn": 36,
+                "tp": 11
+              },
+              "financial_promotion": {
+                "f1": 1.0,
+                "false_positive_rate": 0.0,
+                "fn": 0,
+                "fp": 0,
+                "negatives": 36,
+                "positives": 12,
+                "precision": 1.0,
+                "recall": 1.0,
+                "specificity": 1.0,
+                "threshold": 0.9946029323485182,
+                "tn": 36,
+                "tp": 12
+              },
+              "firearms": {
+                "f1": 0.9565217391304348,
+                "false_positive_rate": 0.0,
+                "fn": 1,
+                "fp": 0,
+                "negatives": 36,
+                "positives": 12,
+                "precision": 1.0,
+                "recall": 0.9166666666666666,
+                "specificity": 1.0,
+                "threshold": 0.9913563345650912,
+                "tn": 36,
+                "tp": 11
+              }
+            },
+            "rows": 48
+          },
+          "issues": [],
+          "max_abs_probability_difference_after_train_only_refit": 0.0,
+          "raw_pixel_backbone_regeneration": {
+            "batch_size": 8,
+            "device": "cpu",
+            "elapsed_seconds": 18.255549208028242,
+            "embedding_cache_exact_match": true,
+            "embedding_cache_max_abs_difference": 0.0,
+            "feature_shape": [
+              288,
+              768
+            ],
+            "ordered_image_count": 288,
+            "ordered_image_sha256": [
+              {
+                "sample_id": "safe-07b05aeef7604b47",
+                "sha256": "2d469e7a3c393ba7a7b8d46741907796baba0c825bab131f96d4d9063f7fdb36"
+              },
+              {
+                "sample_id": "safe-086bd2772660f1b8",
+                "sha256": "937826d238c3ac53cc7ec9bcea9d72de175574b4009005b249e37aeb8b1b47b5"
+              },
+              {
+                "sample_id": "safe-18fa439c53919884",
+                "sha256": "15f25860b9c24a39fe8b7ca271d39bfe4b357a614b714e248b81fec2217d5f9a"
+              },
+              {
+                "sample_id": "safe-1c9027c523e4a7fe",
+                "sha256": "6782cc5f1c5a4e2b0b9ad04ebd3ffbf49fbf58af44512fb81cfb4bb92ea2ba96"
+              },
+              {
+                "sample_id": "safe-243bf86a30a6fe62",
+                "sha256": "c00ac4ab74e3ab40f3108fa9ad45ccca10d89a7ea334c4356e5e44d509dccdb5"
+              },
+              {
+                "sample_id": "safe-253da52f68cc386f",
+                "sha256": "5439800d8f614b8201de8cab7dae99e374344d550f41481f85ad8accc489cf1d"
+              },
+              {
+                "sample_id": "safe-303211596a97b69b",
+                "sha256": "d3a2044572a07cae9758f10fdb147900c06d7931c7ff3ef8b2b0144fbd571ec3"
+              },
+              {
+                "sample_id": "safe-32993ba9b9223c38",
+                "sha256": "df393bed80487e0485607b470be9eacdb5b08f5cabe43a5f06d21474b614bda0"
+              },
+              {
+                "sample_id": "safe-3b8bb23ab98f2d77",
+                "sha256": "6e62c07ea67cf65564de81322f833cbebb544ff06893690f80de25ec6af67b12"
+              },
+              {
+                "sample_id": "safe-41d4adcf6b36a4e7",
+                "sha256": "90edcd61c85ec71c4f6b24456e9c3c0b9b49690c88889ed6c5564af2370315a2"
+              },
+              {
+                "sample_id": "safe-4b98da29e8cfbb47",
+                "sha256": "0a118c5d1476188d376be0378951374ceec13651099c54058d4b30b89f0b19b1"
+              },
+              {
+                "sample_id": "safe-5572c20ee7c8fc4e",
+                "sha256": "e90d91507327ff74b01ee168945b5a41d077de49b9a63838cd8bd6323270d908"
+              },
+              {
+                "sample_id": "safe-5d94f79eecff2b57",
+                "sha256": "7cf6f44b5061bd5b0daade7ab856c0f70b86735ac941dffe610fef04347b34ad"
+              },
+              {
+                "sample_id": "safe-66839fd70731a31e",
+                "sha256": "8ee295953f1242f84ba668141f6af07997fbbfa8122bd6c51726f1517cefc8d2"
+              },
+              {
+                "sample_id": "safe-66a2b56878347f10",
+                "sha256": "e4f03ed8e7fe853d2c58745c341a7d26f1b7c983b530d3381d26cf5141e57cdb"
+              },
+              {
+                "sample_id": "safe-70e366d283c4447c",
+                "sha256": "050c1cc50bb70ccf5fc15b90c0913afbd159dab34fb645988526dfd15a5e97fc"
+              },
+              {
+                "sample_id": "safe-7934c0eb6158c3ec",
+                "sha256": "48038c08e41024b199053cfe49ef6fc331b2a1f79d9b3b317afd978daeda0bbe"
+              },
+              {
+                "sample_id": "safe-79ed9ef28c939ed1",
+                "sha256": "63ef9b282fd4eb7fe10d8cb2e0ec377ff2d9e96be98eb7df46104dfb30cac836"
+              },
+              {
+                "sample_id": "safe-7ce9f14d0bc3d7f8",
+                "sha256": "77445b84437b68f5a4ab77dcb85b060da1887242ac9d868d0678c7495a9656a9"
+              },
+              {
+                "sample_id": "safe-7e7d4b5594e60bbe",
+                "sha256": "b09f5c0f361976a08c1e677981aedae5fbf153d19da3b5e238556b03a82b44db"
+              },
+              {
+                "sample_id": "safe-81677abb7b1d50cc",
+                "sha256": "8c731a8dc894cc33bb25e7bcb3df82f7473dbd115a2bef9a8174790ad2bcf48b"
+              },
+              {
+                "sample_id": "safe-85cc1b9eaf067f8f",
+                "sha256": "cfefff8fff8a8f284798e0e1c4e3ba7dd0c85ff2859ff944c82d496ca2f4b298"
+              },
+              {
+                "sample_id": "safe-86b7c29580c79cf2",
+                "sha256": "416486c12a3f10cb3de15c985183675bbd0dc267ea61ceb8d2893d39a9f7662e"
+              },
+              {
+                "sample_id": "safe-882bbaf7688b139b",
+                "sha256": "6442956221b491f8ec5b5474f8774387f4f41e030d843513de9f25b3aab58cb1"
+              },
+              {
+                "sample_id": "safe-89190c8684d78bdd",
+                "sha256": "ef1e24b66ca9df811a622b18db1bc96bbf0bd2ff999693727749faee06092494"
+              },
+              {
+                "sample_id": "safe-943ab414891f1d01",
+                "sha256": "738e31df6688e7ca583156fdf615d616c5dcdbd061c5a53500b105568385306f"
+              },
+              {
+                "sample_id": "safe-a12d64c0ae2e76f3",
+                "sha256": "d3e9f2e9876ea647c0259f6ba7807dbc1e316ea9223222118dc06e65bf6209a9"
+              },
+              {
+                "sample_id": "safe-a89f6190fb7133ed",
+                "sha256": "b689cb700605579dd7059561ee5fb5d652c2734d301ddfc1b510545c4c56b8cd"
+              },
+              {
+                "sample_id": "safe-ae40b54fbed88e76",
+                "sha256": "458092960251a8ce6e13f08bd82e1d5020110be44ead725e64d97739e46cfa2f"
+              },
+              {
+                "sample_id": "safe-b38c65f778fb209f",
+                "sha256": "ce3a5383729bfe7df30180b5f16b78337436c9e5b32971a9167e477a1b27f35a"
+              },
+              {
+                "sample_id": "safe-b6056d38f22a2b50",
+                "sha256": "f6d1c3fc354859050cf6dc0d0530c656b6064d58679afb4894a4c0b96fb6f138"
+              },
+              {
+                "sample_id": "safe-b70eb9145119416c",
+                "sha256": "3b341e25cfcbd63de2cf6e20ee404283a9d7c986bc8091310dea99a1d8b9cff6"
+              },
+              {
+                "sample_id": "safe-b85a306cb7e73e78",
+                "sha256": "110afcaf10dd0667df9b11faee8a55bd95e9c023e40717d40cc936f2d8289a13"
+              },
+              {
+                "sample_id": "safe-ba2242f22204ca9e",
+                "sha256": "d5bb890b622cbe50cd2c00289c7f50774c4e68e2ec4fc94d03482529e65ff230"
+              },
+              {
+                "sample_id": "safe-bb99e36d9b833356",
+                "sha256": "d063593e8204b5c62f5dc6018961c54dbaa1aae440ab8e61e43ec014be91f6db"
+              },
+              {
+                "sample_id": "safe-bedccfc1495b404a",
+                "sha256": "1aa5ed63b9517a51acf4a6bf2aba5ec63685478cde0322dbcac2acb216d31eb1"
+              },
+              {
+                "sample_id": "safe-c5dc9eb24e395672",
+                "sha256": "cfd7ac244431a89a2b36a2a31d49ba3d6b99d38fb0074034dc4e97acf84675a6"
+              },
+              {
+                "sample_id": "safe-cad21acd9730f55d",
+                "sha256": "7276f6c1789965c4eed33c8a05278d0f274181bad637206a49d1c0d1f863af90"
+              },
+              {
+                "sample_id": "safe-cc191c6a3bc6e495",
+                "sha256": "927002c44045c9fc244fc9fde6defcc51e470293912b790d4cf76379a570d00a"
+              },
+              {
+                "sample_id": "safe-cdec303752e235b3",
+                "sha256": "efc98d90e97c6789ee8e49590e62416e8562523311eda2a70f52281114ccd0d2"
+              },
+              {
+                "sample_id": "safe-d82ca2ac2ec193a1",
+                "sha256": "0068f94d99c4af84137670717563c35324686b316d59ee039f57fb3855b213a2"
+              },
+              {
+                "sample_id": "safe-d9ecced715b3eb84",
+                "sha256": "1d4d1154416fff37f29c9b1135cb4a4ee9cfb11fd85c45ed7cf3912807656aea"
+              },
+              {
+                "sample_id": "safe-dca8f6cba7ce30db",
+                "sha256": "f995d06be998200580d28e143ebe7b66329c046ea1171e40fe9a7780e109c967"
+              },
+              {
+                "sample_id": "safe-e1c350c33e88a97c",
+                "sha256": "7a630fab3e1dd17d86897abd705b1e88d5aed5cba2fcd034cbb676af368834e9"
+              },
+              {
+                "sample_id": "safe-e310f97ee1816e8b",
+                "sha256": "c4dd7e13810db60a8effde01115ffc31cf467cb263ff866fbc248a9bc3581065"
+              },
+              {
+                "sample_id": "safe-e867f38cc3822c9f",
+                "sha256": "029dddf35b9f57237b67fcd286bd255d297a972f78185077b83656f6f62c2c72"
+              },
+              {
+                "sample_id": "safe-ec95ebe1a3e1953e",
+                "sha256": "4eca1df8cde64baaf95a94c13c537eca72b40419e26665c107eb93bfd39f5670"
+              },
+              {
+                "sample_id": "safe-f3c4d1f9f220c145",
+                "sha256": "e2fc6a475e8f5305e1962f306d1e3008183bdbd2165e1db434294494396077ed"
+              },
+              {
+                "sample_id": "firearms-04bf82b0bf490b2f",
+                "sha256": "24bc73d3ac268a275d107fd10362f0f3b39ef7010329167cebccc1910821de12"
+              },
+              {
+                "sample_id": "firearms-07f819034236b829",
+                "sha256": "e87f3208616281218860fbca4c00d34273406532327a2b1b1a03e78369b876eb"
+              },
+              {
+                "sample_id": "firearms-0b0c5988b94c6658",
+                "sha256": "460c40787b38062c419e7f9718c05dd37ccd55a253818e9ddc2c16ffed031d2a"
+              },
+              {
+                "sample_id": "firearms-0ec0876d701ac8e3",
+                "sha256": "69847b1e15d7e51b7fa5b6d6ee7bbf6057c2e259ea305f81c18e1b429c2bc348"
+              },
+              {
+                "sample_id": "firearms-2ba90b92b1d2e1ec",
+                "sha256": "10c7b9fd217c64993720a06115673514aa3ed976fbc7597a86c57f9ca8379444"
+              },
+              {
+                "sample_id": "firearms-300611d3a6f97742",
+                "sha256": "44b14c9914ac4fff86416d118ee79c6256f2eb8df7d946d08ceca1d2259b39ca"
+              },
+              {
+                "sample_id": "firearms-332a75449afd5eec",
+                "sha256": "8148731c4919cfaea98d71cbf1c13f2245d6abdd30cc85b5bc4b24ef86093f91"
+              },
+              {
+                "sample_id": "firearms-406a1acdaa081876",
+                "sha256": "c1fa915898b9d9f03f9b8cc7af5779407e164037e1a5c47b033e661fef0c56ee"
+              },
+              {
+                "sample_id": "firearms-46677aea10693273",
+                "sha256": "bc68d2cf47b0936664f165791879f98caccb44e5f1846565f30083ccc53ea132"
+              },
+              {
+                "sample_id": "firearms-48e9d42aed7e6ffb",
+                "sha256": "959f65bb61d68b0819d96e8f48ff9e5d61fdc5ff9959ced51329b2e19aea43be"
+              },
+              {
+                "sample_id": "firearms-4ac7af60b77b1a19",
+                "sha256": "f4d18812788dd23957dcd2953c6e0e894c5b1610884ae25f1ac632c24e7c951b"
+              },
+              {
+                "sample_id": "firearms-4dbb6a38eed6a40a",
+                "sha256": "ae5c1fd4ecd7ea2d480a2f8cb654ed692fa5610bf55caa6a51ad3efbedbcb616"
+              },
+              {
+                "sample_id": "firearms-4e4ca6aff50bcefa",
+                "sha256": "cd0dea29362db12c502252dbe95b8cce9b8ee8e0e2ff3c63ea9708d5398bd1e6"
+              },
+              {
+                "sample_id": "firearms-608c32498c1e3d23",
+                "sha256": "652010325f67b29333510e2b7864997dea62af36250c8281b8f61589a5c34800"
+              },
+              {
+                "sample_id": "firearms-672a5c34cb14a436",
+                "sha256": "bde883bae873f3e95f6c353a89c7c836d0fe7a1cee28d1312a59b678814eb4b9"
+              },
+              {
+                "sample_id": "firearms-74ce871bc526b686",
+                "sha256": "1d849037952d1783c97868da470a7ba66f63b3ac1f3641c20281cacad446d248"
+              },
+              {
+                "sample_id": "firearms-75b25cd76dcaad90",
+                "sha256": "dd5d421d8ec81742c34688c646256e720e29dd3bcd07694ff3fccb21d81768dc"
+              },
+              {
+                "sample_id": "firearms-7a6e083d3dc1afa9",
+                "sha256": "a01273c18764fec699fa1b94613891ce71b8257acf307727ced332e9c005bbc1"
+              },
+              {
+                "sample_id": "firearms-7ae84893226ac6ec",
+                "sha256": "d7a9fd2c91b8c5e7d0f17972755966ae345ee0517ecae69466cf34c44f76b834"
+              },
+              {
+                "sample_id": "firearms-8765f25d7d48dc8c",
+                "sha256": "04353fbac4103bb95da6778f191da1b679d4d02d6c546028166e6cb5e9cd3e7d"
+              },
+              {
+                "sample_id": "firearms-8a6c93a86ee9c0fa",
+                "sha256": "b9491cdd4ff0005548a266b22cd6792db60b5ddac3690280f557b7aaf0d6d86b"
+              },
+              {
+                "sample_id": "firearms-8d302f585c42a951",
+                "sha256": "040faae07a6f9f9b5ce905b466b84378b9d9ebd51962763b82b6557efee7df03"
+              },
+              {
+                "sample_id": "firearms-8dfbb84675b6e59b",
+                "sha256": "a4011a9e86b89b42ea3f82a1343064551ef7fe92ee19148f4c6b984515135f37"
+              },
+              {
+                "sample_id": "firearms-94408d86c86b2c8d",
+                "sha256": "db43d67f8a3f6383d17e198a44f3f5278804073d09f71d533f80f1db7b729111"
+              },
+              {
+                "sample_id": "firearms-973d6b80693f0785",
+                "sha256": "4f05d12f8e7ef7192d596ac50dced36b67e4ad13a85575ec9bdc6fe5dfff9063"
+              },
+              {
+                "sample_id": "firearms-9f325a2ef351db2b",
+                "sha256": "43c396c39191c998fb4d64ed52804129ab351c2da0f4d904d5e7c9c6a7f011db"
+              },
+              {
+                "sample_id": "firearms-a011ea4d7db277de",
+                "sha256": "49bd391d4dec754f0907446c15d99219cb94b06d2df07c9b5c6c984ce7ff393e"
+              },
+              {
+                "sample_id": "firearms-a273453206f2eddf",
+                "sha256": "6d1b9a5c44cb743c527b1ff2229c3c2292ea90d096b73b1ac25805f9fb9d8474"
+              },
+              {
+                "sample_id": "firearms-a3e1916dd7ec12fa",
+                "sha256": "843d0494f8e6d34e71e837236e542bab87b66deb508992ff234d9724efc1f2b6"
+              },
+              {
+                "sample_id": "firearms-a537110a16ff5c0b",
+                "sha256": "bc97e49a5f6df2e5f9b0bd59d646b11f0b7f0d50bf7a4a3bcb8b0cfb5546bb90"
+              },
+              {
+                "sample_id": "firearms-a850193dfef23f8e",
+                "sha256": "37ddc9d9a70ee915cf5672848bf35dd94d85e3ef5cd92f4a570fa9c9c0d6efd3"
+              },
+              {
+                "sample_id": "firearms-ac9c4456ceb1b862",
+                "sha256": "f51595642fd908ae3027d59968323e287e7d06aa880d532e33efe6b772562101"
+              },
+              {
+                "sample_id": "firearms-b1dd3567cd4a4671",
+                "sha256": "a1c64aa5ac439bb12360124beb2356bb2437b0b2855b73feaf43fdd2de6488ff"
+              },
+              {
+                "sample_id": "firearms-bad92b6d4fa57178",
+                "sha256": "ed8a4d39460db67c267ef8133ee7cfa1cedff35ec9aec488efbffcadc67d9da2"
+              },
+              {
+                "sample_id": "firearms-c09ef14ccb2d6e91",
+                "sha256": "f221b47ce23e255a361dde2dd5c720ffbd6d72018f664ff892d3d24422849610"
+              },
+              {
+                "sample_id": "firearms-c3e0f18505ad0429",
+                "sha256": "8d5ca07c56d6ee0a6d7c4a8f00610c4183265b2ffd965899bd5a1478d65b165c"
+              },
+              {
+                "sample_id": "firearms-c65c9826e4516129",
+                "sha256": "2fbbe6d4e2bcc7d7aa7c93f0766180053ba7c101cbd2203b0e3a9a69478d5954"
+              },
+              {
+                "sample_id": "firearms-cea1137a2b858653",
+                "sha256": "699dabaf92308d831138ca3db72f03a014882581b7482eebb6c0bff75a0af720"
+              },
+              {
+                "sample_id": "firearms-d36df5c2a3c2b0c6",
+                "sha256": "827915aba740d8c59fb40fa50e80e366d7c59b8c73d10db931063d96c3998a05"
+              },
+              {
+                "sample_id": "firearms-d758d49a9a9eb25d",
+                "sha256": "15e1242360c553c0491b977339c2e3f592bb8e01b3848726b0837ade9585d18a"
+              },
+              {
+                "sample_id": "firearms-d9940f84701476cf",
+                "sha256": "70a655f28d6ef333df99a6de0d2affc16c145a8d2be3449bda3ef83fadb9a48b"
+              },
+              {
+                "sample_id": "firearms-db18a422c608fa50",
+                "sha256": "db028a5207975aeb03b8d1d8c2bdef535ee8df16d6147ba8ec1bff5989e3fe9a"
+              },
+              {
+                "sample_id": "firearms-de97af0906560b37",
+                "sha256": "5b7b8892024a1a432b16d6e7772a4c8db72a3ae209bba29c0fe7cec60c91c735"
+              },
+              {
+                "sample_id": "firearms-deaaf37f7823897f",
+                "sha256": "818cdaaeff140767bffcf5da39d1000789e198375c037ab7b4fdcfb5032b4bd5"
+              },
+              {
+                "sample_id": "firearms-ecba8a61615aa362",
+                "sha256": "41fd438e652f2f248b2cce14d57d725374fdb0b404702d911f6532edd2459c75"
+              },
+              {
+                "sample_id": "firearms-ef54ef97fe2fcbc9",
+                "sha256": "587688c1ef7957542163fb1f1c014c41af509d535c276458b23c22b91d2b5a0e"
+              },
+              {
+                "sample_id": "firearms-f6735be4d9f6cc4c",
+                "sha256": "fc3d959fbf5f63ff635c6ad2db75cdccf1bbadb8bc077f10e5626acad8f70551"
+              },
+              {
+                "sample_id": "firearms-feced188a8627c95",
+                "sha256": "1466cec180573e35b044c9780f9e0e2070d11d9522931f670fe9ffd132b90c4c"
+              },
+              {
+                "sample_id": "explosives-02cde5e6f563cfa3",
+                "sha256": "580af1164ec3d1e322e98912fb2dc37686c0504d33da2dff30f3a005ead67d0e"
+              },
+              {
+                "sample_id": "explosives-055bc7482a4b2d2c",
+                "sha256": "702ec11a5e364a500dd32accd82a58dc846c135b1a520d2a078b8b3fa93642d1"
+              },
+              {
+                "sample_id": "explosives-0d7ed069346a77d4",
+                "sha256": "2d3b7e68376c024cb53ccf639cd9fdac5b72a6289d2d51b573c15daf0920911d"
+              },
+              {
+                "sample_id": "explosives-10c0acdef4611a8c",
+                "sha256": "a42c042bd255ce25ca89e2284d9f5eb628359b6412f44dcaef196c843b7fe4bf"
+              },
+              {
+                "sample_id": "explosives-1625e9b4fe61f1e7",
+                "sha256": "c8013a4a04ddf5088227447f0c055538ccd25e67a7d2aff80ae12b207fb017a3"
+              },
+              {
+                "sample_id": "explosives-29d7bfdf14e8c6ff",
+                "sha256": "9369bff87b61e30d651b0ec6ce784536906fe3d6a836e750e4cef3d1851116ad"
+              },
+              {
+                "sample_id": "explosives-2a93126164f4488e",
+                "sha256": "9ee72db35caa1fe48d9041b4e283ab2064af3897e00fbbbb455b0c8eec0c0e08"
+              },
+              {
+                "sample_id": "explosives-2cb84f988776b081",
+                "sha256": "56d8176325f486ffcffaff0eb26f9993616e4384caa870f8af3c23df3b41595f"
+              },
+              {
+                "sample_id": "explosives-2faf1c8af89008a2",
+                "sha256": "8ac3bbabeaf8224d8bb875b5b2de33ed0272e7f2551ee364666f25be240fff0c"
+              },
+              {
+                "sample_id": "explosives-3bc120fde6bdb2aa",
+                "sha256": "64222b908e7a275ccd2e38311e78aceaec9346cd371ee2e652063967072ff974"
+              },
+              {
+                "sample_id": "explosives-3f2739a0d05f37d8",
+                "sha256": "21d472fc9926bb40a4cd14925137047af7c273f729187af859cf2b652e8d993b"
+              },
+              {
+                "sample_id": "explosives-4acc5e7c9955091c",
+                "sha256": "a78d7771ecd7c69e5dc9c2d507317384fb7639f17a0369db4a886c3d3bba51f7"
+              },
+              {
+                "sample_id": "explosives-4b9a8c6473284073",
+                "sha256": "9264b1d88bf3de8ed0bb2cfc40206ea68948b160780c94dae2be0ee9d22a3e72"
+              },
+              {
+                "sample_id": "explosives-512125083f672957",
+                "sha256": "698ef9f108084e4e93d4a12eb6a4e6cf055a70c2cda831be7cc34398078d171c"
+              },
+              {
+                "sample_id": "explosives-541b9537b80899a8",
+                "sha256": "7253c2bf9e2b7a279a131d76f05b8cab1e70ec092237de951632dc3481a002bc"
+              },
+              {
+                "sample_id": "explosives-5776052b49e96bfb",
+                "sha256": "48495c24e15f796e9cbd3d58f1ba070768e977ea250ed1e1e57cb0a0354a52a7"
+              },
+              {
+                "sample_id": "explosives-5afe88e93ef315c5",
+                "sha256": "5a33c1f446976165ca85a394b9fcdbe21f72eebbe8a59255f2bba74d351bca99"
+              },
+              {
+                "sample_id": "explosives-5e68342bbf9184ed",
+                "sha256": "b9f37e5b968ed0a13112519c4ea664f8a5a8ec4100a306bd75b73de8e033ad28"
+              },
+              {
+                "sample_id": "explosives-614e539226d13075",
+                "sha256": "004af929bddb7478ea9e3d5133e66b18b841f2719a5a22f03ff9d5f2741f949e"
+              },
+              {
+                "sample_id": "explosives-63bacb5829c44c78",
+                "sha256": "e4dfea98585497824047b3cca166a47c5b691a467d68abe6afed5977d9f97f24"
+              },
+              {
+                "sample_id": "explosives-6412d82c04825e38",
+                "sha256": "6d341cc6f7c97f3fcd2c78145824ca51c8fec1d46195711320fc15c5aed01247"
+              },
+              {
+                "sample_id": "explosives-66cf7cdf91bd377d",
+                "sha256": "dd04d71b18798fec61a58a8de2db60f89a31e4409d8efc0510c9b05756fc1054"
+              },
+              {
+                "sample_id": "explosives-67c487c903a6aeba",
+                "sha256": "73ea0b7c9e8b8f96f1ca14dfc105495b995b191c42623ac04b1a04698c079079"
+              },
+              {
+                "sample_id": "explosives-760425a2bd73e32f",
+                "sha256": "867ea307ccfaefbaf5a1f5ba1583fcfe88d15d160e013405f2f911da0e98245f"
+              },
+              {
+                "sample_id": "explosives-78820e7c2feb8c70",
+                "sha256": "0c28dc2e40338f8142b9cff5d031be48ff35c86d73446ee45557a371ac69600a"
+              },
+              {
+                "sample_id": "explosives-8161aa891ece3d96",
+                "sha256": "72b414fc03b130f58766544cfb06d683981d919f5910504c7cad06ed2c0cddb2"
+              },
+              {
+                "sample_id": "explosives-8813e12dca80062f",
+                "sha256": "a538b85d0665e1cb28c3d1363d7740c28edea7939aadc2aae568b3ff16368b9c"
+              },
+              {
+                "sample_id": "explosives-91fa51004996e205",
+                "sha256": "78301bf94571cc9b7fb188ce36f2e525854894ba0d7af0c6e55a6bbddc1479a6"
+              },
+              {
+                "sample_id": "explosives-965c0f57b043b2c5",
+                "sha256": "c215afd121c36267af615614c3532228f8004e14e49912526d3a6f3b583f9062"
+              },
+              {
+                "sample_id": "explosives-9a8ebb1369a17703",
+                "sha256": "a462a64fdd9cf5145e8ba7e555881f036b92144f811cbfa5bc3f3913b7bc0a73"
+              },
+              {
+                "sample_id": "explosives-ab70509d79867eb1",
+                "sha256": "19c5b10b78d8728d0dd6d0417a015f4179e0803835e373844ed50b123fd7b985"
+              },
+              {
+                "sample_id": "explosives-b1927b089222e15f",
+                "sha256": "c322d028568df1a836489b18378e5b28be37b6d10f808fa618ce98b5dcd39c71"
+              },
+              {
+                "sample_id": "explosives-b539171613bc4a7a",
+                "sha256": "c04103322e55dc6f8681f8bd0bc1316dfa5db5315edd4ecc7ac743ceb4e5627d"
+              },
+              {
+                "sample_id": "explosives-c0a593da4b63ed3b",
+                "sha256": "630e363cf188d34b0bfe0faeb394dd77fc8f81a20c58e7983b1f4e56513f1fa3"
+              },
+              {
+                "sample_id": "explosives-cebb7a58dd468212",
+                "sha256": "b95409daa19c3093b5f73708699599bd2474b7d056731249b6c16546a9eda589"
+              },
+              {
+                "sample_id": "explosives-cee34cc1a97d4911",
+                "sha256": "4b75478f0b03cf470453c9794ce556ec3ced93ee40622eb629fd52d204d54743"
+              },
+              {
+                "sample_id": "explosives-d2db825cc3c86bea",
+                "sha256": "9f7c351b03ef2f614c616db499e5cdf366e78278e84fcacc5df3abcc0d3ee8a1"
+              },
+              {
+                "sample_id": "explosives-d2f14ad723dc51f0",
+                "sha256": "1b54da9db9bb0525cd805969b03bf4fb88a6a938e9c1dafdbb6d5d29e476b826"
+              },
+              {
+                "sample_id": "explosives-d41184a8311a39ed",
+                "sha256": "818b14aaef9df180ee69ba1520d0b9d98ff876972e8d49c5c2b59077d5c80dae"
+              },
+              {
+                "sample_id": "explosives-da3798d47e77a933",
+                "sha256": "1b07dc6c88239afa7bdd7eced7f7943e643da080637f5cbbb73072af1cf889bc"
+              },
+              {
+                "sample_id": "explosives-dc96a1bc1e5ae414",
+                "sha256": "5a17785ec543b73e457e30e5691da2bba85640926e01ba5d2e7fa6a75fc84488"
+              },
+              {
+                "sample_id": "explosives-dcdf79d73be39a39",
+                "sha256": "f914cab84025b29037887d7b213cd370e0e7257aee848bd4bcb1ecdf14eeac1c"
+              },
+              {
+                "sample_id": "explosives-f0c667b58d86aab5",
+                "sha256": "918443ea9def0ec4494e062a85fe85dfbf76796e8db077bd8bb846d1b537a3a3"
+              },
+              {
+                "sample_id": "explosives-f0dbe7530955a23e",
+                "sha256": "d922a8c0b8e1db9e6adc4389eb9c01da766f7516fcc70a6dcc6abb038a78d5ed"
+              },
+              {
+                "sample_id": "explosives-f35a95a789048e9a",
+                "sha256": "9586a522882b683b4d1a6bf2ab8a8debfe2c53f788740fec2f2ea52d7546c0fc"
+              },
+              {
+                "sample_id": "explosives-f4b4c158d76b28a5",
+                "sha256": "e0e551523d0032f89210fe6b0df1a047de7144ed145b4f8cf060c849d3565d37"
+              },
+              {
+                "sample_id": "explosives-f79e321dad654e32",
+                "sha256": "e68f9092477ab86098b023c98d67e06c34025b005cc2cb384e54023a22340d71"
+              },
+              {
+                "sample_id": "explosives-f943cec9f2b3f25b",
+                "sha256": "ae57d2690269e4f6465ec635766f2042673ca91ef4f979d48407b168c14769c3"
+              },
+              {
+                "sample_id": "financial_promotion-0089f6be0ad2affd",
+                "sha256": "7710a6587b488e2d37873ce5d4417326cc4a619f1e2f979bc048193a835703ed"
+              },
+              {
+                "sample_id": "financial_promotion-08ed8395231a9a35",
+                "sha256": "b3ddf9825da6432d3de637d0d78e45ddc0be889569990010d602fae3bf1c79d4"
+              },
+              {
+                "sample_id": "financial_promotion-0edeb837e61daae4",
+                "sha256": "ce7acba97e8a292033dfc5d46759d9361d59516d6379b8568e06cc4a2d3a033f"
+              },
+              {
+                "sample_id": "financial_promotion-136c14636862a158",
+                "sha256": "747d961369295273c5606b75ff9e861ad663eb85a1595f0f6a923b3383820327"
+              },
+              {
+                "sample_id": "financial_promotion-14afd2fe12c979f5",
+                "sha256": "f359a0454079d86e0f49365d6587064d93e5460408b60e5cf799cf4810962374"
+              },
+              {
+                "sample_id": "financial_promotion-18a74a75b560e790",
+                "sha256": "009c595071e004578158c4901e0474cc619b264a3befac4ed78bb17841a5a22d"
+              },
+              {
+                "sample_id": "financial_promotion-19c51cd84f0d8980",
+                "sha256": "c59947db6bc56ceaf7553642a0e6d8572aa07df305374ba5cde389b2b5f2cff0"
+              },
+              {
+                "sample_id": "financial_promotion-1c27a3dcb5e9750b",
+                "sha256": "05ca48ff8b29efd494f7225415a5842de3ac35c0a4c044aeeca3034863972e95"
+              },
+              {
+                "sample_id": "financial_promotion-24f146a5bbc09f42",
+                "sha256": "0f10d513cc17d5ca9e38c1b5f3e68d81660f5cff6816c7ff028c6386d3278e26"
+              },
+              {
+                "sample_id": "financial_promotion-25c6e37415456576",
+                "sha256": "0c47c081aa269bdb1414cb43beef6e2a0aff824c9c5637005ae925069597dd92"
+              },
+              {
+                "sample_id": "financial_promotion-26f326b2921028dd",
+                "sha256": "461b4bea985e83ac2909d55100049b69e3921b0c1cc6892dd1626de34397b036"
+              },
+              {
+                "sample_id": "financial_promotion-2dbdbcd8e33f4f2d",
+                "sha256": "4f89133d5f161d10e0edfc62eb48c8a66e7e0602ecfd30f852b6410876b5e8b7"
+              },
+              {
+                "sample_id": "financial_promotion-317e78e007be88e7",
+                "sha256": "34f59996c70f982f6582c09a6d60686d8a593f33755c139c92bade29aab1f5b8"
+              },
+              {
+                "sample_id": "financial_promotion-3fcfd5f48c081713",
+                "sha256": "7a482d1fc319d13b5e230aa0613f7bb0b7fda18c4e18a3c086c4ba8ae45d564c"
+              },
+              {
+                "sample_id": "financial_promotion-48494a74d735504b",
+                "sha256": "7c0b6b1653bd4e7765ebd5988a7c9fa65380c3e717a8401d63825603f8a2ccb8"
+              },
+              {
+                "sample_id": "financial_promotion-4f62bca4c4cceb59",
+                "sha256": "a1e888b6e407183ad01476b5e495d1cadb55003a4a1606e833d9cdcbc91b4cbb"
+              },
+              {
+                "sample_id": "financial_promotion-527b289322dcc76f",
+                "sha256": "30335e66c9f5c4f715db9a2f51f0154e1ca4ddfcb5c524f9559155414f888b66"
+              },
+              {
+                "sample_id": "financial_promotion-55d2730d894287ab",
+                "sha256": "ad397f776a952f97df56730065bc3d61517ad8d003151e57b35a95a9e02ec1ef"
+              },
+              {
+                "sample_id": "financial_promotion-5dfe6796a85c2b3e",
+                "sha256": "a38c10649916b5455b7cf813d49ed63e52e7c7d6195999cce1bde8a3bca54eeb"
+              },
+              {
+                "sample_id": "financial_promotion-5e9b26c70865e092",
+                "sha256": "da8252c099cb9245a79afa63861fdbe123dda2f17d0f9beda3165e5b254c3c73"
+              },
+              {
+                "sample_id": "financial_promotion-60669e4f6af12230",
+                "sha256": "5257700428dd9cb43c3bdb1d5ec935964a51dbf8d1e86d9ed76203db3cfd20ce"
+              },
+              {
+                "sample_id": "financial_promotion-70af24b4e6958eb8",
+                "sha256": "3d54e9f2e3f0eaef41dc93c07fad2343936fa974c3ad93a67208a105dd2ea835"
+              },
+              {
+                "sample_id": "financial_promotion-73c19756a653c4b7",
+                "sha256": "98527291968899b7d1590585e314033b260888667374b4d64c62bbfa93bc61e5"
+              },
+              {
+                "sample_id": "financial_promotion-74f3cbd7b64097a8",
+                "sha256": "fadef4a8c159a4ddbfae52d48a94c8175019f168094bb4c742d67bd5c18f963f"
+              },
+              {
+                "sample_id": "financial_promotion-85dd52830c5e90fb",
+                "sha256": "b559c0db3aa99aca26133cbde72a1b3c282b449c2b4e0954d5a5c83a6dbdf0cd"
+              },
+              {
+                "sample_id": "financial_promotion-93fefbef673ceba2",
+                "sha256": "d78d05b4bf50963da76a8b4b966ffc649755216c6d184095d718c64587940549"
+              },
+              {
+                "sample_id": "financial_promotion-95e82b8aa723b975",
+                "sha256": "739f9740892ec86f6e4818ab6af1500361e4d4a16553949aba1a8bbe27d8c253"
+              },
+              {
+                "sample_id": "financial_promotion-9762bb5763c4e792",
+                "sha256": "3f7125f556ffdad3c63c523d536173184430b87b5f19d3b2b75b20cae1654c7d"
+              },
+              {
+                "sample_id": "financial_promotion-977e2094634d8b78",
+                "sha256": "0af079355cfa95a472d80c39d94d4eed4fc33b98fa96cd965c039455abbb0a16"
+              },
+              {
+                "sample_id": "financial_promotion-9e3b6e56c9aab9bf",
+                "sha256": "9ed0fea2ae78b60ab70702fe555f1f8ae493042997dbbc395112ac599d1a1dec"
+              },
+              {
+                "sample_id": "financial_promotion-a0b7241b3ad4c75e",
+                "sha256": "bbb3cde3449c1d1a78bcef078b2d62c8679802e00a0fb6c75ea71ccbbf6d459e"
+              },
+              {
+                "sample_id": "financial_promotion-a5c88296cc4510dc",
+                "sha256": "2996901f0fc1f12fde7d0530257488a92baf3c9393fa7a9acf1011e60ca585fc"
+              },
+              {
+                "sample_id": "financial_promotion-a82668e8eb866b2b",
+                "sha256": "d554e6502106e88c9662067cc2eb5de1c5c81ba143806a2e10d8f766348a7b1c"
+              },
+              {
+                "sample_id": "financial_promotion-a8c6cedcb4753f05",
+                "sha256": "c69a7afc54aada4c069952d48e7df5423898250fc9e7630582bab7ab2200523c"
+              },
+              {
+                "sample_id": "financial_promotion-ae2438d12a40523c",
+                "sha256": "3cdcb7740bfcc20b107597c89601f919b9ea990b590041b5b20e8dc43e2265b2"
+              },
+              {
+                "sample_id": "financial_promotion-aff8fbf37586de26",
+                "sha256": "8559d7ee8211ce7feaa84fab8f01558f4be18d4eee784cdfb341b0bef38c5456"
+              },
+              {
+                "sample_id": "financial_promotion-b0e05feeb26a6b87",
+                "sha256": "c9d9b1b8def2809e24e56806665068e546d7297a3a468122d272943f479e9e05"
+              },
+              {
+                "sample_id": "financial_promotion-bbfbf653ca8386de",
+                "sha256": "edcbb80e01e32f161165101c745c4cd66f4777880b0cd98a41e1d2300657fb70"
+              },
+              {
+                "sample_id": "financial_promotion-bd8127cdca3aff30",
+                "sha256": "09ca9b44023974a0499b3cb69b879949b265f0e964902f1f2dab743f4f598211"
+              },
+              {
+                "sample_id": "financial_promotion-bdecdb46db3afae7",
+                "sha256": "68a2ca7ff2c35535cc7042311b829cb94c715bc72d461a4f4f617bc4b91b66d3"
+              },
+              {
+                "sample_id": "financial_promotion-c4b8bda0417d5ecd",
+                "sha256": "1bfd8d22bd6b94f25cc3dac50213035324fe8f9d172b924d07a6f811ec0b1cab"
+              },
+              {
+                "sample_id": "financial_promotion-cce6f433645659f6",
+                "sha256": "590caf002094366a8327fed0a0092bd9ad4df863c0e7c01119a2ba399ebcbeab"
+              },
+              {
+                "sample_id": "financial_promotion-e07f01c197b9e820",
+                "sha256": "bd8f32d92c4c4f6883fb10296602fd0f7bf1ed7d438e7a6def932f59a86171f4"
+              },
+              {
+                "sample_id": "financial_promotion-e1423a1bda897693",
+                "sha256": "c51243f4c4c952fc1d49fa318250e4cd7ecedf39c160463ee7630926badc38af"
+              },
+              {
+                "sample_id": "financial_promotion-e29f8c56f1f5cfc5",
+                "sha256": "0b94e2e735ab35dc70f435c976823355e311eb1652ac5c69e7d4a8c0101410c5"
+              },
+              {
+                "sample_id": "financial_promotion-ea2780483592bcd8",
+                "sha256": "511bdc2417887e64f066357415dce5458da275b82bef77499a6190d60a5dcc7b"
+              },
+              {
+                "sample_id": "financial_promotion-ea4e230f7cd32bcc",
+                "sha256": "283efc6fc1cb5620c9f46c2f618cf94dd42e59b4ef615a18eda8750ae597d8f5"
+              },
+              {
+                "sample_id": "financial_promotion-f2c296362055c9e3",
+                "sha256": "981a31c7781b374a85ad71c1cb4b5f82143483f0a484caad2486180113f8a1fe"
+              },
+              {
+                "sample_id": "safe-1ad87162de49fd8c",
+                "sha256": "90ca8d4599fdaf187ee4e4c350ed99346675661c7e655cf31e1b5ada648df9ba"
+              },
+              {
+                "sample_id": "safe-2757162495978b1a",
+                "sha256": "221df5c6dd2a2807b6b88d1b52387b6972f73b93482d69382629d43a4ea13ce9"
+              },
+              {
+                "sample_id": "safe-28c0b9784ad9fbf2",
+                "sha256": "3c61a826595de9745bf9d1310c2eb6a4620cc840a93aaee4171e961cfbd087da"
+              },
+              {
+                "sample_id": "safe-2d6d6a7311bc125f",
+                "sha256": "77f22041557c0aea2469a90bba2f7eb16b423a0402eb3b196b827de7bb47c37b"
+              },
+              {
+                "sample_id": "safe-360282e708ce5353",
+                "sha256": "42f33172a00ed11f2e2c8c57fe985591dedaabbe3f4db113e5029bd56eefd956"
+              },
+              {
+                "sample_id": "safe-459062b67b780633",
+                "sha256": "528e76ff5fd02c186c7b46fbe38d28257f552f8cadae29eb02c934b0247fe48f"
+              },
+              {
+                "sample_id": "safe-4e4565e23e6372b7",
+                "sha256": "4bd5833090dfdf322359af9d36312a4a84925877c2be63c7a16cb2a6e6af25ba"
+              },
+              {
+                "sample_id": "safe-5c34ca5303038924",
+                "sha256": "967269285bae1237f4b805feb410231361e78699d199c86ed75c8dbaee4b818c"
+              },
+              {
+                "sample_id": "safe-87897fac0ba7bffd",
+                "sha256": "8e76bf7f9e2f030c10ebed238139f17f003c24800923eaca25bc4e39091f06b3"
+              },
+              {
+                "sample_id": "safe-ab159ef55f1108eb",
+                "sha256": "0beff1f33f109389bd122ed8ed8bcdc19e6d4faa9462ccb0edbfd35455232e00"
+              },
+              {
+                "sample_id": "safe-bf887f3b4e47e557",
+                "sha256": "76c0f41cc74892c6fa4692483deab7083d4db31e4ba00755d587659e69e70c8f"
+              },
+              {
+                "sample_id": "safe-f33045e638f778e9",
+                "sha256": "ab0ec7f78cde09e3479d07eda27c317593934e2c5bd48c87762ac194ef2ac246"
+              },
+              {
+                "sample_id": "firearms-02aa5a147273960f",
+                "sha256": "5de7a52021e07270715185b774f37aaf792ee4589c46ed87448dfaaeede7372d"
+              },
+              {
+                "sample_id": "firearms-08ea91446ea6078a",
+                "sha256": "73341fc73e8940e81f9d8bc5cf7f90094f4121eb6689c3a438c9d09c1d259b6d"
+              },
+              {
+                "sample_id": "firearms-4044313fbbda6300",
+                "sha256": "61be6921a9872c528ceaa81b0b2ee700d842fe32b2afa86a52d6ced8ebc8f9e0"
+              },
+              {
+                "sample_id": "firearms-4ed5c2ab0a8989c7",
+                "sha256": "6e8549122c65ac6ac4b39c6ef3949716179026d257ae7f1630eb0a1f15f2fe4a"
+              },
+              {
+                "sample_id": "firearms-654887e93cd6cb66",
+                "sha256": "8b9e9a12bbd665f2adcbfcde634b4f408790b953820a67ce81486955fd3141b1"
+              },
+              {
+                "sample_id": "firearms-65daf45b20ff0111",
+                "sha256": "23fe44ac0ebda4e358c110458856aa8f23176f579d95109e616ab54a3363d80a"
+              },
+              {
+                "sample_id": "firearms-6825792fe53adeb3",
+                "sha256": "6b299b9c30b236c5747de1017f95cdbafe7069001f1ee9119a0234a633e09386"
+              },
+              {
+                "sample_id": "firearms-6f71ab535b8ebf9f",
+                "sha256": "e3392f227b311bb652ea4e50ff1eaede86255c2a8caf7900369fad9d1891b261"
+              },
+              {
+                "sample_id": "firearms-9c1a99f7dec1f3ff",
+                "sha256": "43c6b1bd0567c7929def3c414c07a259f55a0023839b0b5b58ff347787c82718"
+              },
+              {
+                "sample_id": "firearms-aed84c5e8fc0fb7e",
+                "sha256": "b0ed11a465e7c2346ae4384e93f73000c1fe0250c4db1e50c5624d2cc9b3c865"
+              },
+              {
+                "sample_id": "firearms-da05920ea9c24f60",
+                "sha256": "a8cc83c30319a454492834d8d078ba68624e39ce3ce82455ae6f47f511caf415"
+              },
+              {
+                "sample_id": "firearms-fdd551a012ece2fd",
+                "sha256": "a58d0564c0fbd552c18510f98a1f3ed02ad539ab7c98b7ffb12b8ca59214ccd0"
+              },
+              {
+                "sample_id": "explosives-01e481fa8d6f655b",
+                "sha256": "b502ebec21a7c3a252886fef71b65daec7b5ba1f6535739c9ea773b2d2603e89"
+              },
+              {
+                "sample_id": "explosives-1545787978a909e4",
+                "sha256": "53a5f67512e24b2c29e555278bdcdac7e8bee696e377af1e29f243cf7c10e2ae"
+              },
+              {
+                "sample_id": "explosives-18392d87b9723cd8",
+                "sha256": "712ea78f182ba52917847cc346ba6efcddac0528cc6c11fb9255c56bb99d8f3f"
+              },
+              {
+                "sample_id": "explosives-287ce9dbad0ed005",
+                "sha256": "30d108286235c86577b27821fa8bb69336510bd069bc60857f118b19703a22c7"
+              },
+              {
+                "sample_id": "explosives-37a15c2440cab970",
+                "sha256": "124141520a348a28fc5818d838b4442806fc0b9fca0a98f8fa24198a4f20b9c8"
+              },
+              {
+                "sample_id": "explosives-65372b87a2140343",
+                "sha256": "70fe4477b8edc1cdcd1a9ffd75ab2385372ffbbb902b9d8111ee93baf9799826"
+              },
+              {
+                "sample_id": "explosives-879005e4e0ad172b",
+                "sha256": "03d1310663683f26ec349de77531e92c90402587f3ce2e27fdae48428b071b7a"
+              },
+              {
+                "sample_id": "explosives-983a5238edfc0bf3",
+                "sha256": "fa1f5c5826c33d4bc20714178ab1f13d854817490a7293a76a470956f410bd23"
+              },
+              {
+                "sample_id": "explosives-9be5e780fea3a471",
+                "sha256": "e22cfc6340e2593d04d16b5b777a6df2654214faf5b8130c45f568e24da620e0"
+              },
+              {
+                "sample_id": "explosives-9dce2b94c21cb783",
+                "sha256": "05e74fc9ee8676ebbe29a0167d11d6fde8168b411b2eed68cca56db2a6b546c0"
+              },
+              {
+                "sample_id": "explosives-dfe605c4427af874",
+                "sha256": "38d55b413a845b9f7096803ad329fb8b22c9a44f4b9892d8d5afc7613f405ee3"
+              },
+              {
+                "sample_id": "explosives-ee6c7039bbbb5493",
+                "sha256": "af9a0f652c73081c8e23e4b281d5d378b3d37b073b0658084e5af875fc98be68"
+              },
+              {
+                "sample_id": "financial_promotion-140d9bdd6d90de0f",
+                "sha256": "b6e08ac2715fec104573f5c43cd1dfec27249d4a5e7a1ea19ee020560b7d5aba"
+              },
+              {
+                "sample_id": "financial_promotion-6d485a78c36a6abe",
+                "sha256": "ed4d8a938f4d68d04bfdb2abe48b6d96d40252c5acd5d73e70995ef0643e19b0"
+              },
+              {
+                "sample_id": "financial_promotion-721f66577d3004c7",
+                "sha256": "197b9777f10f405d992afa34f0ca7d86726d7dfc07e9e84d61b3c45f15ef5da4"
+              },
+              {
+                "sample_id": "financial_promotion-7313827309131a9e",
+                "sha256": "dc852349dfb442cfb622de6fd09da9ffa0072b62e5f701719f9ed309fc18a967"
+              },
+              {
+                "sample_id": "financial_promotion-807d113fe0cb05ce",
+                "sha256": "0654d38c6c53660882d067d47d64f1df793697c1b22035aeec3e9af9be6d0a68"
+              },
+              {
+                "sample_id": "financial_promotion-8407be801a49117b",
+                "sha256": "60b5d4f447bda7bf09e4877e264d3308910c556f131ca5f1c50e09a9a168da44"
+              },
+              {
+                "sample_id": "financial_promotion-8f64e1cb1779138a",
+                "sha256": "793ef950a2c5753273435c78f789f4c1d4c3969eca3a9f7007dd607e5e7f7804"
+              },
+              {
+                "sample_id": "financial_promotion-94f88c8dbf3e4930",
+                "sha256": "045cd29a40a1729b32861ed3c3ab5f40e837d1e7a339915a1c3ef673e876a3d2"
+              },
+              {
+                "sample_id": "financial_promotion-97b2ab77a2e06ce2",
+                "sha256": "75cfd01e449ee38b8d931b71214061a2d6756305876f4638df9711ccbee30ecf"
+              },
+              {
+                "sample_id": "financial_promotion-ac151da207d3201f",
+                "sha256": "58e3bd87b0b30557d32671e2718016f2d166b6c615d1fa74b2fb9e119bc5ee7a"
+              },
+              {
+                "sample_id": "financial_promotion-b6ba385d6221bbbc",
+                "sha256": "51cb4cb7612b11b53a30c8e655e8d65bc8d2dda61ecf6db90f8201332f89fa3a"
+              },
+              {
+                "sample_id": "financial_promotion-c1af96186e6d9cd2",
+                "sha256": "55fc1d6018d324ba939b91312c69e7ef30e6f4afdf273d65a1b11b0a7f2d194d"
+              },
+              {
+                "sample_id": "safe-119c76908e512e1d",
+                "sha256": "d369c40f1ca08506bdb2e04a7c60a3857bd3576a97c9a18a0a7d54147bc87e18"
+              },
+              {
+                "sample_id": "safe-5755b3a59783b620",
+                "sha256": "b94576d8c09e1ab41b758d79ae146bd2267443bddd8e012a566b1d4849253ddc"
+              },
+              {
+                "sample_id": "safe-58f1b7de4334e362",
+                "sha256": "298662e37ab8fe53490162b5976a980d75a214c57902a0d470b07b2ca7a95730"
+              },
+              {
+                "sample_id": "safe-77c35d499df2417f",
+                "sha256": "e42090008fb512a15517055815e8b4e1732066c704e20858741fa6be4eec8915"
+              },
+              {
+                "sample_id": "safe-82d62760a6b2b4ba",
+                "sha256": "6283b1b21627623d9b3e245dc8c55d6a82a75a28d7f7c334925042c02925c8fd"
+              },
+              {
+                "sample_id": "safe-84070467bb672e7d",
+                "sha256": "fbbc25571f38cc98d7f57abe898aa5d582db57b55bb33234f9ba30575e9a4e06"
+              },
+              {
+                "sample_id": "safe-b04555dd1d901aed",
+                "sha256": "e0d446a6641f0568ab55fb3633c491015bb99bb5798a5bb24709ed1bb95dca0f"
+              },
+              {
+                "sample_id": "safe-b236b48fcb65c3ee",
+                "sha256": "a930629a75070e0479b9fd09841812934afb56b79cd7d93bb2e284f80b8db10c"
+              },
+              {
+                "sample_id": "safe-be076e2ff19f3cda",
+                "sha256": "f872193b6c511c905d53920315187c353ddcb9691a9c7a34cc685b42fe955a68"
+              },
+              {
+                "sample_id": "safe-e0252763832e6ebc",
+                "sha256": "d822cc50ca895899af6bac9183c9de6be17fa123ebe7e0b8a7936884702fb727"
+              },
+              {
+                "sample_id": "safe-f92b93e067f4fb84",
+                "sha256": "a180fc973f073d2286d1e691643a720a864cfcae92a44aef624543323812a140"
+              },
+              {
+                "sample_id": "safe-f982e1f0491c781b",
+                "sha256": "59b777dceba41f3f5f7b5fd0464f7b4d8568e62799a4c43e28210cd2b02691d2"
+              },
+              {
+                "sample_id": "firearms-08b5814b3661e772",
+                "sha256": "2e36d9086df38d2e999f36a81ff643970c1a4a941a6f82c4325035f321a85c85"
+              },
+              {
+                "sample_id": "firearms-18e12c64a67ffa81",
+                "sha256": "01ce6abfac977e3d4894a8d1106b6e144bf12fb06614cad8818cd768532173a4"
+              },
+              {
+                "sample_id": "firearms-244718735b55921b",
+                "sha256": "c6a7839ca2bfa73715be0ccfd5a55ceda5eb566b3861355adf952bfa4220de74"
+              },
+              {
+                "sample_id": "firearms-287f5a6280c0d71c",
+                "sha256": "8a62d60b81efa644fe8cff9e20b9bb2f62cad63d1baa1a39674ed2ceb8509785"
+              },
+              {
+                "sample_id": "firearms-633846f757b63476",
+                "sha256": "e6da8ba14513e9862d9d0f3eb82c8168053214092007662966bbac79f4d28c90"
+              },
+              {
+                "sample_id": "firearms-6674b9cb87143b33",
+                "sha256": "11850e8c2133f9e8a73632aba605e821a8c2d8c644254c500d8f83ebc9ccbfe2"
+              },
+              {
+                "sample_id": "firearms-7de3fce8f960ba47",
+                "sha256": "83c314550265f76b2b51e8f50c68e472c942d65f9de78eb00cfa634ee054965b"
+              },
+              {
+                "sample_id": "firearms-7f9900b1c739f70b",
+                "sha256": "d106ab584f971dd653d9a85660399218f3640cfed507fa3d2dddc9c4722bbefc"
+              },
+              {
+                "sample_id": "firearms-91a79fd324d9914b",
+                "sha256": "a4d4264f66a62b99db7b26b2a752f6103acf638511406d26cdb4f220999bc0d4"
+              },
+              {
+                "sample_id": "firearms-ba1e1c4aee478c8f",
+                "sha256": "dd3b5b451f17929acda301fad96ba4ddc115c7c0c5cd26b6109efec2651d212d"
+              },
+              {
+                "sample_id": "firearms-dac98f5079b39393",
+                "sha256": "d0ba207f4c123489ddecc7c379ea9deae5a7cfea29e15ceec1c7ba379e73eb88"
+              },
+              {
+                "sample_id": "firearms-e967e254c2864838",
+                "sha256": "94316da53e58e9ecc1200b3f12da2578e0310c4d8a6a35565d1b289ce4f04e36"
+              },
+              {
+                "sample_id": "explosives-1b9c91ada92d0f82",
+                "sha256": "2006d270c346da84eb021b1bcbb73d58f6dc719783a3c76e416be710ff5dae87"
+              },
+              {
+                "sample_id": "explosives-265b5e8a4b5d9624",
+                "sha256": "df91214dcb37aecb1dec59feca379816284d694d034b8cf3fefb7f5df2ea3ab1"
+              },
+              {
+                "sample_id": "explosives-283ba2c247231d8d",
+                "sha256": "45e0dcbdd017b9bd876de0c4267e7f5bee552e03c78d119feff5bbb4d389b530"
+              },
+              {
+                "sample_id": "explosives-2d8c8a059ed270e4",
+                "sha256": "67e1c0d1bb7edeff359b1071a89aafa854b742fda0cf89d1c53033b71398d5d0"
+              },
+              {
+                "sample_id": "explosives-336be7aca151f967",
+                "sha256": "e0480f691a00d038a5e3d2e1bbf2f84282ffc1e4f12acf7cf88dff24b4d18dfe"
+              },
+              {
+                "sample_id": "explosives-4fb88006ec43ae52",
+                "sha256": "21cf16d0c4955e8e0895fce5870ec90151e1b5b61f2f72618b1f0560a99f5a65"
+              },
+              {
+                "sample_id": "explosives-6a369253a6acf64e",
+                "sha256": "b4d0a7f358b9b1dd5ea6ec6a699239718d5364e531e51bc34efa25389c97ac65"
+              },
+              {
+                "sample_id": "explosives-76fff3797dcd45ea",
+                "sha256": "97568f1141f69c4e4352ae6b766728b370b5e4d5b98bf6a2b82e9316b5ea753e"
+              },
+              {
+                "sample_id": "explosives-808678dfe3e2b9d6",
+                "sha256": "c71b85e31804b14ee6dc2702467a016f990d1316daf6e6223432b07b64786e85"
+              },
+              {
+                "sample_id": "explosives-a847a50b677d3214",
+                "sha256": "e3af480983637c41d26d3f45edb468ef5da6428fde6156351b9886bbe63ccac3"
+              },
+              {
+                "sample_id": "explosives-c0e26c0942ed75ea",
+                "sha256": "f10c7abfcb6b8b6b7002793e251d7f5cec41ad86653ef667856bcb702f907c29"
+              },
+              {
+                "sample_id": "explosives-e8d08fd830595ace",
+                "sha256": "eafb17b0d620da1e0495a17a2e657f393c66356c3270e416be2b711cb7cb8e06"
+              },
+              {
+                "sample_id": "financial_promotion-002cf2ebd1547008",
+                "sha256": "e64314b81e168f54b1a9922c80a3e6d96f6f404e9e805b5fb6574fb418bf7eaa"
+              },
+              {
+                "sample_id": "financial_promotion-23946c22edc030a1",
+                "sha256": "d5e96ba2833271e66c7b6965dc7b070c52b8fc9574166bdaf7d024edf85e356f"
+              },
+              {
+                "sample_id": "financial_promotion-242b15ff33190eea",
+                "sha256": "95e16416eb57864ed78e1de65c4a0479c1807800c6e28caf9ef22c68d73a23ee"
+              },
+              {
+                "sample_id": "financial_promotion-2cdff0da9fef3590",
+                "sha256": "fe3ee39722d4677b27de9aa632ba8964885ad02c8c0944e4aa933e2ad4bd1b5e"
+              },
+              {
+                "sample_id": "financial_promotion-3d78e80cc6d28821",
+                "sha256": "fc3388db1b2f62f02e570998839cb49d38ca1dd39b03f4f59c8a32ceda4c30fa"
+              },
+              {
+                "sample_id": "financial_promotion-4f481738cb3c1bed",
+                "sha256": "2ca7dfb86024613a662a20bc45ba1fdbb9c2afc052f89fe4c8d06249655a1b69"
+              },
+              {
+                "sample_id": "financial_promotion-579b58a29a7d955f",
+                "sha256": "86ab99bb3038424cf239a20b618e8cc6cb7a928f9f08aee7c07aa2dfbb59a8e2"
+              },
+              {
+                "sample_id": "financial_promotion-5e3fb17f6be733b0",
+                "sha256": "06fc2f683c3c4a2d970e2d8ecc91a38139de285593f797f3487b3492b1644e2a"
+              },
+              {
+                "sample_id": "financial_promotion-8671ce21d856cb62",
+                "sha256": "e03f7cf0f20e88cc4c3a5d5e4ab600732c8e9eaaed40b6fbcf36214b30a3db50"
+              },
+              {
+                "sample_id": "financial_promotion-94f6aab8f39043d3",
+                "sha256": "5b1b4d77739a1ff9e180807163e1e40dd3e684bb9b5fb02dc95f2e8e0c637a7e"
+              },
+              {
+                "sample_id": "financial_promotion-faae33202f57c3ca",
+                "sha256": "1f82eccb57963125b00000de8987436e80feec84ccb338c961e9e04c89b83a70"
+              },
+              {
+                "sample_id": "financial_promotion-ff884f7cd86b4295",
+                "sha256": "fd48a3e07198ad2b96297324aca25b4d41f3d247a40db55b6e7fdcc476fdae94"
+              }
+            ],
+            "resolved_data_config": {
+              "crop_mode": "center",
+              "crop_pct": 0.9,
+              "input_size": [
+                3,
+                224,
+                224
+              ],
+              "interpolation": "bicubic",
+              "mean": [
+                0.5,
+                0.5,
+                0.5
+              ],
+              "std": [
+                0.5,
+                0.5,
+                0.5
+              ]
+            },
+            "timm_version": "1.0.28",
+            "torch_version": "2.12.1",
+            "transform": "Compose(\n    Resize(size=248, interpolation=bicubic, max_size=None, antialias=True)\n    CenterCrop(size=(224, 224))\n    MaybeToTensor()\n    Normalize(mean=tensor([0.5000, 0.5000, 0.5000]), std=tensor([0.5000, 0.5000, 0.5000]))\n)",
+            "weight_path": ".cache/huggingface/hub/models--timm--vit_base_patch16_224.augreg2_in21k_ft_in1k/snapshots/063c6c38a5d8510b2e57df480445e94b231dad2c/model.safetensors",
+            "weight_sha256": "32aa17d6e17b43500f531d5f6dc9bc93e56ed8841b8a75682e1bb295d722405b"
+          },
+          "reproduced_thresholds": {
+            "explosives": {
+              "candidate_count": 50,
+              "f1": 1.0,
+              "false_positive_rate": 0.0,
+              "fn": 0,
+              "fp": 0,
+              "negatives": 36,
+              "positives": 12,
+              "precision": 1.0,
+              "recall": 1.0,
+              "selection_rule": "validation recall >= 0.90; then maximize precision, F1, and threshold",
+              "specificity": 1.0,
+              "threshold": 0.1727632618375518,
+              "tn": 36,
+              "tp": 12
+            },
+            "financial_promotion": {
+              "candidate_count": 50,
+              "f1": 1.0,
+              "false_positive_rate": 0.0,
+              "fn": 0,
+              "fp": 0,
+              "negatives": 36,
+              "positives": 12,
+              "precision": 1.0,
+              "recall": 1.0,
+              "selection_rule": "validation recall >= 0.90; then maximize precision, F1, and threshold",
+              "specificity": 1.0,
+              "threshold": 0.9946029323485182,
+              "tn": 36,
+              "tp": 12
+            },
+            "firearms": {
+              "candidate_count": 50,
+              "f1": 1.0,
+              "false_positive_rate": 0.0,
+              "fn": 0,
+              "fp": 0,
+              "negatives": 36,
+              "positives": 12,
+              "precision": 1.0,
+              "recall": 1.0,
+              "selection_rule": "validation recall >= 0.90; then maximize precision, F1, and threshold",
+              "specificity": 1.0,
+              "threshold": 0.9913563345650912,
+              "tn": 36,
+              "tp": 12
+            }
+          },
+          "split_rows": {
+            "test_excluded_from_fit_and_calibration": 48,
+            "train_fit_only": 192,
+            "validation_calibration_only": 48
+          }
+        }
+      },
+      "passed": true,
+      "recall_floor": 0.9,
+      "registry_sha256": "c5bad7b8d8ccbb8b91995b470e42f2cec834330dad9d5f450ad746a52f6bbcc2"
+    }
+  },
+  "project_root": ".",
+  "schema_version": "1.0.0"
+}

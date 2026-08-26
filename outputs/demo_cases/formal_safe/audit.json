@@ -1,0 +1,97 @@
+{
+  "analysis": {
+    "applied_thresholds": {
+      "explosives": 0.1727632618375518,
+      "financial_promotion": 0.9946029323485182,
+      "firearms": 0.9913563345650912,
+      "review": 0.35,
+      "safe": 0.5,
+      "uncertainty_margin": 0.12
+    },
+    "classifier_scores": {
+      "explosives": 0.0013593418244195609,
+      "financial_promotion": 0.0006240123960739926,
+      "firearms": 0.0006706536678634564,
+      "safe": 0.997345992111643
+    },
+    "decision": {
+      "classifier_scores": {
+        "explosives": 0.0013593418244195609,
+        "financial_promotion": 0.0006240123960739926,
+        "firearms": 0.0006706536678634564,
+        "safe": 0.997345992111643
+      },
+      "fused_scores": {
+        "explosives": 0.0013593418244195465,
+        "financial_promotion": 0.000624012396074014,
+        "firearms": 0.0006706536678634523,
+        "safe": 0.997345992111643
+      },
+      "model_version": "vit-frozen-063c6c38a5d8-logreg-v1",
+      "policy_version": "1.0.0-pilot",
+      "primary_label": "safe",
+      "primary_score": 0.997345992111643,
+      "review_reasons": [],
+      "verdict": "APPROVE"
+    },
+    "detections": [],
+    "input_size": [
+      512,
+      512
+    ],
+    "latency_ms": {
+      "classification": 65.2594999410212,
+      "detection": 0.0,
+      "explanation": 0.0,
+      "ocr": 145.02995903603733,
+      "total": 226.53899993747473
+    },
+    "ocr": {
+      "engine": "tesseract",
+      "text": "ABEEO magn se",
+      "tokens": [
+        {
+          "box": [
+            304,
+            270,
+            352,
+            281
+          ],
+          "confidence": 63.684357,
+          "text": "ABEEO"
+        },
+        {
+          "box": [
+            310,
+            308,
+            335,
+            314
+          ],
+          "confidence": 40.08688,
+          "text": "magn"
+        },
+        {
+          "box": [
+            311,
+            316,
+            352,
+            329
+          ],
+          "confidence": 42.490231,
+          "text": "se"
+        }
+      ]
+    }
+  },
+  "case": {
+    "case_id": "formal_safe",
+    "detector": false,
+    "expected_label": "safe",
+    "explain": false,
+    "ocr": true,
+    "path": "data/capstone_dataset/test/safe/safe-77c35d499df2417f.jpg",
+    "scope": "formal grouped test"
+  },
+  "classifier_prediction": "safe",
+  "expected_label": "safe"
+}

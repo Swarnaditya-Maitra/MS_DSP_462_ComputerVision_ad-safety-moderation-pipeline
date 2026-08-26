@@ -986,8 +986,6 @@ def plot_confusion(result: dict[str, Any]) -> None:
     axis.set_title(f"Untouched test confusion matrix\n{result['display_name']}")
     figure.tight_layout()
     figure.savefig(OUTPUT_DIR / f"confusion_matrix_{result['key']}.png", dpi=180)
-    if result["key"] == "vit":
-        figure.savefig(OUTPUT_DIR / "confusion_matrix.png", dpi=180)
     plt.close(figure)
 
 

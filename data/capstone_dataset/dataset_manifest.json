@@ -1,0 +1,76 @@
+{
+  "builder_version": "1.0.0",
+  "known_limitations": [
+    "Class labels are confounded with data source and generator style.",
+    "weapons_set1 provides no per-image origin or rights metadata.",
+    "The financial class is code-generated and does not represent real ad-platform diversity.",
+    "ADautoGen images are Stable Diffusion v1.5 outputs, not real submitted ads.",
+    "Source labels were not independently expert-audited image by image."
+  ],
+  "labels": [
+    "safe",
+    "firearms",
+    "explosives",
+    "financial_promotion"
+  ],
+  "seed": 462,
+  "sources": [
+    {
+      "declared_synthetic": true,
+      "license": "MIT",
+      "license_scope": "README-level",
+      "parquet_sha256": "94eb1dad55a1d4e734529eaa7d96c7be8db31fdc8d7c030946a6ddc84b28accd",
+      "repo_id": "EthanGabis/ADautoGen-DS",
+      "revision": "fa7a7803265fc97926d7fab694bfc1e05c1fc7b4",
+      "url": "https://huggingface.co/datasets/EthanGabis/ADautoGen-DS"
+    },
+    {
+      "declared_synthetic": false,
+      "license": "OSL-3.0",
+      "license_scope": "repository metadata only; per-image provenance absent",
+      "repo_id": "rajshivanshuu/weapons_set1",
+      "revision": "d4d9dbc8272958820a3f6757e4c48d8987300271",
+      "synthetic_flag_caveat": "absence of a declaration is not proof that every image is real",
+      "url": "https://huggingface.co/datasets/rajshivanshuu/weapons_set1"
+    },
+    {
+      "declared_synthetic": true,
+      "license": "release terms not declared",
+      "repo_id": "project_generated_financial_creatives_v1",
+      "revision": "e5635c7ddfc9fb3e7ff6332ba68152884b42eb45990e932a16e69e3cdd8d1a57"
+    }
+  ],
+  "split_targets_per_label": {
+    "test": 12,
+    "train": 48,
+    "val": 12
+  },
+  "verification": {
+    "counts": {
+      "explosives": {
+        "test": 12,
+        "train": 48,
+        "val": 12
+      },
+      "financial_promotion": {
+        "test": 12,
+        "train": 48,
+        "val": 12
+      },
+      "firearms": {
+        "test": 12,
+        "train": 48,
+        "val": 12
+      },
+      "safe": {
+        "test": 12,
+        "train": 48,
+        "val": 12
+      }
+    },
+    "exact_hash_overlap_across_splits": 0,
+    "group_overlap_across_splits": 0,
+    "groups": 215,
+    "rows": 288
+  }
+}

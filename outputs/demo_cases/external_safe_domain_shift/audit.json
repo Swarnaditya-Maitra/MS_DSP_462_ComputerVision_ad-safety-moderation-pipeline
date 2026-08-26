@@ -1,0 +1,241 @@
+{
+  "analysis": {
+    "applied_thresholds": {
+      "explosives": 0.1727632618375518,
+      "financial_promotion": 0.9946029323485182,
+      "firearms": 0.9913563345650912,
+      "review": 0.35,
+      "safe": 0.5,
+      "uncertainty_margin": 0.12
+    },
+    "classifier_scores": {
+      "explosives": 0.3241089977169525,
+      "financial_promotion": 0.11513515014498027,
+      "firearms": 0.27114456072510046,
+      "safe": 0.28961129141296676
+    },
+    "decision": {
+      "classifier_scores": {
+        "explosives": 0.3241089977169525,
+        "financial_promotion": 0.11513515014498027,
+        "firearms": 0.27114456072510046,
+        "safe": 0.28961129141296676
+      },
+      "fused_scores": {
+        "explosives": 0.4531384345825983,
+        "financial_promotion": 0.11513515014498021,
+        "firearms": 0.2711445607251004,
+        "safe": 0.28961129141296676
+      },
+      "model_version": "vit-frozen-063c6c38a5d8-logreg-v1",
+      "policy_version": "1.0.0-pilot",
+      "primary_label": "explosives",
+      "primary_score": 0.4531384345825983,
+      "review_reasons": [
+        "Object context: explosive device (0.40)",
+        "explosives was the top classifier class and crossed its validated block threshold"
+      ],
+      "verdict": "BLOCK"
+    },
+    "detections": [
+      {
+        "box": [
+          299.0287170410156,
+          165.84393310546875,
+          548.0953979492188,
+          632.474609375
+        ],
+        "label": "bomb",
+        "score": 0.3870352506637573
+      },
+      {
+        "box": [
+          298.91650390625,
+          165.75918579101562,
+          548.346923828125,
+          632.6068725585938
+        ],
+        "label": "bomb",
+        "score": 0.3414936661720276
+      },
+      {
+        "box": [
+          298.55145263671875,
+          166.51959228515625,
+          548.2717895507812,
+          632.68994140625
+        ],
+        "label": "explosive device",
+        "score": 0.3977140188217163
+      }
+    ],
+    "input_size": [
+      575,
+      768
+    ],
+    "latency_ms": {
+      "classification": 80.49162500537932,
+      "detection": 2213.240666082129,
+      "explanation": 721.8107921071351,
+      "ocr": 227.04933281056583,
+      "total": 3249.1327500902116
+    },
+    "ocr": {
+      "engine": "tesseract",
+      "text": "THESHOE= 96 \u201cBETTER THAN EVER AND STILLTHE BEST\u201d (es Qe I> NN a |",
+      "tokens": [
+        {
+          "box": [
+            16,
+            20,
+            394,
+            143
+          ],
+          "confidence": 49.691147,
+          "text": "THESHOE="
+        },
+        {
+          "box": [
+            394,
+            32,
+            551,
+            201
+          ],
+          "confidence": 89.773415,
+          "text": "96"
+        },
+        {
+          "box": [
+            139,
+            170,
+            216,
+            185
+          ],
+          "confidence": 92.883194,
+          "text": "\u201cBETTER"
+        },
+        {
+          "box": [
+            221,
+            170,
+            269,
+            185
+          ],
+          "confidence": 95.452995,
+          "text": "THAN"
+        },
+        {
+          "box": [
+            277,
+            170,
+            323,
+            186
+          ],
+          "confidence": 96.824028,
+          "text": "EVER"
+        },
+        {
+          "box": [
+            129,
+            192,
+            164,
+            207
+          ],
+          "confidence": 93.284996,
+          "text": "AND"
+        },
+        {
+          "box": [
+            176,
+            192,
+            272,
+            207
+          ],
+          "confidence": 92.193115,
+          "text": "STILLTHE"
+        },
+        {
+          "box": [
+            281,
+            192,
+            347,
+            207
+          ],
+          "confidence": 89.866173,
+          "text": "BEST\u201d"
+        },
+        {
+          "box": [
+            47,
+            288,
+            85,
+            313
+          ],
+          "confidence": 38.39468,
+          "text": "(es"
+        },
+        {
+          "box": [
+            55,
+            308,
+            105,
+            335
+          ],
+          "confidence": 62.364155,
+          "text": "Qe"
+        },
+        {
+          "box": [
+            101,
+            391,
+            113,
+            405
+          ],
+          "confidence": 59.404572,
+          "text": "I>"
+        },
+        {
+          "box": [
+            79,
+            435,
+            91,
+            454
+          ],
+          "confidence": 42.623325,
+          "text": "NN"
+        },
+        {
+          "box": [
+            70,
+            454,
+            102,
+            505
+          ],
+          "confidence": 36.316875,
+          "text": "a"
+        },
+        {
+          "box": [
+            529,
+            645,
+            562,
+            740
+          ],
+          "confidence": 96.824104,
+          "text": "|"
+        }
+      ]
+    }
+  },
+  "case": {
+    "case_id": "external_safe_domain_shift",
+    "detector": true,
+    "expected_label": "safe",
+    "explain": true,
+    "ocr": true,
+    "path": "data/wikimedia_pilot/train/safe/safe_train_c456321d7b18.jpg",
+    "scope": "external Wikimedia diagnostic"
+  },
+  "classifier_prediction": "explosives",
+  "expected_label": "safe"
+}

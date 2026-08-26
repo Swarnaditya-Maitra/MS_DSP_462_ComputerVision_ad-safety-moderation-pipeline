@@ -1,0 +1,18 @@
+# These two authoritative registries retain the exact CRLF bytes recorded by
+# the saved evaluation provenance. Treat them as byte-preserved artifacts so
+# Git does not rewrite their line endings or report each CR as trailing space.
+data/capstone_registry.csv -text -diff
+data/dataset_registry.csv -text -diff
+
+# Generated deliverables and byte-locked video tables should not be interpreted
+# as line-oriented source by Git's whitespace checker.
+*.pdf binary
+*.pptx binary
+*.mp4 binary
+outputs/video/storyboard.csv -text -diff
+outputs/video/storyboard_actual.csv -text -diff
+
+# These are intentional formatting constructs: an SRT terminal separator and
+# a Markdown hard break embedded inside the notebook builder's source string.
+outputs/video/*.srt whitespace=-blank-at-eof
+scripts/build_notebook.py whitespace=-trailing-space

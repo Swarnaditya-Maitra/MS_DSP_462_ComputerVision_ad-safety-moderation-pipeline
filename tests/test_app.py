@@ -52,7 +52,7 @@ def test_new_upload_identity_clears_previous_analysis_before_decode() -> None:
     assert "analysis_state" not in state_store
 
 
-def test_empty_uploader_clears_saved_analysis_state() -> None:
+def test_empty_uploader_preserves_saved_analysis_state_for_workspace_navigation() -> None:
     saved_state = {
         "source_id": "creative.png:sha",
         "result": object(),
@@ -61,16 +61,16 @@ def test_empty_uploader_clears_saved_analysis_state() -> None:
 
     state = app_module._analysis_state_for_upload(state_store, None)
 
-    assert state is None
-    assert "analysis_state" not in state_store
+    assert state is saved_state
+    assert state_store["analysis_state"] is saved_state
     assert state_store["unrelated"] == "preserved"
 
 
-def test_benchmark_loader_supports_results_layout_and_rejects_malformed_json(
+def test_benchmark_loader_supports_canonical_outputs_and_rejects_malformed_json(
     tmp_path: Path,
 ) -> None:
-    evaluation = tmp_path / "results" / "evaluation"
-    demos = tmp_path / "results" / "demo_cases"
+    evaluation = tmp_path / "outputs" / "evaluation"
+    demos = tmp_path / "outputs" / "demo_cases"
     evaluation.mkdir(parents=True)
     demos.mkdir(parents=True)
     (evaluation / "metrics.json").write_text(json.dumps({"samples": 48}), encoding="utf-8")

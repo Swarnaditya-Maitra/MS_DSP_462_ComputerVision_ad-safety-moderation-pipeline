@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0.0",
+  "output": "outputs/presentation/ad_safety_management_presentation.pptx",
+  "slide_size": {
+    "width": 1280,
+    "height": 720
+  },
+  "authored_slide_count": 15,
+  "reopened_slide_count": 15,
+  "sources_notes": {
+    "slides_checked": 15,
+    "all_have_sources_block": true,
+    "all_local_sources_portable": true
+  },
+  "semantic_overlap_and_bounds_test": {
+    "checked_slides": 15,
+    "checked_regions": 36,
+    "issues": [],
+    "passed": true
+  },
+  "selected_grid_templates": [
+    "codex-grid-layout-library#slide-08",
+    "codex-grid-layout-library#slide-18",
+    "codex-grid-layout-library#slide-19",
+    "codex-grid-layout-library#slide-20"
+  ],
+  "rendered_png_count": 15,
+  "cross_renderer_left_edge_clearance": {
+    "typeface": "Arial",
+    "slide_4_title_left": 64,
+    "presenter_footer_left": 64,
+    "presenter_footer_top": 688
+  },
+  "pptx_sha256": "9d09685c956551795e076497f2cb31e3c7ea6dac0b834e2e871f33b86726870e",
+  "mvp_roadmap_plan": {
+    "status": "recommended plan, not a measured commitment",
+    "timeline_weeks": 10,
+    "phase_windows": [
+      "weeks 1-3",
+      "weeks 4-6",
+      "weeks 7-10"
+    ],
+    "resource_requirements": [
+      "data lead, policy reviewer, and two annotators",
+      "one ML engineer, reviewer, and CPU/GPU test capacity",
+      "product lead, app/MLOps engineer, and reviewer rotation"
+    ],
+    "scale_gate": {
+      "concurrent_requests": 10,
+      "measurements": [
+        "end-to-end p95",
+        "CPU",
+        "GPU",
+        "RAM"
+      ]
+    }
+  },
+  "measured_facts_used": {
+    "formal_vit_macro_f1": 0.97913,
+    "formal_resnet_macro_f1": 0.87315,
+    "formal_vit_classifier_path_cpu_p95_ms": 71.527,
+    "formal_resnet_classifier_path_cpu_p95_ms": 40.064,
+    "classifier_path_p95_target_ms": 50,
+    "formal_vit_classifier_path_p95_target_met": false,
+    "full_end_to_end_p95_assessed": false,
+    "concurrent_throughput_assessed": false,
+    "mps_resource_use_assessed": false,
+    "formal_safe_ad_false_flag_rate_one_minus_safe_recall": 0,
+    "formal_safe_precision": 1,
+    "proposal_safe_precision_target": ">0.98",
+    "proposal_safe_precision_target_met": true,
+    "formal_safe_precision_target_met": true,
+    "formal_multiclass_argmax_restricted_class_average_recall": 0.97222,
+    "formal_validation_threshold_operating_recall_mean": 0.94444,
+    "formal_validation_threshold_operating_recall_worst_class": 0.91667,
+    "calibration_validation_recall_tuning_floor": ">=0.90",
+    "formal_per_class_recall_target": ">0.95",
+    "formal_per_class_recall_target_met": false,
+    "proposal_per_class_restricted_recall_target": ">0.95",
+    "proposal_per_class_restricted_recall_target_met": false,
+    "formal_test_n": 48,
+    "external_macro_f1": 0.55489,
+    "external_detector_nonweapon_false_positive_rate": 0.9,
+    "external_diagnostic_n": 26
+  },
+  "interface_facts_used": {
+    "browser_validated_cases": [
+      "APPROVE",
+      "REVIEW",
+      "BLOCK"
+    ],
+    "audit_schema_version": "1.1",
+    "result_persistence_checked": true,
+    "stale_option_state_checked": true,
+    "charts_are_descriptive_interface_evidence_only": true,
+    "production_monitoring_claimed": false
+  }
+}

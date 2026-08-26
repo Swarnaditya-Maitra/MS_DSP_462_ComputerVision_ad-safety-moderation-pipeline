@@ -17,7 +17,7 @@ I use [REPRODUCIBILITY.md](REPRODUCIBILITY.md) as the formal contract and this m
 - A modern browser such as Chrome, Edge, Firefox, or Safari.
 - Tesseract OCR if I want text extraction. The classifier still works when Tesseract is absent.
 
-The public repository includes the validated ViT and ResNet-50 `joblib` policy heads plus their expected byte sizes and SHA-256 digests in `models/trained_head_manifest.json`. It excludes raw dataset images and pretrained backbone caches. The core app can analyze an image after the pinned ViT snapshot is downloaded and preflight passes. I never load a substituted `joblib` file or one obtained from another source because Python pickle-based formats can execute code during loading.
+The canonical local project contains all 315 dataset images: 288 formal images and 27 Wikimedia candidates. Public Git tracks the 72 project-generated financial-promotion images and the 26 Wikimedia images retained after review. It excludes the other 216 formal images because the two upstream datasets do not provide sufficient supported redistribution terms or item-level provenance. It also excludes one irrelevant Wikimedia title-search collision and all pretrained backbone caches. The public repository still includes the validated ViT and ResNet-50 `joblib` policy heads plus their expected byte sizes and SHA-256 digests in `models/trained_head_manifest.json`, so the core app can analyze a user-supplied image after the pinned ViT snapshot is downloaded and preflight passes. I never load a substituted `joblib` file or one obtained from another source because Python pickle-based formats can execute code during loading. See [DATASETS.md](DATASETS.md) and [NOTICE.md](NOTICE.md) for the exact boundary.
 
 Platform boundary:
 
@@ -388,7 +388,7 @@ python -m pytest -q tests/test_preflight.py
 
 ## 10. Manual end-to-end test matrix
 
-After the independent dataset build in Section 6, these recorded cases should reproduce the three policy actions. They are not part of a fresh public clone because the source images are not redistributed:
+These recorded cases should reproduce the three policy actions in the canonical local project. The financial-promotion image is tracked in public Git. The safe and firearm images are among the 216 local-only third-party formal images, so a fresh public clone needs the Section 6 dataset reconstruction before those two paths exist:
 
 | Test | File | Settings | Expected result |
 |---|---|---|---|
@@ -477,13 +477,23 @@ Expected status: `422`.
 
 ## 11. Validate the course deliverables
 
-The full course checkout includes the report, PowerPoint, video, notebook, and their builders. It can run the cross-artifact audit:
+The public repository and canonical local project include the report, PowerPoint, video, notebook, and their builders. In a fresh public clone, I first run the portable release audit:
 
 ```text
+python scripts/validate_release.py
+```
+
+This checks the tracked public boundary without requiring the 216 local-only third-party formal images.
+
+For the extended full-local audit, I first provision every pinned model and reconstruct the complete formal dataset. The dataset command downloads local audit inputs but does not grant permission to republish them:
+
+```text
+python scripts/bootstrap.py --profile full
+python scripts/build_capstone_dataset.py
 python scripts/validate_deliverables.py
 ```
 
-This extended audit also needs Poppler `pdftoppm`, LibreOffice for independent PowerPoint rendering, and FFmpeg for video checks. These coursework files and builders are intentionally outside the public release.
+This extended audit also needs Poppler `pdftoppm`, LibreOffice for independent PowerPoint rendering, and FFmpeg for video checks. It keeps the strong 288-image pixel and full-backbone checks. It builds the book in a temporary checkout, renders the report and deck to temporary directories, and extracts representative video frames at the times recorded in QA. It does not need ignored book HTML, saved report or slide renders, narration audio segments, or QA-frame caches. These tools are optional for normal app use but required for the full deliverable audit.
 
 ### macOS validator tools
 
@@ -510,7 +520,9 @@ Get-Command soffice
 Get-Command ffmpeg
 ```
 
-The public checkout does not contain the PDF, PowerPoint, video, or `validate_deliverables.py`, so it does not need these three tools.
+The PDF, PowerPoint, video, notebook, builders, and `validate_deliverables.py` are present in the public checkout. I can skip these three external tools only when I am running the app and its core tests without the full deliverable audit.
+
+FFmpeg validation of the tracked final MP4 and SRT works on both supported hosts. The command `python scripts/build_demo_video.py narrate-offline` is different: it regenerates narration with the macOS `say` command and therefore does not run on Windows. A Windows user can validate and use the final video, but cannot reproduce identical macOS voice bytes without using macOS or choosing a different TTS workflow and disclosing that change.
 
 ## 12. Stop the services
 

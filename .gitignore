@@ -25,6 +25,7 @@ kaggle.json
 *.key
 *.p12
 *.pfx
+pkcs11.txt
 
 .cache/
 .mpl-cache/
@@ -33,8 +34,8 @@ tmp/
 node_modules/
 *.log
 
-# Model snapshots are downloaded at pinned revisions. Only the two reviewed,
-# hash-pinned course-run heads below are part of the public clone.
+# Large pretrained model snapshots are downloaded at immutable revisions.
+# The two small, hash-pinned policy heads remain tracked for clone-ready use.
 models/*.joblib
 !models/vit_policy_head.joblib
 !models/resnet50_policy_head.joblib
@@ -43,38 +44,42 @@ models/*.pth
 models/*.bin
 models/*.safetensors
 
-# Raw and normalized images are rebuilt from their source registries.
-data/capstone_dataset/
-data/wikimedia_pilot/
+# The complete 288-image formal dataset remains in the local canonical checkout.
+# These 216 third-party images stay outside public Git history until their
+# redistribution rights and item-level provenance are cleared.
+data/capstone_dataset/*/safe/
+data/capstone_dataset/*/firearms/
+data/capstone_dataset/*/explosives/
 
-# Publish only aggregate, image-free evaluation charts and a path-free validation
-# summary. Raw creatives, overlays, rendered slides, and media remain excluded.
-outputs/*
-!outputs/README.md
-!outputs/evaluation/
-outputs/evaluation/*
-!outputs/evaluation/confusion_matrix.png
-!outputs/evaluation/confusion_matrix_resnet50.png
-!outputs/evaluation/confusion_matrix_vit.png
-!outputs/evaluation/dataset_distribution.png
-!outputs/evaluation/model_comparison.png
-!outputs/evaluation/precision_recall_curves.png
-!outputs/evaluation/threshold_calibration.png
-!outputs/validation/
-outputs/validation/*
-!outputs/validation/FINAL_VALIDATION_PASSED.txt
-!outputs/validation/validation_summary.json
+# Manual review found this Commons search-result image irrelevant to the
+# explosives diagnostic. Its registry row remains as an auditable exclusion.
+data/wikimedia_pilot/train/explosives/explosives_train_7c750c3977f9.jpg
 
-# Coursework media and generated build trees remain outside this public release.
+# Generated book copies and build trees are reproducible from the root notebook.
 book/_build/
-*.ipynb_checkpoints/
-archive/
-ad_safety_moderation_pipeline.ipynb
 book/ad_safety_moderation_pipeline.ipynb
-Capstone Project Idea - Ad Safety.pdf
-*.pdf
-*.pptx
-*.mp4
-*.m4a
-*.wav
-*.aiff
+*.ipynb_checkpoints/
+
+# The historical starter is superseded by the executed root notebook.
+archive/
+
+# Final deliverables and canonical evidence under outputs/ are tracked. Only
+# reproducible intermediates, duplicate encodings, and temporary QA renders
+# are excluded.
+outputs/presentation/.build/
+outputs/presentation/rendered/
+outputs/presentation/rendered_pptx/
+outputs/presentation/*.inspect.ndjson
+outputs/presentation/deck_montage.webp
+outputs/presentation/reopened_montage.webp
+outputs/presentation/grid_selection.json
+outputs/report/rendered/
+outputs/video/.build/
+outputs/video/audio/
+outputs/video/frames/
+outputs/video/qa_frames/
+outputs/video/scenes/
+outputs/video/ad_safety_demo_no_subtitles.mp4
+outputs/video/captions.srt
+outputs/video/demo_narration.md
+outputs/video/demo_storyboard.json

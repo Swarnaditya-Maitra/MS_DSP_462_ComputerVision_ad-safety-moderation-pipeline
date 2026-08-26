@@ -2,7 +2,7 @@
 
 [![Cross-platform verification](https://github.com/Swarnaditya-Maitra/MS_DSP_462_ComputerVision_ad-safety-moderation-pipeline/actions/workflows/cross-platform.yml/badge.svg)](https://github.com/Swarnaditya-Maitra/MS_DSP_462_ComputerVision_ad-safety-moderation-pipeline/actions/workflows/cross-platform.yml)
 
-This repository contains the public release of an evidence-led computer-vision pipeline for triaging static ad creatives. It combines:
+This repository contains the complete MS_DSP_462 computer-vision project for triaging static ad creatives. It includes the runnable application, publicly releasable dataset artifacts and complete registries, trained policy heads, executed notebook, saved evidence, final report, PowerPoint presentation, narrated demonstration, and the scripts used to build and validate them. The inference pipeline combines:
 
 1. a frozen ViT-B/16 visual backbone with a four-class policy head;
 2. a ResNet-50 comparison baseline;
@@ -97,7 +97,7 @@ python scripts/preflight.py --profile core --json
 
 This is a bounded course pilot, not an autonomous moderation service. The saved formal test reached 0.9791 ViT macro F1, but the result is strongly affected by source style. A separate 26-image Wikimedia diagnostic reached only 0.5549 macro F1, and the detector produced a 0.90 image-level false-positive rate on nonweapon examples. The minimum threshold-operating restricted-class recall was 0.9167, below the proposed target above 0.95. ViT classifier-path p95 was 71.5 ms on CPU; full end-to-end latency and concurrent throughput were not measured.
 
-Raw images and image-bearing coursework deliverables are not included because redistribution rights are not uniformly cleared. Curated aggregate charts and a path-free validation summary are available under [`outputs/`](outputs/). See [`outputs/README.md`](outputs/README.md), [NOTICE.md](NOTICE.md), and the registries under [`data/`](data/).
+The canonical local project contains 288 formal images and 27 Wikimedia candidates. As standalone dataset files, public Git contains the 72 project-generated financial-promotion images and 26 retained Wikimedia diagnostic images. The other 216 formal images remain local-only because their upstream sources do not provide supported redistribution terms or item-level provenance; one irrelevant Wikimedia title-search collision is also excluded. Some final course records contain bounded screenshots or annotations of selected examples, but that does not clear the underlying images for reuse. The public registries preserve all source URLs, revisions, grouping rules, expected hashes, and known provenance limits. Read [DATASETS.md](DATASETS.md) and [NOTICE.md](NOTICE.md) before rebuilding, extracting, or redistributing any dataset image.
 
 ## Repository layout
 
@@ -111,13 +111,24 @@ tests/                         Automated unit and API tests
 .github/workflows/             macOS arm64 and Windows x64 verification
 USER_MANUAL.md                 Detailed Windows and macOS run/test instructions
 REPRODUCIBILITY.md             Functional-reproduction contract and boundaries
-data/*.csv                     Source and provenance registries without image files
+Capstone Project Idea - Ad Safety.pdf
+                               Original project proposal
+ad_safety_moderation_pipeline.ipynb
+                               Final executed technical notebook
+book/                          Static-book source and builder configuration
+data/capstone_dataset/         Local: 288 formal images; public Git: 72 cleared images
+data/wikimedia_pilot/          Local: 27 candidates; public Git: 26 retained images
+data/*.csv                     Source, attribution, split, and hash registries
 models/pretrained_model_manifest.json
 models/trained_head_manifest.json
 models/vit_policy_head.joblib  Included primary policy head
 models/resnet50_policy_head.joblib
-outputs/                       Curated aggregate charts and validation summary
-results/                       Text and tabular evidence from the validated course run
+outputs/evaluation/            Canonical metrics, predictions, embeddings, and charts
+outputs/demo_cases/            Representative inference audits and evidence media
+outputs/report/                Final technical synopsis PDF
+outputs/presentation/          Final PowerPoint and presentation QA evidence
+outputs/video/                 Final narrated MP4, captions, storyboard, and QA evidence
+outputs/validation/            Cross-artifact validation records
 ```
 
 ## Manual environment setup
@@ -172,7 +183,21 @@ python scripts/preflight.py --profile core
 python scripts/smoke_test.py
 ```
 
-For a full independent training rebuild, download the two classifier backbones at their pinned revisions, rebuild the dataset from the recorded sources, and retrain both policy heads in a separate clone or worktree:
+First verify the checkout's exact release boundary. This passes both in the full canonical local project and in a fresh public clone:
+
+```bash
+python scripts/validate_release.py
+```
+
+The canonical local project already contains all 288 formal images. Verify those local files against the formal registry before training:
+
+```bash
+python scripts/build_capstone_dataset.py --verify-only
+```
+
+In a public clone, reconstruct the 216 local-only third-party formal images from their pinned upstream sources before running the 288-image verification or retraining commands. Download availability does not grant redistribution rights. The Wikimedia registry records all 27 candidates; the public diagnostic retains the 26 relevant, attributable images.
+
+For a full independent training rebuild, download the two classifier backbones at their pinned revisions and retrain both policy heads in a separate clone or worktree. Running the dataset builder without `--verify-only` reconstructs the formal dataset from the recorded upstream sources:
 
 ```bash
 python scripts/download_models.py --skip-grounding-dino
@@ -180,7 +205,7 @@ python scripts/build_capstone_dataset.py
 python scripts/train_and_evaluate.py --device cpu --batch-size 8
 ```
 
-These steps require additional backbone and source-image downloads. Source availability and licensing can change, so inspect the registries and upstream dataset cards before redistributing any rebuilt images.
+The training step requires additional backbone downloads. Reconstructing the dataset also requires its upstream sources, whose availability and terms can change. Inspect the registries, upstream dataset cards, and [NOTICE.md](NOTICE.md) before redistributing the tracked or rebuilt images.
 
 The included `joblib` heads use Python's pickle mechanism, which can execute code while loading. Run preflight before inference so their byte sizes and SHA-256 digests are checked against [`models/trained_head_manifest.json`](models/trained_head_manifest.json). The API, Streamlit app, and classifier runtime repeat the head check before deserialization. Do not load a substituted head or one obtained from another source. A retraining run can produce different bytes, so the published manifest will reject a changed head. That failure is intentional. I use a separate clone for training and keep the clone-ready app on the verified included heads.
 
@@ -223,17 +248,34 @@ Interactive API documentation is served at <http://127.0.0.1:8000/docs>.
 python -m pytest -q
 python scripts/preflight.py --profile core
 python scripts/smoke_test.py
+python scripts/validate_release.py
 ```
 
 I expect zero test failures. A snapshot-dependent check can skip before model provisioning; it should run after the selected profile is ready. The suite covers preprocessing safeguards, animated-image rejection, effective-threshold auditing, policy behavior, model readiness, bootstrap and preflight behavior, feature interfaces, Streamlit state and chart helpers, and FastAPI input handling. The smoke test adds one real in-process API analysis with the included head and downloaded ViT backbone.
 
 The GitHub Actions workflow runs the automated suite on Apple Silicon macOS and 64-bit Windows. On pushes to `main` and manual runs, it also bootstraps the pinned ViT snapshot, runs preflight, performs the real smoke analysis, reruns the snapshot integration test, and confirms that setup did not modify tracked files.
 
+`validate_release.py` is the portable public-clone audit. It checks the tracked release boundary, structured files, dataset policy, and final deliverables without requiring the 216 local-only third-party formal images.
+
+The extended full-local audit preserves the stronger 288-image raw-pixel and full-backbone reproduction checks. First provision the full model profile and reconstruct the local-only dataset, then run the validator:
+
+```bash
+python scripts/bootstrap.py --profile full
+python scripts/build_capstone_dataset.py
+python scripts/validate_deliverables.py
+```
+
+That audit checks the executed notebook, builds the static book in a temporary checkout, renders the PDF and PowerPoint into temporary directories, regenerates representative frames from the final MP4, verifies the tracked SRT and provenance, reruns the test suite, and binds the saved evidence to all 288 local pixels and the pinned model snapshots. It requires Poppler, LibreOffice, and FFmpeg but does not require ignored saved renders, narration audio segments, or QA-frame caches.
+
+Validation of the tracked final MP4 and SRT is cross-platform with FFmpeg. Recreating the original offline narration bytes with `python scripts/build_demo_video.py narrate-offline` requires the macOS `say` command. Windows users can validate and use the final video, but identical macOS voice bytes require macOS or a different TTS workflow that is clearly disclosed as a new build.
+
 ## Evidence and sources
 
-- [`results/evaluation/`](results/evaluation/) contains machine-readable metrics, predictions, thresholds, latency, failure cases, and the external diagnostic record.
-- [`results/demo_cases/case_summary.json`](results/demo_cases/case_summary.json) records the saved representative verdicts and timings.
-- [`outputs/README.md`](outputs/README.md) explains the curated public charts, validation summary, and excluded artifacts.
+- [`outputs/evaluation/`](outputs/evaluation/) is the single canonical location for machine-readable metrics, predictions, thresholds, embeddings, charts, failure cases, and the external diagnostic record.
+- [`outputs/demo_cases/case_summary.json`](outputs/demo_cases/case_summary.json) records the saved representative verdicts and timings.
+- [`outputs/report/ad_safety_technical_synopsis.pdf`](outputs/report/ad_safety_technical_synopsis.pdf), [`outputs/presentation/ad_safety_management_presentation.pptx`](outputs/presentation/ad_safety_management_presentation.pptx), and [`outputs/video/ad_safety_demo.mp4`](outputs/video/ad_safety_demo.mp4) are the final course deliverables.
+- [`ad_safety_moderation_pipeline.ipynb`](ad_safety_moderation_pipeline.ipynb) is the final executed notebook.
+- [`outputs/README.md`](outputs/README.md) documents the complete canonical output tree and the generated intermediates that remain untracked.
 - [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) defines the supported hosts, pinned assets, readiness checks, and independent rebuild boundary.
 - [`SOURCES.md`](SOURCES.md) separates external papers, model cards, policy references, data sources, and locally measured results.
 

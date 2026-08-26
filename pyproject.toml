@@ -1,0 +1,4 @@
+[tool.ruff.lint.per-file-ignores]
+# This single unused assignment is retained byte-for-byte because the formal
+# dataset registry records the builder file's SHA-256 as generator provenance.
+"scripts/build_capstone_dataset.py" = ["F841"]

@@ -1,0 +1,101 @@
+{
+  "analysis": {
+    "applied_thresholds": {
+      "explosives": 0.1727632618375518,
+      "financial_promotion": 0.9946029323485182,
+      "firearms": 0.9913563345650912,
+      "review": 0.35,
+      "safe": 0.5,
+      "uncertainty_margin": 0.12
+    },
+    "classifier_scores": {
+      "explosives": 0.00034902575444468244,
+      "financial_promotion": 0.00023329067782111844,
+      "firearms": 0.9989185527735894,
+      "safe": 0.00049913079414472
+    },
+    "decision": {
+      "classifier_scores": {
+        "explosives": 0.00034902575444468244,
+        "financial_promotion": 0.00023329067782111844,
+        "firearms": 0.9989185527735894,
+        "safe": 0.00049913079414472
+      },
+      "fused_scores": {
+        "explosives": 0.18114586724634174,
+        "financial_promotion": 0.00023329067782107415,
+        "firearms": 0.9990683797771868,
+        "safe": 0.00049913079414472
+      },
+      "model_version": "vit-frozen-063c6c38a5d8-logreg-v1",
+      "policy_version": "1.0.0-pilot",
+      "primary_label": "firearms",
+      "primary_score": 0.9990683797771868,
+      "review_reasons": [
+        "Object context: handgun (0.31)",
+        "Object context: explosive device (0.38)",
+        "firearms was the top classifier class and crossed its validated block threshold"
+      ],
+      "verdict": "BLOCK"
+    },
+    "detections": [
+      {
+        "box": [
+          8.57503890991211,
+          7.382946014404297,
+          629.883544921875,
+          627.03271484375
+        ],
+        "label": "handgun grenade",
+        "score": 0.3078734576702118
+      },
+      {
+        "box": [
+          7.927837371826172,
+          7.020111083984375,
+          630.1195678710938,
+          626.9603271484375
+        ],
+        "label": "handgun explosive device",
+        "score": 0.301107794046402
+      },
+      {
+        "box": [
+          7.407321929931641,
+          7.582550048828125,
+          629.96630859375,
+          627.014404296875
+        ],
+        "label": "explosive device",
+        "score": 0.3767915964126587
+      }
+    ],
+    "input_size": [
+      640,
+      640
+    ],
+    "latency_ms": {
+      "classification": 60.815374832600355,
+      "detection": 1911.952666938305,
+      "explanation": 675.5866250023246,
+      "ocr": 0.0,
+      "total": 2868.817541981116
+    },
+    "ocr": {
+      "engine": "disabled",
+      "text": "",
+      "tokens": []
+    }
+  },
+  "case": {
+    "case_id": "formal_firearms",
+    "detector": true,
+    "expected_label": "firearms",
+    "explain": true,
+    "ocr": false,
+    "path": "data/capstone_dataset/test/firearms/firearms-08b5814b3661e772.jpg",
+    "scope": "formal grouped test"
+  },
+  "classifier_prediction": "firearms",
+  "expected_label": "firearms"
+}

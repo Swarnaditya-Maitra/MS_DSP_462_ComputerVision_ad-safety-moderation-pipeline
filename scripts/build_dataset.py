@@ -13,6 +13,7 @@ import csv
 import hashlib
 import html
 import io
+import json
 import re
 import time
 from dataclasses import dataclass
@@ -26,7 +27,8 @@ from PIL import Image, ImageDraw, ImageFont, ImageOps, UnidentifiedImageError
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 DATA_ROOT = PROJECT_ROOT / "data" / "wikimedia_pilot"
 REGISTRY_PATH = PROJECT_ROOT / "data" / "dataset_registry.csv"
-CONTACT_SHEET_PATH = PROJECT_ROOT / "outputs" / "eda" / "dataset_contact_sheet.jpg"
+CONTACT_SHEET_PATH = PROJECT_ROOT / "outputs" / "eda" / "wikimedia_diagnostic_contact_sheet.jpg"
+REVIEW_MANIFEST_PATH = PROJECT_ROOT / "data" / "wikimedia_external_manifest.csv"
 API_URL = "https://commons.wikimedia.org/w/api.php"
 USER_AGENT = "AdSafetyCapstone/1.0 (educational computer-vision project)"
 
@@ -224,10 +226,68 @@ def make_contact_sheet(rows: list[dict[str, Any]]) -> None:
     canvas.save(CONTACT_SHEET_PATH, "JPEG", quality=90)
 
 
+def verify_existing_dataset() -> dict[str, Any]:
+    """Verify the retained, manually reviewed Commons diagnostic files."""
+
+    with REGISTRY_PATH.open(encoding="utf-8", newline="") as handle:
+        registry = list(csv.DictReader(handle))
+    with REVIEW_MANIFEST_PATH.open(encoding="utf-8", newline="") as handle:
+        review_rows = list(csv.DictReader(handle))
+
+    review_by_path = {row["local_path"]: row for row in review_rows}
+    if set(review_by_path) != {row["local_path"] for row in registry}:
+        raise RuntimeError("Registry and manual-review manifest paths do not match")
+
+    active = 0
+    excluded = 0
+    optional_excluded_present = 0
+    hashes: set[str] = set()
+    for row in registry:
+        path = PROJECT_ROOT / row["local_path"]
+        include = review_by_path[row["local_path"]]["include_in_spot_check"].casefold() == "true"
+        if not include:
+            excluded += 1
+            if not path.is_file():
+                continue
+            optional_excluded_present += 1
+        elif not path.is_file():
+            raise FileNotFoundError(f"Missing retained Wikimedia image: {row['local_path']}")
+        else:
+            active += 1
+
+        actual_hash = hashlib.sha256(path.read_bytes()).hexdigest()
+        if actual_hash != row["local_sha256"]:
+            raise RuntimeError(f"SHA-256 mismatch for {row['local_path']}")
+        if actual_hash in hashes:
+            raise RuntimeError(f"Duplicate retained image hash: {row['local_path']}")
+        hashes.add(actual_hash)
+        with Image.open(path) as image:
+            image.load()
+            if image.size != (int(row["width"]), int(row["height"])):
+                raise RuntimeError(f"Dimension mismatch for {row['local_path']}")
+
+    return {
+        "registry_rows": len(registry),
+        "retained_images": active,
+        "excluded_rows": excluded,
+        "optional_excluded_files_present": optional_excluded_present,
+        "hash_mismatches": 0,
+        "duplicate_hashes": 0,
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--refresh", action="store_true", help="Overwrite normalized local copies")
+    parser.add_argument(
+        "--verify-only",
+        action="store_true",
+        help="Verify the 26 retained local images without querying Wikimedia Commons",
+    )
     args = parser.parse_args()
+    if args.verify_only:
+        print(json.dumps(verify_existing_dataset(), indent=2, sort_keys=True))
+        return
     rows = build_dataset(refresh=args.refresh)
     make_contact_sheet(rows)
     print(f"Registry: {REGISTRY_PATH}")

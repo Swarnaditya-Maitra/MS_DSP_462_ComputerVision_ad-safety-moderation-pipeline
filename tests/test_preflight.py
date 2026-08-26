@@ -59,14 +59,14 @@ def _build_root(
     *,
     baseline: bool = False,
     detector: bool = False,
-    optional_results: bool = False,
+    optional_evidence: bool = False,
 ) -> None:
     _write(root / "configs/policy.yaml", b"model_labels: [safe]\n")
-    _write_json(root / "results/evaluation/metrics.json", {"primary_model": "vit"})
-    _write_json(root / "results/evaluation/evaluation_metrics.json", {"models": []})
-    if optional_results:
-        _write_json(root / "results/evaluation/external_spot_check.json", {"rows": 1})
-        _write_json(root / "results/demo_cases/case_summary.json", [])
+    _write_json(root / "outputs/evaluation/metrics.json", {"primary_model": "vit"})
+    _write_json(root / "outputs/evaluation/evaluation_metrics.json", {"models": []})
+    if optional_evidence:
+        _write_json(root / "outputs/evaluation/external_spot_check.json", {"rows": 1})
+        _write_json(root / "outputs/demo_cases/case_summary.json", [])
 
     primary_payload = b"trusted primary policy head"
     _write(root / "models/vit_policy_head.joblib", primary_payload)
@@ -304,7 +304,7 @@ def test_full_profile_requires_baseline_detector_and_tesseract(tmp_path: Path) -
     assert incomplete_checks["tesseract"].status == "fail"
 
     complete_root = tmp_path / "complete"
-    _build_root(complete_root, baseline=True, detector=True, optional_results=True)
+    _build_root(complete_root, baseline=True, detector=True, optional_evidence=True)
     complete = _run(
         complete_root,
         profile="full",

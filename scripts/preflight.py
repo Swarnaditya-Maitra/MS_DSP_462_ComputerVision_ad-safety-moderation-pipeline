@@ -58,13 +58,13 @@ REQUIRED_IMPORTS: tuple[tuple[str, str], ...] = (
 
 REQUIRED_PROJECT_FILES: tuple[tuple[str, str, bool], ...] = (
     ("policy_config", "configs/policy.yaml", False),
-    ("formal_metrics", "results/evaluation/metrics.json", True),
-    ("evaluation_metrics", "results/evaluation/evaluation_metrics.json", True),
+    ("formal_metrics", "outputs/evaluation/metrics.json", True),
+    ("evaluation_metrics", "outputs/evaluation/evaluation_metrics.json", True),
 )
 
-OPTIONAL_RESULT_FILES: tuple[tuple[str, str, bool], ...] = (
-    ("external_spot_check", "results/evaluation/external_spot_check.json", True),
-    ("demo_case_summary", "results/demo_cases/case_summary.json", True),
+OPTIONAL_EVIDENCE_FILES: tuple[tuple[str, str, bool], ...] = (
+    ("external_spot_check", "outputs/evaluation/external_spot_check.json", True),
+    ("demo_case_summary", "outputs/demo_cases/case_summary.json", True),
 )
 
 _SHA256_PATTERN = re.compile(r"[0-9a-fA-F]{64}")
@@ -628,7 +628,7 @@ def run_preflight(
                 required=True,
             )
         )
-    for check_id, relative_path, json_file in OPTIONAL_RESULT_FILES:
+    for check_id, relative_path, json_file in OPTIONAL_EVIDENCE_FILES:
         checks.append(
             _check_project_file(
                 root,

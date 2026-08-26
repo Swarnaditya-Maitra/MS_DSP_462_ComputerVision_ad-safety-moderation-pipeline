@@ -445,6 +445,7 @@ def render_financial_creative(campaign_index: int, variant: int) -> tuple[bytes,
     small = ImageFont.load_default(size=20)
     medium = ImageFont.load_default(size=29)
     large = ImageFont.load_default(size=46)
+    offer_font = ImageFont.load_default(size=34)
     draw.text((57, 55), brand, font=medium, fill=(255, 255, 255))
     draw.text((57, 101), product.upper(), font=small, fill=accent)
     draw_wrapped_text(draw, (57, 177), headline, large, dark, max_chars=22, spacing=10)

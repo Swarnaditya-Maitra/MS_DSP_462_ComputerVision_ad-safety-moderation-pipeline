@@ -59,11 +59,11 @@ def load_engine() -> Any:
 
 
 def _evaluation_directories(root: Path = PROJECT_ROOT) -> tuple[Path, ...]:
-    return (root / "outputs" / "evaluation", root / "results" / "evaluation")
+    return (root / "outputs" / "evaluation",)
 
 
 def _demo_directories(root: Path = PROJECT_ROOT) -> tuple[Path, ...]:
-    return (root / "outputs" / "demo_cases", root / "results" / "demo_cases")
+    return (root / "outputs" / "demo_cases",)
 
 
 def _artifact_signature(paths: Iterable[Path]) -> tuple[tuple[str, int, int], ...]:
@@ -157,10 +157,8 @@ def _analysis_state_for_source(
 def _analysis_state_for_upload(
     state_store: MutableMapping[str, Any], uploaded: Any | None
 ) -> Mapping[str, Any] | None:
-    """Clear a saved decision when the uploader no longer contains a file."""
-    if uploaded is None:
-        state_store.pop("analysis_state", None)
-        return None
+    """Keep the last completed decision while the user visits another workspace."""
+    del uploaded
     return state_store.get("analysis_state")
 
 
@@ -891,8 +889,29 @@ def _render_analyze(
         type=["jpg", "jpeg", "png", "webp"],
         help="Maximum encoded size: 20 MB. Maximum decoded size: 40 megapixels. Animated images are rejected.",
     )
-    _analysis_state_for_upload(st.session_state, uploaded)
+    saved_state = _analysis_state_for_upload(st.session_state, uploaded)
     if uploaded is None:
+        if saved_state:
+            st.info(
+                "Showing the last completed analysis from this browser session. "
+                "Upload a new creative to replace it, or clear it explicitly."
+            )
+            if st.button("Clear saved analysis", width="stretch"):
+                st.session_state.pop("analysis_state", None)
+                st.rerun()
+            option_snapshot = {"detector": run_detector, "ocr": run_ocr, "explanation": explain}
+            current_fingerprint = json.dumps(
+                {"source": saved_state["source_id"], **option_snapshot}, sort_keys=True
+            )
+            _render_results(
+                saved_state["result"],
+                config,
+                bundle,
+                saved_state["preview"],
+                saved_state["audit"],
+                stale=saved_state.get("fingerprint") != current_fingerprint,
+            )
+            return
         _render_pipeline_cards()
         st.info("Start with one creative. No upload leaves this device or persists after the session.")
         return
@@ -970,6 +989,7 @@ def _render_analyze(
             "fingerprint": fingerprint,
             "result": result,
             "audit": audit,
+            "preview": preview.copy(),
         }
         st.session_state["analysis_state"] = state
 

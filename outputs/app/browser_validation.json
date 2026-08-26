@@ -1,0 +1,183 @@
+{
+  "schema_version": "1.3.0",
+  "browser": "Codex in-app browser",
+  "url": "http://127.0.0.1:8510",
+  "validated_date": "2026-08-26",
+  "provenance": {
+    "app_py_sha256": "e049cd39e11eec760efb952cabea57e20610198d25da9654572daab28118c559",
+    "api_py_sha256": "77c0e768ea77b15d21f878bb863a64797ab38c0b54ee9232bd736b3672bb3085",
+    "user_manual_sha256": "4a7e35585a0122bf78cf9c42a6da3be5da75fbac81862b0813284c7d18a2a5f1",
+    "policy_yaml_sha256": "15b465ead626cae137b36e8a2ff1c73d4cac0c1c112465d869356ef5b2f89a96",
+    "vit_policy_head_sha256": "3473f8f6817a007fe4ede49e10f571a6b1942c468c09dfebec5037fa5da1c192",
+    "shell_screenshot_sha256": "e2782640d40539f47399a71842fcea1458ad9e50ff72ba52583e467bd9e5be47",
+    "pilot_evidence_screenshot_sha256": "433b6eb3dce82026a6a7b68050027f082c758ded03130c4fc2eb3c8db5407929",
+    "pilot_evidence_charts_sha256": "7bab8eace5df648ee4d93c8cb56d44657445e23ca090199ad27a479990ba0779",
+    "decision_chart_screenshot_sha256": "8d49a0c3f72ccbc43ccf3ebf2ff71c8e91529ec4342418c21d147b4926363348",
+    "runtime_files_sha256": {
+      "models/pretrained_model_manifest.json": "c1a357b3bc696d4697628419c639c21a8377450fdf1d6b8b76a4f80c406c4d44",
+      "requirements-lock.txt": "b8607ec3b3e892822cb44a3b455b0a9a45eda7c830e3b2d7632b01cc270b172a",
+      "src/ad_safety/__init__.py": "c97788badea6b87c15935560b909ddc5c33e54e4efe82233164f91fab7bd0231",
+      "src/ad_safety/classifier.py": "9e2a810e0d5d1d360f3bd21b203cd18812c71b6a358d9d36147db89d2b28eb08",
+      "src/ad_safety/detection.py": "6c4c4cc77c044a8cce918320986593c68ffc9904e1b97812f464d555042c1104",
+      "src/ad_safety/features.py": "4f7eb1ffe36d8a6970bb4c7c07ba29cc83c8d1fa67d4959a3676b45a929cc6f9",
+      "src/ad_safety/inference.py": "541a60de761bc11a78d50083f9f98b37a4ba50276e2486c4ddd53e779084dbfc",
+      "src/ad_safety/model_assets.py": "b0ecf7c4297bbe7e40835b4ccd2d22255930abda55360b96ea82878790f83117",
+      "src/ad_safety/ocr.py": "818a74b4448d7231027af3c48fe98a7d292afa9bfd633b343800d0b5cdf642b6",
+      "src/ad_safety/paths.py": "bbeb3c566677d233eff75d509e10cf6906e91897527f76533687ae20be0c7305",
+      "src/ad_safety/policy.py": "400e8dea53f4d9b6a0470e9e87d26340c986b5470428444619884b15c219fbd8",
+      "src/ad_safety/preprocessing.py": "751fc8c1d7d8669db77ba877c4937081318a5b83ec440825f417d0124472857e"
+    },
+    "runtime_model_files_sha256": {
+      ".cache/huggingface/hub/models--timm--vit_base_patch16_224.augreg2_in21k_ft_in1k/snapshots/063c6c38a5d8510b2e57df480445e94b231dad2c/config.json": "b2d2d7d483d964889a9bdf7fcad9da6f3dd7fd3ffdf05def4807a29980ce6a16",
+      ".cache/huggingface/hub/models--timm--vit_base_patch16_224.augreg2_in21k_ft_in1k/snapshots/063c6c38a5d8510b2e57df480445e94b231dad2c/model.safetensors": "32aa17d6e17b43500f531d5f6dc9bc93e56ed8841b8a75682e1bb295d722405b",
+      ".cache/huggingface/hub/models--IDEA-Research--grounding-dino-tiny/snapshots/a2bb814dd30d776dcf7e30523b00659f4f141c71/config.json": "eec82c5ab66e16df12a9a212e68ac011779927c2536cf9078658e35d85f0c67a",
+      ".cache/huggingface/hub/models--IDEA-Research--grounding-dino-tiny/snapshots/a2bb814dd30d776dcf7e30523b00659f4f141c71/model.safetensors": "1a2412ef99bd74bcd3c2a246fa1e48581f8889a1300c9051974741314fc042f3",
+      ".cache/huggingface/hub/models--IDEA-Research--grounding-dino-tiny/snapshots/a2bb814dd30d776dcf7e30523b00659f4f141c71/preprocessor_config.json": "8454179ba95e2ad22947835aad7b45862a601fc0055ab88bf1ee70892d3aea60",
+      ".cache/huggingface/hub/models--IDEA-Research--grounding-dino-tiny/snapshots/a2bb814dd30d776dcf7e30523b00659f4f141c71/tokenizer.json": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66",
+      ".cache/huggingface/hub/models--IDEA-Research--grounding-dino-tiny/snapshots/a2bb814dd30d776dcf7e30523b00659f4f141c71/tokenizer_config.json": "d40ab645b68211910b9170d22433d43186a6ec8ee6fd10ba170524b25bf4fb56",
+      ".cache/huggingface/hub/models--IDEA-Research--grounding-dino-tiny/snapshots/a2bb814dd30d776dcf7e30523b00659f4f141c71/special_tokens_map.json": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3",
+      ".cache/huggingface/hub/models--IDEA-Research--grounding-dino-tiny/snapshots/a2bb814dd30d776dcf7e30523b00659f4f141c71/added_tokens.json": "909e96cb32d92ce728a01bc99850cbba26196d74115c17ebeb019275412588f2",
+      ".cache/huggingface/hub/models--IDEA-Research--grounding-dino-tiny/snapshots/a2bb814dd30d776dcf7e30523b00659f4f141c71/vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+    }
+  },
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "layout": {
+    "document_scroll_width": 1280,
+    "document_client_width": 1280,
+    "horizontal_overflow": false
+  },
+  "responsive_layout": {
+    "viewport_width": 390,
+    "viewport_height": 844,
+    "document_scroll_width": 390,
+    "horizontal_overflow": false
+  },
+  "console": {
+    "errors": [],
+    "warnings": []
+  },
+  "interface_validation": {
+    "navigation_sections": ["Analyze", "Pilot evidence", "How it works"],
+    "pilot_evidence_plotly_charts": 5,
+    "completed_result_plotly_charts": 7,
+    "formal_and_external_scopes_separated": true,
+    "accessible_chart_data_table": true,
+    "accessible_chart_data_tables": 4,
+    "accessible_confusion_matrix_cells": 16,
+    "reduced_motion_css_present": true,
+    "result_persists_after_option_rerun": true,
+    "changed_options_mark_result_stale": true,
+    "option_change_did_not_reanalyze": true,
+    "new_upload_clears_previous_result": true,
+    "result_persists_across_workspace_navigation": true,
+    "same_file_reupload_does_not_resurrect_result": true,
+    "corrupt_upload_rejected_before_analysis": true,
+    "invalid_replacement_clears_previous_result": true,
+    "core_readiness_checks_head_and_vit_snapshot": true,
+    "detector_snapshot_status_visible": true,
+    "formal_metric_delta_elements": 0,
+    "result_metric_delta_elements": 0,
+    "current_browser_case": {
+      "file": "data/capstone_dataset/test/financial_promotion/financial_promotion-002cf2ebd1547008.jpg",
+      "observed_verdict": "REVIEW",
+      "detector_enabled": false,
+      "ocr_enabled": true,
+      "occlusion_explanation_enabled": false,
+      "observed_total_latency_ms": 557,
+      "persisted_after_workspace_navigation": true
+    },
+    "audit_download": {
+      "schema_version": "1.1",
+      "verdict": "BLOCK",
+      "filename": "firearms-08b5814b3661e772.jpg",
+      "input_sha256": "2e36d9086df38d2e999f36a81ff643970c1a4a941a6f82c4325035f321a85c85",
+      "options": {"detector": true, "ocr": false, "explanation": true},
+      "applied_threshold_keys": [
+        "explosives",
+        "financial_promotion",
+        "firearms",
+        "review",
+        "safe",
+        "uncertainty_margin"
+      ]
+    }
+  },
+  "live_api_validation": {
+    "url": "http://127.0.0.1:8511",
+    "cold_health_ready": true,
+    "cold_engine_loaded": false,
+    "safe_verdict": "APPROVE",
+    "post_safe_engine_loaded": true,
+    "financial_verdict": "REVIEW",
+    "firearm_verdict": "BLOCK",
+    "firearm_detector_boxes": 3,
+    "post_firearm_detector_loaded": true,
+    "corrupt_input_rejected": true,
+    "unsupported_media_rejected": true,
+    "unexpected_error_opaque_reference_tested": true,
+    "missing_visual_backbone_returns_503_tested": true,
+    "missing_requested_detector_returns_503_tested": true,
+    "schema_version": "1.1"
+  },
+  "cases": [
+    {
+      "id": "formal_safe",
+      "file": "data/capstone_dataset/test/safe/safe-77c35d499df2417f.jpg",
+      "expected_label": "safe",
+      "observed_label": "safe",
+      "observed_verdict": "APPROVE",
+      "evidence_score": 0.9973459723,
+      "detector_enabled": false,
+      "ocr_enabled": true,
+      "occlusion_explanation_enabled": false,
+      "observed_total_latency_ms": 256,
+      "input_sha256": "e42090008fb512a15517055815e8b4e1732066c704e20858741fa6be4eec8915",
+      "screenshot": "outputs/app/app_safe_result.png",
+      "screenshot_sha256": "834111000747e836b444a77e9b03ea216323037a3848bf68d6baf6a5a125986c"
+    },
+    {
+      "id": "formal_financial_promotion",
+      "file": "data/capstone_dataset/test/financial_promotion/financial_promotion-ff884f7cd86b4295.jpg",
+      "expected_label": "financial_promotion",
+      "observed_label": "financial_promotion",
+      "observed_verdict": "REVIEW",
+      "evidence_score": 0.9992061363,
+      "detector_enabled": false,
+      "ocr_enabled": true,
+      "occlusion_explanation_enabled": true,
+      "observed_total_latency_ms": 468,
+      "input_sha256": "fd48a3e07198ad2b96297324aca25b4d41f3d247a40db55b6e7fdcc476fdae94",
+      "screenshot": "outputs/app/app_financial_result.png",
+      "screenshot_sha256": "82a561243d81b3f6302580d1eab3e5a7e3ed807bb28cdb1a120c7b74fa38cb73"
+    },
+    {
+      "id": "formal_firearms",
+      "file": "data/capstone_dataset/test/firearms/firearms-08b5814b3661e772.jpg",
+      "expected_label": "firearms",
+      "observed_label": "firearms",
+      "observed_verdict": "BLOCK",
+      "evidence_score": 0.9990683699,
+      "detector_enabled": true,
+      "ocr_enabled": false,
+      "occlusion_explanation_enabled": true,
+      "detected_objects": 3,
+      "observed_total_latency_ms": 2448,
+      "input_sha256": "2e36d9086df38d2e999f36a81ff643970c1a4a941a6f82c4325035f321a85c85",
+      "screenshot": "outputs/app/app_firearm_result.png",
+      "screenshot_sha256": "523a5c00a6250235e0eaa358598c17d4039cefc50ed356ae8a1ae539e25de6bc"
+    }
+  ],
+  "notes": [
+    "The retained three-case screenshots record visible Streamlit runs against the current inference and policy artifacts. After the final navigation-state repair, a tracked financial sample was uploaded and returned REVIEW in 557 ms.",
+    "The formal evidence dashboard rendered five Plotly charts, four accessible data tables including all 16 confusion-matrix cells, scoped captions, zero metric-delta arrows, no horizontal overflow, and no browser diagnostic logs.",
+    "The result persisted after an inference option changed, displayed a stale-result warning, and did not re-run the model until the button was selected again.",
+    "The completed REVIEW decision persisted while navigating from Analyze to Pilot evidence and back; an explicit Clear saved analysis control now removes the retained session result.",
+    "A 390 by 844 responsive check had no horizontal overflow, and the desktop viewport remained 1280 by 720 with no horizontal overflow.",
+    "The shell reported the classifier head, ViT snapshot, and detector snapshot separately before showing the combined MODEL READY state.",
+    "The downloaded audit JSON matched the visible firearm verdict, options, input hash, schema version, and exact applied-threshold keys.",
+    "The live FastAPI process moved from cold health to engine-loaded and detector-loaded states after the safe and firearm requests; focused tests also proved 503 preflight behavior for a missing ViT snapshot and a requested missing detector snapshot."
+  ]
+}

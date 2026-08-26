@@ -1,0 +1,20 @@
+sequence,scene_id,section,presenter,title,frame,visual_assets,narration_words
+1,01_executive_summary,Executive Summary,Swarnaditya Maitra,Ad safety at a decision point,outputs/video/frames/01_executive_summary.png,outputs/presentation/rendered/slide-01.png,54
+2,02_team,Team,Vijay Agnihotri,"Four presenters, one evidence chain",outputs/video/frames/02_team.png,outputs/presentation/rendered/slide-02.png,31
+3,03_business_problem,Business Problem,Swarnaditya Maitra,Manual review fails on ambiguous creatives,outputs/video/frames/03_business_problem.png,outputs/presentation/rendered/slide-03.png,48
+4,04_policy_boundary,Policy Boundary,Myetchae Thu,Four labels are not a full ad policy,outputs/video/frames/04_policy_boundary.png,outputs/presentation/rendered/slide-04.png,53
+5,05_data_profile,Data Profile,Vijay Agnihotri,"Balanced counts, unbalanced sources",outputs/video/frames/05_data_profile.png,outputs/presentation/rendered/slide-05.png,51
+6,06_eda,EDA,Vijay Agnihotri,Source style predicts labels,outputs/video/frames/06_eda.png,outputs/presentation/rendered/slide-06.png,50
+7,07_architecture,Architecture,Myetchae Thu,Separate evidence streams before policy,outputs/video/frames/07_architecture.png,outputs/presentation/rendered/slide-07.png,58
+8,08_methodology,Methodology,Bickramjit Basu,Test evidence stayed untouched,outputs/video/frames/08_methodology.png,outputs/presentation/rendered/slide-08.png,53
+9,09_literature,Literature,Bickramjit Basu,"Research supports components, not claims",outputs/video/frames/09_literature.png,outputs/presentation/rendered/slide-09.png,43
+10,10_formal_results,Formal Results,Swarnaditya Maitra,"ViT wins accuracy, not speed",outputs/video/frames/10_formal_results.png,outputs/presentation/rendered/slide-10.png | outputs/evaluation/model_comparison.png | outputs/evaluation/confusion_matrix_vit.png,141
+11,11_known_formal_error,Class and Failure Analysis,Vijay Agnihotri,One grenade crossed the class boundary,outputs/video/frames/11_known_formal_error.png,outputs/presentation/rendered/slide-11.png | outputs/demo_cases/formal_known_failure/evidence_overlay.jpg | outputs/demo_cases/formal_known_failure/occlusion_heatmap.jpg,64
+12,12_external_audit,External Generalization Audit,Myetchae Thu,External audit breaks confidence,outputs/video/frames/12_external_audit.png,outputs/presentation/rendered/slide-12.png | outputs/demo_cases/external_safe_domain_shift/evidence_overlay.jpg | outputs/demo_cases/external_safe_domain_shift/occlusion_heatmap.jpg,83
+13,13_demo_workflow,Demo Workflow,Bickramjit Basu,One workspace carries a case from upload to audit,outputs/video/frames/13_demo_workflow.png,outputs/presentation/rendered/slide-13.png,49
+14,14_safe_approve,Demo Case,Bickramjit Basu,Safe creative routes to APPROVE,outputs/video/frames/14_safe_approve.png,outputs/app/app_safe_result.png | data/capstone_dataset/test/safe/safe-77c35d499df2417f.jpg | outputs/demo_cases/formal_safe/evidence_overlay.jpg,50
+15,15_firearm_block,Demo Case,Bickramjit Basu,Firearm evidence routes to BLOCK,outputs/video/frames/15_firearm_block.png,outputs/app/app_firearm_result.png | outputs/demo_cases/formal_firearms/evidence_overlay.jpg | outputs/demo_cases/formal_firearms/occlusion_heatmap.jpg,45
+16,16_explosive_block,Demo Case,Bickramjit Basu,Explosive evidence routes to BLOCK,outputs/video/frames/16_explosive_block.png,data/capstone_dataset/test/explosives/explosives-808678dfe3e2b9d6.jpg | outputs/demo_cases/formal_explosives/evidence_overlay.jpg,52
+17,17_financial_review,Demo Case,Bickramjit Basu,Financial promotion routes to REVIEW,outputs/video/frames/17_financial_review.png,outputs/app/app_financial_result.png | outputs/demo_cases/formal_financial_promotion/evidence_overlay.jpg | outputs/demo_cases/formal_financial_promotion/occlusion_heatmap.jpg,53
+18,18_risks_controls,Risks and Controls,Myetchae Thu,Controls needed before an MVP trial,outputs/video/frames/18_risks_controls.png,outputs/presentation/rendered/slide-14.png,77
+19,19_next_steps,Next Steps to MVP,Swarnaditya Maitra,A recommended 10-week path to MVP,outputs/video/frames/19_next_steps.png,outputs/presentation/rendered/slide-15.png,92

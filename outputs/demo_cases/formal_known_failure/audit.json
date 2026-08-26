@@ -1,0 +1,121 @@
+{
+  "analysis": {
+    "applied_thresholds": {
+      "explosives": 0.1727632618375518,
+      "financial_promotion": 0.9946029323485182,
+      "firearms": 0.9913563345650912,
+      "review": 0.35,
+      "safe": 0.5,
+      "uncertainty_margin": 0.12
+    },
+    "classifier_scores": {
+      "explosives": 0.08082367244311502,
+      "financial_promotion": 0.006585840811134975,
+      "firearms": 0.8726753648065873,
+      "safe": 0.039915121939162926
+    },
+    "decision": {
+      "classifier_scores": {
+        "explosives": 0.08082367244311502,
+        "financial_promotion": 0.006585840811134975,
+        "firearms": 0.8726753648065873,
+        "safe": 0.039915121939162926
+      },
+      "fused_scores": {
+        "explosives": 0.23936432441099198,
+        "financial_promotion": 0.006585840811135002,
+        "firearms": 0.8899755717309932,
+        "safe": 0.039915121939162926
+      },
+      "model_version": "vit-frozen-063c6c38a5d8-logreg-v1",
+      "policy_version": "1.0.0-pilot",
+      "primary_label": "firearms",
+      "primary_score": 0.8899755717309932,
+      "review_reasons": [
+        "Object context: grenade (0.36)",
+        "Object context: shotgun (0.30)",
+        "Restricted-class evidence crossed the review threshold"
+      ],
+      "verdict": "REVIEW"
+    },
+    "detections": [
+      {
+        "box": [
+          135.1929473876953,
+          92.8958740234375,
+          203.31875610351562,
+          252.72964477539062
+        ],
+        "label": "grenade",
+        "score": 0.35933586955070496
+      },
+      {
+        "box": [
+          -0.17513084411621094,
+          -0.13785076141357422,
+          177.17189025878906,
+          415.8601989746094
+        ],
+        "label": "rifle shotgun",
+        "score": 0.30194395780563354
+      },
+      {
+        "box": [
+          134.32032775878906,
+          86.09037017822266,
+          270.5685119628906,
+          252.43443298339844
+        ],
+        "label": "ammunition",
+        "score": 0.3387475311756134
+      },
+      {
+        "box": [
+          134.1956329345703,
+          85.88961029052734,
+          270.83599853515625,
+          252.6317138671875
+        ],
+        "label": "explosive device",
+        "score": 0.3010099232196808
+      },
+      {
+        "box": [
+          191.28781127929688,
+          86.5802230834961,
+          270.3449401855469,
+          243.0892791748047
+        ],
+        "label": "grenade",
+        "score": 0.3118828237056732
+      }
+    ],
+    "input_size": [
+      416,
+      416
+    ],
+    "latency_ms": {
+      "classification": 80.86641598492861,
+      "detection": 1844.9003749992698,
+      "explanation": 698.6172501929104,
+      "ocr": 0.0,
+      "total": 2628.8603330031037
+    },
+    "ocr": {
+      "engine": "disabled",
+      "text": "",
+      "tokens": []
+    }
+  },
+  "case": {
+    "case_id": "formal_known_failure",
+    "detector": true,
+    "expected_label": "explosives",
+    "explain": true,
+    "ocr": false,
+    "path": "data/capstone_dataset/test/explosives/explosives-a847a50b677d3214.jpg",
+    "scope": "formal grouped test failure"
+  },
+  "classifier_prediction": "firearms",
+  "expected_label": "explosives"
+}

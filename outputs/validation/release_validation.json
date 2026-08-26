@@ -1,0 +1,104 @@
+{
+  "all_checks_passed": true,
+  "check_count": 10,
+  "checks": {
+    "capstone_dataset": {
+      "blocked_local_file_count": 216,
+      "discovered_image_count": 288,
+      "expected_registry_row_count": 288,
+      "file_hashes_checked": 288,
+      "full_local_dataset_present": true,
+      "issue_count": 0,
+      "issues": [],
+      "mode": "full_local",
+      "passed": true,
+      "public_artifact_count": 72,
+      "registered_file_count": 288,
+      "registry_row_count": 288
+    },
+    "notebook_execution": {
+      "code_cell_count": 22,
+      "executed_code_cell_count": 22,
+      "issue_count": 0,
+      "issues": [],
+      "passed": true
+    },
+    "presentation_archive": {
+      "expected_slide_count": 15,
+      "issue_count": 0,
+      "issues": [],
+      "passed": true,
+      "slide_count": 15
+    },
+    "required_deliverables": {
+      "issue_count": 0,
+      "issues": [],
+      "passed": true,
+      "required_count": 6,
+      "sizes_bytes": {
+        "final_notebook": 1717855,
+        "final_subtitles": 11020,
+        "final_video": 17388175,
+        "presentation_pptx": 1464964,
+        "proposal_pdf": 140242,
+        "report_pdf": 16801
+      }
+    },
+    "stale_duplicate_aliases": {
+      "existing_alias_pairs_checked": 0,
+      "issue_count": 0,
+      "issues": [],
+      "passed": true
+    },
+    "structured_files": {
+      "csv_files_checked": 18,
+      "issue_count": 0,
+      "issues": [],
+      "json_files_checked": 27,
+      "passed": true
+    },
+    "tracked_file_inventory": {
+      "issue_count": 0,
+      "issues": [],
+      "passed": true,
+      "tracked_file_count": 275
+    },
+    "tracked_release_policy": {
+      "absolute_path_file_count": 0,
+      "blocked_image_count": 0,
+      "cache_count": 0,
+      "issue_count": 0,
+      "issues": [],
+      "large_file_limit_bytes": 104857600,
+      "oversized_file_count": 0,
+      "passed": true,
+      "secret_count": 0,
+      "tracked_file_count": 275
+    },
+    "video_artifacts": {
+      "issue_count": 0,
+      "issues": [],
+      "passed": true,
+      "sizes_bytes": {
+        "final_subtitles": 11020,
+        "final_video": 17388175
+      }
+    },
+    "wikimedia_dataset": {
+      "expected_retained_count": 26,
+      "file_hashes_checked": 26,
+      "issue_count": 0,
+      "issues": [],
+      "local_image_count": 27,
+      "manifest_row_count": 27,
+      "passed": true,
+      "registry_row_count": 27,
+      "retained_file_count": 26
+    }
+  },
+  "failed_check_count": 0,
+  "failed_checks": [],
+  "generated_at_utc": "2026-08-26T18:34:55.687174+00:00",
+  "output": "outputs/validation/release_validation.json",
+  "schema_version": "1.0.0"
+}
