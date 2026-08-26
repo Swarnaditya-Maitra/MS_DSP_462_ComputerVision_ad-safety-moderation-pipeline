@@ -130,7 +130,7 @@ Interactive API documentation is served at <http://127.0.0.1:8000/docs>.
 python -m pytest -q
 ```
 
-The current source-only release passes 37 tests and skips one pinned-snapshot integration check before model download. After the pinned snapshots are downloaded, all 38 tests run. The tests cover preprocessing safeguards, animated-image rejection, effective-threshold auditing, policy behavior, feature interfaces, Streamlit state and chart helpers, and FastAPI input handling.
+The current source-only release passes 49 tests and skips one pinned-snapshot integration check before model download. After the pinned snapshots are downloaded, all 50 tests run. The tests cover preprocessing safeguards, animated-image rejection, effective-threshold auditing, policy behavior, model-readiness checks, feature interfaces, Streamlit state and chart helpers, and FastAPI input handling.
 
 ## Evidence and sources
 

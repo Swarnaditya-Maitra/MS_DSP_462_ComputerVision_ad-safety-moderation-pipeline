@@ -8,7 +8,7 @@ import shutil
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Iterable, Mapping, Sequence
+from typing import Any, Iterable, Mapping, MutableMapping, Sequence
 
 import plotly.graph_objects as go
 import streamlit as st
@@ -22,6 +22,12 @@ if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
 from ad_safety.paths import CONFIG_DIR, MODEL_DIR  # noqa: E402
+from ad_safety.model_assets import (  # noqa: E402
+    DETECTOR_REPO_ID,
+    VISUAL_BACKBONE_REPO_ID,
+    file_ready,
+    model_snapshot_ready,
+)
 from ad_safety.preprocessing import ImageValidationError, load_image  # noqa: E402
 
 
@@ -135,6 +141,27 @@ def _analysis_identity(
     source_id = f"{Path(filename).name}:{payload_sha}"
     fingerprint = json.dumps({"source": source_id, **dict(options)}, sort_keys=True)
     return source_id, fingerprint
+
+
+def _analysis_state_for_source(
+    state_store: MutableMapping[str, Any], source_id: str
+) -> Mapping[str, Any] | None:
+    """Drop a saved decision immediately when the uploaded bytes or name change."""
+    state = state_store.get("analysis_state")
+    if state and state.get("source_id") != source_id:
+        state_store.pop("analysis_state", None)
+        return None
+    return state
+
+
+def _analysis_state_for_upload(
+    state_store: MutableMapping[str, Any], uploaded: Any | None
+) -> Mapping[str, Any] | None:
+    """Clear a saved decision when the uploader no longer contains a file."""
+    if uploaded is None:
+        state_store.pop("analysis_state", None)
+        return None
+    return state_store.get("analysis_state")
 
 
 def _display_label(config: Mapping[str, Any], label: str) -> str:
@@ -331,6 +358,20 @@ def build_confusion_figure(bundle: Mapping[str, Any]) -> go.Figure:
     return _chart_style(fig, height=350, title="ViT confusion matrix, n=48")
 
 
+def _confusion_rows(bundle: Mapping[str, Any]) -> list[dict[str, Any]]:
+    models = bundle.get("evaluation", {}).get("models", [])
+    selected = next((model for model in models if model.get("key") == "vit"), None)
+    matrix = (selected or {}).get("test_metrics", {}).get("confusion_matrix")
+    if not matrix:
+        return []
+    labels = [_compact_label(label) for label in LABEL_ORDER]
+    return [
+        {"actual": actual, "predicted": predicted, "count": int(matrix[row][column])}
+        for row, actual in enumerate(labels)
+        for column, predicted in enumerate(labels)
+    ]
+
+
 def build_threshold_recall_figure(bundle: Mapping[str, Any]) -> go.Figure:
     points = bundle.get("formal", {}).get("threshold_operating_points", {})
     labels = ("firearms", "explosives", "financial_promotion")
@@ -494,10 +535,23 @@ def _render_sidebar(config: Mapping[str, Any], bundle: Mapping[str, Any]) -> tup
     st.sidebar.markdown("---")
     st.sidebar.markdown("## System readiness")
     artifact = MODEL_DIR / "vit_policy_head.joblib"
-    if artifact.is_file():
-        st.sidebar.success("Classifier artifact ready")
+    classifier_ready = file_ready(artifact)
+    backbone_ready = model_snapshot_ready(VISUAL_BACKBONE_REPO_ID)
+    detector_ready = model_snapshot_ready(DETECTOR_REPO_ID)
+    if classifier_ready:
+        st.sidebar.success("Classifier head ready")
     else:
-        st.sidebar.warning("Classifier artifact missing")
+        st.sidebar.warning("Classifier head missing")
+    if backbone_ready:
+        st.sidebar.success("ViT backbone snapshot ready")
+    else:
+        st.sidebar.warning("ViT backbone snapshot missing")
+    if detector_ready:
+        st.sidebar.success("Detector snapshot ready")
+    elif run_detector:
+        st.sidebar.warning("Detector snapshot missing")
+    else:
+        st.sidebar.info("Detector snapshot unavailable; object context is off")
     if shutil.which("tesseract"):
         st.sidebar.success("Tesseract available")
     else:
@@ -525,10 +579,14 @@ def _render_formal_kpis(bundle: Mapping[str, Any]) -> None:
     safe_precision = vit.get("test_metrics", {}).get("per_class", {}).get("safe", {}).get("precision")
     p95 = vit.get("cpu_batch1_benchmark", {}).get("p95_ms")
     columns = st.columns(4)
-    columns[0].metric("Formal macro F1", f"{float(formal.get('macro_f1', 0)):.1%}", "n=48 untouched test")
-    columns[1].metric("Safe precision", f"{float(safe_precision or 0):.1%}", "12 safe test images")
-    columns[2].metric("Restricted recall", f"{float(formal.get('restricted_recall', 0)):.1%}", "argmax, 36 images")
-    columns[3].metric("Classifier p95", f"{float(p95 or 0):.1f} ms", "CPU batch 1 only")
+    columns[0].metric("Formal macro F1", f"{float(formal.get('macro_f1', 0)):.1%}")
+    columns[0].caption("Scope: n=48 untouched test images")
+    columns[1].metric("Safe precision", f"{float(safe_precision or 0):.1%}")
+    columns[1].caption("Scope: 12 safe test images")
+    columns[2].metric("Restricted recall", f"{float(formal.get('restricted_recall', 0)):.1%}")
+    columns[2].caption("Scope: argmax across 36 restricted images")
+    columns[3].metric("Classifier p95", f"{float(p95 or 0):.1f} ms")
+    columns[3].caption("Scope: CPU batch 1 only")
 
 
 def _render_pilot_evidence(bundle: Mapping[str, Any]) -> None:
@@ -600,6 +658,8 @@ def _render_pilot_evidence(bundle: Mapping[str, Any]) -> None:
             hide_index=True,
             width="stretch",
         )
+        st.markdown("**ViT confusion matrix**")
+        st.dataframe(_confusion_rows(bundle), hide_index=True, width="stretch")
 
 
 def _threshold_rows(thresholds: Mapping[str, float]) -> list[dict[str, Any]]:
@@ -697,12 +757,19 @@ def _render_results(
     ranked = sorted(result.decision.fused_scores.items(), key=lambda item: item[1], reverse=True)
     top_label, top_score = ranked[0]
     margin = top_score - ranked[1][1] if len(ranked) > 1 else top_score
-    metric_columns = st.columns(5)
-    metric_columns[0].metric("Total latency", f"{result.latency_ms['total']:.0f} ms", "one local run")
-    metric_columns[1].metric("Top numeric signal", _compact_label(top_label), f"{top_score:.1%} fused")
-    metric_columns[2].metric("Top-two margin", f"{margin:.1%}", "fused-score gap")
-    metric_columns[3].metric("Detector boxes", len(result.detections), "raw cues, not unique objects")
-    metric_columns[4].metric("Text tokens", len(result.ocr.tokens), f"engine: {result.ocr.engine}")
+    primary_metrics = st.columns(3)
+    primary_metrics[0].metric("Total latency", f"{result.latency_ms['total']:.0f} ms")
+    primary_metrics[0].caption("Scope: one local run")
+    primary_metrics[1].metric("Top numeric signal", _compact_label(top_label))
+    primary_metrics[1].caption(f"Value: {top_score:.1%} fused evidence")
+    primary_metrics[2].metric("Top-two margin", f"{margin:.1%}")
+    primary_metrics[2].caption("Meaning: fused-score gap")
+
+    evidence_metrics = st.columns(2)
+    evidence_metrics[0].metric("Detector boxes", len(result.detections))
+    evidence_metrics[0].caption("Scope: raw cues, not unique objects")
+    evidence_metrics[1].metric("Text tokens", len(result.ocr.tokens))
+    evidence_metrics[1].caption(f"Engine: {result.ocr.engine}")
 
     overview_tab, evidence_tab, timing_tab, benchmark_tab, audit_tab = st.tabs(
         ["Decision", "Evidence", "Timing", "Benchmark", "Audit"]
@@ -824,20 +891,22 @@ def _render_analyze(
         type=["jpg", "jpeg", "png", "webp"],
         help="Maximum encoded size: 20 MB. Maximum decoded size: 40 megapixels. Animated images are rejected.",
     )
+    _analysis_state_for_upload(st.session_state, uploaded)
     if uploaded is None:
         _render_pipeline_cards()
         st.info("Start with one creative. No upload leaves this device or persists after the session.")
         return
 
     payload = uploaded.getvalue()
+    option_snapshot = {"detector": run_detector, "ocr": run_ocr, "explanation": explain}
+    source_id, fingerprint = _analysis_identity(uploaded.name, payload, option_snapshot)
+    state = _analysis_state_for_source(st.session_state, source_id)
     try:
         preview = load_image(payload)
     except ImageValidationError as exc:
         st.error(str(exc))
         return
 
-    option_snapshot = {"detector": run_detector, "ocr": run_ocr, "explanation": explain}
-    source_id, fingerprint = _analysis_identity(uploaded.name, payload, option_snapshot)
     payload_sha = source_id.rsplit(":", 1)[1]
     st.caption(
         f"{Path(uploaded.name).name} | {len(payload) / 1024:.1f} KB | "
@@ -845,13 +914,24 @@ def _render_analyze(
     )
 
     run_clicked = st.button("Run policy analysis", type="primary", width="stretch")
-    state = st.session_state.get("analysis_state")
     if run_clicked:
         artifact = MODEL_DIR / "vit_policy_head.joblib"
-        if not artifact.is_file():
+        if not file_ready(artifact):
             st.error(
                 "The trained classifier artifact models/vit_policy_head.joblib is missing. "
                 "Complete the documented model setup before running moderation."
+            )
+            return
+        if not model_snapshot_ready(VISUAL_BACKBONE_REPO_ID):
+            st.error(
+                "The required ViT backbone snapshot is incomplete. Complete the documented "
+                "model setup before running moderation."
+            )
+            return
+        if run_detector and not model_snapshot_ready(DETECTOR_REPO_ID):
+            st.error(
+                "Object context is enabled, but the local detector snapshot is incomplete. "
+                "Complete the detector setup or turn off object context."
             )
             return
         try:
@@ -983,7 +1063,9 @@ def main() -> None:
     _inject_styles()
     config = load_policy_config()
     bundle = load_benchmark_data()
-    model_ready = (MODEL_DIR / "vit_policy_head.joblib").is_file()
+    model_ready = file_ready(MODEL_DIR / "vit_policy_head.joblib") and model_snapshot_ready(
+        VISUAL_BACKBONE_REPO_ID
+    )
     _render_header(model_ready=model_ready, evidence_ready=bool(bundle.get("available")))
     run_detector, run_ocr, explain = _render_sidebar(config, bundle)
 

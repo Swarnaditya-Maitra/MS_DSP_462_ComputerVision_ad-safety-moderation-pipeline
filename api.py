@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import hashlib
-import json
+import logging
+import secrets
 import shutil
 import sys
 from datetime import datetime, timezone
@@ -23,11 +24,17 @@ from ad_safety.preprocessing import (  # noqa: E402
     ImageValidationError,
     load_image,
 )
+from ad_safety.model_assets import (  # noqa: E402
+    DETECTOR_REPO_ID,
+    VISUAL_BACKBONE_REPO_ID,
+    file_ready,
+    model_snapshot_ready,
+)
 
 
 SERVICE_VERSION = "1.0.0"
 CLASSIFIER_ARTIFACT = PROJECT_ROOT / "models" / "vit_policy_head.joblib"
-MODEL_MANIFEST = PROJECT_ROOT / "models" / "pretrained_model_manifest.json"
+LOGGER = logging.getLogger(__name__)
 ALLOWED_CONTENT_TYPES = {
     "application/octet-stream",
     "image/jpeg",
@@ -67,43 +74,8 @@ def get_engine() -> Any:
     return _ENGINE
 
 
-def _model_snapshot_ready(repo_id: str) -> bool:
-    if not MODEL_MANIFEST.is_file():
-        return False
-    try:
-        manifest = json.loads(MODEL_MANIFEST.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
-        return False
-    row = next(
-        (
-            item
-            for item in manifest.get("models", [])
-            if item.get("repo_id") == repo_id
-        ),
-        None,
-    )
-    if row is None:
-        return False
-    snapshot = Path(str(row.get("local_snapshot", "")))
-    if not snapshot.is_absolute():
-        snapshot = PROJECT_ROOT / snapshot
-    required = {"model.safetensors", "config.json"}
-    if repo_id == "IDEA-Research/grounding-dino-tiny":
-        required.update(
-            {
-                "preprocessor_config.json",
-                "tokenizer_config.json",
-                "tokenizer.json",
-            }
-        )
-    return all((snapshot / filename).is_file() for filename in required)
-
-
 def _classifier_artifact_ready() -> bool:
-    try:
-        return CLASSIFIER_ARTIFACT.is_file() and CLASSIFIER_ARTIFACT.stat().st_size > 0
-    except OSError:
-        return False
+    return file_ready(CLASSIFIER_ARTIFACT)
 
 
 def _perform_analysis(payload: bytes, run_detector: bool, run_ocr: bool, explain: bool) -> Any:
@@ -121,7 +93,7 @@ def _perform_analysis(payload: bytes, run_detector: bool, run_ocr: bool, explain
 @app.get("/health", tags=["operations"])
 def health() -> dict[str, Any]:
     classifier_ready = _classifier_artifact_ready()
-    backbone_ready = _model_snapshot_ready("timm/vit_base_patch16_224.augreg2_in21k_ft_in1k")
+    backbone_ready = model_snapshot_ready(VISUAL_BACKBONE_REPO_ID)
     analysis_ready = classifier_ready and backbone_ready
     engine_loaded = _ENGINE is not None
     return {
@@ -133,7 +105,7 @@ def health() -> dict[str, Any]:
         "components": {
             "classifier_artifact": classifier_ready,
             "visual_backbone_snapshot": backbone_ready,
-            "detector_snapshot": _model_snapshot_ready("IDEA-Research/grounding-dino-tiny"),
+            "detector_snapshot": model_snapshot_ready(DETECTOR_REPO_ID),
             "detector_loaded": bool(engine_loaded and getattr(_ENGINE, "detector", None) is not None),
             "tesseract": shutil.which("tesseract") is not None,
         },
@@ -177,6 +149,16 @@ async def analyze(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail="The trained classifier artifact models/vit_policy_head.joblib is missing.",
         )
+    if not model_snapshot_ready(VISUAL_BACKBONE_REPO_ID):
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="The required ViT backbone snapshot is incomplete.",
+        )
+    if run_detector and not model_snapshot_ready(DETECTOR_REPO_ID):
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Object context was requested, but the detector snapshot is incomplete.",
+        )
 
     try:
         result = await run_in_threadpool(_perform_analysis, payload, run_detector, run_ocr, explain)
@@ -188,9 +170,11 @@ async def analyze(
             detail="A required local model component could not start.",
         ) from exc
     except Exception as exc:
+        error_reference = secrets.token_hex(4).upper()
+        LOGGER.exception("Analysis failed [reference=%s]", error_reference)
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Analysis failed safely ({type(exc).__name__}).",
+            detail=f"Analysis failed safely. Reference {error_reference}.",
         ) from exc
 
     audit = result.audit_record()

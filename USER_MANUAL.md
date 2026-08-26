@@ -148,10 +148,10 @@ $env:KMP_DUPLICATE_LIB_OK = "TRUE"
 
 ## 6. Provision models, data, and the trained policy heads
 
-First check whether the runnable classifier already exists:
+First check whether the runnable classifier head and required ViT snapshot both exist:
 
 ```text
-python -c "from pathlib import Path; p=Path('models/vit_policy_head.joblib'); print('READY' if p.is_file() and p.stat().st_size else 'BUILD REQUIRED')"
+python -c "from pathlib import Path; from ad_safety.model_assets import VISUAL_BACKBONE_REPO_ID, file_ready, model_snapshot_ready; print('READY' if file_ready(Path('models/vit_policy_head.joblib')) and model_snapshot_ready(VISUAL_BACKBONE_REPO_ID) else 'BUILD REQUIRED')"
 ```
 
 If the result is `BUILD REQUIRED`, run the complete local build:
@@ -203,7 +203,7 @@ Open [http://127.0.0.1:8501](http://127.0.0.1:8501).
 
 The header should show:
 
-- `MODEL READY` after the trained ViT head exists;
+- `MODEL READY` only after the trained ViT head is nonempty and the pinned ViT backbone snapshot is complete;
 - `EVIDENCE LOADED` when the saved benchmark JSON is available; and
 - `NOT PRODUCTION-READY`, which is an intentional scope warning.
 

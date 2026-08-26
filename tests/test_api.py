@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import io
+import re
 from pathlib import Path
 from types import SimpleNamespace
 from typing import Any
@@ -43,6 +44,10 @@ def _animated_webp_bytes() -> bytes:
     return buffer.getvalue()
 
 
+def _mark_model_snapshots_ready(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(api_module, "model_snapshot_ready", lambda repo_id: True)
+
+
 def test_health_does_not_construct_heavy_engine(
     client: TestClient, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -78,6 +83,20 @@ def test_corrupt_api_input_is_rejected_before_engine_load(
     assert "readable" in response.json()["detail"]
 
 
+def test_unsupported_content_type_returns_415_before_engine_load(
+    client: TestClient, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(api_module, "_build_engine", lambda: pytest.fail("engine should not load"))
+
+    response = client.post(
+        "/analyze",
+        files={"file": ("creative.txt", _png_bytes(), "text/plain")},
+    )
+
+    assert response.status_code == 415
+    assert response.json()["detail"] == "Only JPEG, PNG, and WebP uploads are supported."
+
+
 def test_oversized_api_input_is_rejected_before_decode(
     client: TestClient, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -103,12 +122,72 @@ def test_animated_api_input_is_rejected_before_engine_load(
     assert "Animated images" in response.json()["detail"]
 
 
+def test_missing_classifier_head_returns_503_before_engine_load(
+    client: TestClient, monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    monkeypatch.setattr(api_module, "CLASSIFIER_ARTIFACT", tmp_path / "missing.joblib")
+    monkeypatch.setattr(api_module, "_build_engine", lambda: pytest.fail("engine should not load"))
+
+    response = client.post(
+        "/analyze?run_detector=false&run_ocr=false&explain=false",
+        files={"file": ("creative.png", _png_bytes(), "image/png")},
+    )
+
+    assert response.status_code == 503
+    assert "classifier artifact" in response.json()["detail"]
+
+
+def test_missing_vit_snapshot_returns_503_before_engine_load(
+    client: TestClient, monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    artifact = tmp_path / "vit_policy_head.joblib"
+    artifact.write_bytes(b"test sentinel")
+    monkeypatch.setattr(api_module, "CLASSIFIER_ARTIFACT", artifact)
+    monkeypatch.setattr(api_module, "model_snapshot_ready", lambda repo_id: False)
+    monkeypatch.setattr(api_module, "_build_engine", lambda: pytest.fail("engine should not load"))
+
+    response = client.post(
+        "/analyze?run_detector=false&run_ocr=false&explain=false",
+        files={"file": ("creative.png", _png_bytes(), "image/png")},
+    )
+
+    assert response.status_code == 503
+    assert response.json()["detail"] == "The required ViT backbone snapshot is incomplete."
+    assert api_module._ENGINE is None
+
+
+def test_requested_detector_with_missing_snapshot_returns_503_before_engine_load(
+    client: TestClient, monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    artifact = tmp_path / "vit_policy_head.joblib"
+    artifact.write_bytes(b"test sentinel")
+    monkeypatch.setattr(api_module, "CLASSIFIER_ARTIFACT", artifact)
+    monkeypatch.setattr(
+        api_module,
+        "model_snapshot_ready",
+        lambda repo_id: repo_id == api_module.VISUAL_BACKBONE_REPO_ID,
+    )
+    monkeypatch.setattr(api_module, "_build_engine", lambda: pytest.fail("engine should not load"))
+
+    response = client.post(
+        "/analyze?run_detector=true&run_ocr=false&explain=false",
+        files={"file": ("creative.png", _png_bytes(), "image/png")},
+    )
+
+    assert response.status_code == 503
+    assert response.json()["detail"] == (
+        "Object context was requested, but the detector snapshot is incomplete."
+    )
+    assert api_module._ENGINE is None
+
+
 def test_valid_request_returns_audit_with_fake_engine(
     client: TestClient, monkeypatch: pytest.MonkeyPatch, tmp_path: Path
 ) -> None:
     artifact = tmp_path / "vit_policy_head.joblib"
     artifact.write_bytes(b"test sentinel")
     monkeypatch.setattr(api_module, "CLASSIFIER_ARTIFACT", artifact)
+    _mark_model_snapshots_ready(monkeypatch)
 
     class FakeResult:
         def audit_record(self) -> dict[str, Any]:
@@ -159,6 +238,7 @@ def test_runtime_error_does_not_expose_internal_detail(
     artifact = tmp_path / "vit_policy_head.joblib"
     artifact.write_bytes(b"test sentinel")
     monkeypatch.setattr(api_module, "CLASSIFIER_ARTIFACT", artifact)
+    _mark_model_snapshots_ready(monkeypatch)
     monkeypatch.setattr(
         api_module,
         "_perform_analysis",
@@ -172,3 +252,28 @@ def test_runtime_error_does_not_expose_internal_detail(
 
     assert response.status_code == 503
     assert "secret.bin" not in response.json()["detail"]
+
+
+def test_unexpected_error_returns_opaque_reference(
+    client: TestClient, monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    artifact = tmp_path / "vit_policy_head.joblib"
+    artifact.write_bytes(b"test sentinel")
+    monkeypatch.setattr(api_module, "CLASSIFIER_ARTIFACT", artifact)
+    _mark_model_snapshots_ready(monkeypatch)
+    monkeypatch.setattr(
+        api_module,
+        "_perform_analysis",
+        lambda *args, **kwargs: (_ for _ in ()).throw(ValueError("private implementation detail")),
+    )
+
+    response = client.post(
+        "/analyze?run_detector=false&run_ocr=false&explain=false",
+        files={"file": ("creative.png", _png_bytes(), "image/png")},
+    )
+
+    assert response.status_code == 500
+    detail = response.json()["detail"]
+    assert re.fullmatch(r"Analysis failed safely\. Reference [0-9A-F]{8}\.", detail)
+    assert "ValueError" not in detail
+    assert "private implementation detail" not in detail
