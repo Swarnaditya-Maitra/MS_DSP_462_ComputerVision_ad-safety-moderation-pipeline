@@ -1,0 +1,13 @@
+label,split,source_dataset,samples,source_groups,synthetic_samples
+explosives,test,rajshivanshuu/weapons_set1,12,12,0
+explosives,train,rajshivanshuu/weapons_set1,48,48,0
+explosives,val,rajshivanshuu/weapons_set1,12,12,0
+financial_promotion,test,project_generated_financial_creatives_v1,12,4,12
+financial_promotion,train,project_generated_financial_creatives_v1,48,16,48
+financial_promotion,val,project_generated_financial_creatives_v1,12,4,12
+firearms,test,rajshivanshuu/weapons_set1,12,12,0
+firearms,train,rajshivanshuu/weapons_set1,48,48,0
+firearms,val,rajshivanshuu/weapons_set1,12,12,0
+safe,test,EthanGabis/ADautoGen-DS,12,6,12
+safe,train,EthanGabis/ADautoGen-DS,48,32,48
+safe,val,EthanGabis/ADautoGen-DS,12,9,12

@@ -1,0 +1,28 @@
+local_path,reviewed_label,include_in_spot_check,rationale
+data/wikimedia_pilot/train/safe/safe_train_9d2e2ef3fe4a.jpg,safe,true,historic baking-powder advertisement
+data/wikimedia_pilot/train/safe/safe_train_617511ad1a2f.jpg,safe,true,historic chewing-gum advertisement
+data/wikimedia_pilot/train/safe/safe_train_eb77534129f9.jpg,safe,true,historic food advertisement
+data/wikimedia_pilot/train/safe/safe_train_c456321d7b18.jpg,safe,true,historic shoe advertisement
+data/wikimedia_pilot/val/safe/safe_val_8b0372d1ceac.jpg,safe,true,bus with travel advertising
+data/wikimedia_pilot/val/safe/safe_val_b8676660a3e4.jpg,safe,true,historic travel advertisement
+data/wikimedia_pilot/test/safe/safe_test_5f8657d82e0b.jpg,safe,true,historic automobile advertisement
+data/wikimedia_pilot/train/firearms/firearms_train_01b73dfab038.jpg,firearms,true,firearm advertisement
+data/wikimedia_pilot/train/firearms/firearms_train_83fbf1b12e72.jpg,firearms,true,firearm advertisement
+data/wikimedia_pilot/train/firearms/firearms_train_a0c6005948ed.jpg,firearms,true,ammunition advertisement
+data/wikimedia_pilot/train/firearms/firearms_train_dc65943ea0be.jpg,firearms,true,firearm advertisement
+data/wikimedia_pilot/val/firearms/firearms_val_a1b84b3316e8.jpg,firearms,true,firearm display
+data/wikimedia_pilot/val/firearms/firearms_val_381b071aca85.jpg,firearms,true,rifle display
+data/wikimedia_pilot/val/firearms/firearms_val_a7122c3120ca.jpg,firearms,true,rifle display
+data/wikimedia_pilot/val/firearms/firearms_val_21db7f2e05ab.jpg,firearms,true,handgun display
+data/wikimedia_pilot/test/firearms/firearms_test_7d806f2bc687.jpg,firearms,true,revolver photograph
+data/wikimedia_pilot/test/firearms/firearms_test_b97b4eccd9c2.jpg,firearms,true,revolver photograph
+data/wikimedia_pilot/test/firearms/firearms_test_8f545103cb00.jpg,firearms,true,revolver photograph
+data/wikimedia_pilot/train/explosives/explosives_train_15618430cce2.jpg,explosives,true,fireworks imagery used as a low-strength explosive cue
+data/wikimedia_pilot/train/explosives/explosives_train_73cb665d7a67.jpg,explosives,true,grenade discharger and grenade are visible
+data/wikimedia_pilot/train/explosives/explosives_train_7c750c3977f9.jpg,exclude,false,search-title collision with no visible explosive content
+data/wikimedia_pilot/val/explosives/explosives_val_dd020909c102.jpg,explosives,true,unexploded ordnance is visible
+data/wikimedia_pilot/val/explosives/explosives_val_1599c9e8a92a.jpg,explosives,true,aircraft explosive ordnance is visible
+data/wikimedia_pilot/test/explosives/explosives_test_f3d73765d23b.jpg,explosives,true,bomb-squad containment vessel is a contextual edge case
+data/wikimedia_pilot/train/financial_promotion/financial_promotion_train_cf68dfd0fea9.jpg,financial_promotion,true,historic investment-company advertisement
+data/wikimedia_pilot/train/financial_promotion/financial_promotion_train_1aed323c38cb.jpg,financial_promotion,true,historic investment advertisement
+data/wikimedia_pilot/test/financial_promotion/financial_promotion_test_128923d1c757.jpg,financial_promotion,true,cryptocurrency trading interface

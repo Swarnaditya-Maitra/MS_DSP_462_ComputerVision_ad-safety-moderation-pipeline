@@ -1,0 +1,65 @@
+{
+  "class_counts": {
+    "explosives": 5,
+    "financial_promotion": 3,
+    "firearms": 11,
+    "safe": 7
+  },
+  "classification_report": {
+    "accuracy": 0.6538461538461539,
+    "explosives": {
+      "f1-score": 0.2222222222222222,
+      "precision": 0.25,
+      "recall": 0.2,
+      "support": 5.0
+    },
+    "financial_promotion": {
+      "f1-score": 0.5,
+      "precision": 1.0,
+      "recall": 0.3333333333333333,
+      "support": 3.0
+    },
+    "firearms": {
+      "f1-score": 0.9090909090909091,
+      "precision": 0.9090909090909091,
+      "recall": 0.9090909090909091,
+      "support": 11.0
+    },
+    "macro avg": {
+      "f1-score": 0.5548871063576946,
+      "precision": 0.6647727272727273,
+      "recall": 0.5391774891774892,
+      "support": 26.0
+    },
+    "safe": {
+      "f1-score": 0.5882352941176471,
+      "precision": 0.5,
+      "recall": 0.7142857142857143,
+      "support": 7.0
+    },
+    "weighted avg": {
+      "f1-score": 0.6434137757667169,
+      "precision": 0.6826923076923077,
+      "recall": 0.6538461538461539,
+      "support": 26.0
+    }
+  },
+  "classifier_accuracy": 0.6538461538461539,
+  "classifier_macro_f1": 0.5548871063576946,
+  "detector_enabled": true,
+  "financial_correct_review_rate": 0.3333333333333333,
+  "limitations": [
+    "The sample is small and selected through Wikimedia keyword search.",
+    "Historical advertisements dominate the safe and financial examples.",
+    "Image-level detector recall is not box-level mAP.",
+    "The source search produced one false explosive label, which manual review excluded.",
+    "Detector signals use an uncalibrated external score threshold and show a high false-positive rate."
+  ],
+  "policy_recomputed_from_saved_evidence": true,
+  "safe_policy_non_approve_rate": 0.42857142857142855,
+  "sample_count": 26,
+  "scope": "manually reviewed external Wikimedia diagnostic spot check; not a formal test set",
+  "weapon_detector_image_recall": 1.0,
+  "weapon_detector_nonweapon_false_positive_rate": 0.9,
+  "weapon_policy_block_rate": 0.4375
+}

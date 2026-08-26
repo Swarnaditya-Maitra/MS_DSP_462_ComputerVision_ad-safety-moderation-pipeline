@@ -1,0 +1,814 @@
+{
+  "dataset": {
+    "counts": {
+      "explosives": {
+        "test": 12,
+        "train": 48,
+        "val": 12
+      },
+      "financial_promotion": {
+        "test": 12,
+        "train": 48,
+        "val": 12
+      },
+      "firearms": {
+        "test": 12,
+        "train": 48,
+        "val": 12
+      },
+      "safe": {
+        "test": 12,
+        "train": 48,
+        "val": 12
+      }
+    },
+    "exact_hash_overlap_across_splits": 0,
+    "group_overlap_across_splits": 0,
+    "registry_sha256": "c5bad7b8d8ccbb8b91995b470e42f2cec834330dad9d5f450ad746a52f6bbcc2",
+    "rows": 288,
+    "source_groups": 215
+  },
+  "dataset_manifest": {
+    "builder_version": "1.0.0",
+    "known_limitations": [
+      "Class labels are confounded with data source and generator style.",
+      "weapons_set1 provides no per-image origin or rights metadata.",
+      "The financial class is code-generated and does not represent real ad-platform diversity.",
+      "ADautoGen images are Stable Diffusion v1.5 outputs, not real submitted ads.",
+      "Source labels were not independently expert-audited image by image."
+    ],
+    "labels": [
+      "safe",
+      "firearms",
+      "explosives",
+      "financial_promotion"
+    ],
+    "seed": 462,
+    "sources": [
+      {
+        "declared_synthetic": true,
+        "license": "MIT",
+        "license_scope": "README-level",
+        "parquet_sha256": "94eb1dad55a1d4e734529eaa7d96c7be8db31fdc8d7c030946a6ddc84b28accd",
+        "repo_id": "EthanGabis/ADautoGen-DS",
+        "revision": "fa7a7803265fc97926d7fab694bfc1e05c1fc7b4",
+        "url": "https://huggingface.co/datasets/EthanGabis/ADautoGen-DS"
+      },
+      {
+        "declared_synthetic": false,
+        "license": "OSL-3.0",
+        "license_scope": "repository metadata only; per-image provenance absent",
+        "repo_id": "rajshivanshuu/weapons_set1",
+        "revision": "d4d9dbc8272958820a3f6757e4c48d8987300271",
+        "synthetic_flag_caveat": "absence of a declaration is not proof that every image is real",
+        "url": "https://huggingface.co/datasets/rajshivanshuu/weapons_set1"
+      },
+      {
+        "declared_synthetic": true,
+        "license": "release terms not declared",
+        "repo_id": "project_generated_financial_creatives_v1",
+        "revision": "e5635c7ddfc9fb3e7ff6332ba68152884b42eb45990e932a16e69e3cdd8d1a57"
+      }
+    ],
+    "split_targets_per_label": {
+      "test": 12,
+      "train": 48,
+      "val": 12
+    },
+    "verification": {
+      "counts": {
+        "explosives": {
+          "test": 12,
+          "train": 48,
+          "val": 12
+        },
+        "financial_promotion": {
+          "test": 12,
+          "train": 48,
+          "val": 12
+        },
+        "firearms": {
+          "test": 12,
+          "train": 48,
+          "val": 12
+        },
+        "safe": {
+          "test": 12,
+          "train": 48,
+          "val": 12
+        }
+      },
+      "exact_hash_overlap_across_splits": 0,
+      "group_overlap_across_splits": 0,
+      "groups": 215,
+      "rows": 288
+    }
+  },
+  "limitations": [
+    "Every policy class is tied to one source or generator, so source-style confounding can inflate metrics.",
+    "The untouched test set has only 12 images per class and cannot establish production performance.",
+    "Validation has only 12 positives per class; meeting the recall target is not a population-level recall guarantee.",
+    "ADautoGen safe images and all financial creatives are synthetic, while weapons_set1 is not declared synthetic.",
+    "weapons_set1 lacks per-image provenance and rights; repository-level OSL-3.0 metadata is not enough for production reuse.",
+    "The weapons images are object-centric, while real ads may contain tiny, occluded, stylized, or contextual objects.",
+    "The financial creatives are rendered by one code path and do not cover real brands, layouts, languages, or jurisdictions.",
+    "The four-way label is single-class and omits mixed-policy ads, alcohol, tobacco, nudity, violence, and other proposal categories.",
+    "A classifier score is visual evidence, not proof that an ad violates law or platform policy.",
+    "Latency excludes file decoding, OCR, object detection, network transfer, and application rendering."
+  ],
+  "models": [
+    {
+      "artifact_path": "models/vit_policy_head.joblib",
+      "artifact_reload_max_abs_probability_difference": 0.0,
+      "artifact_sha256": "3473f8f6817a007fe4ede49e10f571a6b1942c468c09dfebec5037fa5da1c192",
+      "backbone": {
+        "feature_dim": 768,
+        "license": "apache-2.0",
+        "name": "vit_base_patch16_224.augreg2_in21k_ft_in1k",
+        "repo_id": "timm/vit_base_patch16_224.augreg2_in21k_ft_in1k",
+        "revision": "063c6c38a5d8510b2e57df480445e94b231dad2c",
+        "total_parameters": 85798656,
+        "trainable_backbone_parameters": 0,
+        "weight_sha256": "32aa17d6e17b43500f531d5f6dc9bc93e56ed8841b8a75682e1bb295d722405b"
+      },
+      "cpu_batch1_benchmark": {
+        "batch_size": 1,
+        "device": "cpu",
+        "latencies_ms": [
+          72.00466701760888,
+          68.57933301944286,
+          69.15454205591232,
+          69.12579096388072,
+          67.68395798280835,
+          69.5558749139309,
+          66.46637490484864,
+          68.623291910626,
+          71.50216598529369,
+          66.03591702878475,
+          65.54033397696912,
+          67.4165419768542,
+          70.25412505026907,
+          69.24008298665285,
+          69.17666702065617,
+          66.80625001899898,
+          70.8240830572322,
+          69.40954201854765,
+          66.18720793630928,
+          70.54016599431634
+        ],
+        "max_ms": 72.00466701760888,
+        "mean_ms": 68.70634579099715,
+        "measured_runs": 20,
+        "median_ms": 69.14016650989652,
+        "min_ms": 65.54033397696912,
+        "p95_ms": 71.52729103690945,
+        "scope": "decoded in-memory PIL image; preprocessing + frozen backbone + logistic head",
+        "throughput_images_per_second_from_mean": 14.55469634554533,
+        "torch_cpu_threads": 1,
+        "warmup_runs": 3
+      },
+      "display_name": "Frozen ViT + logistic head",
+      "feature_extraction": {
+        "batch_size": 8,
+        "cache_reused": true,
+        "device": "cpu",
+        "elapsed_seconds": 8.297698374954052,
+        "embedding_path": "outputs/evaluation/embeddings_vit.npz",
+        "embedding_sha256": "000a858f86eaffbd20b5a84ef9938dddcd60684731e03e954dea2ae2650720ff"
+      },
+      "head": {
+        "C": 0.1,
+        "class_weight": "balanced",
+        "fit_seconds": 0.00859062501695007,
+        "iterations_by_class": [
+          26
+        ],
+        "max_iter": 5000,
+        "solver": "lbfgs",
+        "type": "StandardScaler + multinomial logistic regression"
+      },
+      "key": "vit",
+      "model_version": "vit-frozen-063c6c38a5d8-logreg-v1",
+      "role": "predeclared primary",
+      "test_metrics": {
+        "accuracy": 0.9791666666666666,
+        "balanced_accuracy": 0.9791666666666666,
+        "confusion_matrix": [
+          [
+            12,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            12,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            11,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            12
+          ]
+        ],
+        "expected_calibration_error_10_bin": 0.030960561791798045,
+        "group_bootstrap_95pct": {
+          "accuracy_95pct": [
+            0.9361702127659575,
+            1.0
+          ],
+          "macro_f1_95pct": [
+            0.9365079365079365,
+            1.0
+          ],
+          "method": "stratified nonparametric bootstrap over source groups",
+          "replicates": 2000
+        },
+        "log_loss": 0.0836275544806492,
+        "macro_average_precision_ovr": 1.0,
+        "macro_f1": 0.9791304347826086,
+        "macro_precision": 0.9807692307692308,
+        "macro_recall": 0.9791666666666666,
+        "macro_roc_auc_ovr": 1.0,
+        "multiclass_brier": 0.04430328869595834,
+        "per_class": {
+          "explosives": {
+            "average_precision_ovr": 1.0,
+            "f1": 0.9565217391304348,
+            "precision": 1.0,
+            "recall": 0.9166666666666666,
+            "roc_auc_ovr": 1.0,
+            "support": 12
+          },
+          "financial_promotion": {
+            "average_precision_ovr": 1.0,
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "roc_auc_ovr": 1.0,
+            "support": 12
+          },
+          "firearms": {
+            "average_precision_ovr": 1.0,
+            "f1": 0.96,
+            "precision": 0.9230769230769231,
+            "recall": 1.0,
+            "roc_auc_ovr": 1.0,
+            "support": 12
+          },
+          "safe": {
+            "average_precision_ovr": 1.0,
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "roc_auc_ovr": 1.0,
+            "support": 12
+          }
+        },
+        "weighted_f1": 0.9791304347826086
+      },
+      "threshold_calibration_validation_only": {
+        "explosives": {
+          "candidate_count": 50,
+          "f1": 1.0,
+          "false_positive_rate": 0.0,
+          "fn": 0,
+          "fp": 0,
+          "negatives": 36,
+          "positives": 12,
+          "precision": 1.0,
+          "recall": 1.0,
+          "selection_rule": "validation recall >= 0.90; then maximize precision, F1, and threshold",
+          "specificity": 1.0,
+          "threshold": 0.1727632618375518,
+          "tn": 36,
+          "tp": 12
+        },
+        "financial_promotion": {
+          "candidate_count": 50,
+          "f1": 1.0,
+          "false_positive_rate": 0.0,
+          "fn": 0,
+          "fp": 0,
+          "negatives": 36,
+          "positives": 12,
+          "precision": 1.0,
+          "recall": 1.0,
+          "selection_rule": "validation recall >= 0.90; then maximize precision, F1, and threshold",
+          "specificity": 1.0,
+          "threshold": 0.9946029323485182,
+          "tn": 36,
+          "tp": 12
+        },
+        "firearms": {
+          "candidate_count": 50,
+          "f1": 1.0,
+          "false_positive_rate": 0.0,
+          "fn": 0,
+          "fp": 0,
+          "negatives": 36,
+          "positives": 12,
+          "precision": 1.0,
+          "recall": 1.0,
+          "selection_rule": "validation recall >= 0.90; then maximize precision, F1, and threshold",
+          "specificity": 1.0,
+          "threshold": 0.9913563345650912,
+          "tn": 36,
+          "tp": 12
+        }
+      },
+      "threshold_test_metrics": {
+        "explosives": {
+          "f1": 0.9565217391304348,
+          "false_positive_rate": 0.0,
+          "fn": 1,
+          "fp": 0,
+          "negatives": 36,
+          "positives": 12,
+          "precision": 1.0,
+          "recall": 0.9166666666666666,
+          "specificity": 1.0,
+          "threshold": 0.1727632618375518,
+          "tn": 36,
+          "tp": 11
+        },
+        "financial_promotion": {
+          "f1": 1.0,
+          "false_positive_rate": 0.0,
+          "fn": 0,
+          "fp": 0,
+          "negatives": 36,
+          "positives": 12,
+          "precision": 1.0,
+          "recall": 1.0,
+          "specificity": 1.0,
+          "threshold": 0.9946029323485182,
+          "tn": 36,
+          "tp": 12
+        },
+        "firearms": {
+          "f1": 0.9565217391304348,
+          "false_positive_rate": 0.0,
+          "fn": 1,
+          "fp": 0,
+          "negatives": 36,
+          "positives": 12,
+          "precision": 1.0,
+          "recall": 0.9166666666666666,
+          "specificity": 1.0,
+          "threshold": 0.9913563345650912,
+          "tn": 36,
+          "tp": 11
+        }
+      },
+      "thresholds": {
+        "explosives": 0.1727632618375518,
+        "financial_promotion": 0.9946029323485182,
+        "firearms": 0.9913563345650912
+      },
+      "validation_metrics": {
+        "accuracy": 0.9583333333333334,
+        "balanced_accuracy": 0.9583333333333334,
+        "confusion_matrix": [
+          [
+            12,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            12,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            10,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            12
+          ]
+        ],
+        "expected_calibration_error_10_bin": 0.04455257929857587,
+        "log_loss": 0.08556679199740069,
+        "macro_average_precision_ovr": 1.0,
+        "macro_f1": 0.958041958041958,
+        "macro_precision": 0.9642857142857143,
+        "macro_recall": 0.9583333333333334,
+        "macro_roc_auc_ovr": 1.0,
+        "multiclass_brier": 0.051495071334529345,
+        "per_class": {
+          "explosives": {
+            "average_precision_ovr": 1.0,
+            "f1": 0.9090909090909091,
+            "precision": 1.0,
+            "recall": 0.8333333333333334,
+            "roc_auc_ovr": 1.0,
+            "support": 12
+          },
+          "financial_promotion": {
+            "average_precision_ovr": 1.0,
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "roc_auc_ovr": 1.0,
+            "support": 12
+          },
+          "firearms": {
+            "average_precision_ovr": 1.0,
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "roc_auc_ovr": 1.0,
+            "support": 12
+          },
+          "safe": {
+            "average_precision_ovr": 1.0,
+            "f1": 0.9230769230769231,
+            "precision": 0.8571428571428571,
+            "recall": 1.0,
+            "roc_auc_ovr": 1.0,
+            "support": 12
+          }
+        },
+        "weighted_f1": 0.958041958041958
+      }
+    },
+    {
+      "artifact_path": "models/resnet50_policy_head.joblib",
+      "artifact_reload_max_abs_probability_difference": 0.0,
+      "artifact_sha256": "4690c0fc2c349811dfb14d8d450255bb2b54244a0a7e72a8a254b6893ae381e0",
+      "backbone": {
+        "feature_dim": 2048,
+        "license": "apache-2.0",
+        "name": "resnet50.a1_in1k",
+        "repo_id": "timm/resnet50.a1_in1k",
+        "revision": "767268603ca0cb0bfe326fa87277f19c419566ef",
+        "total_parameters": 23508032,
+        "trainable_backbone_parameters": 0,
+        "weight_sha256": "773525d5821de224f8f30c33377b7a795d7863e08522698200d3217d3f2a41bb"
+      },
+      "cpu_batch1_benchmark": {
+        "batch_size": 1,
+        "device": "cpu",
+        "latencies_ms": [
+          40.016707964241505,
+          37.478082929737866,
+          38.931290968321264,
+          36.24833305366337,
+          39.16962502989918,
+          36.3787499954924,
+          39.83008291106671,
+          40.97045795060694,
+          38.2355839246884,
+          38.14325004350394,
+          38.35687495302409,
+          37.799624959006906,
+          39.645333075895905,
+          38.4464580565691,
+          37.315124995075166,
+          37.58949995972216,
+          37.61729190591723,
+          36.819082917645574,
+          39.292915957048535,
+          38.79699995741248
+        ],
+        "max_ms": 40.97045795060694,
+        "mean_ms": 38.354068575426936,
+        "measured_runs": 20,
+        "median_ms": 38.296229438856244,
+        "min_ms": 36.24833305366337,
+        "p95_ms": 40.06439546355978,
+        "scope": "decoded in-memory PIL image; preprocessing + frozen backbone + logistic head",
+        "throughput_images_per_second_from_mean": 26.072853210694053,
+        "torch_cpu_threads": 1,
+        "warmup_runs": 3
+      },
+      "display_name": "Frozen ResNet50 + logistic head",
+      "feature_extraction": {
+        "batch_size": 8,
+        "cache_reused": true,
+        "device": "cpu",
+        "elapsed_seconds": 11.119634540984407,
+        "embedding_path": "outputs/evaluation/embeddings_resnet50.npz",
+        "embedding_sha256": "66049dfa9acb65046d9f2af1e263ef95dd81b1aab47a0765f97daf45f2ae2a9d"
+      },
+      "head": {
+        "C": 0.1,
+        "class_weight": "balanced",
+        "fit_seconds": 0.021567624993622303,
+        "iterations_by_class": [
+          28
+        ],
+        "max_iter": 5000,
+        "solver": "lbfgs",
+        "type": "StandardScaler + multinomial logistic regression"
+      },
+      "key": "resnet50",
+      "model_version": "resnet50-frozen-767268603ca0-logreg-v1",
+      "role": "predeclared CNN baseline",
+      "test_metrics": {
+        "accuracy": 0.875,
+        "balanced_accuracy": 0.875,
+        "confusion_matrix": [
+          [
+            9,
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            12,
+            0,
+            0
+          ],
+          [
+            2,
+            1,
+            9,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            12
+          ]
+        ],
+        "expected_calibration_error_10_bin": 0.07663113516588861,
+        "group_bootstrap_95pct": {
+          "accuracy_95pct": [
+            0.7708333333333334,
+            0.9592040816326529
+          ],
+          "macro_f1_95pct": [
+            0.7614682905100862,
+            0.9591728896103895
+          ],
+          "method": "stratified nonparametric bootstrap over source groups",
+          "replicates": 2000
+        },
+        "log_loss": 0.28757130433018485,
+        "macro_average_precision_ovr": 0.9659608620546121,
+        "macro_f1": 0.8731521739130435,
+        "macro_precision": 0.8728146853146853,
+        "macro_recall": 0.875,
+        "macro_roc_auc_ovr": 0.986111111111111,
+        "multiclass_brier": 0.17289641283421484,
+        "per_class": {
+          "explosives": {
+            "average_precision_ovr": 0.9223710317460316,
+            "f1": 0.75,
+            "precision": 0.75,
+            "recall": 0.75,
+            "roc_auc_ovr": 0.9652777777777778,
+            "support": 12
+          },
+          "financial_promotion": {
+            "average_precision_ovr": 1.0,
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "roc_auc_ovr": 1.0,
+            "support": 12
+          },
+          "firearms": {
+            "average_precision_ovr": 1.0,
+            "f1": 0.96,
+            "precision": 0.9230769230769231,
+            "recall": 1.0,
+            "roc_auc_ovr": 1.0,
+            "support": 12
+          },
+          "safe": {
+            "average_precision_ovr": 0.9414724164724164,
+            "f1": 0.782608695652174,
+            "precision": 0.8181818181818182,
+            "recall": 0.75,
+            "roc_auc_ovr": 0.9791666666666666,
+            "support": 12
+          }
+        },
+        "weighted_f1": 0.8731521739130436
+      },
+      "threshold_calibration_validation_only": {
+        "explosives": {
+          "candidate_count": 50,
+          "f1": 0.8461538461538461,
+          "false_positive_rate": 0.08333333333333333,
+          "fn": 1,
+          "fp": 3,
+          "negatives": 36,
+          "positives": 12,
+          "precision": 0.7857142857142857,
+          "recall": 0.9166666666666666,
+          "selection_rule": "validation recall >= 0.90; then maximize precision, F1, and threshold",
+          "specificity": 0.9166666666666666,
+          "threshold": 0.05629754364128617,
+          "tn": 33,
+          "tp": 11
+        },
+        "financial_promotion": {
+          "candidate_count": 50,
+          "f1": 1.0,
+          "false_positive_rate": 0.0,
+          "fn": 0,
+          "fp": 0,
+          "negatives": 36,
+          "positives": 12,
+          "precision": 1.0,
+          "recall": 1.0,
+          "selection_rule": "validation recall >= 0.90; then maximize precision, F1, and threshold",
+          "specificity": 1.0,
+          "threshold": 0.9974236076754509,
+          "tn": 36,
+          "tp": 12
+        },
+        "firearms": {
+          "candidate_count": 50,
+          "f1": 1.0,
+          "false_positive_rate": 0.0,
+          "fn": 0,
+          "fp": 0,
+          "negatives": 36,
+          "positives": 12,
+          "precision": 1.0,
+          "recall": 1.0,
+          "selection_rule": "validation recall >= 0.90; then maximize precision, F1, and threshold",
+          "specificity": 1.0,
+          "threshold": 0.9914425479883959,
+          "tn": 36,
+          "tp": 12
+        }
+      },
+      "threshold_test_metrics": {
+        "explosives": {
+          "f1": 0.7741935483870968,
+          "false_positive_rate": 0.19444444444444445,
+          "fn": 0,
+          "fp": 7,
+          "negatives": 36,
+          "positives": 12,
+          "precision": 0.631578947368421,
+          "recall": 1.0,
+          "specificity": 0.8055555555555556,
+          "threshold": 0.05629754364128617,
+          "tn": 29,
+          "tp": 12
+        },
+        "financial_promotion": {
+          "f1": 0.7368421052631579,
+          "false_positive_rate": 0.0,
+          "fn": 5,
+          "fp": 0,
+          "negatives": 36,
+          "positives": 12,
+          "precision": 1.0,
+          "recall": 0.5833333333333334,
+          "specificity": 1.0,
+          "threshold": 0.9974236076754509,
+          "tn": 36,
+          "tp": 7
+        },
+        "firearms": {
+          "f1": 0.9090909090909091,
+          "false_positive_rate": 0.0,
+          "fn": 2,
+          "fp": 0,
+          "negatives": 36,
+          "positives": 12,
+          "precision": 1.0,
+          "recall": 0.8333333333333334,
+          "specificity": 1.0,
+          "threshold": 0.9914425479883959,
+          "tn": 36,
+          "tp": 10
+        }
+      },
+      "thresholds": {
+        "explosives": 0.05629754364128617,
+        "financial_promotion": 0.9974236076754509,
+        "firearms": 0.9914425479883959
+      },
+      "validation_metrics": {
+        "accuracy": 0.9583333333333334,
+        "balanced_accuracy": 0.9583333333333334,
+        "confusion_matrix": [
+          [
+            12,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            12,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            10,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            12
+          ]
+        ],
+        "expected_calibration_error_10_bin": 0.04862301975527903,
+        "log_loss": 0.17747373395429486,
+        "macro_average_precision_ovr": 0.9812753219003219,
+        "macro_f1": 0.9572727272727273,
+        "macro_precision": 0.9615384615384616,
+        "macro_recall": 0.9583333333333334,
+        "macro_roc_auc_ovr": 0.9924768518518519,
+        "multiclass_brier": 0.08269255726404096,
+        "per_class": {
+          "explosives": {
+            "average_precision_ovr": 0.9543650793650793,
+            "f1": 0.9090909090909091,
+            "precision": 1.0,
+            "recall": 0.8333333333333334,
+            "roc_auc_ovr": 0.9791666666666667,
+            "support": 12
+          },
+          "financial_promotion": {
+            "average_precision_ovr": 1.0,
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "roc_auc_ovr": 1.0,
+            "support": 12
+          },
+          "firearms": {
+            "average_precision_ovr": 1.0,
+            "f1": 0.96,
+            "precision": 0.9230769230769231,
+            "recall": 1.0,
+            "roc_auc_ovr": 1.0,
+            "support": 12
+          },
+          "safe": {
+            "average_precision_ovr": 0.9707362082362082,
+            "f1": 0.96,
+            "precision": 0.9230769230769231,
+            "recall": 1.0,
+            "roc_auc_ovr": 0.9907407407407407,
+            "support": 12
+          }
+        },
+        "weighted_f1": 0.9572727272727272
+      }
+    }
+  ],
+  "protocol": {
+    "baseline_predeclared": "resnet50",
+    "fit_split": "train only",
+    "frozen_backbones": true,
+    "primary_model_predeclared": "vit",
+    "test_use": "single post-fit, post-calibration evaluation; never used for fitting or threshold selection",
+    "threshold_rule": "restricted-class recall >= 0.90; then maximize validation precision, F1, and threshold",
+    "threshold_selection_split": "validation only"
+  },
+  "run": {
+    "actual_feature_device": "cpu",
+    "cpu_threads": 1,
+    "created_at_utc": "2026-08-25T18:28:58.613303+00:00",
+    "hardware": "Apple M2 Max",
+    "mps_available": false,
+    "mps_built": true,
+    "packages": {
+      "Pillow": "12.3.0",
+      "joblib": "1.5.3",
+      "numpy": "2.1.3",
+      "pandas": "2.3.3",
+      "scikit-learn": "1.7.2",
+      "timm": "1.0.28",
+      "torch": "2.12.1",
+      "torchvision": "0.27.1"
+    },
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "python": "3.10.14",
+    "requested_feature_device": "cpu",
+    "seed": 462
+  }
+}

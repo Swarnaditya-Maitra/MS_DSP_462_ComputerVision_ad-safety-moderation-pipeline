@@ -1,0 +1,3 @@
+model,scope,device,batch_size,warmup_runs,measured_runs,torch_cpu_threads,mean_ms,median_ms,p95_ms,min_ms,max_ms,throughput_images_per_second_from_mean
+vit,decoded in-memory PIL image; preprocessing + frozen backbone + logistic head,cpu,1,3,20,1,68.70634579099715,69.14016650989652,71.52729103690945,65.54033397696912,72.00466701760888,14.55469634554533
+resnet50,decoded in-memory PIL image; preprocessing + frozen backbone + logistic head,cpu,1,3,20,1,38.354068575426936,38.296229438856244,40.06439546355978,36.24833305366337,40.97045795060694,26.072853210694053

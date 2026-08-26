@@ -1,0 +1,5 @@
+true_label,safe,firearms,explosives,financial_promotion
+safe,12,0,0,0
+firearms,0,12,0,0
+explosives,0,1,11,0
+financial_promotion,0,0,0,12

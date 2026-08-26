@@ -1,0 +1,28 @@
+{
+  "all_checks_passed": true,
+  "artifacts": {
+    "resnet50": {
+      "path": "models/resnet50_policy_head.joblib",
+      "reload_max_abs_probability_difference": 0.0,
+      "sha256": "4690c0fc2c349811dfb14d8d450255bb2b54244a0a7e72a8a254b6893ae381e0",
+      "trainable_backbone_parameters": 0
+    },
+    "vit": {
+      "path": "models/vit_policy_head.joblib",
+      "reload_max_abs_probability_difference": 0.0,
+      "sha256": "3473f8f6817a007fe4ede49e10f571a6b1942c468c09dfebec5037fa5da1c192",
+      "trainable_backbone_parameters": 0
+    }
+  },
+  "exact_hash_overlap_across_splits": 0,
+  "group_overlap_across_splits": 0,
+  "registry_hashes_recomputed": 288,
+  "registry_rows": 288,
+  "test_rows": 48,
+  "test_rows_per_class": {
+    "explosives": 12,
+    "financial_promotion": 12,
+    "firearms": 12,
+    "safe": 12
+  }
+}

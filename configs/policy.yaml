@@ -1,0 +1,112 @@
+policy_version: "1.0.0-pilot"
+model_labels:
+  - safe
+  - firearms
+  - explosives
+  - financial_promotion
+
+label_display_names:
+  safe: Safe / general advertising
+  firearms: Firearms and ammunition
+  explosives: Explosives and explosive devices
+  financial_promotion: Financial or cryptocurrency promotion
+
+actions:
+  safe: APPROVE
+  firearms: BLOCK
+  explosives: BLOCK
+  financial_promotion: REVIEW
+
+default_thresholds:
+  firearms: 0.65
+  explosives: 0.65
+  financial_promotion: 0.40
+  safe: 0.50
+  review: 0.35
+  uncertainty_margin: 0.12
+
+ocr_keywords:
+  firearms:
+    gun: 0.30
+    handgun: 0.45
+    pistol: 0.45
+    rifle: 0.45
+    ammunition: 0.40
+    ammo: 0.35
+  explosives:
+    bomb: 0.45
+    explosive: 0.45
+    grenade: 0.45
+    dynamite: 0.45
+    fireworks: 0.28
+  financial_promotion:
+    bitcoin: 0.42
+    crypto: 0.42
+    cryptocurrency: 0.45
+    invest: 0.25
+    investment: 0.28
+    profit: 0.25
+    returns: 0.25
+    trading: 0.28
+    forex: 0.35
+
+detector_context:
+  handgun:
+    policy_label: firearms
+    evidence_strength: 0.45
+    automatic_block: false
+  pistol:
+    policy_label: firearms
+    evidence_strength: 0.45
+    automatic_block: false
+  rifle:
+    policy_label: firearms
+    evidence_strength: 0.45
+    automatic_block: false
+  shotgun:
+    policy_label: firearms
+    evidence_strength: 0.45
+    automatic_block: false
+  ammunition:
+    policy_label: firearms
+    evidence_strength: 0.38
+    automatic_block: false
+  grenade:
+    policy_label: explosives
+    evidence_strength: 0.48
+    automatic_block: false
+  explosive device:
+    policy_label: explosives
+    evidence_strength: 0.48
+    automatic_block: false
+  bomb:
+    policy_label: explosives
+    evidence_strength: 0.48
+    automatic_block: false
+  fireworks:
+    policy_label: explosives
+    evidence_strength: 0.28
+    automatic_block: false
+  knife:
+    policy_label: firearms
+    evidence_strength: 0.25
+    automatic_block: false
+  scissors:
+    policy_label: firearms
+    evidence_strength: 0.12
+    automatic_block: false
+  bottle:
+    policy_label: null
+    evidence_strength: 0.0
+    automatic_block: false
+  wine glass:
+    policy_label: null
+    evidence_strength: 0.0
+    automatic_block: false
+
+limitations:
+  - Financial-promotion imagery is not proof of fraud, illegality, or regulatory status.
+  - Open-vocabulary Grounding DINO cues do not cover firearms or explosives comprehensively and remain uncalibrated outside the pilot domain.
+  - Attention and occlusion maps are qualitative evidence, not causal explanations.
+  - Formal metrics apply only to the source-confounded 288-image capstone benchmark and do not establish production readiness.
+  - The separate Wikimedia spot check is diagnostic evidence of domain shift, not a formal test set.

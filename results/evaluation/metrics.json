@@ -1,0 +1,80 @@
+{
+  "accuracy": 0.9791666666666666,
+  "balanced_accuracy": 0.9791666666666666,
+  "group_bootstrap_95pct": {
+    "accuracy_95pct": [
+      0.9361702127659575,
+      1.0
+    ],
+    "macro_f1_95pct": [
+      0.9365079365079365,
+      1.0
+    ],
+    "method": "stratified nonparametric bootstrap over source groups",
+    "replicates": 2000
+  },
+  "log_loss": 0.0836275544806492,
+  "macro_average_precision_ovr": 1.0,
+  "macro_f1": 0.9791304347826086,
+  "macro_precision": 0.9807692307692308,
+  "macro_recall": 0.9791666666666666,
+  "macro_roc_auc_ovr": 1.0,
+  "model": "vit",
+  "model_version": "vit-frozen-063c6c38a5d8-logreg-v1",
+  "multiclass_brier": 0.04430328869595834,
+  "restricted_recall": 0.9722222222222222,
+  "safe_false_positive_rate": 0.0,
+  "samples": 48,
+  "schema_version": "1.0.0",
+  "split": "untouched_test",
+  "threshold_operating_points": {
+    "explosives": {
+      "f1": 0.9565217391304348,
+      "false_positive_rate": 0.0,
+      "fn": 1,
+      "fp": 0,
+      "negatives": 36,
+      "positives": 12,
+      "precision": 1.0,
+      "recall": 0.9166666666666666,
+      "specificity": 1.0,
+      "threshold": 0.1727632618375518,
+      "tn": 36,
+      "tp": 11
+    },
+    "financial_promotion": {
+      "f1": 1.0,
+      "false_positive_rate": 0.0,
+      "fn": 0,
+      "fp": 0,
+      "negatives": 36,
+      "positives": 12,
+      "precision": 1.0,
+      "recall": 1.0,
+      "specificity": 1.0,
+      "threshold": 0.9946029323485182,
+      "tn": 36,
+      "tp": 12
+    },
+    "firearms": {
+      "f1": 0.9565217391304348,
+      "false_positive_rate": 0.0,
+      "fn": 1,
+      "fp": 0,
+      "negatives": 36,
+      "positives": 12,
+      "precision": 1.0,
+      "recall": 0.9166666666666666,
+      "specificity": 1.0,
+      "threshold": 0.9913563345650912,
+      "tn": 36,
+      "tp": 11
+    }
+  },
+  "thresholds_selected_on_validation_only": {
+    "explosives": 0.1727632618375518,
+    "financial_promotion": 0.9946029323485182,
+    "firearms": 0.9913563345650912
+  },
+  "weighted_f1": 0.9791304347826086
+}

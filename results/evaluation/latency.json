@@ -1,0 +1,24 @@
+{
+  "batch_size": 1,
+  "classifier_max_ms": 72.00466701760888,
+  "classifier_mean_ms": 68.70634579099715,
+  "classifier_median_ms": 69.14016650989652,
+  "classifier_min_ms": 65.54033397696912,
+  "classifier_p95_ms": 71.52729103690945,
+  "device": "cpu",
+  "exclusions": [
+    "file decoding",
+    "OCR",
+    "object detection",
+    "network transfer",
+    "application rendering"
+  ],
+  "hardware": "Apple M2 Max",
+  "measured_runs": 20,
+  "model": "vit",
+  "model_version": "vit-frozen-063c6c38a5d8-logreg-v1",
+  "protocol": "decoded in-memory PIL image; preprocessing + frozen backbone + logistic head",
+  "schema_version": "1.0.0",
+  "torch_cpu_threads": 1,
+  "warmup_runs": 3
+}

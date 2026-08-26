@@ -1,0 +1,34 @@
+{
+  "models": [
+    {
+      "repo_id": "timm/vit_base_patch16_224.augreg2_in21k_ft_in1k",
+      "revision": "063c6c38a5d8510b2e57df480445e94b231dad2c",
+      "local_snapshot": ".cache/huggingface/hub/models--timm--vit_base_patch16_224.augreg2_in21k_ft_in1k/snapshots/063c6c38a5d8510b2e57df480445e94b231dad2c",
+      "license": "apache-2.0",
+      "snapshot_sha256": "e19b7516e8c2b523f452598f6add160b8f80450f1412feb68924e6a957a1ea9f",
+      "snapshot_bytes": 692616164,
+      "snapshot_files": 5,
+      "downloads_recorded_at": "2026-08-26T10:33:26.699155+00:00"
+    },
+    {
+      "repo_id": "timm/resnet50.a1_in1k",
+      "revision": "767268603ca0cb0bfe326fa87277f19c419566ef",
+      "local_snapshot": ".cache/huggingface/hub/models--timm--resnet50.a1_in1k/snapshots/767268603ca0cb0bfe326fa87277f19c419566ef",
+      "license": "apache-2.0",
+      "snapshot_sha256": "4421e496a8e63ea21d10d905320a5d8d1442996f91bed429e9f2f0f000390488",
+      "snapshot_bytes": 205055737,
+      "snapshot_files": 5,
+      "downloads_recorded_at": "2026-08-26T10:33:26.810587+00:00"
+    },
+    {
+      "repo_id": "IDEA-Research/grounding-dino-tiny",
+      "revision": "a2bb814dd30d776dcf7e30523b00659f4f141c71",
+      "local_snapshot": ".cache/huggingface/hub/models--IDEA-Research--grounding-dino-tiny/snapshots/a2bb814dd30d776dcf7e30523b00659f4f141c71",
+      "license": "apache-2.0",
+      "snapshot_sha256": "1d9b6d4538c3dfbc30cc8c1a9defeedfde8e57e540c4901e4ee3e6bf16b804d8",
+      "snapshot_bytes": 1382224246,
+      "snapshot_files": 11,
+      "downloads_recorded_at": "2026-08-26T10:33:27.579395+00:00"
+    }
+  ]
+}

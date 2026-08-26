@@ -1,0 +1,7 @@
+model,label,threshold,selection_split,target_validation_recall,validation_precision,validation_recall,validation_f1,validation_fp,validation_fn,test_precision,test_recall,test_f1,test_fp,test_fn
+vit,firearms,0.9913563345650912,validation,0.9,1.0,1.0,1.0,0,0,1.0,0.9166666666666666,0.9565217391304348,0,1
+vit,explosives,0.1727632618375518,validation,0.9,1.0,1.0,1.0,0,0,1.0,0.9166666666666666,0.9565217391304348,0,1
+vit,financial_promotion,0.9946029323485182,validation,0.9,1.0,1.0,1.0,0,0,1.0,1.0,1.0,0,0
+resnet50,firearms,0.9914425479883959,validation,0.9,1.0,1.0,1.0,0,0,1.0,0.8333333333333334,0.9090909090909091,0,2
+resnet50,explosives,0.05629754364128617,validation,0.9,0.7857142857142857,0.9166666666666666,0.8461538461538461,3,1,0.631578947368421,1.0,0.7741935483870968,7,0
+resnet50,financial_promotion,0.9974236076754509,validation,0.9,1.0,1.0,1.0,0,0,1.0,0.5833333333333334,0.7368421052631579,0,5
