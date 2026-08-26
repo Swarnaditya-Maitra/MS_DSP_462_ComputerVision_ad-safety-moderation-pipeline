@@ -1,7 +1,7 @@
 [
   {
     "case_id": "formal_safe",
-    "classification_ms": 81.90304203890264,
+    "classification_ms": 65.2594999410212,
     "classifier_prediction": "safe",
     "detection_ms": 0.0,
     "detections": 0,
@@ -10,7 +10,7 @@
     "explanation_enabled": false,
     "explanation_ms": 0.0,
     "ocr_enabled": true,
-    "ocr_ms": 114.46358298417181,
+    "ocr_ms": 145.02995903603733,
     "ocr_tokens": 3,
     "output_dir": "outputs/demo_cases/formal_safe",
     "policy_primary_label": "safe",
@@ -18,18 +18,18 @@
     "policy_verdict": "APPROVE",
     "scope": "formal grouped test",
     "source_path": "data/capstone_dataset/test/safe/safe-77c35d499df2417f.jpg",
-    "total_ms": 210.98516695201397
+    "total_ms": 226.53899993747473
   },
   {
     "case_id": "formal_firearms",
-    "classification_ms": 81.93729200866073,
+    "classification_ms": 60.815374832600355,
     "classifier_prediction": "firearms",
-    "detection_ms": 3514.2770840320736,
+    "detection_ms": 1911.952666938305,
     "detections": 3,
     "detector_enabled": true,
     "expected_label": "firearms",
     "explanation_enabled": true,
-    "explanation_ms": 1124.3401659885421,
+    "explanation_ms": 675.5866250023246,
     "ocr_enabled": false,
     "ocr_ms": 0.0,
     "ocr_tokens": 0,
@@ -39,13 +39,13 @@
     "policy_verdict": "BLOCK",
     "scope": "formal grouped test",
     "source_path": "data/capstone_dataset/test/firearms/firearms-08b5814b3661e772.jpg",
-    "total_ms": 4973.39433291927
+    "total_ms": 2868.817541981116
   },
   {
     "case_id": "formal_explosives",
-    "classification_ms": 80.65958390943706,
+    "classification_ms": 78.67529196664691,
     "classifier_prediction": "explosives",
-    "detection_ms": 3308.9009169489145,
+    "detection_ms": 1774.7262078337371,
     "detections": 3,
     "detector_enabled": true,
     "expected_label": "explosives",
@@ -60,20 +60,20 @@
     "policy_verdict": "BLOCK",
     "scope": "formal grouped test",
     "source_path": "data/capstone_dataset/test/explosives/explosives-808678dfe3e2b9d6.jpg",
-    "total_ms": 3393.345749936998
+    "total_ms": 1857.7157501131296
   },
   {
     "case_id": "formal_financial_promotion",
-    "classification_ms": 77.52329192589968,
+    "classification_ms": 78.81345809437335,
     "classifier_prediction": "financial_promotion",
     "detection_ms": 0.0,
     "detections": 0,
     "detector_enabled": false,
     "expected_label": "financial_promotion",
     "explanation_enabled": true,
-    "explanation_ms": 1176.0995419463143,
+    "explanation_ms": 730.4994589649141,
     "ocr_enabled": true,
-    "ocr_ms": 180.41729205287993,
+    "ocr_ms": 181.233124807477,
     "ocr_tokens": 17,
     "output_dir": "outputs/demo_cases/formal_financial_promotion",
     "policy_primary_label": "financial_promotion",
@@ -81,18 +81,18 @@
     "policy_verdict": "REVIEW",
     "scope": "formal grouped test",
     "source_path": "data/capstone_dataset/test/financial_promotion/financial_promotion-ff884f7cd86b4295.jpg",
-    "total_ms": 1437.118750065565
+    "total_ms": 993.906166870147
   },
   {
     "case_id": "formal_known_failure",
-    "classification_ms": 86.940124980174,
+    "classification_ms": 80.86641598492861,
     "classifier_prediction": "firearms",
-    "detection_ms": 3358.3700410090387,
+    "detection_ms": 1844.9003749992698,
     "detections": 5,
     "detector_enabled": true,
     "expected_label": "explosives",
     "explanation_enabled": true,
-    "explanation_ms": 1220.0798750855029,
+    "explanation_ms": 698.6172501929104,
     "ocr_enabled": false,
     "ocr_ms": 0.0,
     "ocr_tokens": 0,
@@ -102,27 +102,27 @@
     "policy_verdict": "REVIEW",
     "scope": "formal grouped test failure",
     "source_path": "data/capstone_dataset/test/explosives/explosives-a847a50b677d3214.jpg",
-    "total_ms": 4668.774417019449
+    "total_ms": 2628.8603330031037
   },
   {
     "case_id": "external_safe_domain_shift",
-    "classification_ms": 83.83750007487833,
+    "classification_ms": 80.49162500537932,
     "classifier_prediction": "explosives",
-    "detection_ms": 4542.982417042367,
+    "detection_ms": 2213.240666082129,
     "detections": 3,
     "detector_enabled": true,
     "expected_label": "safe",
     "explanation_enabled": true,
-    "explanation_ms": 1248.0308749945834,
+    "explanation_ms": 721.8107921071351,
     "ocr_enabled": true,
-    "ocr_ms": 245.04374992102385,
+    "ocr_ms": 227.04933281056583,
     "ocr_tokens": 14,
     "output_dir": "outputs/demo_cases/external_safe_domain_shift",
     "policy_primary_label": "explosives",
-    "policy_score": 0.45302211047282737,
+    "policy_score": 0.4531384345825983,
     "policy_verdict": "BLOCK",
     "scope": "external Wikimedia diagnostic",
     "source_path": "data/wikimedia_pilot/train/safe/safe_train_c456321d7b18.jpg",
-    "total_ms": 6125.0079170567915
+    "total_ms": 3249.1327500902116
   }
 ]

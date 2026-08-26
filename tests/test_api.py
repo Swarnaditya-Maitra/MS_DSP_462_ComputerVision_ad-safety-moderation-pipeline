@@ -28,6 +28,21 @@ def _png_bytes() -> bytes:
     return buffer.getvalue()
 
 
+def _animated_webp_bytes() -> bytes:
+    buffer = io.BytesIO()
+    first = Image.new("RGB", (64, 48), "white")
+    second = Image.new("RGB", (64, 48), "red")
+    first.save(
+        buffer,
+        format="WEBP",
+        save_all=True,
+        append_images=[second],
+        duration=100,
+        loop=0,
+    )
+    return buffer.getvalue()
+
+
 def test_health_does_not_construct_heavy_engine(
     client: TestClient, monkeypatch: pytest.MonkeyPatch
 ) -> None:
@@ -74,6 +89,20 @@ def test_oversized_api_input_is_rejected_before_decode(
     assert response.status_code == 413
 
 
+def test_animated_api_input_is_rejected_before_engine_load(
+    client: TestClient, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(api_module, "_build_engine", lambda: pytest.fail("engine should not load"))
+
+    response = client.post(
+        "/analyze",
+        files={"file": ("animated.webp", _animated_webp_bytes(), "image/webp")},
+    )
+
+    assert response.status_code == 422
+    assert "Animated images" in response.json()["detail"]
+
+
 def test_valid_request_returns_audit_with_fake_engine(
     client: TestClient, monkeypatch: pytest.MonkeyPatch, tmp_path: Path
 ) -> None:
@@ -90,6 +119,13 @@ def test_valid_request_returns_audit_with_fake_engine(
                 "ocr": {"text": "", "engine": "disabled", "tokens": []},
                 "latency_ms": {"total": 1.0},
                 "input_size": [64, 48],
+                "applied_thresholds": {
+                    "firearms": 0.991356,
+                    "explosives": 0.172763,
+                    "financial_promotion": 0.994603,
+                    "review": 0.35,
+                    "uncertainty_margin": 0.12,
+                },
             }
 
     class FakeEngine:
@@ -113,3 +149,26 @@ def test_valid_request_returns_audit_with_fake_engine(
     assert payload["input"]["filename"] == "creative.png"
     assert payload["input"]["width"] == 64
     assert len(payload["input"]["sha256"]) == 64
+    assert payload["audit_schema_version"] == "1.1"
+    assert payload["analysis"]["applied_thresholds"]["firearms"] == pytest.approx(0.991356)
+
+
+def test_runtime_error_does_not_expose_internal_detail(
+    client: TestClient, monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    artifact = tmp_path / "vit_policy_head.joblib"
+    artifact.write_bytes(b"test sentinel")
+    monkeypatch.setattr(api_module, "CLASSIFIER_ARTIFACT", artifact)
+    monkeypatch.setattr(
+        api_module,
+        "_perform_analysis",
+        lambda *args, **kwargs: (_ for _ in ()).throw(RuntimeError("/private/tmp/secret.bin")),
+    )
+
+    response = client.post(
+        "/analyze?run_detector=false&run_ocr=false&explain=false",
+        files={"file": ("creative.png", _png_bytes(), "image/png")},
+    )
+
+    assert response.status_code == 503
+    assert "secret.bin" not in response.json()["detail"]

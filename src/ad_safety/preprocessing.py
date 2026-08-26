@@ -46,11 +46,19 @@ def _validate_image_metadata(image: Image.Image) -> None:
         raise ImageValidationError("Image exceeds the 40 megapixel safety limit.")
 
 
+def _reject_animation(image: Image.Image) -> None:
+    if bool(getattr(image, "is_animated", False)) or int(getattr(image, "n_frames", 1)) > 1:
+        raise ImageValidationError(
+            "Animated images are unsupported. Upload one static JPEG, PNG, or WebP image."
+        )
+
+
 def load_image(source: str | Path | bytes | BinaryIO | Image.Image) -> Image.Image:
     """Load, orient, validate, and convert an input to an RGB PIL image."""
 
     try:
         if isinstance(source, Image.Image):
+            _reject_animation(source)
             image = source.copy()
         else:
             data = _read_bytes(source)
@@ -61,6 +69,7 @@ def load_image(source: str | Path | bytes | BinaryIO | Image.Image) -> Image.Ima
             image = Image.open(io.BytesIO(data))
             # Pillow exposes dimensions from the image header. Check them before
             # decoding pixel data to limit decompression-bomb memory pressure.
+            _reject_animation(image)
             _validate_image_metadata(image)
             image.load()
     except Image.DecompressionBombError as exc:

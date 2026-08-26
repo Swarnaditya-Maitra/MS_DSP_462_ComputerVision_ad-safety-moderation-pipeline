@@ -87,7 +87,23 @@ def _model_snapshot_ready(repo_id: str) -> bool:
     snapshot = Path(str(row.get("local_snapshot", "")))
     if not snapshot.is_absolute():
         snapshot = PROJECT_ROOT / snapshot
-    return (snapshot / "model.safetensors").is_file() and (snapshot / "config.json").is_file()
+    required = {"model.safetensors", "config.json"}
+    if repo_id == "IDEA-Research/grounding-dino-tiny":
+        required.update(
+            {
+                "preprocessor_config.json",
+                "tokenizer_config.json",
+                "tokenizer.json",
+            }
+        )
+    return all((snapshot / filename).is_file() for filename in required)
+
+
+def _classifier_artifact_ready() -> bool:
+    try:
+        return CLASSIFIER_ARTIFACT.is_file() and CLASSIFIER_ARTIFACT.stat().st_size > 0
+    except OSError:
+        return False
 
 
 def _perform_analysis(payload: bytes, run_detector: bool, run_ocr: bool, explain: bool) -> Any:
@@ -104,7 +120,7 @@ def _perform_analysis(payload: bytes, run_detector: bool, run_ocr: bool, explain
 
 @app.get("/health", tags=["operations"])
 def health() -> dict[str, Any]:
-    classifier_ready = CLASSIFIER_ARTIFACT.is_file()
+    classifier_ready = _classifier_artifact_ready()
     backbone_ready = _model_snapshot_ready("timm/vit_base_patch16_224.augreg2_in21k_ft_in1k")
     analysis_ready = classifier_ready and backbone_ready
     engine_loaded = _ENGINE is not None
@@ -156,7 +172,7 @@ async def analyze(
     except ImageValidationError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
 
-    if not CLASSIFIER_ARTIFACT.is_file():
+    if not _classifier_artifact_ready():
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail="The trained classifier artifact models/vit_policy_head.joblib is missing.",
@@ -169,7 +185,7 @@ async def analyze(
     except (FileNotFoundError, ModuleNotFoundError, RuntimeError) as exc:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail=f"A required local model component could not start: {exc}",
+            detail="A required local model component could not start.",
         ) from exc
     except Exception as exc:
         raise HTTPException(
@@ -179,7 +195,7 @@ async def analyze(
 
     audit = result.audit_record()
     return {
-        "audit_schema_version": "1.0",
+        "audit_schema_version": "1.1",
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
         "input": {
             "filename": Path(file.filename or "upload").name,

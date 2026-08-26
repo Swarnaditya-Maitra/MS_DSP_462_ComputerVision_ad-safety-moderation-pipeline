@@ -11,6 +11,12 @@ This repository contains the public source release of an evidence-led computer-v
 
 The four visual labels are `safe`, `firearms`, `explosives`, and `financial_promotion`. A financial-promotion label means visible promotion cues were found. It does not establish fraud, legality, or regulatory status. Financial cases route to human review.
 
+## Run and test guide
+
+Use [USER_MANUAL.md](USER_MANUAL.md) for the complete 64-bit Windows 10/11 and Apple Silicon macOS workflow. It covers prerequisites, virtual environments, Tesseract, model and dataset provisioning, Streamlit, FastAPI, health checks, automated tests, reproducible negative-path fixtures, troubleshooting, and shutdown. Intel macOS is explicitly unsupported because the pinned PyTorch release has no macOS x86_64 wheel.
+
+The commands below are the short path. I ran the validated project and current release checks on Apple Silicon macOS. The manual gives native PowerShell equivalents for Windows; it does not claim that the saved performance numbers are Windows benchmarks.
+
 ## Scope and limitations
 
 This is a bounded course pilot, not an autonomous moderation service. The saved formal test reached 0.9791 ViT macro F1, but the result is strongly affected by source style. A separate 26-image Wikimedia diagnostic reached only 0.5549 macro F1, and the detector produced a 0.90 image-level false-positive rate on nonweapon examples. The minimum threshold-operating restricted-class recall was 0.9167, below the proposed target above 0.95. ViT classifier-path p95 was 71.5 ms on CPU; full end-to-end latency and concurrent throughput were not measured.
@@ -26,6 +32,7 @@ configs/policy.yaml            Versioned thresholds and policy rules
 src/ad_safety/                 Reusable preprocessing, models, and policy package
 scripts/                       Model, dataset, training, evaluation, and demo scripts
 tests/                         Automated unit and API tests
+USER_MANUAL.md                 Detailed Windows and macOS run/test instructions
 data/*.csv                     Source and provenance registries without image files
 models/pretrained_model_manifest.json
 results/                       Text and tabular evidence from the validated course run
@@ -33,9 +40,12 @@ results/                       Text and tabular evidence from the validated cour
 
 ## Environment setup
 
-The validated environment used Python 3.10 on Apple Silicon macOS.
+### Apple Silicon macOS Terminal
 
 ```bash
+brew install python@3.10 tesseract
+python3.10 --version
+tesseract --version
 python3.10 -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
@@ -48,10 +58,23 @@ export XDG_CACHE_HOME="$PWD/.cache"
 export KMP_DUPLICATE_LIB_OK=TRUE
 ```
 
-Tesseract is required for OCR. On macOS:
+Tesseract is required only when text extraction is enabled.
 
-```bash
-brew install tesseract
+### Windows PowerShell
+
+Install 64-bit Python 3.10, Git for Windows, and the 64-bit Tesseract package documented in [USER_MANUAL.md](USER_MANUAL.md). Then run:
+
+```powershell
+py -3.10 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements-lock.txt
+
+$env:PYTHONPATH = "$PWD\src"
+$env:HF_HOME = "$PWD\.cache\huggingface"
+$env:MPLCONFIGDIR = "$PWD\.mpl-cache"
+$env:XDG_CACHE_HOME = "$PWD\.cache"
+$env:KMP_DUPLICATE_LIB_OK = "TRUE"
 ```
 
 ## Rebuild the runnable artifacts
@@ -71,9 +94,7 @@ Training writes local `joblib` classifier heads. `joblib` uses Python's pickle m
 ## Run the Streamlit app
 
 ```bash
-PYTHONPATH=src python -m streamlit run app.py \
-  --server.address 127.0.0.1 \
-  --server.port 8501
+python -m streamlit run app.py --server.address 127.0.0.1 --server.port 8501
 ```
 
 Open <http://127.0.0.1:8501>, upload a JPEG, PNG, or WebP image, choose the optional detector, OCR, and explanation controls, and run the analysis.
@@ -81,15 +102,13 @@ Open <http://127.0.0.1:8501>, upload a JPEG, PNG, or WebP image, choose the opti
 ## Run the API
 
 ```bash
-PYTHONPATH=src python -m uvicorn api:app \
-  --host 127.0.0.1 \
-  --port 8000
+python -m uvicorn api:app --host 127.0.0.1 --port 8000
 ```
 
 Check readiness:
 
-```bash
-curl -s http://127.0.0.1:8000/health | python -m json.tool
+```text
+python -c "import json,urllib.request; print(json.dumps(json.load(urllib.request.urlopen('http://127.0.0.1:8000/health')), indent=2))"
 ```
 
 Analyze an image:
@@ -101,15 +120,17 @@ curl -s -X POST \
   | python -m json.tool
 ```
 
+The curl upload syntax differs between macOS and PowerShell. [USER_MANUAL.md](USER_MANUAL.md) gives both exact commands and expected response fields.
+
 Interactive API documentation is served at <http://127.0.0.1:8000/docs>.
 
 ## Test
 
 ```bash
-PYTHONPATH=src python -m pytest -q
+python -m pytest -q
 ```
 
-The source-only release passes 27 tests and skips one pinned-snapshot integration check before model download. After the pinned snapshots are downloaded, all 28 tests run. The tests cover preprocessing safeguards, policy behavior, feature interfaces, Streamlit helpers, and FastAPI input handling.
+The current source-only release passes 37 tests and skips one pinned-snapshot integration check before model download. After the pinned snapshots are downloaded, all 38 tests run. The tests cover preprocessing safeguards, animated-image rejection, effective-threshold auditing, policy behavior, feature interfaces, Streamlit state and chart helpers, and FastAPI input handling.
 
 ## Evidence and sources
 

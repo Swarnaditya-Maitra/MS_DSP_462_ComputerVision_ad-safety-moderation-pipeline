@@ -94,3 +94,20 @@ def test_unsupported_image_format_is_rejected() -> None:
 
     with pytest.raises(preprocessing.ImageValidationError, match="Unsupported image format"):
         preprocessing.load_image(payload)
+
+
+@pytest.mark.parametrize("image_format", ["PNG", "WEBP"])
+def test_animated_supported_format_is_rejected(image_format: str) -> None:
+    first = Image.new("RGB", (64, 64), "white")
+    second = Image.new("RGB", (64, 64), "red")
+    payload = _encoded(
+        first,
+        image_format,
+        save_all=True,
+        append_images=[second],
+        duration=100,
+        loop=0,
+    )
+
+    with pytest.raises(preprocessing.ImageValidationError, match="Animated images"):
+        preprocessing.load_image(payload)

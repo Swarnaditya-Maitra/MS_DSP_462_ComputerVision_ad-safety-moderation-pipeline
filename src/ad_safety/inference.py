@@ -27,6 +27,7 @@ class AnalysisResult:
     heatmap_image: Image.Image | None
     latency_ms: dict[str, float]
     input_size: tuple[int, int]
+    applied_thresholds: dict[str, float]
 
     def audit_record(self) -> dict[str, Any]:
         return {
@@ -40,6 +41,7 @@ class AnalysisResult:
             },
             "latency_ms": self.latency_ms,
             "input_size": list(self.input_size),
+            "applied_thresholds": self.applied_thresholds,
         }
 
 
@@ -131,4 +133,7 @@ class ModerationEngine:
             heatmap_image=heatmap_image,
             latency_ms=latency,
             input_size=image.size,
+            applied_thresholds={
+                str(label): float(value) for label, value in self.policy.thresholds.items()
+            },
         )
