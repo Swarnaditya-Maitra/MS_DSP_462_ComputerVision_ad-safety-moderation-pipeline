@@ -31,15 +31,15 @@ Platform boundary:
 ### macOS Terminal
 
 ```bash
-git clone https://github.com/Swarnaditya-Maitra/ad-safety-moderation-pipeline.git
-cd ad-safety-moderation-pipeline
+git clone https://github.com/Swarnaditya-Maitra/MS_DSP_462_ComputerVision_ad-safety-moderation-pipeline.git
+cd MS_DSP_462_ComputerVision_ad-safety-moderation-pipeline
 ```
 
 ### Windows PowerShell
 
 ```powershell
-git clone https://github.com/Swarnaditya-Maitra/ad-safety-moderation-pipeline.git
-Set-Location ad-safety-moderation-pipeline
+git clone https://github.com/Swarnaditya-Maitra/MS_DSP_462_ComputerVision_ad-safety-moderation-pipeline.git
+Set-Location MS_DSP_462_ComputerVision_ad-safety-moderation-pipeline
 ```
 
 I run all later commands from the repository root, the directory that contains `app.py`, `api.py`, and `requirements-lock.txt`.

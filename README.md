@@ -1,6 +1,6 @@
 # Ad Safety Visual Moderation Pilot
 
-[![Cross-platform verification](https://github.com/Swarnaditya-Maitra/ad-safety-moderation-pipeline/actions/workflows/cross-platform.yml/badge.svg)](https://github.com/Swarnaditya-Maitra/ad-safety-moderation-pipeline/actions/workflows/cross-platform.yml)
+[![Cross-platform verification](https://github.com/Swarnaditya-Maitra/MS_DSP_462_ComputerVision_ad-safety-moderation-pipeline/actions/workflows/cross-platform.yml/badge.svg)](https://github.com/Swarnaditya-Maitra/MS_DSP_462_ComputerVision_ad-safety-moderation-pipeline/actions/workflows/cross-platform.yml)
 
 This repository contains the public release of an evidence-led computer-vision pipeline for triaging static ad creatives. It combines:
 
@@ -31,8 +31,8 @@ The `core` profile is the shortest runnable path. It uses the included, hash-pin
 ### Apple Silicon macOS Terminal
 
 ```bash
-git clone https://github.com/Swarnaditya-Maitra/ad-safety-moderation-pipeline.git
-cd ad-safety-moderation-pipeline
+git clone https://github.com/Swarnaditya-Maitra/MS_DSP_462_ComputerVision_ad-safety-moderation-pipeline.git
+cd MS_DSP_462_ComputerVision_ad-safety-moderation-pipeline
 python3.10 -m venv .venv
 source .venv/bin/activate
 python scripts/bootstrap.py --profile core
@@ -55,8 +55,8 @@ python -m uvicorn api:app --host 127.0.0.1 --port 8000
 ### Windows PowerShell
 
 ```powershell
-git clone https://github.com/Swarnaditya-Maitra/ad-safety-moderation-pipeline.git
-Set-Location ad-safety-moderation-pipeline
+git clone https://github.com/Swarnaditya-Maitra/MS_DSP_462_ComputerVision_ad-safety-moderation-pipeline.git
+Set-Location MS_DSP_462_ComputerVision_ad-safety-moderation-pipeline
 py -3.10 -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python scripts/bootstrap.py --profile core
