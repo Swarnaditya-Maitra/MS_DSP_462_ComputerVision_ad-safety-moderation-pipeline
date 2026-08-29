@@ -105,7 +105,7 @@
       }
     },
     "automated_tests": {
-      "output": "........................................................................ [ 66%]\n.......................s.............                                    [100%]\n=============================== warnings summary ===============================\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n  <PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852: DeprecationWarning: label() is deprecated. Use is_required() or is_repeated() instead.\n    self._ParseOrMerge(lines, message)\n\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n  <PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876: DeprecationWarning: label() is deprecated. Use is_required() or is_repeated() instead.\n    self._MergeField(tokenizer, message)\n\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1011\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1011\n  <PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1011: DeprecationWarning: label() is deprecated. Use is_required() or is_repeated() instead.\n    merger(tokenizer, message, field)\n\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1092\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1092\n  <PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1092: DeprecationWarning: label() is deprecated. Use is_required() or is_repeated() instead.\n    self._MergeField(tokenizer, sub_message)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n108 passed, 1 skipped, 16 warnings in 8.96s",
+      "output": "........................................................................ [ 66%]\n.......................s.............                                    [100%]\n=============================== warnings summary ===============================\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n  <PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852: DeprecationWarning: label() is deprecated. Use is_required() or is_repeated() instead.\n    self._ParseOrMerge(lines, message)\n\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n  <PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876: DeprecationWarning: label() is deprecated. Use is_required() or is_repeated() instead.\n    self._MergeField(tokenizer, message)\n\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1011\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1011\n  <PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1011: DeprecationWarning: label() is deprecated. Use is_required() or is_repeated() instead.\n    merger(tokenizer, message, field)\n\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1092\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1092\n  <PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1092: DeprecationWarning: label() is deprecated. Use is_required() or is_repeated() instead.\n    self._MergeField(tokenizer, sub_message)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n108 passed, 1 skipped, 16 warnings in 11.07s",
       "passed": true,
       "returncode": 0
     },
@@ -399,7 +399,7 @@
       "temporary_book_build": {
         "chapter_present": true,
         "index_present": true,
-        "output": "WARNING: --no-execute creates a source-only site without refreshed outputs.\nStatic book built with nbconvert: <ABSOLUTE_PATH>/private<TMP>/ad-safety-book-validation-t04zr6r1/project/book/_build/html/index.html",
+        "output": "WARNING: --no-execute creates a source-only site without refreshed outputs.\nStatic book built with nbconvert: <ABSOLUTE_PATH>/private<TMP>/ad-safety-book-validation-mp7n7yb9/project/book/_build/html/index.html",
         "returncode": 0
       }
     },
@@ -789,39 +789,39 @@
           {
             "format": "PNG",
             "gray_extrema": [
-              0,
+              2,
               255
             ],
-            "gray_stddev": 31.01119115191433,
+            "gray_stddev": 30.44390912249531,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "a81a2e3a658edcbf63c98ee081ce6364d3114b37a3dfe16da8d11a870d9e9978",
+            "pixel_sha256": "aa85321d95d4efab94331c4c88d6523cc15aaf5fd8ea56de725dc71face792b3",
             "slide": 1,
             "width": 1601
           },
           {
             "format": "PNG",
             "gray_extrema": [
-              21,
+              2,
               255
             ],
-            "gray_stddev": 32.235012254855654,
+            "gray_stddev": 25.421121131545483,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "47e0ceee0478c787b45b674af236d641e9499f1eaadfe87aa09eceea7b91aadf",
+            "pixel_sha256": "a904e41b1bb95adda62dd7b86062b53575519b60ff67372fbbfd80bad29a37d8",
             "slide": 2,
             "width": 1601
           },
           {
             "format": "PNG",
             "gray_extrema": [
-              3,
+              2,
               255
             ],
-            "gray_stddev": 26.853261199196794,
+            "gray_stddev": 29.342092840118138,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "1ba1d06c106f1a6cf0578f798a2f2dde8fb6ea2d1f328523f257b81d070154ea",
+            "pixel_sha256": "dc239c849f1f9b8d18c33085b9fdaaa6000f8ec98f7fdc860f5e13825522a68e",
             "slide": 3,
             "width": 1601
           },
@@ -831,23 +831,23 @@
               0,
               255
             ],
-            "gray_stddev": 27.767039969110762,
+            "gray_stddev": 28.82595833772594,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "50e3fb5bd47609817ac9b5a7a2a07cb570afd521c677951110aa6ba091367dfd",
+            "pixel_sha256": "d4a7520491c0dc5204aa164429eea5bbece667ae0608af7b0c10493de01182c0",
             "slide": 4,
             "width": 1601
           },
           {
             "format": "PNG",
             "gray_extrema": [
-              14,
+              8,
               255
             ],
-            "gray_stddev": 40.22872873465715,
+            "gray_stddev": 47.60450414474131,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "19579113090d52e37dd950915acb642b208f297fd18656b7241e166e7951089a",
+            "pixel_sha256": "20051c56cedff921aefc587748d5234349d2ee6900989782b84083bbc72e74bd",
             "slide": 5,
             "width": 1601
           },
@@ -857,10 +857,10 @@
               0,
               255
             ],
-            "gray_stddev": 53.939552247778984,
+            "gray_stddev": 54.30356231482311,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "2121e0497d2c981916a79da6da075ca169587c0bf34c506b5ceab2e63e16b1e7",
+            "pixel_sha256": "15d245de8ce7ca0d14290a8d7c062a0a2089c3db9af8ebd277a273a6245ef566",
             "slide": 6,
             "width": 1601
           },
@@ -870,37 +870,50 @@
               0,
               255
             ],
-            "gray_stddev": 26.890435786877326,
+            "gray_stddev": 28.122204591527584,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "87712dfb85995435893d72f08cd8d59502cf2436c2847f29e2a19f60ad642157",
+            "pixel_sha256": "e9abf4affbcb465f4807379a8b0d94a8232cee00fb0086fec435a51751960a88",
             "slide": 7,
             "width": 1601
           },
           {
             "format": "PNG",
             "gray_extrema": [
-              14,
+              5,
               255
             ],
-            "gray_stddev": 28.381778566023883,
+            "gray_stddev": 31.10597116438304,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "fbb2f4f815fbe606fa1eabeda5000f7e09d50e553b6fc3b2dc5c4ed749b8c181",
+            "pixel_sha256": "47343fa430188183ce0bd7f10c8ed2b81c19dd4dd52fd21b332e49a8be113f91",
             "slide": 8,
             "width": 1601
           },
           {
             "format": "PNG",
             "gray_extrema": [
-              14,
+              5,
               255
             ],
-            "gray_stddev": 25.909744707954985,
+            "gray_stddev": 27.074844638731374,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "67a2d4bdf4c4b42bb6857ea73950309e5228201fde21440fd6aad25269f2973a",
+            "pixel_sha256": "e93d4ecb29089e5c3ae9f8afed566784baebd98c4ec6f70223cd45ee8cdab0a1",
             "slide": 9,
+            "width": 1601
+          },
+          {
+            "format": "PNG",
+            "gray_extrema": [
+              2,
+              255
+            ],
+            "gray_stddev": 48.04168685786171,
+            "height": 900,
+            "nonblank": true,
+            "pixel_sha256": "07b212dd83b3cc0b8d2bc916cd80fd7d7d8d79799e960463bb289847639d9977",
+            "slide": 10,
             "width": 1601
           },
           {
@@ -909,23 +922,10 @@
               0,
               255
             ],
-            "gray_stddev": 39.128202112309125,
+            "gray_stddev": 81.8562804077627,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "76bbdc29f21a197e54752c15e890b649daf80f423c5fef538c5e1427efd38788",
-            "slide": 10,
-            "width": 1601
-          },
-          {
-            "format": "PNG",
-            "gray_extrema": [
-              4,
-              255
-            ],
-            "gray_stddev": 44.864102143345896,
-            "height": 900,
-            "nonblank": true,
-            "pixel_sha256": "46db44bd89a520ad936525005786f694cd30c89a91aa855c66a55656065ae90c",
+            "pixel_sha256": "1d94d88e0eb1e35d48af4d38dc940d1f33c246ca730fede7fb9ea513cee1437e",
             "slide": 11,
             "width": 1601
           },
@@ -935,36 +935,36 @@
               0,
               255
             ],
-            "gray_stddev": 56.83443407349373,
+            "gray_stddev": 57.36746213953635,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "923d550023656bbd54fb4527dcab13cedbe6ea18b4618d2cbd42411008eda4a0",
+            "pixel_sha256": "75db72c49f6200313748b0c51589da08751786cb838bbdeffb26ae2edbf0acd1",
             "slide": 12,
             "width": 1601
           },
           {
             "format": "PNG",
             "gray_extrema": [
-              28,
+              2,
               255
             ],
-            "gray_stddev": 29.970305833572215,
+            "gray_stddev": 30.29549971798288,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "cf5284bbb9166d32428079611baef78e72463b19540d2e1847e2f90e48c6917e",
+            "pixel_sha256": "94d32e3dad326b14b97f0c30e74c9fa5299cac73219be6b1a22052c709fe6b8f",
             "slide": 13,
             "width": 1601
           },
           {
             "format": "PNG",
             "gray_extrema": [
-              14,
+              5,
               255
             ],
-            "gray_stddev": 26.66115829344933,
+            "gray_stddev": 27.87970272767099,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "11c1ac1234ae13d290c5720df3aa3b180eca9b18d72cd7b151999b4802c3b085",
+            "pixel_sha256": "fa29618ab7fae55a279c69d0b69c2f8f399c10c0c6c6575bce6d5001c6bc34ff",
             "slide": 14,
             "width": 1601
           },
@@ -974,10 +974,10 @@
               0,
               255
             ],
-            "gray_stddev": 30.031894393766127,
+            "gray_stddev": 30.984934348369464,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "b1cbc06e9c71bb0646e49e8b550e3609cd6841a847df7a414356ca7fa8673661",
+            "pixel_sha256": "4ed7702618a3cf289919c281ce99d53b5d06069d4234bfbfd37c00eedf2db677",
             "slide": 15,
             "width": 1601
           }
@@ -986,7 +986,7 @@
         "slides_validated": 15,
         "soffice_binary": "soffice"
       },
-      "manual_visual_inspection": "PASS: all 15 artifact-tool and independent LibreOffice renders were inspected; no clipping, overlap, broken images, or unreadable text remains",
+      "manual_visual_inspection": "PASS: inspected all 15 Artifact Tool and LibreOffice slides at full size; no clipping, overlap, overflow, or unreadable text remains",
       "missing_mvp_roadmap_facts": [],
       "missing_required_facts": [],
       "montage_sizes": [
@@ -1032,8 +1032,8 @@
         "Swarnaditya Maitra": true,
         "Vijay Agnihotri": true
       },
-      "qa_sha256": "300d5428ede5622a80031a4faf7926d94fcf49cbfbcf6b1798178009e0ca6fb4",
-      "sha256": "300d5428ede5622a80031a4faf7926d94fcf49cbfbcf6b1798178009e0ca6fb4",
+      "qa_sha256": "09c00b7131ddb3148f5b873605883c9bf70c59923e0e3418c6af7e6a03cc4e99",
+      "sha256": "09c00b7131ddb3148f5b873605883c9bf70c59923e0e3418c6af7e6a03cc4e99",
       "slide_size_emu": [
         12192000,
         6858000
@@ -1041,7 +1041,7 @@
       "slides": 15,
       "sources_blocks": 15,
       "support_hashes_match": true,
-      "validation_sha256": "300d5428ede5622a80031a4faf7926d94fcf49cbfbcf6b1798178009e0ca6fb4"
+      "validation_sha256": "09c00b7131ddb3148f5b873605883c9bf70c59923e0e3418c6af7e6a03cc4e99"
     },
     "measured_evidence_recomputed": {
       "argmax_issues": [],
@@ -1362,10 +1362,10 @@
             7,
             255
           ],
-          "gray_stddev": 71.39582361372625,
+          "gray_stddev": 71.58247919215596,
           "height": 1980,
           "nonblank": true,
-          "pixel_sha256": "85d37141ee961ae4acc16fdff83b543e256df763daa8458bb7b5947696b54d30",
+          "pixel_sha256": "b29d3536824caaef38c4f034e0c756992ff0a73335e5a69496a136316a9a6f83",
           "width": 1530
         },
         {
@@ -1374,10 +1374,10 @@
             8,
             255
           ],
-          "gray_stddev": 68.65382385137265,
+          "gray_stddev": 68.95454224107387,
           "height": 1980,
           "nonblank": true,
-          "pixel_sha256": "6a4881bfa716b3936a440a67d1408d2734e8c7dd54f3e49a41554534d03ca0dc",
+          "pixel_sha256": "5ecc3e7cfdbc7a5b9b7d1ea10c5a8d2c02c02548393561731926b8554136af8d",
           "width": 1530
         }
       ],
@@ -1490,7 +1490,7 @@
           "raw_pixel_backbone_regeneration": {
             "batch_size": 8,
             "device": "cpu",
-            "elapsed_seconds": 12.033469333080575,
+            "elapsed_seconds": 13.84771120781079,
             "embedding_cache_exact_match": true,
             "embedding_cache_max_abs_difference": 0.0,
             "feature_shape": [
@@ -2838,7 +2838,7 @@
           "raw_pixel_backbone_regeneration": {
             "batch_size": 8,
             "device": "cpu",
-            "elapsed_seconds": 17.362394167110324,
+            "elapsed_seconds": 20.015077749965712,
             "embedding_cache_exact_match": true,
             "embedding_cache_max_abs_difference": 0.0,
             "feature_shape": [

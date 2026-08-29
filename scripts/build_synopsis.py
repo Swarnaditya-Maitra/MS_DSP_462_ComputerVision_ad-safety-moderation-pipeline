@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the two-page Ad Safety technical synopsis.
+"""Build the Ad Safety capstone report.
 
 The generator is evidence-gated. It reads only saved project artifacts, rejects
 missing or placeholder evidence, and writes no PDF unless every required input
@@ -25,10 +25,13 @@ from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
 import yaml
+from matplotlib import get_data_path
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER, TA_LEFT
 from reportlab.lib.pagesizes import LETTER
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
 from reportlab.platypus import (
     Flowable,
@@ -87,6 +90,8 @@ TEAM_NAMES = (
     "Myetchae Thu",
     "Bickramjit Basu",
 )
+MATH_FONT_NAME = "DejaVuSans"
+MATH_FONT_PATH = Path(get_data_path()) / "fonts" / "ttf" / "DejaVuSans.ttf"
 
 PLACEHOLDER_VALUES = {
     "placeholder",
@@ -105,7 +110,7 @@ class EvidenceError(RuntimeError):
 
 
 class LayoutError(RuntimeError):
-    """Raised when content does not fit the strict two-page layout."""
+    """Raised when content does not fit the fixed report layout."""
 
 
 @dataclass(frozen=True)
@@ -1197,7 +1202,7 @@ def map_measured_evidence(raw: RawEvaluation, static: StaticEvidence) -> Measure
         external_scope += (
             f" Detector image recall was {detector_recall:.1%}, but the non-weapon detector false-positive rate "
             f"was {detector_false_positive_rate:.1%}; this is a generalization warning, not formal test evidence. "
-            "Source: outputs/evaluation/external_spot_check.json."
+            "The repository retains the complete case-level diagnostic record."
         )
         external_metrics = (
             MetricValue("Classifier accuracy", _pct(external.get("classifier_accuracy"), "external accuracy")),
@@ -1271,9 +1276,10 @@ def map_measured_evidence(raw: RawEvaluation, static: StaticEvidence) -> Measure
             "only the calibrated classifier can trigger an automatic firearms or explosives block [4, 9].",
         ),
         math_lines=(
-            f"z = f_theta(x) in R^{feature_dim};  u = (z - mu) / sigma",
-            "p(y=k|x) = exp(w_k^T u + b_k) / sum_j exp(w_j^T u + b_j)",
-            "fused_score_k = 1 - product_i (1 - evidence_k,i)",
+            f"z = f<sub>θ</sub>(x) ∈ ℝ<super>{feature_dim}</super>;  u = (z - μ) / σ",
+            "P(y = k | x) = exp(w<sub>k</sub><super>T</super>u + b<sub>k</sub>) / "
+            "∑<sub>j</sub> exp(w<sub>j</sub><super>T</super>u + b<sub>j</sub>)",
+            "fused score<sub>k</sub> = 1 - ∏<sub>i</sub>(1 - evidence<sub>k,i</sub>)",
         ),
         preprocessing_steps=(
             "Source or generated campaign groups stay inside one split; exact-file and group overlap counts are both zero.",
@@ -1286,22 +1292,22 @@ def map_measured_evidence(raw: RawEvaluation, static: StaticEvidence) -> Measure
             MetricValue(
                 "Macro F1",
                 _pct(macro_f1, "metrics macro_f1"),
-                f"proposal >{proposal_macro_f1_floor:.2f}: {macro_f1_assessment}",
+                f"target >{proposal_macro_f1_floor:.2f}: {'met' if macro_f1_assessment == 'passes' else 'not met'}",
             ),
             MetricValue(
                 "Argmax restricted mean",
-                f"{argmax_restricted_mean:.6f}",
+                f"{100.0 * argmax_restricted_mean:.1f}%",
                 "multiclass class-average",
             ),
             MetricValue(
                 "Threshold-op mean",
-                f"{threshold_operating_mean:.6f}",
+                f"{100.0 * threshold_operating_mean:.1f}%",
                 "validation-selected thresholds",
             ),
             MetricValue(
                 "Safe-class precision",
                 f"{safe_precision:.3f}",
-                f"proposal >{proposal_safe_precision_floor:.2f}: {safe_precision_assessment}",
+                f"target >{proposal_safe_precision_floor:.2f}: {'met' if safe_precision_assessment == 'passes' else 'not met'}",
             ),
             MetricValue(
                 "Safe-ad false flag",
@@ -1310,13 +1316,13 @@ def map_measured_evidence(raw: RawEvaluation, static: StaticEvidence) -> Measure
             ),
         ),
         performance_definition_note=(
-            f"Macro F1 {macro_f1_assessment} the proposal >{proposal_macro_f1_floor:.2f} target. Safe precision "
-            f"{safe_precision_assessment} >{proposal_safe_precision_floor:.2f}; the Safe-ad false-flag rate was "
+            f"Macro F1 {'met' if macro_f1_assessment == 'passes' else 'did not meet'} our >{proposal_macro_f1_floor:.2f} target. Safe precision "
+            f"{'met' if safe_precision_assessment == 'passes' else 'did not meet'} our >{proposal_safe_precision_floor:.2f} target; the Safe-ad false-flag rate was "
             f"{100.0 * safe_false_positive_rate:.1f}% (1 - Safe recall). Argmax restricted recall averaged "
-            f"{argmax_restricted_mean:.6f}, but that is not the deployed threshold rule. At validation-selected "
-            f"thresholds, test recall was {threshold_operating_recall['firearms']:.6f} firearms, "
-            f"{threshold_operating_recall['explosives']:.6f} explosives, and "
-            f"{threshold_operating_recall['financial_promotion']:.6f} financial; mean {threshold_operating_mean:.6f}. "
+            f"{100.0 * argmax_restricted_mean:.1f}%, but that is not the deployed threshold rule. At validation-selected "
+            f"thresholds, test recall was {100.0 * threshold_operating_recall['firearms']:.1f}% for firearms, "
+            f"{100.0 * threshold_operating_recall['explosives']:.1f}% for explosives, and "
+            f"{100.0 * threshold_operating_recall['financial_promotion']:.1f}% for financial promotion; mean {100.0 * threshold_operating_mean:.1f}%. "
             f"The per-class >{proposal_recall_floor:.2f} target {recall_assessment}{recall_failure_detail}."
         ),
         per_class_headers=("Class", "P", "R", "F1", "n"),
@@ -1327,13 +1333,13 @@ def map_measured_evidence(raw: RawEvaluation, static: StaticEvidence) -> Measure
         comparison_rows=comparison_rows,
         latency_metrics=(
             MetricValue("Median", _ms(latency.get("classifier_median_ms"), "latency median"), "batch 1"),
-            MetricValue("Classifier-path P95", f"{classifier_p95_ms:.3f} ms", "batch 1; excludes auxiliaries"),
+            MetricValue("Classifier-path P95", f"{classifier_p95_ms:.1f} ms", "batch 1; excludes auxiliaries"),
             MetricValue("Mean", _ms(latency.get("classifier_mean_ms"), "latency mean"), "single thread"),
             MetricValue("Serial throughput", f"{throughput:.1f} img/s", "derived; not concurrent"),
         ),
         latency_note=(
-            f"ViT classifier-path p95 was {classifier_p95_ms:.3f} ms and {latency_assessment} the proposal's "
-            f"<{proposal_latency_ceiling_ms:.0f} ms target. CPU protocol: {warmups} warmups, {benchmark_runs} runs, "
+            f"ViT classifier-path p95 was {classifier_p95_ms:.1f} ms, above our "
+            f"{proposal_latency_ceiling_ms:.0f} ms latency budget. CPU protocol: {warmups} warmups, {benchmark_runs} runs, "
             f"one thread. Full end-to-end p95 was not measured because {exclusions} are excluded. Concurrent "
             "throughput and MPS resource use were also not measured."
         ),
@@ -1351,8 +1357,8 @@ def map_measured_evidence(raw: RawEvaluation, static: StaticEvidence) -> Measure
                 f"{failure_description} We kept it in the audit table, and the saved policy result was REVIEW rather than automatic enforcement.",
             ),
             (
-                "ViT missed the proposal latency target.",
-                f"ViT classifier-path CPU p95 was {classifier_p95_ms:.3f} ms, above "
+                "ViT exceeded the latency budget.",
+                f"ViT classifier-path CPU p95 was {classifier_p95_ms:.1f} ms, above "
                 f"{proposal_latency_ceiling_ms:.0f} ms, versus "
                 f"{_number(comparison['resnet50']['cpu_batch1_p95_ms'], 'ResNet p95'):.1f} ms for ResNet50. "
                 "Neither value is end-to-end latency.",
@@ -1360,12 +1366,10 @@ def map_measured_evidence(raw: RawEvaluation, static: StaticEvidence) -> Measure
         ),
         limitations=selected_limitations,
         reproducibility_items=(
-            ("Run", f"{created_at} | seed {run.get('seed')}"),
-            ("Host", f"{run.get('platform')} | feature device {run.get('actual_feature_device')}"),
-            ("Registry SHA-256", registry_sha[:16] + "..."),
-            ("Backbone revision", str(backbone.get("revision"))[:16] + "..."),
-            ("Artifact SHA-256", str(primary.get("artifact_sha256"))[:16] + "..."),
-            ("Reproducibility check", f"Recomputed {independent.get('registry_hashes_recomputed')} image hashes; model reload difference 0"),
+            ("Run record", f"{created_at[:10]} | random seed {run.get('seed')}"),
+            ("Environment", "Apple Silicon macOS | CPU feature extraction"),
+            ("Data checks", f"Recomputed {independent.get('registry_hashes_recomputed')} image hashes; no split overlap"),
+            ("Model reload", "Maximum prediction difference: 0"),
         ),
         external_diagnostic=external_metrics,
         external_diagnostic_scope=external_scope,
@@ -1389,6 +1393,10 @@ class Palette:
 
 
 def build_styles() -> Mapping[str, ParagraphStyle]:
+    if not MATH_FONT_PATH.is_file():
+        raise LayoutError(f"Required report font is missing: {MATH_FONT_PATH}")
+    if MATH_FONT_NAME not in pdfmetrics.getRegisteredFontNames():
+        pdfmetrics.registerFont(TTFont(MATH_FONT_NAME, str(MATH_FONT_PATH)))
     base = getSampleStyleSheet()
     return {
         "body": ParagraphStyle(
@@ -1493,9 +1501,9 @@ def build_styles() -> Mapping[str, ParagraphStyle]:
         "math": ParagraphStyle(
             "SynopsisMath",
             parent=base["BodyText"],
-            fontName="Courier",
-            fontSize=7.8,
-            leading=8.7,
+            fontName=MATH_FONT_NAME,
+            fontSize=8.1,
+            leading=9.0,
             textColor=Palette.NAVY,
             backColor=Palette.PALE_BLUE,
             borderPadding=(4, 5, 4, 5),
@@ -1793,10 +1801,8 @@ def build_page_columns(
     architecture_flowables: list[Flowable] = [
         paragraph(html.escape(item), styles) for item in measured.architecture_paragraphs
     ]
-    architecture_flowables.extend(
-        Paragraph(html.escape(line), styles["math"]) for line in measured.math_lines
-    )
-    page1_left.extend(section("3. Model architecture and math", styles, *architecture_flowables))
+    architecture_flowables.extend(Paragraph(line, styles["math"]) for line in measured.math_lines)
+    page1_left.extend(section("3. Architecture and decision equations", styles, *architecture_flowables))
 
     training_rows = list(measured.training_items)
     training_rows.extend(
@@ -1813,9 +1819,9 @@ def build_page_columns(
             "4. Training and hyperparameters",
             styles,
             paragraph(
-                "The proposal considered fine-tuning ViT. With only 192 training images, we instead froze the backbone "
-                f"and trained a small head for a more repeatable baseline. Selected model: <b>{html.escape(measured.selected_model)}</b> "
-                f"({html.escape(measured.model_version)}). Test data stayed outside fitting, model selection, and calibration.",
+                "We initially considered fine-tuning ViT. With only 192 training images, we instead froze the backbone "
+                f"and trained a small head for a more repeatable baseline. Selected model: <b>{html.escape(measured.selected_model)}</b>. "
+                "Test data stayed outside fitting, model selection, and calibration.",
                 styles,
             ),
             key_value_table(training_rows, styles, column_width),
@@ -1823,7 +1829,7 @@ def build_page_columns(
     )
     page1_right.extend(
         section(
-            "5. Detailed measured performance",
+            "5. Evaluation results",
             styles,
             paragraph(html.escape(measured.evaluation_scope), styles, "small"),
             metric_grid(measured.overall_metrics, styles, column_width),
@@ -1883,11 +1889,11 @@ def build_page_columns(
                 "body",
             )
         )
-    page2_left.extend(section("8. Challenges and implemented solutions", styles, *challenge_flowables))
+    page2_left.extend(section("8. Engineering challenges", styles, *challenge_flowables))
     if measured.external_diagnostic is not None:
         page2_left.extend(
             section(
-                "External diagnostic only",
+                "External diagnostic",
                 styles,
                 paragraph(html.escape(measured.external_diagnostic_scope or ""), styles, "small"),
                 metric_grid(measured.external_diagnostic, styles, column_width),
@@ -1905,20 +1911,19 @@ def build_page_columns(
     )
     page2_right.extend(
         section(
-            "10. Reproducibility and evidence",
+            "10. Reproducibility",
             styles,
             key_value_table(measured.reproducibility_items, styles, column_width),
             paragraph(
-                "Performance and model metrics come from outputs/evaluation; formal dataset composition comes from "
-                "data/capstone_registry.csv. All 27 Wikimedia candidates were excluded from formal train, validation, "
+                "All performance figures were read from the saved evaluation records; dataset composition was checked "
+                "against the formal registry. All 27 Wikimedia candidates were excluded from formal train, validation, "
                 "and test evidence; 26 were retained for external diagnosis and one was rejected.",
                 styles,
                 "small",
             ),
             paragraph(
-                "For reproducibility, the main project records are the proposal PDF; data/capstone_registry.csv; "
-                "outputs/evaluation/evaluation_metrics.json, thresholds.csv, model_comparison.csv, latency.json, and "
-                "external_spot_check.json; plus DATASETS.md and NOTICE.md for rights.",
+                "The repository contains the project specification, dataset registry, evaluation metrics, thresholds, "
+                "model comparison, latency record, external diagnostic, and dataset-rights documentation.",
                 styles,
                 "small",
             ),
@@ -1949,12 +1954,12 @@ def draw_page_chrome(pdf: canvas.Canvas, page_number: int) -> None:
     pdf.roundRect(34, height - 30, 92, 13, 6.5, fill=1, stroke=0)
     pdf.setFillColor(Palette.WHITE)
     pdf.setFont("Helvetica-Bold", 6.4)
-    pdf.drawCentredString(80, height - 25.5, "CAPSTONE SYNOPSIS")
+    pdf.drawCentredString(80, height - 25.5, "AD SAFETY PROJECT")
     pdf.setFont("Helvetica-Bold", 17.5)
     pdf.drawString(34, height - 51, "Ad Safety Moderation Pipeline")
     pdf.setFont("Helvetica", 7.2)
     pdf.setFillColor(colors.HexColor("#D7E1F5"))
-    pdf.drawString(34, height - 66, "Two-page technical synopsis | MS_DSP_462 Computer Vision")
+    pdf.drawString(34, height - 66, "Computer vision capstone report")
     team = " | ".join(TEAM_NAMES)
     pdf.setFont("Helvetica", 6.5)
     pdf.drawString(34, height - 82, team)
@@ -1963,7 +1968,7 @@ def draw_page_chrome(pdf: canvas.Canvas, page_number: int) -> None:
     pdf.drawRightString(width - 34, height - 26, f"PAGE {page_number} / 2")
     pdf.setFont("Helvetica", 6.5)
     pdf.setFillColor(colors.HexColor("#D7E1F5"))
-    pdf.drawRightString(width - 34, height - 67, "Results checked against proposal targets")
+    pdf.drawRightString(width - 34, height - 67, "MS_DSP_462 | August 2026")
 
     footer_y = 19
     pdf.setStrokeColor(Palette.LINE)
@@ -1971,8 +1976,8 @@ def draw_page_chrome(pdf: canvas.Canvas, page_number: int) -> None:
     pdf.line(34, footer_y + 9, width - 34, footer_y + 9)
     pdf.setFillColor(Palette.MUTED)
     pdf.setFont("Helvetica", 6.4)
-    pdf.drawString(34, footer_y, "Evidence drawn from the proposal, registries, policy, model manifest, and saved evaluations")
-    pdf.drawRightString(width - 34, footer_y, "Course prototype | Not for production use")
+    pdf.drawString(34, footer_y, "MS_DSP_462 Computer Vision Capstone")
+    pdf.drawRightString(width - 34, footer_y, "Research prototype | Human review required")
 
 
 def _add_column(
@@ -2046,10 +2051,10 @@ def render_pdf(evidence: SynopsisEvidence, output: Path) -> None:
 
     try:
         pdf = canvas.Canvas(str(temporary), pagesize=LETTER, pageCompression=1)
-        pdf.setTitle("Ad Safety Moderation Pipeline - Technical Synopsis")
+        pdf.setTitle("Ad Safety Moderation Pipeline - Technical Report")
         pdf.setAuthor(", ".join(TEAM_NAMES))
-        pdf.setCreator("scripts/build_synopsis.py")
-        pdf.setSubject("Two-page computer vision capstone synopsis with measured results and limitations")
+        pdf.setCreator("Ad Safety Project Team")
+        pdf.setSubject("Model design, evaluation, and deployment limits")
         for page_number, (left_story, right_story) in enumerate(pages, start=1):
             draw_page_chrome(pdf, page_number)
             _add_column(

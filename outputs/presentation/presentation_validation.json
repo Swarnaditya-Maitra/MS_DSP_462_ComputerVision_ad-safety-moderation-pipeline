@@ -25,13 +25,13 @@
     "codex-grid-layout-library#slide-20"
   ],
   "rendered_png_count": 15,
-  "cross_renderer_left_edge_clearance": {
+  "cross_renderer_clearance": {
     "typeface": "Arial",
     "slide_4_title_left": 64,
-    "presenter_footer_left": 64,
-    "presenter_footer_top": 688
+    "slide_counter_top": 11,
+    "slide_counter_right": 42
   },
-  "pptx_sha256": "300d5428ede5622a80031a4faf7926d94fcf49cbfbcf6b1798178009e0ca6fb4",
+  "pptx_sha256": "09c00b7131ddb3148f5b873605883c9bf70c59923e0e3418c6af7e6a03cc4e99",
   "mvp_roadmap_plan": {
     "status": "recommended plan, not a measured commitment",
     "timeline_weeks": 10,

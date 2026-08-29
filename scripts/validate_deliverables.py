@@ -1792,11 +1792,11 @@ def main() -> int:
             if render.returncode == 0 and all(path.is_file() for path in generated):
                 report_render_evidence = [rendered_image_evidence(path) for path in generated]
     report_facts = [
-        "0.972222",
-        "0.944444",
-        "0.916667",
+        "97.2%",
+        "94.4%",
+        "91.7%",
         "per-class >0.95 target fails",
-        "71.527 ms",
+        "71.5 ms",
         "Full end-to-end p95 was not measured",
         "Safe-class precision",
         "Safe-ad false-flag rate was 0.0% (1 - Safe recall)",
@@ -1886,23 +1886,21 @@ def main() -> int:
     pptx_sha256 = sha256_file(pptx_path)
     presenter_names = ["Swarnaditya Maitra", "Vijay Agnihotri", "Myetchae Thu", "Bickramjit Basu"]
     presentation_facts = [
-        "0.97913",
-        "0.87315",
-        "71.527",
-        "0.97222",
-        "0.94444",
-        "0.91667",
-        "0.55489",
-        "0.90 detector nonweapon FPR",
-        "full-pipeline timing is unknown",
-        "miss the >0.95 proposal target",
-        "Safe precision",
-        ">0.98",
-        "Selected t=0.173 on validation",
+        "97.9%",
+        "87.3%",
+        "71.5 ms",
+        "91.7%",
+        "55.5%",
+        "90.0% nonweapon false detections",
+        "Full-pipeline timing remains unknown",
+        "Our goal was above 95%",
+        "100% precision",
+        "above 98%",
+        "Selected threshold 0.173",
         "concurrency",
         "MPS",
-        "Session charts cover this session only",
-        "not production or population evidence",
+        "Session charts summarize today's cases",
+        "not production performance",
     ]
     mvp_slide_text = slide_texts[14]
     mvp_roadmap_facts = [

@@ -39,10 +39,10 @@
         "final_notebook": 1717855,
         "final_subtitles": 11041,
         "final_video": 17532521,
-        "presentation_pptx": 1470468,
+        "presentation_pptx": 1413458,
         "proposal_pdf": 140242,
-        "report_pdf": 16835,
-        "speaker_script_md": 11502
+        "report_pdf": 38313,
+        "speaker_script_md": 11479
       }
     },
     "stale_duplicate_aliases": {
@@ -99,7 +99,7 @@
   },
   "failed_check_count": 0,
   "failed_checks": [],
-  "generated_at_utc": "2026-08-29T12:05:50.738999+00:00",
+  "generated_at_utc": "2026-08-29T13:24:48.195189+00:00",
   "output": "outputs/validation/release_validation.json",
   "schema_version": "1.0.0"
 }

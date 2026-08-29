@@ -21,5 +21,5 @@
   ],
   "note": "The detailed path-free audit is stored in final_validation.json. This summary records the completed full-local course-run validation; a fresh public clone should run validate_release.py before reconstructing local-only audit inputs.",
   "schema_version": "1.0.0",
-  "source_validation_sha256": "7dc619051f54c907d407ee6cac3dfa9b5d24696164f2d6e91ae639dbad2610a1"
+  "source_validation_sha256": "cb4acb107f3522a13732ce74f65c7f388579a60fbdd692980a2e943c736535e1"
 }

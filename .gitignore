@@ -74,6 +74,7 @@ outputs/presentation/*.inspect.ndjson
 outputs/presentation/deck_montage.webp
 outputs/presentation/reopened_montage.webp
 outputs/presentation/grid_selection.json
+outputs/presentation/.Rhistory
 outputs/report/rendered/
 outputs/video/.build/
 outputs/video/audio/

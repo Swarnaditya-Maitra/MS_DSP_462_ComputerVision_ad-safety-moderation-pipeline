@@ -1,9 +1,9 @@
 {
   "artifact": {
-    "bytes": 1470468,
+    "bytes": 1413458,
     "path": "outputs/presentation/ad_safety_management_presentation.pptx",
     "reopened_slide_count": 15,
-    "sha256": "300d5428ede5622a80031a4faf7926d94fcf49cbfbcf6b1798178009e0ca6fb4",
+    "sha256": "09c00b7131ddb3148f5b873605883c9bf70c59923e0e3418c6af7e6a03cc4e99",
     "slide_count": 15,
     "zip_integrity": "PASS: unzip-compatible archive test reported no errors"
   },
@@ -15,7 +15,7 @@
       "codex-grid-layout-library#slide-19",
       "codex-grid-layout-library#slide-20"
     ],
-    "sha256": "e8eac7532421885ed966890844e327abc9bc39fd7e40db7d9877e50739d1b603",
+    "sha256": "bde935a560691c8354e54e1f40584bd9013af9b144a1e88f196bce02a9104fcc",
     "tool": "@oai/artifact-tool"
   },
   "layout_tests": {
@@ -80,14 +80,14 @@
   "rendering": {
     "artifact_tool_montage": {
       "path": "outputs/presentation/artifact_tool_montage.png",
-      "sha256": "ffa6b211eab18fe7a1b54d24248745d01887ee34c58e2036190d75836bc8d13e"
+      "sha256": "39616d37f7117b6e5cce194f8a21c2b4310251efc9442b7479a7d647210922c5"
     },
     "artifact_tool_png_count": 15,
     "independent_pptx_montage": {
       "path": "outputs/presentation/pptx_montage.png",
-      "sha256": "f4982d1e635fe0cecfee184b0d9507d20c7333f8cdd0aac816a11a631b7d8745"
+      "sha256": "57519c6c662e7f53a9bb66c12d0dacdbe68655d09614c60f98f637548337341b"
     },
-    "manual_visual_inspection": "PASS: all 15 artifact-tool and independent LibreOffice renders were inspected; no clipping, overlap, broken images, or unreadable text remains",
+    "manual_visual_inspection": "PASS: inspected all 15 Artifact Tool and LibreOffice slides at full size; no clipping, overlap, overflow, or unreadable text remains",
     "reopened_pptx_png_count": 15
   },
   "schema_version": "1.2.0",
@@ -119,6 +119,6 @@
   "validation": {
     "path": "outputs/presentation/presentation_validation.json",
     "recorded_pptx_sha256_matches_artifact": true,
-    "sha256": "124348fd722d0c03dfbb79400c884cd6de4a9c5002047b092117976d473d8737"
+    "sha256": "f0436532345e8c67268a554f75d735e75f908bda139f98c4cf5f0d742ec07e8f"
   }
 }
