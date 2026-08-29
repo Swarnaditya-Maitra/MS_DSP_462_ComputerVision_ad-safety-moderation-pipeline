@@ -198,7 +198,8 @@ def main() -> None:
 
     validate_inputs()
     notebook = execute_notebook(timeout=args.timeout, execute=not args.no_execute)
-    save_executed_notebook(notebook)
+    if not args.no_execute:
+        save_executed_notebook(notebook)
 
     jupyter_book = shutil.which("jupyter-book")
     if args.builder == "jupyter-book" and not jupyter_book:

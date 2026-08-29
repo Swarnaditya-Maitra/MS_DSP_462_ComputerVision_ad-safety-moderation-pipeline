@@ -2,9 +2,9 @@
 
 `outputs/` is the single canonical location for saved evaluation evidence, demo cases, final course deliverables, and validation records. There is no parallel `results/` tree. Normal application startup reads its saved dashboard evidence from this directory but does not regenerate or modify it.
 
-These artifacts document the validated course run. They do not prove that a new machine is ready. After cloning, run `python scripts/bootstrap.py --profile core`, `python scripts/preflight.py --profile core`, and `python scripts/smoke_test.py` to test the current environment.
+These artifacts document the validated course run. They do not prove that a new machine is ready. Use [`../USER_MANUAL.md`](../USER_MANUAL.md) for the supported macOS and Windows setup and test sequence, and [`../REPRODUCIBILITY.md`](../REPRODUCIBILITY.md) for the validation contract.
 
-The saved formal evaluation used all 288 formal images in the canonical local project. As standalone dataset files, public Git includes the 72 project-generated financial-promotion images but excludes the 216 third-party formal images because their supported redistribution terms or item-level provenance are insufficient. Some outputs below contain bounded screenshots, thumbnails, or annotations of selected examples; those course records do not clear the source images for extraction or reuse. The separate Wikimedia collection started with 27 candidates; 26 relevant images are retained in the public diagnostic and one title-search collision is excluded. See [`../DATASETS.md`](../DATASETS.md) for the exact boundary.
+Some outputs contain bounded views of source examples. [`../DATASETS.md`](../DATASETS.md) is the sole detailed inventory and provenance record; those views do not change the underlying reuse terms.
 
 ## Directory map
 
@@ -17,7 +17,7 @@ This directory contains the complete saved model-evaluation record:
 - `embeddings_vit.npz` and `embeddings_resnet50.npz` are the saved frozen-backbone feature matrices used by the training workflow;
 - `benchmark_cpu_batch1.csv`, `latency.json`, `metrics_summary.csv`, and `model_comparison.csv` retain the measured comparison data;
 - `confusion_matrix_vit.png`, `confusion_matrix_resnet50.png`, `dataset_distribution.png`, `dataset_contact_sheet.jpg`, `model_comparison.png`, `precision_recall_curves.png`, and `threshold_calibration.png` are the canonical figures;
-- `external_spot_check.csv`, `external_spot_check.json`, and `external_annotated/` contain the 26-image Wikimedia diagnostic retained from 27 candidates; and
+- `external_spot_check.csv`, `external_spot_check.json`, and `external_annotated/` contain the separate Wikimedia diagnostic record and annotated examples; and
 - `evaluation_manifest.json` plus `output_checksums.csv` record the saved artifact contract and checksums.
 
 The generic duplicate `confusion_matrix.png` alias is not retained. The primary matrix has the explicit name `confusion_matrix_vit.png`.
@@ -34,7 +34,8 @@ This directory contains the final browser-validation record and the canonical St
 
 - `report/ad_safety_technical_synopsis.pdf` is the final two-page technical report.
 - `presentation/ad_safety_management_presentation.pptx` is the final 15-slide deck. Its montage and JSON files retain the independent rendering and layout QA evidence.
-- `video/ad_safety_demo.mp4` is the final narrated demonstration with an embedded subtitle stream. The adjacent SRT, narration script, storyboard, provenance, manifest, and QA report are its canonical supporting files.
+- `presentation/ad_safety_speaker_script.md` follows the deck slide by slide and is written for a live team presentation.
+- `video/ad_safety_demo.mp4` is the final narrated demonstration with an embedded subtitle stream. Its `narration_script.md` follows 19 timed video scenes and supports the saved narration workflow; it is not a duplicate of the live 15-slide speaker script. The adjacent SRT, storyboard, provenance, manifest, and QA report are the remaining canonical video support files.
 
 The final executed technical notebook is tracked at [`../ad_safety_moderation_pipeline.ipynb`](../ad_safety_moderation_pipeline.ipynb), and the original proposal is [`../Capstone Project Idea - Ad Safety.pdf`](../Capstone%20Project%20Idea%20-%20Ad%20Safety.pdf).
 
@@ -44,12 +45,12 @@ The final executed technical notebook is tracked at [`../ad_safety_moderation_pi
 - `validation_summary.json` is the concise validation summary.
 - `final_validation.json` is the detailed cross-artifact audit record.
 
-Run `python scripts/validate_release.py` for the portable public-clone boundary. The stronger `python scripts/validate_deliverables.py` audit requires the reconstructed 288-image formal dataset, the full pinned model profile, Poppler, LibreOffice, and FFmpeg. It builds and renders into temporary directories, validates the tracked final artifacts directly, and writes a path-free `final_validation.json`; ignored render, audio-segment, and QA-frame caches are not inputs.
+Run `python scripts/validate_release.py` for the portable public-clone boundary. The stronger `python scripts/validate_deliverables.py` audit requires the complete registered dataset, the full pinned model profile, Poppler, LibreOffice, and FFmpeg. It builds and renders into temporary directories, validates the tracked final artifacts directly, and writes a path-free `final_validation.json`; ignored render, audio-segment, and QA-frame caches are not inputs.
 
 ## Intentionally untracked intermediates
 
 Model download caches, Python environments, render scratch directories, duplicate aliases, presentation slide-render folders, temporary narration segments, video scene fragments, extracted QA frames, and other rebuildable intermediates remain ignored. They are not unique project inputs or final deliverables. The builders recreate them when needed.
 
-The tracked final MP4 and SRT are cross-platform validation inputs. Regenerating the original offline voice with `python scripts/build_demo_video.py narrate-offline` requires macOS `say`; Windows users can validate and use the final video but need a separately disclosed TTS workflow to create different narration bytes.
+The tracked final MP4 and SRT are cross-platform validation inputs. See [`../REPRODUCIBILITY.md`](../REPRODUCIBILITY.md) and [`../USER_MANUAL.md`](../USER_MANUAL.md) for the platform boundary around regenerating the original offline narration.
 
 See [`../NOTICE.md`](../NOTICE.md) for dataset rights, attribution, contributor-identification, and repository-license limits.

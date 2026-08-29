@@ -1,6 +1,4 @@
 {
-  "schema_version": "1.0.0",
-  "source_validation_sha256": "1e2201aab2d927b155a185f2de79060d6ee27a023722276e099b09965e7ea4f4",
   "all_checks_passed": true,
   "check_count": 16,
   "checks": [
@@ -21,5 +19,7 @@
     "strict_two_page_report",
     "train_only_fit_and_validation_calibration_reproduced"
   ],
-  "note": "The detailed path-free audit is stored in final_validation.json. This summary records the completed full-local course-run validation; a fresh public clone should run validate_release.py before reconstructing local-only audit inputs."
+  "note": "The detailed path-free audit is stored in final_validation.json. This summary records the completed full-local course-run validation; a fresh public clone should run validate_release.py before reconstructing local-only audit inputs.",
+  "schema_version": "1.0.0",
+  "source_validation_sha256": "7dc619051f54c907d407ee6cac3dfa9b5d24696164f2d6e91ae639dbad2610a1"
 }

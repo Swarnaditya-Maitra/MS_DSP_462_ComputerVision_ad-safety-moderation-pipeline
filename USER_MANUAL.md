@@ -168,7 +168,7 @@ python -m pip install -r requirements-lock.txt
 
 ## 5. Set the local runtime variables
 
-These variables keep imports and caches inside the project. I set them in every new terminal before running a build, the app, or the API.
+These variables keep imports and caches inside the project. I use the full block for builds and diagnostics. The later Streamlit and FastAPI startup blocks repeat only the variables those services require.
 
 ### macOS Terminal
 

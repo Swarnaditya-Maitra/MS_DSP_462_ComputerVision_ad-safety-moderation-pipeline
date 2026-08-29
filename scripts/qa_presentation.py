@@ -7,6 +7,9 @@ import argparse
 import hashlib
 import json
 import re
+import shutil
+import subprocess
+import tempfile
 import zipfile
 from pathlib import Path
 from xml.etree import ElementTree as ET
@@ -56,6 +59,59 @@ def build_montage(paths: list[Path], output: Path) -> None:
     canvas.save(output, "PNG", optimize=True)
 
 
+def render_pptx_independently() -> list[Path]:
+    soffice = shutil.which("soffice") or shutil.which("libreoffice")
+    pdftoppm = shutil.which("pdftoppm")
+    if not soffice or not pdftoppm:
+        raise FileNotFoundError("Independent rendering requires LibreOffice and Poppler on PATH")
+
+    output_dir = OUT / "rendered_pptx"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    for old_render in output_dir.glob("*.png"):
+        old_render.unlink()
+
+    with tempfile.TemporaryDirectory(prefix="ad-safety-pptx-render-") as temp_root:
+        temp_dir = Path(temp_root)
+        conversion = subprocess.run(
+            [
+                soffice,
+                "--headless",
+                "--convert-to",
+                "pdf",
+                "--outdir",
+                str(temp_dir),
+                str(PPTX),
+            ],
+            check=False,
+            capture_output=True,
+            text=True,
+            timeout=120,
+        )
+        if conversion.returncode != 0:
+            raise RuntimeError(f"LibreOffice render failed: {conversion.stderr[-2000:]}")
+        pdf_path = temp_dir / f"{PPTX.stem}.pdf"
+        if not pdf_path.is_file():
+            raise FileNotFoundError(f"LibreOffice did not create {pdf_path}")
+        raster = subprocess.run(
+            [pdftoppm, "-png", "-r", "144", str(pdf_path), str(temp_dir / "slide")],
+            check=False,
+            capture_output=True,
+            text=True,
+            timeout=120,
+        )
+        if raster.returncode != 0:
+            raise RuntimeError(f"Poppler render failed: {raster.stderr[-2000:]}")
+        source_renders = sorted(temp_dir.glob("slide-*.png"), key=lambda path: int(path.stem.split("-")[-1]))
+        if len(source_renders) != 15:
+            raise RuntimeError(f"Expected 15 independently rendered slides, found {len(source_renders)}")
+        rendered_paths: list[Path] = []
+        for index, source in enumerate(source_renders, start=1):
+            destination = output_dir / f"slide-{index:02d}.png"
+            shutil.copy2(source, destination)
+            rendered_paths.append(destination)
+    return rendered_paths
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -68,7 +124,7 @@ def main() -> None:
         raise ValueError("Manual status must start with PASS: or PENDING:")
 
     artifact_paths = [OUT / "rendered" / f"slide-{index:02d}.png" for index in range(1, 16)]
-    pptx_paths = [OUT / "rendered_pptx" / f"slide-{index}.png" for index in range(1, 16)]
+    pptx_paths = render_pptx_independently()
     if any(not path.is_file() for path in artifact_paths + pptx_paths):
         raise FileNotFoundError("One or more slide renders are missing")
     artifact_montage = OUT / "artifact_tool_montage.png"

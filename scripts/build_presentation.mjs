@@ -11,6 +11,7 @@ const OUT = path.join(PROJECT, "outputs", "presentation");
 const BUILD = path.join(OUT, ".build");
 const RENDERED = path.join(OUT, "rendered");
 const PPTX_PATH = path.join(OUT, "ad_safety_management_presentation.pptx");
+const SPEAKER_SCRIPT_PATH = path.join(OUT, "ad_safety_speaker_script.md");
 
 function requireDirectory(environmentVariable) {
   const configuredPath = process.env[environmentVariable];
@@ -87,6 +88,99 @@ const PRESENTERS = {
   vijay: "Vijay Agnihotri",
   myetchae: "Myetchae Thu",
   bickramjit: "Bickramjit Basu",
+};
+
+const SPEAKER_SCRIPTS = {
+  1: {
+    title: "Ad Safety Moderation: Pilot Results and Next Steps",
+    presenter: PRESENTERS.swarnaditya,
+    seconds: 50,
+    text: "Good afternoon. We built Ad Safety Studio as a decision-support tool for a reviewer, not as an automatic policy judge. On our formal 48-image test, the model reached 0.979 macro F1, where 1 is best and every class counts equally. On a small external diagnostic set, that score fell to 0.555. That gap is the main story today. The local demo works, records the evidence behind each decision, and can help sort a review queue. It is not ready to make enforcement decisions on its own. I will return to that recommendation at the end. First, Vijay will introduce the team.",
+  },
+  2: {
+    title: "Team and Presentation Plan",
+    presenter: PRESENTERS.vijay,
+    seconds: 25,
+    text: "We divided the presentation by responsibility, while keeping one shared story. I am Vijay, covering the data and error analysis. Swarnaditya covers the problem, formal results, and recommendation. Myetchae covers policy, architecture, the external check, and risk. Bickramjit covers method, prior research, and the working app. Swarnaditya will now frame the review problem.",
+  },
+  3: {
+    title: "Ambiguous Ads Are Hard to Review Consistently",
+    presenter: PRESENTERS.swarnaditya,
+    seconds: 40,
+    text: "Ad review is difficult because one creative can mix several kinds of evidence. A weapon may be obvious, important text may be small, and context can change what an image means. Our goal was not to replace a policy reviewer. We wanted to help a queue move faster, apply the same first-pass process to every image, and send uncertain cases to a person. Myetchae will now set the boundary around what the prototype can actually decide.",
+  },
+  4: {
+    title: "Four Labels Are Not a Full Ad Policy",
+    presenter: PRESENTERS.myetchae,
+    seconds: 45,
+    text: "We deliberately kept the scope narrow: safe, firearms, explosives, and visible financial-promotion cues. The financial label does not mean fraud or illegality. It means the image appears promotional, so our rules always send it to review. For the other labels, a readable policy file maps evidence to approve, review, or block. We do not cover landing pages, advertiser identity, geography, age rules, alcohol, tobacco, or the rest of the ad-policy surface. This is a triage prototype, not a complete policy engine. Vijay will show the data behind it.",
+  },
+  5: {
+    title: "Balanced Counts, Unbalanced Sources",
+    presenter: PRESENTERS.vijay,
+    seconds: 45,
+    text: "The pilot contains 288 JPEG images. Every class has 48 training images, 12 validation images, and 12 final test images. We also kept each of the 215 source groups inside one split and checked that file hashes do not overlap. That reduces leakage, meaning the same campaign or exact image cannot appear on both sides of the evaluation. The weakness is source diversity. Safe and financial images are synthetic, while both weapon classes come from one weapons dataset. The counts are balanced, but the visual sources are not. The next slide makes that problem visible.",
+  },
+  6: {
+    title: "The Classes Look Different for Reasons Unrelated to Policy",
+    presenter: PRESENTERS.vijay,
+    seconds: 40,
+    text: "The contact sheet shows the shortcut risk more clearly than a metric can. Safe images look like generated product scenes. Weapon images are often isolated objects. Financial images repeat synthetic layouts. Even with a clean group split, a classifier can learn the look of the source instead of the policy concept itself. That does not make the formal result useless, but it limits the claim to this pilot domain. Myetchae will now show how the system keeps different kinds of evidence separate.",
+  },
+  7: {
+    title: "How the System Reaches a Decision",
+    presenter: PRESENTERS.myetchae,
+    seconds: 50,
+    text: "The system runs locally and has three parts. PyTorch and timm run a frozen vision transformer, while Grounding DINO and Tesseract add optional object and text evidence. FastAPI coordinates those services, and Streamlit gives the reviewer one workspace for the image, scores, boxes, text, and timing. A versioned YAML policy then returns approve, review, or block with reason codes and a JSON audit record. Keeping the signals separate lets a reviewer inspect what each component contributed. It does not prove causation, but it is clearer than one unexplained score. Bickramjit will explain how we trained and tested the models.",
+  },
+  8: {
+    title: "We Kept the Test Set Out of Training and Tuning",
+    presenter: PRESENTERS.bickramjit,
+    seconds: 50,
+    text: "Because the dataset is small, we froze the ViT and ResNet-50 backbones instead of fine-tuning millions of weights. We then trained small logistic classifiers on training embeddings. We chose class thresholds only with the validation split. The 48-image test split was not used to train, choose a model, or tune a threshold, and we ran the final evaluation after those choices were locked. The chart shows the validation-only explosives threshold, about 0.173, with recall and precision both at 1.0 on that small validation sample. I will stay on for one slide to explain how prior research shaped the design.",
+  },
+  9: {
+    title: "What Prior Research Contributed",
+    presenter: PRESENTERS.bickramjit,
+    seconds: 40,
+    text: "Prior work helped us choose credible building blocks. The Vision Transformer paper supports transferable whole-image features. Grounding DINO supports text-guided object localization, and Tesseract provides visible-text extraction. We did not find an outside benchmark that was directly comparable to our four-label policy task, so the proposal targets are the benchmarks we report against. The papers explain why the components are reasonable choices. Only our saved evaluation supports the numbers in this presentation. Swarnaditya will now take us through those results.",
+  },
+  10: {
+    title: "ViT Wins Accuracy, Not Speed",
+    presenter: PRESENTERS.swarnaditya,
+    seconds: 70,
+    text: "On the untouched 48-image test, ViT reached 0.97913 macro F1, compared with 0.87315 for the ResNet-50 baseline. Safe precision was 1.0, so it passed the proposal target above 0.98, and none of the 12 safe test images crossed into a restricted class. The main caveat is recall. Under the operating thresholds, restricted-class recall averaged 0.94444, with a low value of 0.91667. Firearms and explosives were both below the proposal target of greater than 0.95 for every restricted class. The 0.97222 number uses simple highest-score classification, so it is a different metric. Speed also favors ResNet. ViT classifier-path p95 was 71.527 milliseconds, above the 50-millisecond target, while ResNet was 40.064. This benchmark excludes decoding, OCR, detection, network time, and rendering, so full end-to-end p95 is still unknown. Vijay will look at the one formal error.",
+  },
+  11: {
+    title: "One Grenade Was Classified as a Firearm",
+    presenter: PRESENTERS.vijay,
+    seconds: 45,
+    text: "The formal test had one wrong class label. A grenade image labeled explosives was predicted as firearms, while the other 47 labels were correct. More importantly, its firearm and explosive scores did not cross either class-specific block threshold. In the saved policy run, the case went to REVIEW rather than an automatic block or approval. The optional detector found restricted-object cues, but the class separation was still fragile. This is exactly the kind of edge case that makes the human review step necessary. Myetchae will now show what happened outside the pilot sources.",
+  },
+  12: {
+    title: "External Images Exposed Weak Generalization",
+    presenter: PRESENTERS.myetchae,
+    seconds: 60,
+    text: "The external check used 26 manually reviewed Wikimedia images for diagnosis, not as a second formal test set. Macro F1 fell to 0.55489. At the current detector threshold, 90 percent of the nonweapon images in this small sample received a false detector signal. The examples show the pattern. A historical safe ad was blocked, one explosives image was classified as safe, and a financial example received a false box even though its policy route remained review. These images have different languages, layouts, ages, and photographic context from our training sources. The sample is small and selected, so this is not a population estimate. It is still enough to show that the formal score does not generalize reliably. Bickramjit will show what the app already does well.",
+  },
+  13: {
+    title: "A Reviewer Can Follow One Case from Upload to Audit",
+    presenter: PRESENTERS.bickramjit,
+    seconds: 50,
+    text: "The working app keeps one case in one place. A reviewer uploads an image, turns optional evidence on or off, reviews the decision and the raw versus fused scores, and exports an audit record with hashes, model versions, options, and thresholds. This screenshot is a browser-validated firearm case that returned BLOCK. The 2,448-millisecond total shown here is one app run with optional stages. It is not the same measurement as the classifier-only p95 on slide 10. The session charts summarize cases from the current session only. They are not production monitoring or population evidence. Myetchae will connect those limits to the controls we still need.",
+  },
+  14: {
+    title: "What Must Change Before a Pilot",
+    presenter: PRESENTERS.myetchae,
+    seconds: 50,
+    text: "Before a real pilot, we need controls in three areas. For data, we need diverse real campaigns and independent annotation, not source-linked synthetic shortcuts. For the detector, we need local box labels and recalibration, and we should not let the detector block by itself. For operations, we still need full end-to-end p95, concurrent throughput, and CPU, Apple GPU, and memory measurements. Today's controls reduce the chance of harm, but they do not remove the uncertainty. Our decision is no-go for autonomous use and go only for further human-reviewed validation. Swarnaditya will close with that path.",
+  },
+  15: {
+    title: "What We Would Do Next: A 10-Week Plan",
+    presenter: PRESENTERS.swarnaditya,
+    seconds: 55,
+    text: "The 10-week roadmap is our planning recommendation, not a measured delivery promise. In weeks one through three, we would collect at least 1,000 real ads and lock an independent campaign-grouped holdout. In weeks four through six, we would recalibrate and require greater than 0.95 recall for every restricted class, with fewer than 2 percent safe crossings. In weeks seven through ten, we would run a shadow, human-reviewed pilot and test 10 concurrent requests with full end-to-end latency and resource tracking. If any gate fails, we stop and fix it before scaling. The project is complete as a reproducible demo, but the evidence tells us that the responsible next step is stronger validation, not autonomous enforcement. Thank you. We are ready for questions.",
+  },
 };
 
 const slideAudit = [];
@@ -341,6 +435,11 @@ function decorate(slide, index, section, presenter) {
 }
 
 function setNotes(slide, index, presenter, keyMessage, sources) {
+  const speakerScript = SPEAKER_SCRIPTS[index];
+  if (!speakerScript) throw new Error(`Slide ${index} is missing a speaker script.`);
+  if (speakerScript.presenter !== presenter) {
+    throw new Error(`Slide ${index} speaker script presenter does not match the deck assignment.`);
+  }
   const normalizedSources = sources.map((source) => {
     if (/^https?:\/\//i.test(source)) return source;
     if (path.isAbsolute(source)) {
@@ -353,7 +452,11 @@ function setNotes(slide, index, presenter, keyMessage, sources) {
   });
   const notes = [
     `Presenter: ${presenter}`,
+    `Target time: ${speakerScript.seconds} seconds`,
     `Key message: ${keyMessage}`,
+    "",
+    "[Speaker script]",
+    speakerScript.text,
     "",
     "[Sources]",
     ...normalizedSources.map((source) => `- ${source}`),
@@ -368,11 +471,52 @@ function setNotes(slide, index, presenter, keyMessage, sources) {
     slide: index,
     presenter,
     source_count: normalizedSources.length,
+    speaker_script_seconds: speakerScript.seconds,
     contains_sources_block: true,
     all_local_sources_portable: normalizedSources.every(
       (source) => /^https?:\/\//i.test(source) || source.startsWith("Project-relative: "),
     ),
   });
+}
+
+function buildSpeakerScriptMarkdown() {
+  const slides = Object.entries(SPEAKER_SCRIPTS)
+    .sort(([left], [right]) => Number(left) - Number(right));
+  const totalSeconds = slides.reduce((sum, [, entry]) => sum + entry.seconds, 0);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  const lines = [
+    "# Ad Safety Management Presentation Speaker Script",
+    "",
+    `Target running time: approximately ${minutes}:${String(seconds).padStart(2, "0")} at a natural pace.`,
+    "",
+    "Use this as a rehearsal guide, not a passage to memorize. Keep the wording conversational, pause on the charts, and let the presenter handoffs sound natural.",
+    "",
+  ];
+  for (const [slideNumber, entry] of slides) {
+    lines.push(
+      `## Slide ${slideNumber}: ${entry.title}`,
+      "",
+      `Presenter: ${entry.presenter}`,
+      "",
+      `Target time: ${entry.seconds} seconds`,
+      "",
+      entry.text,
+      "",
+    );
+  }
+  lines.push(
+    "## Delivery notes",
+    "",
+    "- The 15-slide deck changes presenter 11 times. Rehearse each handoff so the switches feel deliberate.",
+    "- Define macro F1 once on slide 1, then use the shorter term afterward.",
+    "- On slide 10, separate highest-score recall from recall at the operating thresholds.",
+    "- On slide 12, call the Wikimedia set a small selected diagnostic, not a population estimate.",
+    "- On slide 13, separate the single app-case timing from the repeated classifier-only benchmark.",
+    "- If time is short, trim examples and transitions before trimming the caveats.",
+    "",
+  );
+  return lines.join("\n");
 }
 
 function registerRegions(slideNumber, regions) {
@@ -406,6 +550,58 @@ async function writeBlob(filePath, blob) {
   await fsp.writeFile(filePath, new Uint8Array(await blob.arrayBuffer()));
 }
 
+async function normalizePptxPackage(filePath) {
+  const runtimeRequire = createRequire(path.join(BUILD, "runtime-loader.cjs"));
+  const JSZip = runtimeRequire("jszip");
+  const zip = await JSZip.loadAsync(await fsp.readFile(filePath));
+  const themePaths = [
+    "ppt/theme/theme1.xml",
+    "ppt/slideMasters/theme/theme2.xml",
+    "ppt/notesMasters/theme/theme3.xml",
+  ];
+
+  for (const themePath of themePaths) {
+    const themeFile = zip.file(themePath);
+    if (!themeFile) throw new Error(`Missing PPTX theme file: ${themePath}`);
+    const xml = await themeFile.async("string");
+    zip.file(themePath, xml.replaceAll("ChatGPT", "Ad Safety Project"));
+  }
+
+  const appPath = "docProps/app.xml";
+  const appFile = zip.file(appPath);
+  if (!appFile) throw new Error(`Missing PPTX metadata file: ${appPath}`);
+  const appXml = (await appFile.async("string"))
+    .replace(/<ap:PresentationFormat>.*?<\/ap:PresentationFormat>/, "<ap:PresentationFormat>On-screen Show (16:9)</ap:PresentationFormat>")
+    .replace(/<ap:Slides>\d+<\/ap:Slides>/, "<ap:Slides>15</ap:Slides>")
+    .replace(/<ap:Notes>\d+<\/ap:Notes>/, "<ap:Notes>15</ap:Notes>");
+  zip.file(appPath, appXml);
+
+  const corePath = "docProps/core.xml";
+  const coreFile = zip.file(corePath);
+  if (!coreFile) throw new Error(`Missing PPTX metadata file: ${corePath}`);
+  const coreXml = (await coreFile.async("string"))
+    .replace(/<dc:title>.*?<\/dc:title>/, "<dc:title>Ad Safety Moderation: Pilot Results and Next Steps</dc:title>");
+  zip.file(corePath, coreXml);
+
+  const normalized = await zip.generateAsync({
+    type: "nodebuffer",
+    compression: "DEFLATE",
+    compressionOptions: { level: 9 },
+    platform: "UNIX",
+  });
+  await fsp.writeFile(filePath, normalized);
+
+  const checkZip = await JSZip.loadAsync(normalized);
+  const checkedThemeXml = await Promise.all(themePaths.map((themePath) => checkZip.file(themePath).async("string")));
+  if (checkedThemeXml.some((xml) => xml.includes("ChatGPT"))) {
+    throw new Error("PPTX package retained an unrelated default theme label.");
+  }
+  const checkedAppXml = await checkZip.file(appPath).async("string");
+  if (!checkedAppXml.includes("<ap:Slides>15</ap:Slides>") || !checkedAppXml.includes("<ap:Notes>15</ap:Notes>")) {
+    throw new Error("PPTX package metadata does not report all slides and notes.");
+  }
+}
+
 async function buildDeck() {
   const gridSnapshot = await ensureBuildRuntime();
   const calibrationZoom = await buildCalibrationZoom();
@@ -421,7 +617,7 @@ async function buildDeck() {
   // 01 Executive Summary
   {
     const slide = buildSlide08(presentation, {
-      title: titleToken("MS_DSP_462 · MANAGEMENT REVIEW", 18.67),
+      title: titleToken("MS_DSP_462 · REVIEW QUEUE DECISION SUPPORT", 18.67),
       body1: splitBody("", ""),
       footer1: "1",
     });
@@ -429,19 +625,19 @@ async function buildDeck() {
       fit: "cover",
       position: { left: 658.17, top: 112, width: 581.6, height: 327.15 },
     });
-    addTextBox(slide, "Ad safety\nat a decision\npoint", { left: 41.33, top: 112, width: 565, height: 228 }, { fontSize: 68, bold: false });
-    addTextBox(slide, "0.979 formal macro F1\n0.555 external macro F1", { left: 41.33, top: 365, width: 565, height: 82 }, { fontSize: 28, color: BLACK, bold: true });
+    addTextBox(slide, "Ad Safety Moderation\nPilot results and next steps", { left: 41.33, top: 112, width: 565, height: 220 }, { fontSize: 54, bold: false });
+    addTextBox(slide, "0.979 macro F1 on our 48-image test\n0.555 macro F1 on the external check", { left: 41.33, top: 350, width: 565, height: 76 }, { fontSize: 23, color: BLACK, bold: true });
     addPanel(slide, { left: 41.33, top: 485, width: 565, height: 106 }, { fill: LIGHT_BLUE, line: { style: "solid", fill: CYAN, width: 1 } });
-    addTextBox(slide, "Decision\nAdvance the bounded demo. Do not approve autonomous deployment.", { left: 61, top: 501, width: 525, height: 77 }, { fontSize: 21.33, bold: true });
+    addTextBox(slide, "Recommendation\nKeep this as a human-reviewed demo. It is not ready to make decisions on its own.", { left: 61, top: 497, width: 525, height: 83 }, { fontSize: 20, bold: true });
     addPanel(slide, { left: 658.17, top: 465, width: 581.6, height: 126 }, { fill: LIGHT_BLUE, line: { style: "solid", fill: CYAN, width: 1 } });
-    addTextBox(slide, "LOCAL PILOT", { left: 678, top: 485, width: 164, height: 28 }, { fontSize: 17.33, bold: true, color: BLUE, alignment: "center" });
-    addTextBox(slide, "AUDIT-READY", { left: 864, top: 485, width: 164, height: 28 }, { fontSize: 17.33, bold: true, color: BLUE, alignment: "center" });
-    addTextBox(slide, "HUMAN-GATED", { left: 1050, top: 485, width: 164, height: 28 }, { fontSize: 17.33, bold: true, color: BLUE, alignment: "center" });
-    addTextBox(slide, "No cloud upload", { left: 678, top: 527, width: 164, height: 24 }, { fontSize: 14.67, color: MUTED, alignment: "center" });
-    addTextBox(slide, "Exact run record", { left: 864, top: 527, width: 164, height: 24 }, { fontSize: 14.67, color: MUTED, alignment: "center" });
-    addTextBox(slide, "Review stays human", { left: 1050, top: 527, width: 164, height: 24 }, { fontSize: 14.67, color: MUTED, alignment: "center" });
+    addTextBox(slide, "FASTER FIRST PASS", { left: 674, top: 485, width: 174, height: 28 }, { fontSize: 16, bold: true, color: BLUE, alignment: "center" });
+    addTextBox(slide, "CLEARER REVIEW", { left: 860, top: 485, width: 174, height: 28 }, { fontSize: 16, bold: true, color: BLUE, alignment: "center" });
+    addTextBox(slide, "HUMAN CONTROL", { left: 1046, top: 485, width: 174, height: 28 }, { fontSize: 16, bold: true, color: BLUE, alignment: "center" });
+    addTextBox(slide, "Sorts the queue", { left: 678, top: 527, width: 164, height: 24 }, { fontSize: 14.67, color: MUTED, alignment: "center" });
+    addTextBox(slide, "Keeps scores + reasons", { left: 858, top: 527, width: 186, height: 24 }, { fontSize: 14.67, color: MUTED, alignment: "center" });
+    addTextBox(slide, "Reviewer makes final call", { left: 1040, top: 527, width: 184, height: 24 }, { fontSize: 14.67, color: MUTED, alignment: "center" });
     decorate(slide, 1, "Executive Summary", PRESENTERS.swarnaditya);
-    setNotes(slide, 1, PRESENTERS.swarnaditya, "The formal pilot is strong, but the external audit shows that the present evidence is not production-grade.", [
+    setNotes(slide, 1, PRESENTERS.swarnaditya, "The demo can help reviewers sort cases, but the external check shows that it is not ready to decide cases on its own.", [
       ABS("outputs/evaluation/metrics.json"),
       ABS("outputs/evaluation/external_spot_check.json"),
       ABS("outputs/app/app_shell.png"),
@@ -459,10 +655,10 @@ async function buildDeck() {
   // 02 Team
   {
     const slide = buildSlide20(presentation, {
-      title: titleToken("Four presenters,\none evidence chain", 48),
-      body1: chartCard("Swarnaditya Maitra", "Executive summary · problem · formal results · MVP gate"),
-      body2: chartCard("Vijay Agnihotri", "Team · data profile · EDA · class and failure analysis"),
-      body3: chartCard("Myetchae Thu + Bickramjit Basu", "Policy · architecture · audit · risks | method · literature · demo"),
+      title: titleToken("Team and\npresentation plan", 48),
+      body1: chartCard("Swarnaditya Maitra", "Opening · problem · formal results · recommendation"),
+      body2: chartCard("Vijay Agnihotri", "Team · data · EDA · error analysis"),
+      body3: chartCard("Myetchae Thu + Bickramjit Basu", "Policy · architecture · external check · risks | method · research · app"),
       footer1: "2",
     });
     configureGridChart(slide, {
@@ -476,7 +672,7 @@ async function buildDeck() {
       showDataLabels: false,
     });
     decorate(slide, 2, "Team", PRESENTERS.vijay);
-    setNotes(slide, 2, PRESENTERS.vijay, "Every team member owns a visible presentation section; the sequence follows one evidence chain from problem to MVP gate.", [
+    setNotes(slide, 2, PRESENTERS.vijay, "All four team members present named sections, moving from the problem and data to results, limits, and next steps.", [
       ABS("README.md"),
       ABS("scripts/build_presentation.mjs"),
     ]);
@@ -489,14 +685,14 @@ async function buildDeck() {
   // 03 Business Problem
   {
     const slide = buildSlide19(presentation, {
-      title: titleToken("Manual review fails on ambiguous creatives", 48),
-      body1: metricIntro("BUSINESS PROBLEM", "An ad image can contain obvious objects, subtle text, or misleading context. A review queue needs fast, consistent triage while preserving a human gate for uncertain cases."),
-      stat1: rich("SPEED", 42, { bold: true, color: BLUE }),
+      title: titleToken("Ambiguous ads are hard to review consistently", 46),
+      body1: metricIntro("BUSINESS PROBLEM", "An image may contain an obvious object, small text, or context that is easy to miss. Our prototype helps reviewers sort cases consistently and sends uncertain cases to a person."),
+      stat1: rich("PRIORITY", 40, { bold: true, color: BLUE }),
       stat2: rich("CONSISTENCY", 38, { bold: true, color: BLUE }),
       stat3: rich("CONTEXT", 42, { bold: true, color: BLUE }),
-      body2: rich("Prioritize risky creatives before they reach broad distribution.", 21.33),
-      body3: rich("Apply the same evidence path to every uploaded image.", 21.33),
-      body4: rich("Escalate questions that pixels alone cannot answer.", 21.33),
+      body2: rich("Move likely high-risk images to the front of the queue.", 21.33),
+      body3: rich("Apply the same first-pass review to every image.", 21.33),
+      body4: rich("Send questions that pixels cannot answer to a reviewer.", 21.33),
       footer1: "3",
     });
     decorate(slide, 3, "Business Problem", PRESENTERS.swarnaditya);
@@ -518,9 +714,9 @@ async function buildDeck() {
       body1: splitBody("IN SCOPE", "Safe · firearms · explosives · financial-promotion cues. The last label means visible promotion, not fraud or illegality."),
       body2: splitBody("DECISION LAYER", "APPROVE · REVIEW · BLOCK. Financial cases always route to review. Restricted classes require calibrated evidence."),
       body3: splitBody("OUT OF SCOPE", "Explicit content, general violence, alcohol, tobacco, landing pages, age, geography, legality, and advertiser identity."),
-      label1: rich("MODELLED", 24, { bold: true, color: BLUE }),
-      label2: rich("TRIAGED", 24, { bold: true, color: BLUE }),
-      label3: rich("HUMAN / FUTURE", 24, { bold: true, color: RED }),
+      label1: rich("MODEL PREDICTS", 22, { bold: true, color: BLUE }),
+      label2: rich("POLICY ROUTES", 22, { bold: true, color: BLUE }),
+      label3: rich("REVIEWER / FUTURE", 22, { bold: true, color: RED }),
       footer1: "4",
     });
     repairGridTimeline(slide);
@@ -542,9 +738,9 @@ async function buildDeck() {
   {
     const slide = buildSlide20(presentation, {
       title: titleToken("Balanced counts,\nunbalanced sources", 48),
-      body1: chartCard("48 / 12 / 12 per class", "Train · validation · untouched test. Total pilot size: 288 images."),
+      body1: chartCard("288 JPEG images", "48 / 12 / 12 per class for train · validation · final test."),
       body2: chartCard("215 source groups", "Campaign and source groups stay inside one split; exact hashes do not overlap."),
-      body3: chartCard("Source-confounded", "Safe and finance are synthetic; both weapon classes come from Weapons Set 1."),
+      body3: chartCard("Source shortcut risk", "ADautoGen supplies Safe; our builder supplies Finance; Weapons Set 1 supplies both weapon classes."),
       footer1: "5",
     });
     configureGridChart(slide, {
@@ -572,8 +768,8 @@ async function buildDeck() {
   // 06 EDA
   {
     const slide = buildSlide08(presentation, {
-      title: titleToken("Source style\npredicts labels", 48),
-      body1: splitBody("WHAT THE CONTACT SHEET REVEALS", "Safe: generated product scenes\nWeapons: isolated objects\nFinance: repeated synthetic templates\n\nRisk: the classifier may learn where the image came from instead of what policy concept it contains."),
+      title: titleToken("The classes look different\nfor reasons unrelated to policy", 46),
+      body1: splitBody("WHAT THE CONTACT SHEET REVEALS", "Safe images look like generated product scenes. Weapon images are often isolated objects. Finance images reuse synthetic layouts.\n\nRisk: the classifier may learn visual source style instead of the intended policy category."),
       footer1: "6",
     });
     await setHeroImage(slide, ASSETS.contact, "Contact sheet contrasting source style by class and split", { fit: "contain" });
@@ -592,13 +788,13 @@ async function buildDeck() {
   // 07 Architecture
   {
     const slide = buildSlide18(presentation, {
-      title: titleToken("Separate evidence streams before policy", 48),
-      body1: splitBody("1 · SEE", "Frozen ViT scores the whole image. Grounding DINO Tiny proposes weapon and explosive object evidence."),
-      body2: splitBody("2 · READ", "Tesseract extracts visible text. Classifier, detector, and OCR evidence remain separately inspectable."),
-      body3: splitBody("3 · DECIDE", "A versioned YAML policy returns APPROVE, REVIEW, or BLOCK with reasons and an audit trail."),
-      label1: rich("INPUT + VISION", 24, { bold: true, color: BLUE }),
-      label2: rich("EVIDENCE", 24, { bold: true, color: BLUE }),
-      label3: rich("VERDICT", 24, { bold: true, color: BLUE }),
+      title: titleToken("How the system reaches a decision", 48),
+      body1: splitBody("1 · ANALYZE", "PyTorch and timm run a frozen ViT. Grounding DINO and Tesseract add optional object and text evidence."),
+      body2: splitBody("2 · REVIEW", "FastAPI coordinates the services. Streamlit shows scores, boxes, text, timing, and the uploaded case."),
+      body3: splitBody("3 · DECIDE", "A versioned YAML policy returns APPROVE, REVIEW, or BLOCK and saves a JSON audit record. Runs locally on CPU."),
+      label1: rich("MODELS", 24, { bold: true, color: BLUE }),
+      label2: rich("LOCAL APPLICATION", 22, { bold: true, color: BLUE }),
+      label3: rich("POLICY + AUDIT", 22, { bold: true, color: BLUE }),
       footer1: "7",
     });
     repairGridTimeline(slide);
@@ -608,7 +804,7 @@ async function buildDeck() {
       slide.shapes.connect(cards[1], cards[2], { kind: "straight", fromSide: "right", toSide: "left", line: { style: "solid", fill: BLUE, width: 2 }, tail: { type: "arrow", width: "med", length: "med" } });
     }
     decorate(slide, 7, "Architecture", PRESENTERS.myetchae);
-    setNotes(slide, 7, PRESENTERS.myetchae, "The architecture avoids collapsing evidence into one opaque score; the policy layer can explain which signal changed a verdict.", [
+    setNotes(slide, 7, PRESENTERS.myetchae, "The local stack keeps model, detector, OCR, policy, and audit evidence separate so a reviewer can inspect each contribution.", [
       ABS("README.md"),
       ABS("src/ad_safety/inference.py"),
       ABS("configs/policy.yaml"),
@@ -624,8 +820,8 @@ async function buildDeck() {
   // 08 Methodology
   {
     const slide = buildSlide08(presentation, {
-      title: titleToken("Test evidence\nstayed untouched", 48),
-      body1: splitBody("METHOD", "1  Freeze ViT and ResNet-50 backbones\n\n2  Fit logistic heads on train embeddings\n\n3  Tune thresholds on validation only\n\n4  Open the 48-image test once\n\n5  Benchmark warm batch-1 CPU"),
+      title: titleToken("We kept the test set\nout of training and tuning", 48),
+      body1: splitBody("METHOD", "1  Freeze ViT and ResNet-50 because the dataset is small\n\n2  Fit logistic heads on train embeddings\n\n3  Select thresholds on validation only\n\n4  Run one final evaluation on 48 test images\n\n5  Benchmark warm batch-1 CPU"),
       footer1: "8",
     });
     await setHeroImage(
@@ -638,7 +834,7 @@ async function buildDeck() {
     );
     addTextBox(
       slide,
-      "RECALL red · PRECISION blue · selected t=0.173",
+      "Selected t=0.173 on validation · recall 1.00 · precision 1.00",
       { left: 684, top: 579, width: 530, height: 36 },
       { fontSize: 21.33, bold: true, color: BLUE, fill: WHITE, alignment: "center", verticalAlignment: "middle" },
     );
@@ -660,14 +856,14 @@ async function buildDeck() {
   // 09 Literature
   {
     const slide = buildSlide19(presentation, {
-      title: titleToken("Research supports components, not claims", 48),
-      body1: metricIntro("LITERATURE BOUNDARY", "Papers and model cards explain why each component is plausible. Only this project’s saved evaluation can support claims about this pilot."),
+      title: titleToken("What prior research contributed", 48),
+      body1: metricIntro("LITERATURE + BENCHMARKS", "Prior work informed our model choices. No outside benchmark is directly comparable to this four-label policy task, so we evaluate against the proposal targets and our saved results."),
       stat1: rich("ViT", 48, { bold: true, color: BLUE }),
       stat2: rich("DINO", 48, { bold: true, color: BLUE }),
       stat3: rich("OCR + RULES", 36, { bold: true, color: BLUE }),
-      body2: rich("Patch attention supplies a transferable whole-image representation.", 21.33),
-      body3: rich("Text-conditioned detection localizes open-vocabulary object cues.", 21.33),
-      body4: rich("Visible words add evidence; explicit policy rules keep the final action inspectable.", 21.33),
+      body2: rich("Dosovitskiy et al. (2021): transferable whole-image features.", 21.33),
+      body3: rich("Liu et al. (2023): open-vocabulary object localization.", 21.33),
+      body4: rich("Tesseract OCR + YAML rules: text evidence and traceable decisions.", 21.33),
       footer1: "9",
     });
     decorate(slide, 9, "Literature", PRESENTERS.bickramjit);
@@ -698,12 +894,12 @@ async function buildDeck() {
       slide,
       { left: 41.33, top: 320, width: 580.67, height: 151 },
       "71.527 / 40.064 ms",
-      "Classifier p95 · ViT / ResNet · batch 1\nViT >50 ms; end-to-end p95 unassessed",
+      "Classifier p95 · ViT / ResNet · batch 1\nViT exceeds 50 ms; full-pipeline timing is unknown",
       { fill: PANEL },
     );
     addTextBox(
       slide,
-      "Safe precision 1.000: PASS (>0.98)\nSafe false-flag rate: 0 (1 − recall)\nArgmax restricted recall: 0.97222\nThreshold recall mean / min: 0.94444 / 0.91667\n>0.95 per-class target: FAIL · calibration floor ≥0.90",
+      "Safe precision 1.000: PASS (>0.98)\nSafe false-flag rate: 0.0%\nRestricted recall, argmax mean: 0.97222\nRestricted recall, threshold mean / minimum: 0.94444 / 0.91667\nResult: two restricted classes miss the >0.95 proposal target",
       { left: 41.33, top: 489, width: 580, height: 149 },
       { fontSize: 21.33, color: MUTED },
     );
@@ -725,10 +921,10 @@ async function buildDeck() {
   // 11 Class and Failure Analysis
   {
     const slide = buildSlide20(presentation, {
-      title: titleToken("One grenade crossed\nthe class boundary", 48),
-      body1: chartCard("FORMAL ERROR", "One explosives image was predicted as firearms. All other 47 labels were correct."),
-      body2: chartCard("NO AUTO-BLOCK", "Neither class-specific block threshold fired for that image; a restricted error still needs review."),
-      body3: chartCard("WEAKEST CLASS", "ViT F1 0.957 · ResNet F1 0.750.\nSeparation remains fragile."),
+      title: titleToken("One grenade was classified\nas a firearm", 48),
+      body1: chartCard("WHAT HAPPENED", "One explosives image was predicted as firearms. The other 47 labels were correct."),
+      body2: chartCard("POLICY RESULT", "Neither block threshold fired, so the saved case went to REVIEW rather than automatic enforcement."),
+      body3: chartCard("WHY IT MATTERS", "Lowest class: explosives.\nViT F1 0.957\nResNet F1 0.750"),
       footer1: "11",
     });
     configureGridChart(slide, {
@@ -742,9 +938,9 @@ async function buildDeck() {
       showDataLabels: false,
       valueFormat: "0.00",
     });
-    await addImage(slide, ASSETS.formalFailure, "Formal test grenade that ViT classified as firearms", { left: 1080, top: 500, width: 132, height: 90 }, { fit: "cover" });
+    await addImage(slide, ASSETS.formalFailure, "Formal test grenade that ViT classified as firearms", { left: 1098, top: 500, width: 110, height: 90 }, { fit: "cover" });
     decorate(slide, 11, "Class and Failure Analysis", PRESENTERS.vijay);
-    setNotes(slide, 11, PRESENTERS.vijay, "The single formal failure is restricted-to-restricted, but it exposes weak explosives separation and did not meet either automatic block threshold.", [
+    setNotes(slide, 11, PRESENTERS.vijay, "The only wrong class label went to REVIEW, but it still exposes fragile separation between firearms and explosives.", [
       ABS("outputs/evaluation/per_class_metrics.csv"),
       ABS("outputs/evaluation/failure_cases.csv"),
       ABS("outputs/evaluation/confusion_matrix_vit.png"),
@@ -759,8 +955,8 @@ async function buildDeck() {
   // 12 External Generalization Audit
   {
     const slide = buildSlide08(presentation, {
-      title: titleToken("External audit\nbreaks confidence", 48),
-      body1: splitBody("WIKIMEDIA DIAGNOSTIC · n=26", "0.55489 classifier macro F1\n0.90 detector nonweapon FPR\n\nHistorical layouts, languages, and photographic context differ sharply from the pilot sources. This is a diagnostic spot check, not a formal test set."),
+      title: titleToken("External images exposed\nweak generalization", 48),
+      body1: splitBody("WIKIMEDIA DIAGNOSTIC · n=26", "0.55489 classifier macro F1\n0.90 detector nonweapon FPR\n\nThe images use different layouts, languages, ages, and photographic contexts. This small selected diagnostic is a warning, not a formal test set or population estimate."),
       footer1: "12",
     });
     const first = await setHeroImage(slide, ASSETS.externalSafeFalse, "Safe historical food advertisement falsely detected as explosive", { fit: "cover", position: { left: 658.17, top: 41.62, width: 226, height: 588.14 } });
@@ -771,7 +967,7 @@ async function buildDeck() {
     addTextBox(slide, "EXPLOSIVES → SAFE", { left: 911, top: 276, width: 318, height: 36 }, { fontSize: 21.33, bold: true, color: RED, fill: WHITE, verticalAlignment: "middle", alignment: "center" });
     addTextBox(slide, "FINANCE OK · FALSE BOX", { left: 911, top: 584, width: 318, height: 36 }, { fontSize: 21.33, bold: true, color: RED, fill: WHITE, verticalAlignment: "middle", alignment: "center" });
     decorate(slide, 12, "External Generalization Audit", PRESENTERS.myetchae);
-    setNotes(slide, 12, PRESENTERS.myetchae, "The 26-image Wikimedia diagnostic exposes domain shift: classifier macro F1 falls to 0.55489 and the detector flags 90 percent of nonweapon images.", [
+    setNotes(slide, 12, PRESENTERS.myetchae, "In the small selected Wikimedia diagnostic, macro F1 falls to 0.55489 and 90 percent of nonweapon images receive a false detector signal.", [
       ABS("outputs/evaluation/external_spot_check.json"),
       ABS("outputs/evaluation/external_spot_check.csv"),
       ABS("outputs/evaluation/external_annotated"),
@@ -789,7 +985,7 @@ async function buildDeck() {
   // 13 Demo Workflow
   {
     const slide = buildSlide18(presentation, {
-      title: titleToken("One workspace carries a case from upload to audit", 46),
+      title: titleToken("A reviewer can follow one case from upload to audit", 44),
       body1: splitBody("", ""),
       body2: splitBody("", ""),
       body3: splitBody("", ""),
@@ -808,7 +1004,7 @@ async function buildDeck() {
     );
     const callouts = [
       ["DECISION STATE", "BLOCK, policy focus, and evidence score stay visible."],
-      ["SCORE PROVENANCE", "Raw and fused policy evidence remain separate."],
+      ["WHERE THE SCORE CAME FROM", "Raw and fused policy evidence remain separate."],
       ["EVIDENCE + TIMING", "Boxes, text, occlusion, and stage latency drill down."],
       ["AUDIT EXPORT", "Options, hashes, versions, and applied thresholds persist."],
     ];
@@ -820,7 +1016,7 @@ async function buildDeck() {
     });
     addPanel(slide, { left: 30, top: 551, width: 1209, height: 17 }, { fill: WHITE, line: { style: "solid", fill: WHITE, width: 0 } });
     addPanel(slide, { left: 825, top: 559, width: 413.66, height: 70 }, { fill: WHITE, line: { style: "solid", fill: RED, width: 1 } });
-    addTextBox(slide, "Session analytics describe review,\nnot production or population evidence.", { left: 845, top: 568, width: 373.66, height: 52 }, { fontSize: 21.33, bold: true, color: RED, verticalAlignment: "middle" });
+    addTextBox(slide, "Session charts cover this session only.\nThey are not production or population evidence.", { left: 845, top: 568, width: 373.66, height: 52 }, { fontSize: 18, bold: true, color: RED, verticalAlignment: "middle" });
     decorate(slide, 13, "Demo Workflow", PRESENTERS.bickramjit);
     setNotes(slide, 13, PRESENTERS.bickramjit, "The browser-validated workspace keeps the decision, evidence, timing, and exact audit record together while preserving human control over review cases.", [
       ABS("app.py"),
@@ -840,18 +1036,18 @@ async function buildDeck() {
   // 14 Risks and Controls
   {
     const slide = buildSlide19(presentation, {
-      title: titleToken("Controls needed before an MVP trial", 48),
-      body1: metricIntro("GO / NO-GO", "Current controls limit damage, but they do not remove the uncertainty created by synthetic sources, detector noise, and incomplete end-to-end latency evidence."),
+      title: titleToken("What must change before a pilot", 48),
+      body1: metricIntro("THREE GAPS", "Before a pilot, we need to address source-biased data, noisy detections, and missing full-pipeline performance measurements."),
       stat1: rich("DATA", 46, { bold: true, color: RED }),
       stat2: rich("DETECTOR", 40, { bold: true, color: RED }),
       stat3: rich("OPERATIONS", 38, { bold: true, color: RED }),
-      body2: rich("Replace source-linked shortcuts with diverse, independently annotated real campaigns.", 21.33),
-      body3: rich("A 0.90 nonweapon FPR requires local box labels, recalibration, and no automatic detector block.", 21.33),
-      body4: rich("Unmeasured: end-to-end p95,\nconcurrency, and MPS use.\nRetain telemetry and escalation.", 21.33),
+      body2: rich("Collect diverse real campaigns and use independent labels instead of source-linked shortcuts.", 21.33),
+      body3: rich("A 0.90 nonweapon FPR requires local box labels, recalibration, and no detector-only block.", 21.33),
+      body4: rich("Measure end-to-end p95,\nconcurrency, CPU/GPU load,\nMPS acceleration, and memory.", 21.33),
       footer1: "14",
     });
     decorate(slide, 14, "Risks and Controls", PRESENTERS.myetchae);
-    setNotes(slide, 14, PRESENTERS.myetchae, "The main risks are source confounding, an uncalibrated detector, and classifier-only latency evidence. Full end-to-end p95, concurrent throughput, and MPS CPU/GPU/RAM use were not measured; each needs an explicit control before a trial.", [
+    setNotes(slide, 14, PRESENTERS.myetchae, "The main risks are source confounding, an uncalibrated detector, and classifier-only latency evidence. Full end-to-end p95, concurrent throughput, CPU and GPU load, MPS acceleration, and memory use were not measured; each needs an explicit control before a trial.", [
       ABS("outputs/evaluation/external_spot_check.json"),
       ABS("outputs/evaluation/latency.json"),
       ABS("data/capstone_registry.csv"),
@@ -866,10 +1062,10 @@ async function buildDeck() {
   // 15 Next Steps to MVP
   {
     const slide = buildSlide18(presentation, {
-      title: titleToken("A recommended 10-week path to MVP", 48),
-      body1: splitBody("WEEKS 1–3 · EVIDENCE", "Resource: data lead, policy reviewer, 2 annotators. Curate ≥1,000 real ads; lock a campaign-grouped independent holdout."),
-      body2: splitBody("WEEKS 4–6 · CALIBRATE", "Resource: 1 ML engineer, reviewer, CPU/GPU test capacity. Gate: >0.95 recall per restricted class and <2% Safe crossings."),
-      body3: splitBody("WEEKS 7–10 · PILOT", "Resource: product lead, app/MLOps engineer, reviewer rotation. Scale gate: 10 concurrent requests; measure E2E p95 and CPU/GPU/RAM."),
+      title: titleToken("What we would do next: a 10-week plan", 48),
+      body1: splitBody("WEEKS 1–3 · EVIDENCE", "A data lead, policy reviewer, and 2 annotators curate ≥1,000 real ads and lock a campaign-grouped independent holdout."),
+      body2: splitBody("WEEKS 4–6 · CALIBRATE", "1 ML engineer and a reviewer tune against two gates: >0.95 recall per restricted class and <2% Safe crossings."),
+      body3: splitBody("WEEKS 7–10 · SHADOW PILOT", "A product lead, app/MLOps engineer, and reviewer rotation test 10 concurrent requests, end-to-end p95 latency, and resource use."),
       label1: rich("DATA + POLICY", 24, { bold: true, color: BLUE }),
       label2: rich("ML + QA", 24, { bold: true, color: BLUE }),
       label3: rich("PRODUCT + OPS", 24, { bold: true, color: BLUE }),
@@ -910,6 +1106,7 @@ async function buildDeck() {
 
   const pptx = await PresentationFile.exportPptx(presentation);
   await pptx.save(PPTX_PATH);
+  await normalizePptxPackage(PPTX_PATH);
 
   const reopened = await PresentationFile.importPptx(await FileBlob.load(PPTX_PATH));
   const reopenedCount = reopened.slides.items.length;
@@ -917,12 +1114,13 @@ async function buildDeck() {
   await writeBlob(path.join(OUT, "reopened_montage.webp"), await reopened.export({ format: "webp", montage: true, scale: 0.5 }));
 
   const plan = [
-    "Communication job: By the end, evaluators and management stakeholders should understand that the prototype demonstrates credible ad triage on a bounded pilot, while MVP approval requires broader real-ad evidence, detector recalibration, and a full-pipeline operating decision.",
-    "Narrative: promise -> boundary -> evidence -> formal result -> external break -> controlled MVP gate.",
+    "Communication job: By the end, evaluators and management stakeholders should understand what the prototype can do, where the evidence breaks down, and why the next step is a human-reviewed validation pilot rather than autonomous enforcement.",
+    "Narrative: review problem -> scope -> data and method -> formal result -> external warning -> controls and next steps.",
     "Design system: Codex Grid 1280x720, white canvas, black ink, gray panels, restrained blue accent, Arial.",
     `Selected layouts: ${SELECTED_TEMPLATE_IDS.join(", ")}`,
   ].join("\n");
   await fsp.writeFile(path.join(BUILD, "slide-plan.txt"), plan);
+  await fsp.writeFile(SPEAKER_SCRIPT_PATH, buildSpeakerScriptMarkdown());
   await fsp.writeFile(
     path.join(BUILD, "source-notes.txt"),
     notesAudit.map((entry) => `Slide ${entry.slide}: ${entry.presenter}; source_count=${entry.source_count}`).join("\n"),

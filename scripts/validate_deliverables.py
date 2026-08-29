@@ -187,10 +187,23 @@ def portable_payload(value: Any) -> Any:
 
 
 def write_result(payload: dict[str, Any]) -> None:
-    RESULT_PATH.write_text(
-        json.dumps(portable_payload(payload), indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
-    )
+    portable = portable_payload(payload)
+    RESULT_PATH.write_text(json.dumps(portable, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    checks = portable.get("checks", {})
+    summary = {
+        "schema_version": "1.0.0",
+        "source_validation_sha256": sha256_file(RESULT_PATH),
+        "all_checks_passed": portable.get("all_checks_passed") is True,
+        "check_count": portable.get("check_count", len(checks)),
+        "checks": sorted(checks),
+        "note": (
+            "The detailed path-free audit is stored in final_validation.json. This summary records the "
+            "completed full-local course-run validation; a fresh public clone should run "
+            "validate_release.py before reconstructing local-only audit inputs."
+        ),
+    }
+    summary_path = RESULT_PATH.with_name("validation_summary.json")
+    summary_path.write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
 def build_book_in_temporary_checkout() -> dict[str, Any]:
@@ -493,8 +506,11 @@ def main() -> int:
         "book/_toc.yml",
         "book/index.md",
         "book/_static/custom.css",
+        ".github/workflows/pages.yml",
+        "requirements-book.txt",
         "outputs/report/ad_safety_technical_synopsis.pdf",
         "outputs/presentation/ad_safety_management_presentation.pptx",
+        "outputs/presentation/ad_safety_speaker_script.md",
         "outputs/presentation/presentation_validation.json",
         "outputs/presentation/qa_report.json",
         "outputs/presentation/artifact_tool_montage.png",
@@ -1779,18 +1795,18 @@ def main() -> int:
         "0.972222",
         "0.944444",
         "0.916667",
-        "per-class recall >0.95 fails",
+        "per-class >0.95 target fails",
         "71.527 ms",
         "Full end-to-end p95 was not measured",
         "Safe-class precision",
-        "Safe-ad false-flag rate (1 - Safe recall)",
+        "Safe-ad false-flag rate was 0.0% (1 - Safe recall)",
         ">0.98",
         "0.90",
         "55.5%",
         "90.0%",
         "concurrent throughput",
         "MPS",
-        "session charts are descriptive interface evidence",
+        "session charts describe only the cases run in that session",
     ]
     report_render_ok = (
         report_render_returncode == 0
@@ -1878,19 +1894,19 @@ def main() -> int:
         "0.91667",
         "0.55489",
         "0.90 detector nonweapon FPR",
-        "end-to-end p95 unassessed",
-        ">0.95 per-class target: FAIL",
+        "full-pipeline timing is unknown",
+        "miss the >0.95 proposal target",
         "Safe precision",
         ">0.98",
-        "calibration floor ≥0.90",
+        "Selected t=0.173 on validation",
         "concurrency",
         "MPS",
-        "Session analytics describe review",
+        "Session charts cover this session only",
         "not production or population evidence",
     ]
     mvp_slide_text = slide_texts[14]
     mvp_roadmap_facts = [
-        "recommended 10-week",
+        "10-week plan",
         "WEEKS 1–3",
         "WEEKS 4–6",
         "WEEKS 7–10",
@@ -1898,7 +1914,7 @@ def main() -> int:
         "1 ML engineer",
         "app/MLOps engineer",
         "10 concurrent requests",
-        "CPU/GPU/RAM",
+        "resource use",
     ]
     validation_facts = presentation_validation.get("measured_facts_used", {})
     roadmap_plan = presentation_validation.get("mvp_roadmap_plan", {})
@@ -2519,6 +2535,7 @@ def main() -> int:
     MARKER_PATH.write_text("FINAL_VALIDATION_IN_PROGRESS\n", encoding="utf-8")
     test_env = dict(os.environ)
     test_env["PYTHONPATH"] = str(ROOT / "src")
+    test_env["AD_SAFETY_FINAL_VALIDATION_RUNNING"] = "1"
     test_env.setdefault("OMP_NUM_THREADS", "1")
     test_env.setdefault("MKL_NUM_THREADS", "1")
     test_env.setdefault("OPENBLAS_NUM_THREADS", "1")

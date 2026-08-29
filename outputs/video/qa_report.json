@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "status": "PASS",
-  "manual_visual_inspection": "PASS: I inspected the current representative montage and final MP4 frames for the safe, firearm, and financial decision scenes after the final deck rebuild; verdicts, evidence panels, captions, framing, and text are legible with no clipping or stale visuals.",
+  "manual_visual_inspection": "PASS: representative frames inspected; titles, overlays, slide renders, and captions are readable with no clipping or stale slide copy",
   "checks": {
     "duration_300_to_480_seconds": true,
     "resolution_1280x720": true,
@@ -20,8 +20,8 @@
     "workflow_narration_provenance_current": true
   },
   "media": {
-    "duration_seconds": 454.17,
-    "video_stream": "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1280x720, 101 kb/s, 30 fps, 30 tbr, 15360 tbn (default)",
+    "duration_seconds": 455.17,
+    "video_stream": "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1280x720, 103 kb/s, 30 fps, 30 tbr, 15360 tbn (default)",
     "audio_stream": "Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 195 kb/s (default)",
     "subtitle_stream": "Stream #0:2[0x3](eng): Subtitle: mov_text (tx3g / 0x67337874), 0 kb/s (default)",
     "width": 1280,
@@ -30,106 +30,106 @@
     "video_codec": "h264",
     "audio_codec": "aac",
     "subtitle_codec": "mov_text",
-    "duration_seconds_scanned": 454.16,
-    "frame_count": 13622,
-    "file_bytes": 17388175,
-    "sha256": "bd50a24dcf23cbbdc6a00b8cd236b31f1956878e8a76e1f9337719ecbe0b75a3"
+    "duration_seconds_scanned": 455.16,
+    "frame_count": 13652,
+    "file_bytes": 17532521,
+    "sha256": "4557c6bba01144b8bdef825616d275e7621c1f4d8e41f62f9e668c722d9b9bb9"
   },
   "representative_frames": [
     "outputs/video/qa_frames/frame_01_0005.00s.jpg",
-    "outputs/video/qa_frames/frame_02_0090.83s.jpg",
-    "outputs/video/qa_frames/frame_03_0181.67s.jpg",
-    "outputs/video/qa_frames/frame_04_0272.50s.jpg",
-    "outputs/video/qa_frames/frame_05_0363.34s.jpg",
-    "outputs/video/qa_frames/frame_06_0449.17s.jpg"
+    "outputs/video/qa_frames/frame_02_0091.03s.jpg",
+    "outputs/video/qa_frames/frame_03_0182.07s.jpg",
+    "outputs/video/qa_frames/frame_04_0273.10s.jpg",
+    "outputs/video/qa_frames/frame_05_0364.14s.jpg",
+    "outputs/video/qa_frames/frame_06_0450.17s.jpg"
   ],
   "representative_frame_checksums": [
     {
       "path": "outputs/video/qa_frames/frame_01_0005.00s.jpg",
-      "bytes": 105496,
-      "sha256": "dedabcad99a0fd6957a3589b334621ba3627cc139729f6b01c8ef72ff05ccddc"
+      "bytes": 117686,
+      "sha256": "2b143522d4ece41a4016fc8173c48372162af875fdd87a635cac287e70387353"
     },
     {
-      "path": "outputs/video/qa_frames/frame_02_0090.83s.jpg",
-      "bytes": 128056,
-      "sha256": "65b7b5811db295a34e5758738290788cfaa33d38d06c9d48b6e60c1772d0f44c"
+      "path": "outputs/video/qa_frames/frame_02_0091.03s.jpg",
+      "bytes": 139501,
+      "sha256": "ec27726ba61f36356573675db4adff7e125054b1520f6c9bb6e785b0e05924f0"
     },
     {
-      "path": "outputs/video/qa_frames/frame_03_0181.67s.jpg",
-      "bytes": 105234,
-      "sha256": "c88a236efa746887a8031b1bf66783bff24c33571f011e06baf66177ea327ae1"
+      "path": "outputs/video/qa_frames/frame_03_0182.07s.jpg",
+      "bytes": 107416,
+      "sha256": "569e99c4aa3a03b1433e911a429650f793542c7ba5923b90f61f4c3e7862fb41"
     },
     {
-      "path": "outputs/video/qa_frames/frame_04_0272.50s.jpg",
-      "bytes": 158786,
-      "sha256": "ed9ce860ff5df76fa5230060ea1c4fbd9026c2dba0825e565c44743bb5c05775"
+      "path": "outputs/video/qa_frames/frame_04_0273.10s.jpg",
+      "bytes": 165495,
+      "sha256": "807dec8426a47948180c9ead78402992487d83d0da37c50e6f5a839db5808480"
     },
     {
-      "path": "outputs/video/qa_frames/frame_05_0363.34s.jpg",
-      "bytes": 189018,
-      "sha256": "dac0863103429957acd53ae8ac43c0d42b9afe1c2f75a72a437c4ca2ebfcc0b2"
+      "path": "outputs/video/qa_frames/frame_05_0364.14s.jpg",
+      "bytes": 188991,
+      "sha256": "3df1c10b2d4c171fdb946dad430d9a3b936913a0009474a456cb9ea6b6d0bfa7"
     },
     {
-      "path": "outputs/video/qa_frames/frame_06_0449.17s.jpg",
-      "bytes": 101549,
-      "sha256": "e59dc4a2feb0b7ec7e474e8011ed9b82097d09c25e3bff7b6e2738a8dd0b2746"
+      "path": "outputs/video/qa_frames/frame_06_0450.17s.jpg",
+      "bytes": 98520,
+      "sha256": "8992959553f548a9c2e11d6476172f245e2b4c851fcd11a4a3852f68b2969ed6"
     }
   ],
   "representative_frame_montage": {
     "path": "outputs/video/qa_frames/qa_montage.png",
-    "bytes": 460163,
-    "sha256": "b3f2a6c89a458d87c592c08bda30145dae19cd17f926c3d2c3d3b775c0ba6713"
+    "bytes": 473095,
+    "sha256": "e644d73f64d4c88bd8c839c2fd64a6ce5b972ce41b11262bbd6ebdbea740d03d"
   },
   "artifact_checksums": [
     {
       "path": "outputs/video/ad_safety_demo.mp4",
-      "bytes": 17388175,
-      "sha256": "bd50a24dcf23cbbdc6a00b8cd236b31f1956878e8a76e1f9337719ecbe0b75a3"
+      "bytes": 17532521,
+      "sha256": "4557c6bba01144b8bdef825616d275e7621c1f4d8e41f62f9e668c722d9b9bb9"
     },
     {
       "path": "outputs/video/ad_safety_demo.srt",
-      "bytes": 11020,
-      "sha256": "ebfc83bc99a3048bd7ae89ad166cf7310d5b6f5867aa3c189cd01f38467906bd"
+      "bytes": 11041,
+      "sha256": "7f934ec4df9fdae4df013fb20ab2ab8dde3ba27143d740ccc09245ef5133005c"
     },
     {
       "path": "outputs/video/narration_script.md",
-      "bytes": 10089,
-      "sha256": "7c69c60eb8b0339001d8acfe1d9504a7abd7313f527cf8b1e89ce146643ade24"
+      "bytes": 10171,
+      "sha256": "638ded477aec92a482dd173f5262be7f65fe22ed47f97568556a4321e091fe1d"
     },
     {
       "path": "outputs/video/storyboard.csv",
-      "bytes": 4177,
-      "sha256": "8354d08c87d025e906ea832c36f77548ccf5f87420cf6e61a91e1bec71c3dd44"
+      "bytes": 4234,
+      "sha256": "24343464c1a8aa0cbaaae7403e5417beff27b9ffc9c10a8576299a9c9a751f65"
     },
     {
       "path": "outputs/video/storyboard.json",
-      "bytes": 7152,
-      "sha256": "5acc32407d942c4aeeb0f5dd19496e599c10eeba36f0ce889d82fd875a30efa0"
+      "bytes": 7213,
+      "sha256": "9a05f1bc6f1bcd44f537d7e69852b757591d45f09a33ef861d181c2bbae0b616"
     },
     {
       "path": "outputs/video/storyboard_actual.csv",
-      "bytes": 2373,
-      "sha256": "0c3df2293a0fa6c24879e12d546d00f38c5e0f9560908ed86d4e7161f2ffba1c"
+      "bytes": 2437,
+      "sha256": "127c88091c3ee06c721fc7711f4a04bc46632da5070cacb8748c613de94800b4"
     },
     {
       "path": "outputs/video/storyboard_actual.json",
-      "bytes": 5946,
-      "sha256": "7e0d15aaa13a1a2429f921a404fa47c70ace217a9819ef2fdf420e728e595419"
+      "bytes": 6014,
+      "sha256": "8b8a74623063defb259f3fcdb15183cb561951585c7845f827974e0a85153800"
     },
     {
       "path": "outputs/video/video_manifest.json",
-      "bytes": 7856,
-      "sha256": "e288889c1e7d2760250f04ef9393659ee163deb5ac0d02366d71c9dff01e212c"
+      "bytes": 7921,
+      "sha256": "4270496ec17016cbab09a7805fa02550123e0a71ab9d0f4a82ec6231f8f25776"
     },
     {
       "path": "outputs/video/narration_provenance.json",
-      "bytes": 17262,
-      "sha256": "2dbfb1eb051b18ae2ec64a0fc0f25975cae347f14a5995aeb82ef8db0fb90d0f"
+      "bytes": 17283,
+      "sha256": "1745952ef3557501a45f7beffcd7ae66979e715343a779f61f3f22ba3980db3b"
     }
   ],
   "ffmpeg_binary": "ffmpeg-macos-aarch64-v7.1",
   "probe_excerpt": {
-    "video": "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1280x720, 101 kb/s, 30 fps, 30 tbr, 15360 tbn (default)",
+    "video": "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1280x720, 103 kb/s, 30 fps, 30 tbr, 15360 tbn (default)",
     "audio": "Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 195 kb/s (default)",
     "subtitle": "Stream #0:2[0x3](eng): Subtitle: mov_text (tx3g / 0x67337874), 0 kb/s (default)"
   },

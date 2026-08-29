@@ -34,14 +34,15 @@
       "issue_count": 0,
       "issues": [],
       "passed": true,
-      "required_count": 6,
+      "required_count": 7,
       "sizes_bytes": {
         "final_notebook": 1717855,
-        "final_subtitles": 11020,
-        "final_video": 17388175,
-        "presentation_pptx": 1464964,
+        "final_subtitles": 11041,
+        "final_video": 17532521,
+        "presentation_pptx": 1470468,
         "proposal_pdf": 140242,
-        "report_pdf": 16801
+        "report_pdf": 16835,
+        "speaker_script_md": 11502
       }
     },
     "stale_duplicate_aliases": {
@@ -61,7 +62,7 @@
       "issue_count": 0,
       "issues": [],
       "passed": true,
-      "tracked_file_count": 275
+      "tracked_file_count": 278
     },
     "tracked_release_policy": {
       "absolute_path_file_count": 0,
@@ -73,15 +74,15 @@
       "oversized_file_count": 0,
       "passed": true,
       "secret_count": 0,
-      "tracked_file_count": 275
+      "tracked_file_count": 278
     },
     "video_artifacts": {
       "issue_count": 0,
       "issues": [],
       "passed": true,
       "sizes_bytes": {
-        "final_subtitles": 11020,
-        "final_video": 17388175
+        "final_subtitles": 11041,
+        "final_video": 17532521
       }
     },
     "wikimedia_dataset": {
@@ -98,7 +99,7 @@
   },
   "failed_check_count": 0,
   "failed_checks": [],
-  "generated_at_utc": "2026-08-26T18:50:13.481934+00:00",
+  "generated_at_utc": "2026-08-29T12:05:50.738999+00:00",
   "output": "outputs/validation/release_validation.json",
   "schema_version": "1.0.0"
 }

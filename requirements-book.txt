@@ -1,0 +1,4 @@
+# Pinned direct dependencies for the GitHub Pages Jupyter Book build.
+jupyter-book==1.0.4.post1
+nbformat==5.10.4
+nbconvert==7.17.0

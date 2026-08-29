@@ -1,9 +1,9 @@
 {
   "artifact": {
-    "bytes": 1464964,
+    "bytes": 1470468,
     "path": "outputs/presentation/ad_safety_management_presentation.pptx",
     "reopened_slide_count": 15,
-    "sha256": "9d09685c956551795e076497f2cb31e3c7ea6dac0b834e2e871f33b86726870e",
+    "sha256": "300d5428ede5622a80031a4faf7926d94fcf49cbfbcf6b1798178009e0ca6fb4",
     "slide_count": 15,
     "zip_integrity": "PASS: unzip-compatible archive test reported no errors"
   },
@@ -15,7 +15,7 @@
       "codex-grid-layout-library#slide-19",
       "codex-grid-layout-library#slide-20"
     ],
-    "sha256": "845db3bcb624cc611f357177375a2803924d76c09cd119e82d2a9f56091ee9e0",
+    "sha256": "e8eac7532421885ed966890844e327abc9bc39fd7e40db7d9877e50739d1b603",
     "tool": "@oai/artifact-tool"
   },
   "layout_tests": {
@@ -80,14 +80,14 @@
   "rendering": {
     "artifact_tool_montage": {
       "path": "outputs/presentation/artifact_tool_montage.png",
-      "sha256": "82c8275b5fc64d6ce4f2be785b78d82ea9867d8f92fef73b9b836e6028a77098"
+      "sha256": "ffa6b211eab18fe7a1b54d24248745d01887ee34c58e2036190d75836bc8d13e"
     },
     "artifact_tool_png_count": 15,
     "independent_pptx_montage": {
       "path": "outputs/presentation/pptx_montage.png",
-      "sha256": "f8292afdd6c7d596b37e2906459d27dc842eb543c0659339ddb1e46a4fa1fbe4"
+      "sha256": "f4982d1e635fe0cecfee184b0d9507d20c7333f8cdd0aac816a11a631b7d8745"
     },
-    "manual_visual_inspection": "PASS: inspected both current montages and all 15 independently reopened full-size slides; typography is projection-readable, no visible clipping or unintended overlap remains, and the enlarged slide 8 calibration view is legible.",
+    "manual_visual_inspection": "PASS: all 15 artifact-tool and independent LibreOffice renders were inspected; no clipping, overlap, broken images, or unreadable text remains",
     "reopened_pptx_png_count": 15
   },
   "schema_version": "1.2.0",
@@ -119,6 +119,6 @@
   "validation": {
     "path": "outputs/presentation/presentation_validation.json",
     "recorded_pptx_sha256_matches_artifact": true,
-    "sha256": "46d77f4dbb11f370b4716136b7fbf851615372386df0d51d9bef9a3239839436"
+    "sha256": "124348fd722d0c03dfbb79400c884cd6de4a9c5002047b092117976d473d8737"
   }
 }

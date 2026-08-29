@@ -72,12 +72,12 @@
   {
     "scene_id": "08_methodology",
     "forced_regeneration": false,
-    "narration_text": "I froze both the V-I-T and ResNet-fifty backbones, cached their embeddings, and fit logistic heads only on training data. I selected conservative class thresholds on validation data. I opened the 48-image test set once for final reporting. I also benchmarked warm batch-one C-P-U inference with one thread so the timing protocol stays reproducible.",
-    "narration_text_sha256": "bfd3b529219c36c1924e1ebe73341b87b49fe788b693717b0bb5b422b568e0c2",
-    "text_file_sha256": "4c47ae84ca1ecbb94009808b45956d4650304b4a4a545a1d7e1f749ec6b5109a",
-    "aiff_sha256": "1b059394c02219463a6331195e00e696b60838b16426d0c00d880b7e7e6dc40e",
-    "wav_sha256": "b553e0baa57e56e99cc3fa38a471a76110238b768c8712e60d53c526b7a020d4",
-    "audio_duration_seconds": 19.539625
+    "narration_text": "I froze both the V-I-T and ResNet-fifty backbones, cached their embeddings, and fit logistic heads only on training data. I selected conservative class thresholds on validation data. The recorded protocol evaluates the 48-image test set once after calibration. I also benchmarked warm batch-one C-P-U inference with one thread so the timing protocol stays reproducible.",
+    "narration_text_sha256": "949ae8a8cedcafdb83f5bd75d88bfb9bf97b23d5a9b6e527196e48bb197fe74b",
+    "text_file_sha256": "66629ee34ef4e31e4092a13d45fb9bf23d6c3406ef6e73cf875a9da280a73f33",
+    "aiff_sha256": "fe83423a9a0820b018ff6e18a90f46c0346c7ec79c5ae60d41b3119848e46e83",
+    "wav_sha256": "b9d2e2f0034d22741531f259787cba635dbb1b6c826937414a5f1c12078c7a5f",
+    "audio_duration_seconds": 20.531583
   },
   {
     "scene_id": "09_literature",

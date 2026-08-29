@@ -105,7 +105,7 @@
       }
     },
     "automated_tests": {
-      "output": "........................................................................ [ 67%]\n...................................                                      [100%]\n=============================== warnings summary ===============================\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n  <PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852: DeprecationWarning: label() is deprecated. Use is_required() or is_repeated() instead.\n    self._ParseOrMerge(lines, message)\n\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n  <PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876: DeprecationWarning: label() is deprecated. Use is_required() or is_repeated() instead.\n    self._MergeField(tokenizer, message)\n\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1011\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1011\n  <PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1011: DeprecationWarning: label() is deprecated. Use is_required() or is_repeated() instead.\n    merger(tokenizer, message, field)\n\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1092\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1092\n  <PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1092: DeprecationWarning: label() is deprecated. Use is_required() or is_repeated() instead.\n    self._MergeField(tokenizer, sub_message)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n107 passed, 16 warnings in 9.27s",
+      "output": "........................................................................ [ 66%]\n.......................s.............                                    [100%]\n=============================== warnings summary ===============================\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852\n  <PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:852: DeprecationWarning: label() is deprecated. Use is_required() or is_repeated() instead.\n    self._ParseOrMerge(lines, message)\n\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876\n  <PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:876: DeprecationWarning: label() is deprecated. Use is_required() or is_repeated() instead.\n    self._MergeField(tokenizer, message)\n\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1011\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1011\n  <PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1011: DeprecationWarning: label() is deprecated. Use is_required() or is_repeated() instead.\n    merger(tokenizer, message, field)\n\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1092\n../../../../..<PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1092\n  <PYTHON_PREFIX>/lib/python3.10/site-packages/google/protobuf/text_format.py:1092: DeprecationWarning: label() is deprecated. Use is_required() or is_repeated() instead.\n    self._MergeField(tokenizer, sub_message)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n108 passed, 1 skipped, 16 warnings in 8.96s",
       "passed": true,
       "returncode": 0
     },
@@ -399,7 +399,7 @@
       "temporary_book_build": {
         "chapter_present": true,
         "index_present": true,
-        "output": "WARNING: --no-execute creates a source-only site without refreshed outputs.\nSaved canonical executed notebook: <ABSOLUTE_PATH>/private<TMP>/ad-safety-book-validation-ab5u23p7/project/ad_safety_moderation_pipeline.ipynb\nStatic book built with nbconvert: <ABSOLUTE_PATH>/private<TMP>/ad-safety-book-validation-ab5u23p7/project/book/_build/html/index.html",
+        "output": "WARNING: --no-execute creates a source-only site without refreshed outputs.\nStatic book built with nbconvert: <ABSOLUTE_PATH>/private<TMP>/ad-safety-book-validation-t04zr6r1/project/book/_build/html/index.html",
         "returncode": 0
       }
     },
@@ -792,36 +792,36 @@
               0,
               255
             ],
-            "gray_stddev": 31.255496822240847,
+            "gray_stddev": 31.01119115191433,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "2e5744e26202a556c2ca56535556af87f05b251ef339401e3cb24853481dae4e",
+            "pixel_sha256": "a81a2e3a658edcbf63c98ee081ce6364d3114b37a3dfe16da8d11a870d9e9978",
             "slide": 1,
             "width": 1601
           },
           {
             "format": "PNG",
             "gray_extrema": [
-              0,
+              21,
               255
             ],
-            "gray_stddev": 33.075514698616736,
+            "gray_stddev": 32.235012254855654,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "b7d51a3498411157d9f339e8cd494526222f8e6c77d99a4703578d361222770e",
+            "pixel_sha256": "47e0ceee0478c787b45b674af236d641e9499f1eaadfe87aa09eceea7b91aadf",
             "slide": 2,
             "width": 1601
           },
           {
             "format": "PNG",
             "gray_extrema": [
-              0,
+              3,
               255
             ],
-            "gray_stddev": 27.41925427157385,
+            "gray_stddev": 26.853261199196794,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "34f957eb834a9267e92f04babde9a41a35b82b574957820e34cf7ec9f1497f20",
+            "pixel_sha256": "1ba1d06c106f1a6cf0578f798a2f2dde8fb6ea2d1f328523f257b81d070154ea",
             "slide": 3,
             "width": 1601
           },
@@ -831,10 +831,10 @@
               0,
               255
             ],
-            "gray_stddev": 27.737173762091313,
+            "gray_stddev": 27.767039969110762,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "e210c9d7626a5f197d62f8076023439731ec532b25965e16dd78d19e029bcb9e",
+            "pixel_sha256": "50e3fb5bd47609817ac9b5a7a2a07cb570afd521c677951110aa6ba091367dfd",
             "slide": 4,
             "width": 1601
           },
@@ -844,10 +844,10 @@
               14,
               255
             ],
-            "gray_stddev": 40.10000023398911,
+            "gray_stddev": 40.22872873465715,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "3b733f03bea29835a1764f86ba14f82bdae517ca8a216c008f355ec3c0915443",
+            "pixel_sha256": "19579113090d52e37dd950915acb642b208f297fd18656b7241e166e7951089a",
             "slide": 5,
             "width": 1601
           },
@@ -857,10 +857,10 @@
               0,
               255
             ],
-            "gray_stddev": 52.99526715983054,
+            "gray_stddev": 53.939552247778984,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "a5682d4f18730e28c85a12afc8d21c5f88f81956b4645b3acc4856e6c1147d0c",
+            "pixel_sha256": "2121e0497d2c981916a79da6da075ca169587c0bf34c506b5ceab2e63e16b1e7",
             "slide": 6,
             "width": 1601
           },
@@ -870,36 +870,36 @@
               0,
               255
             ],
-            "gray_stddev": 27.178055762039005,
+            "gray_stddev": 26.890435786877326,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "12e56c466a9630e7cbdfc38f155cbc59dd86e863f73e7e4224060228c953fc4a",
+            "pixel_sha256": "87712dfb85995435893d72f08cd8d59502cf2436c2847f29e2a19f60ad642157",
             "slide": 7,
             "width": 1601
           },
           {
             "format": "PNG",
             "gray_extrema": [
-              9,
+              14,
               255
             ],
-            "gray_stddev": 26.2497597976069,
+            "gray_stddev": 28.381778566023883,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "920398e95e384a2ef61d44120930b5a61d66af64b968240c8f9155fea52b109a",
+            "pixel_sha256": "fbb2f4f815fbe606fa1eabeda5000f7e09d50e553b6fc3b2dc5c4ed749b8c181",
             "slide": 8,
             "width": 1601
           },
           {
             "format": "PNG",
             "gray_extrema": [
-              25,
+              14,
               255
             ],
-            "gray_stddev": 27.329568265843193,
+            "gray_stddev": 25.909744707954985,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "7094f419de417e8daf7379d01003ae2fd1b44733cb7ab6aec5e0b67ff72c149e",
+            "pixel_sha256": "67a2d4bdf4c4b42bb6857ea73950309e5228201fde21440fd6aad25269f2973a",
             "slide": 9,
             "width": 1601
           },
@@ -909,23 +909,23 @@
               0,
               255
             ],
-            "gray_stddev": 39.07237068846335,
+            "gray_stddev": 39.128202112309125,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "2750b1cda2e20497b768ac4fd257ca6396b4189eaff5845d0006810d6ef9f260",
+            "pixel_sha256": "76bbdc29f21a197e54752c15e890b649daf80f423c5fef538c5e1427efd38788",
             "slide": 10,
             "width": 1601
           },
           {
             "format": "PNG",
             "gray_extrema": [
-              9,
+              4,
               255
             ],
-            "gray_stddev": 45.40682791628916,
+            "gray_stddev": 44.864102143345896,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "5a1409863617973424617a4ce83b9d06adf1547ff956888a5e01e57a05b0e1ea",
+            "pixel_sha256": "46db44bd89a520ad936525005786f694cd30c89a91aa855c66a55656065ae90c",
             "slide": 11,
             "width": 1601
           },
@@ -935,36 +935,36 @@
               0,
               255
             ],
-            "gray_stddev": 56.230424187943854,
+            "gray_stddev": 56.83443407349373,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "e8e8c11df50919a86d556c33e165e7614a91a28bdbbfcd3107323f9fe8e23621",
+            "pixel_sha256": "923d550023656bbd54fb4527dcab13cedbe6ea18b4618d2cbd42411008eda4a0",
             "slide": 12,
             "width": 1601
           },
           {
             "format": "PNG",
             "gray_extrema": [
-              12,
+              28,
               255
             ],
-            "gray_stddev": 30.17604952120528,
+            "gray_stddev": 29.970305833572215,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "f3a87745170e49f24b557b7152a8175103506825c2f3ccd20a8e73905f22a609",
+            "pixel_sha256": "cf5284bbb9166d32428079611baef78e72463b19540d2e1847e2f90e48c6917e",
             "slide": 13,
             "width": 1601
           },
           {
             "format": "PNG",
             "gray_extrema": [
-              9,
+              14,
               255
             ],
-            "gray_stddev": 27.70582416892351,
+            "gray_stddev": 26.66115829344933,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "440b83be93d334995065e8493191678d887f503f324ea75c6670600144b84d86",
+            "pixel_sha256": "11c1ac1234ae13d290c5720df3aa3b180eca9b18d72cd7b151999b4802c3b085",
             "slide": 14,
             "width": 1601
           },
@@ -974,10 +974,10 @@
               0,
               255
             ],
-            "gray_stddev": 29.932623113480105,
+            "gray_stddev": 30.031894393766127,
             "height": 900,
             "nonblank": true,
-            "pixel_sha256": "39560fbd6333da56109173de007e8b100ed166de60444293d69c440d9b9c9d1c",
+            "pixel_sha256": "b1cbc06e9c71bb0646e49e8b550e3609cd6841a847df7a414356ca7fa8673661",
             "slide": 15,
             "width": 1601
           }
@@ -986,7 +986,7 @@
         "slides_validated": 15,
         "soffice_binary": "soffice"
       },
-      "manual_visual_inspection": "PASS: inspected both current montages and all 15 independently reopened full-size slides; typography is projection-readable, no visible clipping or unintended overlap remains, and the enlarged slide 8 calibration view is legible.",
+      "manual_visual_inspection": "PASS: all 15 artifact-tool and independent LibreOffice renders were inspected; no clipping, overlap, broken images, or unreadable text remains",
       "missing_mvp_roadmap_facts": [],
       "missing_required_facts": [],
       "montage_sizes": [
@@ -1032,8 +1032,8 @@
         "Swarnaditya Maitra": true,
         "Vijay Agnihotri": true
       },
-      "qa_sha256": "9d09685c956551795e076497f2cb31e3c7ea6dac0b834e2e871f33b86726870e",
-      "sha256": "9d09685c956551795e076497f2cb31e3c7ea6dac0b834e2e871f33b86726870e",
+      "qa_sha256": "300d5428ede5622a80031a4faf7926d94fcf49cbfbcf6b1798178009e0ca6fb4",
+      "sha256": "300d5428ede5622a80031a4faf7926d94fcf49cbfbcf6b1798178009e0ca6fb4",
       "slide_size_emu": [
         12192000,
         6858000
@@ -1041,7 +1041,7 @@
       "slides": 15,
       "sources_blocks": 15,
       "support_hashes_match": true,
-      "validation_sha256": "9d09685c956551795e076497f2cb31e3c7ea6dac0b834e2e871f33b86726870e"
+      "validation_sha256": "300d5428ede5622a80031a4faf7926d94fcf49cbfbcf6b1798178009e0ca6fb4"
     },
     "measured_evidence_recomputed": {
       "argmax_issues": [],
@@ -1171,7 +1171,7 @@
       "audio_mean_volume_db": -22.5,
       "audio_signal_ok": true,
       "caption_cues": 99,
-      "duration_seconds": 454.17,
+      "duration_seconds": 455.17,
       "ffmpeg": "<PYTHON_PREFIX>/lib/python3.10/site-packages/imageio_ffmpeg/binaries/ffmpeg-macos-aarch64-v7.1",
       "has_audio_stream": true,
       "has_subtitle_stream": true,
@@ -1179,7 +1179,7 @@
       "height": 720,
       "independent_decode_returncode": 0,
       "independent_decode_stderr": "",
-      "manual_visual_inspection": "PASS: I inspected the current representative montage and final MP4 frames for the safe, firearm, and financial decision scenes after the final deck rebuild; verdicts, evidence panels, captions, framing, and text are legible with no clipping or stale visuals.",
+      "manual_visual_inspection": "PASS: representative frames inspected; titles, overlays, slide renders, and captions are readable with no clipping or stale slide copy",
       "missing_required_facts": [],
       "narration_stale_text_absent": true,
       "offline_disclosure_ok": true,
@@ -1191,10 +1191,10 @@
             0,
             255
           ],
-          "gray_stddev": 30.978224841800138,
+          "gray_stddev": 30.66569718773398,
           "height": 720,
           "nonblank": true,
-          "pixel_sha256": "ad8edab239b35f763240103a117568c8d6d725aaab9b78cbab6789138d62d7ff",
+          "pixel_sha256": "b2f6f5fa996800643d957f282f69f499a98b55ccffd2f3acd57c8a2683792a49",
           "timestamp_seconds": 5.0,
           "width": 1280
         },
@@ -1204,11 +1204,11 @@
             0,
             255
           ],
-          "gray_stddev": 52.61914199084493,
+          "gray_stddev": 53.50205812713099,
           "height": 720,
           "nonblank": true,
-          "pixel_sha256": "68c2207f5401fd35c587deca6a6d90f47069439f6869545a166697b73d506641",
-          "timestamp_seconds": 90.83,
+          "pixel_sha256": "873af4ccf705f2c03f1e283167a7b97461094632330e5fa1a5d859747eaf6666",
+          "timestamp_seconds": 91.03,
           "width": 1280
         },
         {
@@ -1217,11 +1217,11 @@
             0,
             255
           ],
-          "gray_stddev": 37.4770952729868,
+          "gray_stddev": 37.50584682706569,
           "height": 720,
           "nonblank": true,
-          "pixel_sha256": "0780abed6a52027367946f3d7daa0b7fa8b7995502f4494af8ddc5ff25cb4695",
-          "timestamp_seconds": 181.67,
+          "pixel_sha256": "b7b602482c2e9534e2cb5b34bddc5f0262bf31e570666c893d8ad04b8a7b87f1",
+          "timestamp_seconds": 182.07,
           "width": 1280
         },
         {
@@ -1230,11 +1230,11 @@
             5,
             255
           ],
-          "gray_stddev": 43.03331304437706,
+          "gray_stddev": 43.6959587519385,
           "height": 720,
           "nonblank": true,
-          "pixel_sha256": "37adaceeb33f6deeb2cbb3eda1654552706ef281aab0609066d97d055ffe6d7e",
-          "timestamp_seconds": 272.5,
+          "pixel_sha256": "37b5bae51e63989a0e70dc693568ac79e7cfe05b89113d4a63536395b584942e",
+          "timestamp_seconds": 273.1,
           "width": 1280
         },
         {
@@ -1243,11 +1243,11 @@
             0,
             255
           ],
-          "gray_stddev": 87.46553067681496,
+          "gray_stddev": 87.46550122526082,
           "height": 720,
           "nonblank": true,
-          "pixel_sha256": "97f247dc279481a0bd87e0aa86549a67032e1c25408afbdea60ab8daf395197a",
-          "timestamp_seconds": 363.34,
+          "pixel_sha256": "79b7834cc93552be0d46b85682edb5ea3410b66e133e033a2245940ee65b52cb",
+          "timestamp_seconds": 364.14,
           "width": 1280
         },
         {
@@ -1256,17 +1256,17 @@
             0,
             255
           ],
-          "gray_stddev": 29.32039133538971,
+          "gray_stddev": 29.36062496155357,
           "height": 720,
           "nonblank": true,
-          "pixel_sha256": "f354ea652e33c3c546680a3c89e521d7829e4c10ca3e700cc28ec633dca9ecdb",
-          "timestamp_seconds": 449.17,
+          "pixel_sha256": "e53613ac0e830bc083045a327774560788bcfdb3918b35200d9e3c84830b22f1",
+          "timestamp_seconds": 450.17,
           "width": 1280
         }
       ],
       "representative_frame_failures": [],
       "representative_frames_regenerated": true,
-      "sha256": "bd50a24dcf23cbbdc6a00b8cd236b31f1956878e8a76e1f9337719ecbe0b75a3",
+      "sha256": "4557c6bba01144b8bdef825616d275e7621c1f4d8e41f62f9e668c722d9b9bb9",
       "subtitle_roundtrip_ok": true,
       "video_checksum_failures": [],
       "video_codec": "h264",
@@ -1335,7 +1335,7 @@
       "passed": true
     },
     "required_files": {
-      "expected": 50,
+      "expected": 53,
       "missing": [],
       "passed": true
     },
@@ -1359,25 +1359,25 @@
         {
           "format": "PNG",
           "gray_extrema": [
-            11,
+            7,
             255
           ],
-          "gray_stddev": 71.18815418475997,
+          "gray_stddev": 71.39582361372625,
           "height": 1980,
           "nonblank": true,
-          "pixel_sha256": "47ed58de96c137331bc19a043f4d501ab134adb2afcd43a70aea17e1700f5875",
+          "pixel_sha256": "85d37141ee961ae4acc16fdff83b543e256df763daa8458bb7b5947696b54d30",
           "width": 1530
         },
         {
           "format": "PNG",
           "gray_extrema": [
-            9,
+            8,
             255
           ],
-          "gray_stddev": 68.66865174314358,
+          "gray_stddev": 68.65382385137265,
           "height": 1980,
           "nonblank": true,
-          "pixel_sha256": "d6baee3a402fa5ba6957e3bf4caac9e29ca936834bd0f8c981137d30407dec64",
+          "pixel_sha256": "6a4881bfa716b3936a440a67d1408d2734e8c7dd54f3e49a41554534d03ca0dc",
           "width": 1530
         }
       ],
@@ -1490,7 +1490,7 @@
           "raw_pixel_backbone_regeneration": {
             "batch_size": 8,
             "device": "cpu",
-            "elapsed_seconds": 12.191189417149872,
+            "elapsed_seconds": 12.033469333080575,
             "embedding_cache_exact_match": true,
             "embedding_cache_max_abs_difference": 0.0,
             "feature_shape": [
@@ -2838,7 +2838,7 @@
           "raw_pixel_backbone_regeneration": {
             "batch_size": 8,
             "device": "cpu",
-            "elapsed_seconds": 18.255549208028242,
+            "elapsed_seconds": 17.362394167110324,
             "embedding_cache_exact_match": true,
             "embedding_cache_max_abs_difference": 0.0,
             "feature_shape": [

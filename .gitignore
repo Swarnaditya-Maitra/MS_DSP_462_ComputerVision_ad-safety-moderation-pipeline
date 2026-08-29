@@ -12,6 +12,7 @@ htmlcov/
 .vscode/
 *.swp
 *~
+~$*.ppt*
 
 .venv/
 venv/

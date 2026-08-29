@@ -51,7 +51,7 @@ SCENES: list[dict[str, Any]] = [
         "id": "01_executive_summary",
         "section": "Executive Summary",
         "presenter": "Swarnaditya Maitra",
-        "title": "Ad safety at a decision point",
+        "title": "Ad Safety Moderation: Pilot results and next steps",
         "visual": {"layout": "single", "items": [slide(1)]},
         "narration": (
             "This video uses offline macOS system-generated narration with the Aman voice. "
@@ -64,7 +64,7 @@ SCENES: list[dict[str, Any]] = [
         "id": "02_team",
         "section": "Team",
         "presenter": "Vijay Agnihotri",
-        "title": "Four presenters, one evidence chain",
+        "title": "Team and presentation plan",
         "visual": {"layout": "single", "items": [slide(2)]},
         "narration": (
             "I divide the story across four presenters. Swarnaditya covers the decision and results. Vijay covers "
@@ -76,7 +76,7 @@ SCENES: list[dict[str, Any]] = [
         "id": "03_business_problem",
         "section": "Business Problem",
         "presenter": "Swarnaditya Maitra",
-        "title": "Manual review fails on ambiguous creatives",
+        "title": "Ambiguous ads are hard to review consistently",
         "visual": {"layout": "single", "items": [slide(3)]},
         "narration": (
             "I start from a queue problem. A creative can hide a restricted object, subtle text, or misleading "
@@ -113,7 +113,7 @@ SCENES: list[dict[str, Any]] = [
         "id": "06_eda",
         "section": "EDA",
         "presenter": "Vijay Agnihotri",
-        "title": "Source style predicts labels",
+        "title": "The classes look different for reasons unrelated to policy",
         "visual": {"layout": "single", "items": [slide(6)]},
         "narration": (
             "The contact sheet exposes the main weakness. Safe ads are synthetic product creatives. Financial ads "
@@ -126,7 +126,7 @@ SCENES: list[dict[str, Any]] = [
         "id": "07_architecture",
         "section": "Architecture",
         "presenter": "Myetchae Thu",
-        "title": "Separate evidence streams before policy",
+        "title": "How the system reaches a decision",
         "visual": {"layout": "single", "items": [slide(7)]},
         "narration": (
             "My pipeline keeps three evidence streams separate. A frozen vision transformer scores the whole image. "
@@ -139,12 +139,12 @@ SCENES: list[dict[str, Any]] = [
         "id": "08_methodology",
         "section": "Methodology",
         "presenter": "Bickramjit Basu",
-        "title": "Test evidence stayed untouched",
+        "title": "We kept the test set out of training and tuning",
         "visual": {"layout": "single", "items": [slide(8)]},
         "narration": (
             "I froze both the V-I-T and ResNet-fifty backbones, cached their embeddings, and fit logistic heads only "
-            "on training data. I selected conservative class thresholds on validation data. I opened the 48-image "
-            "test set once for final reporting. I also benchmarked warm batch-one C-P-U inference with one thread so "
+            "on training data. I selected conservative class thresholds on validation data. The recorded protocol "
+            "evaluates the 48-image test set once after calibration. I also benchmarked warm batch-one C-P-U inference with one thread so "
             "the timing protocol stays reproducible."
         ),
     },
@@ -152,7 +152,7 @@ SCENES: list[dict[str, Any]] = [
         "id": "09_literature",
         "section": "Literature",
         "presenter": "Bickramjit Basu",
-        "title": "Research supports components, not claims",
+        "title": "What prior research contributed",
         "visual": {"layout": "single", "items": [slide(9)]},
         "narration": (
             "I use published work to justify component choices, not to claim this pilot is production-ready. The V-I-T "
@@ -193,7 +193,7 @@ SCENES: list[dict[str, Any]] = [
         "id": "11_known_formal_error",
         "section": "Class and Failure Analysis",
         "presenter": "Vijay Agnihotri",
-        "title": "One grenade crossed the class boundary",
+        "title": "One grenade was classified as a firearm",
         "visual": {
             "layout": "hero_right_stack",
             "items": [
@@ -214,7 +214,7 @@ SCENES: list[dict[str, Any]] = [
         "id": "12_external_audit",
         "section": "External Generalization Audit",
         "presenter": "Myetchae Thu",
-        "title": "External audit breaks confidence",
+        "title": "External images exposed weak generalization",
         "visual": {
             "layout": "hero_right_stack",
             "items": [
@@ -237,7 +237,7 @@ SCENES: list[dict[str, Any]] = [
         "id": "13_demo_workflow",
         "section": "Demo Workflow",
         "presenter": "Bickramjit Basu",
-        "title": "One workspace carries a case from upload to audit",
+        "title": "A reviewer can follow one case from upload to audit",
         "visual": {"layout": "single", "items": [slide(13)]},
         "narration": (
             "The workspace has four steps. I upload one J-P-E-G, P-N-G, or WebP image, configure optional object "
@@ -333,7 +333,7 @@ SCENES: list[dict[str, Any]] = [
         "id": "18_risks_controls",
         "section": "Risks and Controls",
         "presenter": "Myetchae Thu",
-        "title": "Controls needed before an MVP trial",
+        "title": "What must change before a pilot",
         "visual": {"layout": "single", "items": [slide(14)]},
         "narration": (
             "The largest risks are source-confounded training data, an uncalibrated detector outside the pilot domain, "
@@ -348,7 +348,7 @@ SCENES: list[dict[str, Any]] = [
         "id": "19_next_steps",
         "section": "Next Steps to MVP",
         "presenter": "Swarnaditya Maitra",
-        "title": "A recommended 10-week path to MVP",
+        "title": "What we would do next: a 10-week plan",
         "visual": {"layout": "single", "items": [slide(15)]},
         "narration": (
             "My recommendation is only a human-gated M-V-P, not autonomous enforcement. The recommended ten-week "

@@ -1,20 +1,20 @@
 sequence,scene_id,section,presenter,title,narration_words,audio_duration_seconds,start_seconds,end_seconds
-1,01_executive_summary,Executive Summary,Swarnaditya Maitra,Ad safety at a decision point,54,18.639875,0.0,18.639875
-2,02_team,Team,Vijay Agnihotri,"Four presenters, one evidence chain",31,13.075125,18.639875,31.715
-3,03_business_problem,Business Problem,Swarnaditya Maitra,Manual review fails on ambiguous creatives,48,17.614042,31.715,49.329042
+1,01_executive_summary,Executive Summary,Swarnaditya Maitra,Ad Safety Moderation: Pilot results and next steps,54,18.639875,0.0,18.639875
+2,02_team,Team,Vijay Agnihotri,Team and presentation plan,31,13.075125,18.639875,31.715
+3,03_business_problem,Business Problem,Swarnaditya Maitra,Ambiguous ads are hard to review consistently,48,17.614042,31.715,49.329042
 4,04_policy_boundary,Policy Boundary,Myetchae Thu,Four labels are not a full ad policy,53,21.5,49.329042,70.829042
 5,05_data_profile,Data Profile,Vijay Agnihotri,"Balanced counts, unbalanced sources",51,19.63425,70.829042,90.463292
-6,06_eda,EDA,Vijay Agnihotri,Source style predicts labels,50,18.341875,90.463292,108.805167
-7,07_architecture,Architecture,Myetchae Thu,Separate evidence streams before policy,58,21.665208,108.805167,130.470375
-8,08_methodology,Methodology,Bickramjit Basu,Test evidence stayed untouched,53,19.539625,130.470375,150.01
-9,09_literature,Literature,Bickramjit Basu,"Research supports components, not claims",43,17.388958,150.01,167.398958
-10,10_formal_results,Formal Results,Swarnaditya Maitra,"ViT wins accuracy, not speed",141,70.36175,167.398958,237.760708
-11,11_known_formal_error,Class and Failure Analysis,Vijay Agnihotri,One grenade crossed the class boundary,64,23.855292,237.760708,261.616
-12,12_external_audit,External Generalization Audit,Myetchae Thu,External audit breaks confidence,83,30.074833,261.616,291.690833
-13,13_demo_workflow,Demo Workflow,Bickramjit Basu,One workspace carries a case from upload to audit,49,18.044083,291.690833,309.734917
-14,14_safe_approve,Demo Case,Bickramjit Basu,Safe creative routes to APPROVE,50,18.740375,309.734917,328.475292
-15,15_firearm_block,Demo Case,Bickramjit Basu,Firearm evidence routes to BLOCK,45,19.770042,328.475292,348.245333
-16,16_explosive_block,Demo Case,Bickramjit Basu,Explosive evidence routes to BLOCK,52,19.0295,348.245333,367.274833
-17,17_financial_review,Demo Case,Bickramjit Basu,Financial promotion routes to REVIEW,53,20.925708,367.274833,388.200542
-18,18_risks_controls,Risks and Controls,Myetchae Thu,Controls needed before an MVP trial,77,31.525208,388.200542,419.72575
-19,19_next_steps,Next Steps to MVP,Swarnaditya Maitra,A recommended 10-week path to MVP,92,34.380292,419.72575,454.106042
+6,06_eda,EDA,Vijay Agnihotri,The classes look different for reasons unrelated to policy,50,18.341875,90.463292,108.805167
+7,07_architecture,Architecture,Myetchae Thu,How the system reaches a decision,58,21.665208,108.805167,130.470375
+8,08_methodology,Methodology,Bickramjit Basu,We kept the test set out of training and tuning,54,20.531583,130.470375,151.001958
+9,09_literature,Literature,Bickramjit Basu,What prior research contributed,43,17.388958,151.001958,168.390917
+10,10_formal_results,Formal Results,Swarnaditya Maitra,"ViT wins accuracy, not speed",141,70.36175,168.390917,238.752667
+11,11_known_formal_error,Class and Failure Analysis,Vijay Agnihotri,One grenade was classified as a firearm,64,23.855292,238.752667,262.607958
+12,12_external_audit,External Generalization Audit,Myetchae Thu,External images exposed weak generalization,83,30.074833,262.607958,292.682792
+13,13_demo_workflow,Demo Workflow,Bickramjit Basu,A reviewer can follow one case from upload to audit,49,18.044083,292.682792,310.726875
+14,14_safe_approve,Demo Case,Bickramjit Basu,Safe creative routes to APPROVE,50,18.740375,310.726875,329.46725
+15,15_firearm_block,Demo Case,Bickramjit Basu,Firearm evidence routes to BLOCK,45,19.770042,329.46725,349.237292
+16,16_explosive_block,Demo Case,Bickramjit Basu,Explosive evidence routes to BLOCK,52,19.0295,349.237292,368.266792
+17,17_financial_review,Demo Case,Bickramjit Basu,Financial promotion routes to REVIEW,53,20.925708,368.266792,389.1925
+18,18_risks_controls,Risks and Controls,Myetchae Thu,What must change before a pilot,77,31.525208,389.1925,420.717708
+19,19_next_steps,Next Steps to MVP,Swarnaditya Maitra,What we would do next: a 10-week plan,92,34.380292,420.717708,455.098

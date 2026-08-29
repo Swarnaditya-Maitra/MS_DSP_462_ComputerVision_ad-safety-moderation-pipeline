@@ -3,8 +3,10 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+import os
 from pathlib import Path
 
+import pytest
 from PIL import Image
 
 
@@ -34,6 +36,9 @@ def test_published_trained_heads_match_manifest() -> None:
 
 
 def test_canonical_output_contract_is_complete_and_path_free() -> None:
+    if os.environ.get("AD_SAFETY_FINAL_VALIDATION_RUNNING") == "1":
+        pytest.skip("The final validation record is written after the validator's embedded test run")
+
     summary_path = PROJECT_ROOT / "outputs" / "validation" / "validation_summary.json"
     detail_path = PROJECT_ROOT / "outputs" / "validation" / "final_validation.json"
     summary_text = summary_path.read_text(encoding="utf-8")
@@ -52,6 +57,19 @@ def test_canonical_output_contract_is_complete_and_path_free() -> None:
         assert "C:\\Users\\" not in payload
     marker = PROJECT_ROOT / "outputs" / "validation" / "FINAL_VALIDATION_PASSED.txt"
     assert marker.read_text(encoding="utf-8") == "FINAL_VALIDATION_PASSED\n"
+
+
+def test_published_jupyter_book_workflow_is_reproducible() -> None:
+    workflow = (PROJECT_ROOT / ".github" / "workflows" / "pages.yml").read_text(encoding="utf-8")
+    requirements = (PROJECT_ROOT / "requirements-book.txt").read_text(encoding="utf-8")
+
+    assert "python scripts/build_book.py --builder jupyter-book --no-execute" in workflow
+    assert "actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d" in workflow
+    assert "actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9" in workflow
+    assert "actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128" in workflow
+    assert "jupyter-book==1.0.4.post1" in requirements
+    assert "nbformat==5.10.4" in requirements
+    assert "nbconvert==7.17.0" in requirements
 
 
 def test_canonical_evaluation_charts_are_readable_pngs() -> None:

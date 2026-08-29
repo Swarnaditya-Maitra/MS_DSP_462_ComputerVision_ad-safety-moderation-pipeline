@@ -4,7 +4,7 @@
     "scene_id": "01_executive_summary",
     "section": "Executive Summary",
     "presenter": "Swarnaditya Maitra",
-    "title": "Ad safety at a decision point",
+    "title": "Ad Safety Moderation: Pilot results and next steps",
     "frame": "outputs/video/frames/01_executive_summary.png",
     "visual_assets": "outputs/presentation/rendered/slide-01.png",
     "narration_words": 54
@@ -14,7 +14,7 @@
     "scene_id": "02_team",
     "section": "Team",
     "presenter": "Vijay Agnihotri",
-    "title": "Four presenters, one evidence chain",
+    "title": "Team and presentation plan",
     "frame": "outputs/video/frames/02_team.png",
     "visual_assets": "outputs/presentation/rendered/slide-02.png",
     "narration_words": 31
@@ -24,7 +24,7 @@
     "scene_id": "03_business_problem",
     "section": "Business Problem",
     "presenter": "Swarnaditya Maitra",
-    "title": "Manual review fails on ambiguous creatives",
+    "title": "Ambiguous ads are hard to review consistently",
     "frame": "outputs/video/frames/03_business_problem.png",
     "visual_assets": "outputs/presentation/rendered/slide-03.png",
     "narration_words": 48
@@ -54,7 +54,7 @@
     "scene_id": "06_eda",
     "section": "EDA",
     "presenter": "Vijay Agnihotri",
-    "title": "Source style predicts labels",
+    "title": "The classes look different for reasons unrelated to policy",
     "frame": "outputs/video/frames/06_eda.png",
     "visual_assets": "outputs/presentation/rendered/slide-06.png",
     "narration_words": 50
@@ -64,7 +64,7 @@
     "scene_id": "07_architecture",
     "section": "Architecture",
     "presenter": "Myetchae Thu",
-    "title": "Separate evidence streams before policy",
+    "title": "How the system reaches a decision",
     "frame": "outputs/video/frames/07_architecture.png",
     "visual_assets": "outputs/presentation/rendered/slide-07.png",
     "narration_words": 58
@@ -74,17 +74,17 @@
     "scene_id": "08_methodology",
     "section": "Methodology",
     "presenter": "Bickramjit Basu",
-    "title": "Test evidence stayed untouched",
+    "title": "We kept the test set out of training and tuning",
     "frame": "outputs/video/frames/08_methodology.png",
     "visual_assets": "outputs/presentation/rendered/slide-08.png",
-    "narration_words": 53
+    "narration_words": 54
   },
   {
     "sequence": 9,
     "scene_id": "09_literature",
     "section": "Literature",
     "presenter": "Bickramjit Basu",
-    "title": "Research supports components, not claims",
+    "title": "What prior research contributed",
     "frame": "outputs/video/frames/09_literature.png",
     "visual_assets": "outputs/presentation/rendered/slide-09.png",
     "narration_words": 43
@@ -104,7 +104,7 @@
     "scene_id": "11_known_formal_error",
     "section": "Class and Failure Analysis",
     "presenter": "Vijay Agnihotri",
-    "title": "One grenade crossed the class boundary",
+    "title": "One grenade was classified as a firearm",
     "frame": "outputs/video/frames/11_known_formal_error.png",
     "visual_assets": "outputs/presentation/rendered/slide-11.png | outputs/demo_cases/formal_known_failure/evidence_overlay.jpg | outputs/demo_cases/formal_known_failure/occlusion_heatmap.jpg",
     "narration_words": 64
@@ -114,7 +114,7 @@
     "scene_id": "12_external_audit",
     "section": "External Generalization Audit",
     "presenter": "Myetchae Thu",
-    "title": "External audit breaks confidence",
+    "title": "External images exposed weak generalization",
     "frame": "outputs/video/frames/12_external_audit.png",
     "visual_assets": "outputs/presentation/rendered/slide-12.png | outputs/demo_cases/external_safe_domain_shift/evidence_overlay.jpg | outputs/demo_cases/external_safe_domain_shift/occlusion_heatmap.jpg",
     "narration_words": 83
@@ -124,7 +124,7 @@
     "scene_id": "13_demo_workflow",
     "section": "Demo Workflow",
     "presenter": "Bickramjit Basu",
-    "title": "One workspace carries a case from upload to audit",
+    "title": "A reviewer can follow one case from upload to audit",
     "frame": "outputs/video/frames/13_demo_workflow.png",
     "visual_assets": "outputs/presentation/rendered/slide-13.png",
     "narration_words": 49
@@ -174,7 +174,7 @@
     "scene_id": "18_risks_controls",
     "section": "Risks and Controls",
     "presenter": "Myetchae Thu",
-    "title": "Controls needed before an MVP trial",
+    "title": "What must change before a pilot",
     "frame": "outputs/video/frames/18_risks_controls.png",
     "visual_assets": "outputs/presentation/rendered/slide-14.png",
     "narration_words": 77
@@ -184,7 +184,7 @@
     "scene_id": "19_next_steps",
     "section": "Next Steps to MVP",
     "presenter": "Swarnaditya Maitra",
-    "title": "A recommended 10-week path to MVP",
+    "title": "What we would do next: a 10-week plan",
     "frame": "outputs/video/frames/19_next_steps.png",
     "visual_assets": "outputs/presentation/rendered/slide-15.png",
     "narration_words": 92

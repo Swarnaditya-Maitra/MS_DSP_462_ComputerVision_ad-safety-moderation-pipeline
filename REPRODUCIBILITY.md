@@ -1,6 +1,8 @@
 # Reproducibility contract
 
-This project targets functional reproduction. In plain terms, a supported computer should be able to clone the repository, provision the pinned model snapshot, pass preflight, run a real analysis, and pass the automated tests. It does not promise that every machine will produce byte-for-byte identical caches, timing, or floating-point scores.
+This project targets functional reproduction. In plain terms, a supported computer should be able to clone the repository, provision the pinned model snapshot, pass preflight, run a real analysis, and pass the automated tests. It does not promise byte-for-byte identical caches, rendered files, timing, or floating-point scores on every machine.
+
+[USER_MANUAL.md](USER_MANUAL.md) is the sole command-by-command operating guide. This document defines the narrower reproduction contract and the boundary between a normal public-clone check and the stronger full-local evidence audit.
 
 ## Supported systems
 
@@ -22,13 +24,13 @@ Intel macOS and Linux are outside this tested contract. A clone may still work t
 - The two trained policy heads have exact byte counts and SHA-256 digests in `models/trained_head_manifest.json`.
 - The application repeats the trained-head integrity check before pickle-based deserialization.
 - Thresholds and policy rules are versioned in `configs/policy.yaml`.
-- The 288-image formal dataset and 27-image external candidate set have complete registries containing local SHA-256 values and source metadata. Public Git includes only the 72 project-generated formal images and 26 retained Wikimedia images cleared for this release.
+- The formal and external diagnostic collections have complete registries containing local SHA-256 values and source metadata. [DATASETS.md](DATASETS.md) is the canonical record of image counts, provenance, release status, and attribution requirements.
 - Saved metrics, predictions, embeddings, charts, demo evidence, and validation records are under the single canonical `outputs/` tree.
 - The executed notebook, original proposal, final report, PowerPoint presentation, and narrated video are tracked with the project.
 
 The Python file is a top-level compatibility lock, not a hash lock for every operating-system-specific transitive wheel. Pip can select different low-level wheels on macOS and Windows. Hardware libraries can also produce small floating-point differences. Those limits make a universal byte-for-byte promise false.
 
-## One-command setup after activating the environment
+## Core functional check
 
 ```text
 python scripts/bootstrap.py --profile core
@@ -36,7 +38,7 @@ python scripts/smoke_test.py
 python -m pytest -q
 ```
 
-The bootstrap script stops before installation on an unsupported interpreter or host. It installs the pinned packages, downloads only the exact ViT revision needed by the core app, and runs preflight. The smoke test sends a generated image through the real FastAPI and ViT inference path with detector, OCR, and explanation disabled.
+The bootstrap script stops before installation on an unsupported interpreter or host. It installs the pinned packages, downloads only the exact ViT revision needed by the core app, and runs preflight. The smoke test sends a generated image through the real FastAPI and ViT inference path with detector, OCR, and explanation disabled. [USER_MANUAL.md](USER_MANUAL.md) provides the complete macOS and Windows setup, expected output, API, UI, negative-path, and shutdown steps.
 
 For all optional components:
 
@@ -55,38 +57,21 @@ python scripts/bootstrap.py --profile core --offline --skip-install
 
 This succeeds only when the pinned dependencies are already installed and the exact model cache is present.
 
-## Dataset verification and independent rebuild
+## Dataset and training boundary
 
-The included trained heads make a new clone runnable without retraining or raw training images. First verify whether the checkout is the full canonical local project or the public release:
+The included trained heads make a new clone runnable without retraining or raw training images. Exact training reproduction is a separate workflow that requires the recorded upstream sources, pinned classifier backbones, complete registry checks, and a fresh training run in a separate clone or worktree.
 
-```text
-python scripts/validate_release.py
-```
-
-The full canonical local project contains all 288 formal images. Verify every one against the tracked registry before retraining:
-
-```text
-python scripts/build_capstone_dataset.py --verify-only
-```
-
-To reproduce the training workflow instead, provision the two backbones and retrain on CPU:
-
-```text
-python scripts/download_models.py --skip-grounding-dino
-python scripts/train_and_evaluate.py --device cpu --batch-size 8
-```
-
-The public release contains 72 project-generated formal images. Running `python scripts/build_capstone_dataset.py` without `--verify-only` reconstructs the other formal data from the recorded sources and then rebuilds the complete set. That path depends on third-party data still being available under suitable terms. It can reproduce the method, but a future download is not guaranteed to reproduce the tracked source bytes. Downloading an image does not grant redistribution rights. Do not report new metrics as the saved course-run metrics unless the checksums and validation records match.
+That workflow depends on third-party data remaining available under suitable terms. A successful download does not grant redistribution rights, and a future rebuild is not guaranteed to reproduce the saved source bytes. [DATASETS.md](DATASETS.md) is the sole detailed inventory and provenance record. [USER_MANUAL.md](USER_MANUAL.md) gives the rebuild and verification commands. A new run must not be reported as the saved course run unless its checksums and validation records match.
 
 ## Course-deliverable verification
 
-The repository includes the final executed notebook, technical synopsis PDF, PowerPoint deck, narrated MP4, captions, representative demo evidence, and saved validation records. A fresh public clone first runs the portable release audit, which does not require the 216 local-only third-party formal images:
+The repository includes the final executed notebook, technical synopsis PDF, PowerPoint deck, narrated MP4, captions, representative demo evidence, and saved validation records. A fresh public clone first runs the portable release audit:
 
 ```text
 python scripts/validate_release.py
 ```
 
-The extended validator is the full-local evidence audit. It retains the 288-image raw-pixel regeneration and full pinned-backbone checks, so reconstruct the local-only images and provision the full profile before running it:
+The extended validator is the full-local evidence audit. It retains raw-pixel regeneration and full pinned-backbone checks, so the complete registered data and full model profile must exist before it runs:
 
 ```text
 python scripts/bootstrap.py --profile full
@@ -102,14 +87,8 @@ These final artifacts are reproducible at the functional level. Different office
 
 ## Tracked and generated boundary
 
-Public Git tracks 72 project-generated financial images and 26 retained Wikimedia images as standalone dataset files, complete registries for all 315 local candidates, and all final coursework deliverables. The 216 standalone third-party formal dataset files remain present only in the canonical local project until their redistribution rights are cleared. Final course records may contain bounded derived views of selected examples; those views do not clear the source images for extraction or reuse. Pretrained backbone snapshots, package environments, Python caches, render scratch directories, duplicate aliases, temporary audio segments, and other rebuildable intermediates are not tracked. Bootstrap downloads pinned model snapshots into the ignored repository-local cache.
+Public Git tracks the source code, complete registries, cleared standalone dataset files, trained policy heads, and final coursework deliverables. Pretrained backbone snapshots, package environments, Python caches, render scratch directories, duplicate aliases, temporary audio segments, and other rebuildable intermediates are not tracked. Bootstrap stores pinned model snapshots in the ignored repository-local cache.
 
-Dataset inclusion does not prove that every upstream item has complete redistribution evidence. The formal registry records repository-level licenses and explicitly identifies missing per-image provenance. The Wikimedia registry records item-level source and attribution fields. Contributor names also appear in the report, presentation, notebook, and video. See `NOTICE.md` before republishing any of those artifacts.
+Final course records can contain bounded derived views of examples that are not released as standalone files. Those views do not clear the source material for extraction or reuse. Read [DATASETS.md](DATASETS.md) for the detailed data boundary and [NOTICE.md](NOTICE.md) before republishing any project artifact.
 
-## Sources
-
-- Python virtual environments: https://docs.python.org/3.10/library/venv.html
-- Hugging Face Hub download API: https://huggingface.co/docs/huggingface_hub/package_reference/file_download
-- ViT model card: https://huggingface.co/timm/vit_base_patch16_224.augreg2_in21k_ft_in1k
-- ResNet-50 model card: https://huggingface.co/timm/resnet50.a1_in1k
-- Grounding DINO Tiny model card: https://huggingface.co/IDEA-Research/grounding-dino-tiny
+External technical and policy references are maintained once in [SOURCES.md](SOURCES.md).

@@ -6,7 +6,7 @@
   "provenance": {
     "app_py_sha256": "e049cd39e11eec760efb952cabea57e20610198d25da9654572daab28118c559",
     "api_py_sha256": "77c0e768ea77b15d21f878bb863a64797ab38c0b54ee9232bd736b3672bb3085",
-    "user_manual_sha256": "4a7e35585a0122bf78cf9c42a6da3be5da75fbac81862b0813284c7d18a2a5f1",
+    "user_manual_sha256": "4ca1ceb5a927beb7a8ed72dcd1cada4fade738d669d9063bdf1d9fdee301732c",
     "policy_yaml_sha256": "15b465ead626cae137b36e8a2ff1c73d4cac0c1c112465d869356ef5b2f89a96",
     "vit_policy_head_sha256": "3473f8f6817a007fe4ede49e10f571a6b1942c468c09dfebec5037fa5da1c192",
     "shell_screenshot_sha256": "e2782640d40539f47399a71842fcea1458ad9e50ff72ba52583e467bd9e5be47",

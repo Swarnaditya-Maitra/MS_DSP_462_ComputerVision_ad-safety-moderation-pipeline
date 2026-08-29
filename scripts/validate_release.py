@@ -51,6 +51,7 @@ REQUIRED_DELIVERABLES = {
     "proposal_pdf": "Capstone Project Idea - Ad Safety.pdf",
     "report_pdf": "outputs/report/ad_safety_technical_synopsis.pdf",
     "presentation_pptx": "outputs/presentation/ad_safety_management_presentation.pptx",
+    "speaker_script_md": "outputs/presentation/ad_safety_speaker_script.md",
     "final_video": "outputs/video/ad_safety_demo.mp4",
     "final_subtitles": "outputs/video/ad_safety_demo.srt",
 }

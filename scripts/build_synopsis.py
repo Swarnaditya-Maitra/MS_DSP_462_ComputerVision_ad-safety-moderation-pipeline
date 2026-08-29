@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Build the strict two-page Ad Safety technical synopsis.
+"""Build the two-page Ad Safety technical synopsis.
 
 The generator is evidence-gated. It reads only saved project artifacts, rejects
 missing or placeholder evidence, and writes no PDF unless every required input
-passes validation. The formal dataset is data/capstone_registry.csv. The older
-data/dataset_registry.csv file is intentionally excluded because it is a
-rejected sparse Wikimedia search artifact.
+passes validation. The formal dataset is data/capstone_registry.csv. The
+separate data/dataset_registry.csv file records 27 Wikimedia candidates used
+only for external diagnosis; 26 were retained and one was rejected.
 """
 
 from __future__ import annotations
@@ -46,7 +46,8 @@ REPORT_DIR = PROJECT_ROOT / "outputs" / "report"
 DEFAULT_OUTPUT = REPORT_DIR / "ad_safety_technical_synopsis.pdf"
 
 FORMAL_REGISTRY = PROJECT_ROOT / "data" / "capstone_registry.csv"
-REJECTED_WIKIMEDIA_REGISTRY = PROJECT_ROOT / "data" / "dataset_registry.csv"
+WIKIMEDIA_REGISTRY = PROJECT_ROOT / "data" / "dataset_registry.csv"
+WIKIMEDIA_EXTERNAL_MANIFEST = PROJECT_ROOT / "data" / "wikimedia_external_manifest.csv"
 PROPOSAL_PATH = PROJECT_ROOT / "Capstone Project Idea - Ad Safety.pdf"
 POLICY_PATH = PROJECT_ROOT / "configs" / "policy.yaml"
 MODEL_MANIFEST_PATH = PROJECT_ROOT / "models" / "pretrained_model_manifest.json"
@@ -134,6 +135,7 @@ class DatasetEvidence:
 class ProposalTargets:
     safe_class_precision_floor: float
     restricted_class_recall_floor: float
+    macro_f1_floor: float
     latency_ceiling_ms: float
 
 
@@ -220,6 +222,8 @@ def _relative(path: Path) -> str:
 def _required_paths() -> tuple[Path, ...]:
     return (
         FORMAL_REGISTRY,
+        WIKIMEDIA_REGISTRY,
+        WIKIMEDIA_EXTERNAL_MANIFEST,
         PROPOSAL_PATH,
         POLICY_PATH,
         MODEL_MANIFEST_PATH,
@@ -465,17 +469,24 @@ def load_proposal_targets() -> ProposalTargets:
         normalized,
         flags=re.IGNORECASE,
     )
+    macro_f1_match = re.search(
+        r"Macro\s+F1\s*>\s*(\d+(?:\.\d+)?)",
+        normalized,
+        flags=re.IGNORECASE,
+    )
     latency_match = re.search(
         r"Latency\s+below\s+(\d+(?:\.\d+)?)\s*ms\s+per\s+asset",
         normalized,
         flags=re.IGNORECASE,
     )
-    if precision_match is None or recall_match is None or latency_match is None:
+    if precision_match is None or recall_match is None or macro_f1_match is None or latency_match is None:
         missing = []
         if precision_match is None:
             missing.append("Safe-class precision > percentage")
         if recall_match is None:
             missing.append("restricted-class recall > percentage")
+        if macro_f1_match is None:
+            missing.append("macro F1 > value")
         if latency_match is None:
             missing.append("latency below milliseconds per asset")
         raise EvidenceError(
@@ -483,15 +494,23 @@ def load_proposal_targets() -> ProposalTargets:
         )
     precision_floor = float(precision_match.group(1)) / 100.0
     recall_floor = float(recall_match.group(1)) / 100.0
+    macro_f1_floor = float(macro_f1_match.group(1))
     latency_ceiling_ms = float(latency_match.group(1))
-    if not 0.0 < precision_floor < 1.0 or not 0.0 < recall_floor < 1.0 or latency_ceiling_ms <= 0.0:
+    if (
+        not 0.0 < precision_floor < 1.0
+        or not 0.0 < recall_floor < 1.0
+        or not 0.0 < macro_f1_floor < 1.0
+        or latency_ceiling_ms <= 0.0
+    ):
         raise EvidenceError(
             f"Invalid proposal criteria in {_relative(PROPOSAL_PATH)}: "
-            f"precision>{precision_floor}, recall>{recall_floor}, latency<{latency_ceiling_ms} ms."
+            f"precision>{precision_floor}, recall>{recall_floor}, macro F1>{macro_f1_floor}, "
+            f"latency<{latency_ceiling_ms} ms."
         )
     return ProposalTargets(
         safe_class_precision_floor=precision_floor,
         restricted_class_recall_floor=recall_floor,
+        macro_f1_floor=macro_f1_floor,
         latency_ceiling_ms=latency_ceiling_ms,
     )
 
@@ -608,6 +627,25 @@ def load_raw_evaluation() -> RawEvaluation:
     external_path = EVALUATION_DIR / OPTIONAL_EXTERNAL_DIAGNOSTIC
     external = read_json(external_path) if external_path.is_file() else None
     if external is not None:
+        _, wikimedia_candidates = read_csv_rows(WIKIMEDIA_REGISTRY)
+        manifest_headers, wikimedia_manifest = read_csv_rows(WIKIMEDIA_EXTERNAL_MANIFEST)
+        _require_columns(
+            manifest_headers,
+            {"local_path", "reviewed_label", "include_in_spot_check", "rationale"},
+            WIKIMEDIA_EXTERNAL_MANIFEST,
+        )
+        retained = sum(
+            str(row["include_in_spot_check"]).strip().casefold() == "true"
+            for row in wikimedia_manifest
+        )
+        rejected = sum(
+            str(row["include_in_spot_check"]).strip().casefold() == "false"
+            for row in wikimedia_manifest
+        )
+        if len(wikimedia_candidates) != 27 or len(wikimedia_manifest) != 27 or retained != 26 or rejected != 1:
+            raise EvidenceError(
+                "Wikimedia diagnostic evidence must contain 27 candidates, 26 retained items, and one rejection."
+            )
         scope = str(external.get("scope", "")).casefold()
         if "external" not in scope or "not a formal test set" not in scope:
             raise EvidenceError(
@@ -960,6 +998,9 @@ def map_measured_evidence(raw: RawEvaluation, static: StaticEvidence) -> Measure
 
     per_class_by_label = dict(zip(EXPECTED_LABELS, per_class_test))
     restricted_labels = ("firearms", "explosives", "financial_promotion")
+    macro_f1 = _number(metrics.get("macro_f1"), "metrics.json.macro_f1")
+    proposal_macro_f1_floor = static.proposal_targets.macro_f1_floor
+    macro_f1_assessment = "passes" if macro_f1 > proposal_macro_f1_floor else "fails"
     safe_precision = _number(
         per_class_by_label["safe"].get("precision"),
         "per_class_metrics.csv vit/test/safe.precision",
@@ -1122,23 +1163,23 @@ def map_measured_evidence(raw: RawEvaluation, static: StaticEvidence) -> Measure
         )
 
     evaluation_limitations = [str(item) for item in _require_list(evaluation.get("limitations"), "evaluation limitations")]
+    if len(evaluation_limitations) < 10:
+        raise EvidenceError("evaluation_metrics.json must retain the ten audited deployment limitations.")
     selected_limitations = (
-        evaluation_limitations[0],
-        evaluation_limitations[1],
-        evaluation_limitations[3],
-        evaluation_limitations[4],
-        evaluation_limitations[5],
-        evaluation_limitations[7],
-        evaluation_limitations[8],
-        evaluation_limitations[9],
-        str(static.policy["limitations"][2]),
+        "Class labels are tied to source style; the 48-image test has only 12 images per class and does not establish production performance.",
+        "Threshold calibration used only 12 validation positives per class, so the selected operating points remain uncertain.",
+        "The 216 third-party formal images remain local-only pending rights clearance; the 72 project-generated finance images carry no reuse license.",
+        "Four single-label image categories omit mixed-policy ads, landing pages, advertiser identity, geography, and legal context.",
+        "Occlusion sensitivity is a diagnostic, not a causal explanation; the external detector check has no box-level ground truth or mAP.",
+        "Full-pipeline latency, concurrent throughput, and MPS resource use remain unmeasured; a human reviewer must make the final decision.",
     )
 
     external_metrics: tuple[MetricValue, ...] | None = None
     external_scope: str | None = None
     if raw.external_spot_check is not None:
         external = raw.external_spot_check
-        external_scope = str(external.get("scope"))
+        external_sample_count = _integer(external.get("sample_count"), "external sample_count")
+        external_scope = f"n={external_sample_count}; {str(external.get('scope'))}."
         detector_recall = _number(
             external.get("weapon_detector_image_recall"), "external weapon_detector_image_recall"
         )
@@ -1146,15 +1187,25 @@ def map_measured_evidence(raw: RawEvaluation, static: StaticEvidence) -> Measure
             external.get("weapon_detector_nonweapon_false_positive_rate"),
             "external weapon_detector_nonweapon_false_positive_rate",
         )
+        weapon_block_rate = _number(external.get("weapon_policy_block_rate"), "external weapon_policy_block_rate")
+        safe_non_approve_rate = _number(
+            external.get("safe_policy_non_approve_rate"), "external safe_policy_non_approve_rate"
+        )
+        financial_review_rate = _number(
+            external.get("financial_correct_review_rate"), "external financial_correct_review_rate"
+        )
         external_scope += (
             f" Detector image recall was {detector_recall:.1%}, but the non-weapon detector false-positive rate "
-            f"was {detector_false_positive_rate:.1%}; this is a generalization warning, not formal test evidence."
+            f"was {detector_false_positive_rate:.1%}; this is a generalization warning, not formal test evidence. "
+            "Source: outputs/evaluation/external_spot_check.json."
         )
         external_metrics = (
-            MetricValue("Samples", str(_integer(external.get("sample_count"), "external sample_count"))),
             MetricValue("Classifier accuracy", _pct(external.get("classifier_accuracy"), "external accuracy")),
             MetricValue("Macro F1", _pct(external.get("classifier_macro_f1"), "external macro F1")),
             MetricValue("Detector nonweapon FP", _pct(detector_false_positive_rate, "external detector FPR")),
+            MetricValue("Weapon BLOCK", _pct(weapon_block_rate, "external weapon block rate")),
+            MetricValue("Safe non-APPROVE", _pct(safe_non_approve_rate, "external safe non-approve rate")),
+            MetricValue("Finance correct REVIEW", _pct(financial_review_rate, "external finance review rate")),
         )
 
     threshold_text = "; ".join(
@@ -1164,21 +1215,21 @@ def map_measured_evidence(raw: RawEvaluation, static: StaticEvidence) -> Measure
     total_parameters = _integer(backbone.get("total_parameters"), "ViT total parameters")
     feature_dim = _integer(backbone.get("feature_dim"), "ViT feature dimension")
     training_items = (
-        ("Split isolation", "192 train fit; 48 validation calibration; 48 test once"),
-        ("Feature run", f"{feature_dim}-D; batch {extraction.get('batch_size')}; {extraction.get('device')}"),
-        ("Head", str(head.get("type"))),
-        ("Head settings", f"C={head.get('C')}; {head.get('solver')}; {head.get('class_weight')}; max_iter={head.get('max_iter')}"),
+        ("Split protocol", "192 train; 48 validation; 48 final test"),
+        (
+            "Feature run",
+            f"{feature_dim}-D; batch {extraction.get('batch_size')}; {extraction.get('device')}; "
+            f"{_number(extraction.get('elapsed_seconds'), 'ViT extraction seconds'):.3f}s",
+        ),
+        ("Head", "StandardScaler + multinomial logistic regression"),
+        ("Head settings", f"C={head.get('C')}; {head.get('solver')}; balanced; max_iter={head.get('max_iter')}"),
         ("Frozen backbone", f"{total_parameters / 1_000_000:.2f}M parameters; 0 trainable"),
         ("Artifact thresholds", threshold_text),
         (
-            "Threshold tuning",
-            f"validation recall >={threshold_tuning_floor:.2f}; distinct from proposal acceptance",
+            "Calibration",
+            f"validation recall >={threshold_tuning_floor:.2f}; 12 positives per class",
         ),
-        (
-            "Recorded timing",
-            f"features {_number(extraction.get('elapsed_seconds'), 'ViT extraction seconds'):.3f}s; "
-            f"head fit {_number(head.get('fit_seconds'), 'ViT head fit seconds'):.4f}s",
-        ),
+        ("Head fit", f"train only; {_number(head.get('fit_seconds'), 'ViT head fit seconds'):.4f}s"),
     )
 
     exclusion_items = tuple(
@@ -1208,16 +1259,16 @@ def map_measured_evidence(raw: RawEvaluation, static: StaticEvidence) -> Measure
         selected_model=str(primary.get("display_name")),
         model_version=model_version,
         evaluation_scope=(
-            f"Untouched grouped test: n={len(raw.predictions)} ({static.dataset.label_split_counts['safe']['test']} per class). "
+            f"Final grouped test: n={len(raw.predictions)} ({static.dataset.label_split_counts['safe']['test']} per class). "
             f"Macro AP={_number(metrics.get('macro_average_precision_ovr'), 'metrics macro AP'):.3f}; "
             f"group-bootstrap macro F1 95% interval={ci_low:.3f} to {ci_high:.3f} "
             f"({replicates:,} source-group replicates)."
         ),
         architecture_paragraphs=(
             f"A pinned ViT-B/16 backbone ({total_parameters:,} parameters, all frozen) converts each RGB creative into a "
-            f"{feature_dim}-dimensional embedding. A StandardScaler and multinomial logistic head produce four class probabilities.",
+            f"{feature_dim}-dimensional embedding. A StandardScaler and multinomial logistic head produce four class probabilities [3, 5].",
             "Grounding DINO and Tesseract are optional evidence channels. The policy layer applies noisy-OR fusion to restricted cues; "
-            "only the calibrated classifier can trigger an automatic firearms or explosives block.",
+            "only the calibrated classifier can trigger an automatic firearms or explosives block [4, 9].",
         ),
         math_lines=(
             f"z = f_theta(x) in R^{feature_dim};  u = (z - mu) / sigma",
@@ -1225,15 +1276,18 @@ def map_measured_evidence(raw: RawEvaluation, static: StaticEvidence) -> Measure
             "fused_score_k = 1 - product_i (1 - evidence_k,i)",
         ),
         preprocessing_steps=(
-            f"The formal registry audit confirms {static.dataset.row_count} hash-verified JPEGs with a maximum saved side of "
-            f"{max(static.dataset.width_range[1], static.dataset.height_range[1])} pixels.",
-            "Source or generated campaign groups stay within one split; the exact-file and group overlap counts are both zero.",
-            "Decoded RGB images use the pinned timm backbone transform before frozen feature extraction; scaling is learned on train embeddings only.",
+            "Source or generated campaign groups stay inside one split; exact-file and group overlap counts are both zero.",
+            "RGB input is resized to 248 px, center-cropped to 224 by 224 with bicubic interpolation, then normalized with mean and standard deviation (0.5, 0.5, 0.5).",
+            "The pinned timm transform runs before frozen feature extraction; StandardScaler learns from training embeddings only.",
         ),
         training_items=training_items,
         overall_metrics=(
             MetricValue("Test accuracy", _pct(metrics.get("accuracy"), "metrics accuracy"), "47 / 48 correct"),
-            MetricValue("Macro F1", _pct(metrics.get("macro_f1"), "metrics macro_f1"), "four classes"),
+            MetricValue(
+                "Macro F1",
+                _pct(macro_f1, "metrics macro_f1"),
+                f"proposal >{proposal_macro_f1_floor:.2f}: {macro_f1_assessment}",
+            ),
             MetricValue(
                 "Argmax restricted mean",
                 f"{argmax_restricted_mean:.6f}",
@@ -1256,19 +1310,14 @@ def map_measured_evidence(raw: RawEvaluation, static: StaticEvidence) -> Measure
             ),
         ),
         performance_definition_note=(
-            f"The {argmax_restricted_mean:.6f} figure is the multiclass-argmax class-average recall across "
-            "firearms, explosives, and financial promotion; it is not the final threshold operating point. "
-            f"Safe-class precision is {safe_precision:.3f} and {safe_precision_assessment} the proposal "
-            f">{proposal_safe_precision_floor:.2f} precision target; it is distinct from the "
-            f"{100.0 * safe_false_positive_rate:.1f}% Safe-ad false-flag rate (1 - Safe recall). "
-            f"Threshold selection used a >={threshold_tuning_floor:.2f} validation-recall tuning floor, "
-            f"distinct from the proposal per-class >{proposal_recall_floor:.2f} acceptance target. "
-            "At thresholds selected on validation, untouched-test recalls are "
-            f"firearms {threshold_operating_recall['firearms']:.6f}, "
-            f"explosives {threshold_operating_recall['explosives']:.6f}, and financial promotion "
-            f"{threshold_operating_recall['financial_promotion']:.6f}; mean {threshold_operating_mean:.6f}, "
-            f"worst class {threshold_operating_worst:.6f}. The proposal criterion of per-class recall "
-            f">{proposal_recall_floor:.2f} {recall_assessment}{recall_failure_detail}."
+            f"Macro F1 {macro_f1_assessment} the proposal >{proposal_macro_f1_floor:.2f} target. Safe precision "
+            f"{safe_precision_assessment} >{proposal_safe_precision_floor:.2f}; the Safe-ad false-flag rate was "
+            f"{100.0 * safe_false_positive_rate:.1f}% (1 - Safe recall). Argmax restricted recall averaged "
+            f"{argmax_restricted_mean:.6f}, but that is not the deployed threshold rule. At validation-selected "
+            f"thresholds, test recall was {threshold_operating_recall['firearms']:.6f} firearms, "
+            f"{threshold_operating_recall['explosives']:.6f} explosives, and "
+            f"{threshold_operating_recall['financial_promotion']:.6f} financial; mean {threshold_operating_mean:.6f}. "
+            f"The per-class >{proposal_recall_floor:.2f} target {recall_assessment}{recall_failure_detail}."
         ),
         per_class_headers=("Class", "P", "R", "F1", "n"),
         per_class_rows=per_class_rows,
@@ -1283,32 +1332,30 @@ def map_measured_evidence(raw: RawEvaluation, static: StaticEvidence) -> Measure
             MetricValue("Serial throughput", f"{throughput:.1f} img/s", "derived; not concurrent"),
         ),
         latency_note=(
-            f"The measured ViT classifier-path p95 is {classifier_p95_ms:.3f} ms and {latency_assessment} the "
-            f"proposal's <{proposal_latency_ceiling_ms:.0f} ms per-asset benchmark. Measured on "
-            f"{latency.get('hardware')} / {latency.get('device')}: {warmups} warmups, {benchmark_runs} runs. "
-            f"Full end-to-end p95 was not measured because {exclusions} are excluded. "
-            "Concurrent throughput and MPS resource use were not measured. "
-            f"Artifact scope: {latency.get('protocol')}."
+            f"ViT classifier-path p95 was {classifier_p95_ms:.3f} ms and {latency_assessment} the proposal's "
+            f"<{proposal_latency_ceiling_ms:.0f} ms target. CPU protocol: {warmups} warmups, {benchmark_runs} runs, "
+            f"one thread. Full end-to-end p95 was not measured because {exclusions} are excluded. Concurrent "
+            "throughput and MPS resource use were also not measured."
         ),
         challenges_and_solutions=(
             (
-                "Source-style confounding remains.",
-                "The implementation grouped campaigns before splitting and recomputed all 288 hashes; this controls direct leakage but cannot remove source cues.",
+                "Source style is tied to class labels.",
+                "We grouped campaigns before splitting and recomputed all 288 hashes. This controls direct leakage, but it cannot remove visual source cues.",
             ),
             (
-                "Threshold leakage could inflate safety claims.",
-                "The head fit on train only, restricted thresholds were selected on validation only, and the 48-image test was scored once afterward.",
+                "Tuning could leak into the final test.",
+                "We fit the head on training data, selected restricted thresholds on validation, and recorded one post-calibration test protocol.",
             ),
             (
-                "One grenade crossed the visual taxonomy boundary.",
-                f"{failure_description} The failure remains in the audit table; ambiguous restricted evidence routes to review rather than being hidden.",
+                "One grenade was misclassified as a firearm.",
+                f"{failure_description} We kept it in the audit table, and the saved policy result was REVIEW rather than automatic enforcement.",
             ),
             (
-                "The measured classifier path misses the proposal latency benchmark.",
+                "ViT missed the proposal latency target.",
                 f"ViT classifier-path CPU p95 was {classifier_p95_ms:.3f} ms, above "
                 f"{proposal_latency_ceiling_ms:.0f} ms, versus "
-                f"{_number(comparison['resnet50']['cpu_batch1_p95_ms'], 'ResNet p95'):.1f} ms for the CNN baseline. "
-                "Neither value is a full end-to-end p95.",
+                f"{_number(comparison['resnet50']['cpu_batch1_p95_ms'], 'ResNet p95'):.1f} ms for ResNet50. "
+                "Neither value is end-to-end latency.",
             ),
         ),
         limitations=selected_limitations,
@@ -1318,7 +1365,7 @@ def map_measured_evidence(raw: RawEvaluation, static: StaticEvidence) -> Measure
             ("Registry SHA-256", registry_sha[:16] + "..."),
             ("Backbone revision", str(backbone.get("revision"))[:16] + "..."),
             ("Artifact SHA-256", str(primary.get("artifact_sha256"))[:16] + "..."),
-            ("Independent check", f"{independent.get('registry_hashes_recomputed')} image hashes; reload max diff 0"),
+            ("Reproducibility check", f"Recomputed {independent.get('registry_hashes_recomputed')} image hashes; model reload difference 0"),
         ),
         external_diagnostic=external_metrics,
         external_diagnostic_scope=external_scope,
@@ -1348,8 +1395,8 @@ def build_styles() -> Mapping[str, ParagraphStyle]:
             "SynopsisBody",
             parent=base["BodyText"],
             fontName="Helvetica",
-            fontSize=8.0,
-            leading=9.8,
+            fontSize=8.4,
+            leading=9.75,
             textColor=Palette.INK,
             spaceAfter=3.5,
             allowWidows=0,
@@ -1359,8 +1406,8 @@ def build_styles() -> Mapping[str, ParagraphStyle]:
             "SynopsisSmall",
             parent=base["BodyText"],
             fontName="Helvetica",
-            fontSize=7.0,
-            leading=8.35,
+            fontSize=8.0,
+            leading=9.0,
             textColor=Palette.MUTED,
             spaceAfter=2.0,
         ),
@@ -1368,8 +1415,8 @@ def build_styles() -> Mapping[str, ParagraphStyle]:
             "SynopsisBullet",
             parent=base["BodyText"],
             fontName="Helvetica",
-            fontSize=7.6,
-            leading=9.65,
+            fontSize=8.0,
+            leading=9.2,
             leftIndent=9,
             firstLineIndent=-6,
             bulletIndent=0,
@@ -1380,8 +1427,8 @@ def build_styles() -> Mapping[str, ParagraphStyle]:
             "SynopsisSection",
             parent=base["Heading2"],
             fontName="Helvetica-Bold",
-            fontSize=8.8,
-            leading=10.3,
+            fontSize=9.0,
+            leading=10.1,
             textColor=Palette.NAVY,
             spaceAfter=0,
             uppercase=True,
@@ -1391,8 +1438,8 @@ def build_styles() -> Mapping[str, ParagraphStyle]:
             "SynopsisCard",
             parent=base["BodyText"],
             fontName="Helvetica",
-            fontSize=6.75,
-            leading=7.6,
+            fontSize=8.0,
+            leading=8.6,
             textColor=Palette.MUTED,
             alignment=TA_LEFT,
         ),
@@ -1400,8 +1447,8 @@ def build_styles() -> Mapping[str, ParagraphStyle]:
             "SynopsisMetricLabel",
             parent=base["BodyText"],
             fontName="Helvetica",
-            fontSize=6.75,
-            leading=7.5,
+            fontSize=8.0,
+            leading=8.5,
             textColor=Palette.MUTED,
             alignment=TA_LEFT,
             spaceAfter=1.5,
@@ -1420,8 +1467,8 @@ def build_styles() -> Mapping[str, ParagraphStyle]:
             "SynopsisMetricNote",
             parent=base["BodyText"],
             fontName="Helvetica",
-            fontSize=6.5,
-            leading=7.25,
+            fontSize=7.8,
+            leading=8.35,
             textColor=Palette.MUTED,
             alignment=TA_LEFT,
         ),
@@ -1429,8 +1476,8 @@ def build_styles() -> Mapping[str, ParagraphStyle]:
             "SynopsisTableHeader",
             parent=base["BodyText"],
             fontName="Helvetica-Bold",
-            fontSize=6.5,
-            leading=7.4,
+            fontSize=8.0,
+            leading=8.6,
             textColor=Palette.WHITE,
             alignment=TA_CENTER,
         ),
@@ -1438,8 +1485,8 @@ def build_styles() -> Mapping[str, ParagraphStyle]:
             "SynopsisTableCell",
             parent=base["BodyText"],
             fontName="Helvetica",
-            fontSize=6.5,
-            leading=7.4,
+            fontSize=8.0,
+            leading=8.6,
             textColor=Palette.INK,
             alignment=TA_CENTER,
         ),
@@ -1447,8 +1494,8 @@ def build_styles() -> Mapping[str, ParagraphStyle]:
             "SynopsisMath",
             parent=base["BodyText"],
             fontName="Courier",
-            fontSize=6.8,
-            leading=8.55,
+            fontSize=7.8,
+            leading=8.7,
             textColor=Palette.NAVY,
             backColor=Palette.PALE_BLUE,
             borderPadding=(4, 5, 4, 5),
@@ -1461,8 +1508,8 @@ def build_styles() -> Mapping[str, ParagraphStyle]:
             "SynopsisReference",
             parent=base["BodyText"],
             fontName="Helvetica",
-            fontSize=6.5,
-            leading=7.6,
+            fontSize=8.0,
+            leading=8.8,
             textColor=Palette.MUTED,
             leftIndent=8,
             firstLineIndent=-8,
@@ -1644,18 +1691,19 @@ def _dataset_distribution_table(
 def _reference_flowables(
     references: Sequence[Reference],
     styles: Mapping[str, ParagraphStyle],
-    limit: int = 9,
+    limit: int = 10,
 ) -> list[Flowable]:
     priorities = (
+        "Google Ads policy overview",
         "Ad Product Taxonomy",
         "An Image is Worth",
-        "Grounding DINO",
+        "Liu et al., Grounding DINO",
         "ViT-B/16",
         "ResNet-50",
         "ADautoGen-DS",
         "Weapons Set 1",
         "Tesseract",
-        "MPS backend",
+        "Wikimedia Commons licensing guidance",
     )
     selected: list[Reference] = []
     for phrase in priorities:
@@ -1673,8 +1721,7 @@ def _reference_flowables(
         escaped_url = html.escape(reference.url, quote=True)
         flowables.append(
             Paragraph(
-                f"[{index}] <link href='{escaped_url}' color='#3156B3'>{escaped_title}</link><br/>"
-                f"<font color='#5F6B7A'>{escaped_url}</font>",
+                f"[{index}] <link href='{escaped_url}' color='#3156B3'>{escaped_title}</link>",
                 styles["reference"],
             )
         )
@@ -1692,19 +1739,22 @@ def build_page_columns(
     thresholds = policy["default_thresholds"]
 
     objective_text = (
-        "Static ad creatives can contain restricted visual objects, visible promotion language, or ambiguous context. "
-        "This pilot converts one local image into an auditable <b>APPROVE</b>, <b>REVIEW</b>, or <b>BLOCK</b> triage result. "
-        "It does not infer legality, audience eligibility, landing-page claims, or jurisdictional compliance."
+        "We built a local prototype that reviews one static ad at a time and returns <b>APPROVE</b>, "
+        "<b>REVIEW</b>, or <b>BLOCK</b>, with the evidence behind the result. It helps sort a review queue; "
+        "it does not decide legality, audience eligibility, landing-page claims, or jurisdictional compliance [1, 2]."
     )
     objective_bullets = (
-        "Classify four bounded visual labels on an untouched grouped test split.",
-        "Fuse optional object and OCR evidence without allowing auxiliary cues to trigger an automatic block.",
-        "Expose the verdict, raw and fused score distributions, evidence provenance, stage timing, overlays, and a downloadable audit record.",
+        "Classify four in-scope image categories on a grouped final test split.",
+        "Add optional object and OCR evidence without letting those signals block an ad by themselves.",
+        "Show scores, reasons, timing, overlays, and a downloadable audit record for the reviewer.",
     )
 
-    source_summary = ", ".join(
-        f"{name} ({count})" for name, count in list(dataset.source_counts.items())[:4]
+    external_source_summary = ", ".join(
+        f"{name} ({count})"
+        for name, count in dataset.source_counts.items()
+        if name != "project_generated_financial_creatives_v1"
     )
+    generated_finance_count = dataset.source_counts.get("project_generated_financial_creatives_v1", 0)
     mime_summary = ", ".join(f"{name}: {count}" for name, count in dataset.mime_counts.items())
     dataset_text = (
         f"The formal registry contains <b>{dataset.row_count}</b> images in <b>{dataset.group_count}</b> source or campaign groups. "
@@ -1715,7 +1765,9 @@ def build_page_columns(
     observed_text = (
         f"Registry-observed dimensions span {dataset.width_range[0]}-{dataset.width_range[1]} px wide and "
         f"{dataset.height_range[0]}-{dataset.height_range[1]} px high. Encodings: {html.escape(mime_summary)}. "
-        f"Synthetic-declared rows: {dataset.synthetic_count}/{dataset.row_count}. Sources: {html.escape(source_summary)}."
+        f"Synthetic-declared rows: {dataset.synthetic_count}/{dataset.row_count}. External sources: "
+        f"{html.escape(external_source_summary)} [7, 8]. We used a Pillow-based project script to create the remaining "
+        f"{generated_finance_count} synthetic finance creatives."
     )
 
     page1_left: list[Flowable] = []
@@ -1749,8 +1801,10 @@ def build_page_columns(
     training_rows = list(measured.training_items)
     training_rows.extend(
         [
-            ("Policy", str(policy["policy_version"])),
-            ("Auxiliary review", f"fused restricted evidence {thresholds['review']:.2f}; margin {thresholds['uncertainty_margin']:.2f}"),
+            (
+                "Policy",
+                f"{policy['policy_version']}; review {thresholds['review']:.2f}; margin {thresholds['uncertainty_margin']:.2f}",
+            ),
         ]
     )
     page1_right: list[Flowable] = []
@@ -1759,8 +1813,9 @@ def build_page_columns(
             "4. Training and hyperparameters",
             styles,
             paragraph(
-                f"Selected runtime model: <b>{html.escape(measured.selected_model)}</b> "
-                f"({html.escape(measured.model_version)}). Test data remained outside fitting and threshold selection.",
+                "The proposal considered fine-tuning ViT. With only 192 training images, we instead froze the backbone "
+                f"and trained a small head for a more repeatable baseline. Selected model: <b>{html.escape(measured.selected_model)}</b> "
+                f"({html.escape(measured.model_version)}). Test data stayed outside fitting, model selection, and calibration.",
                 styles,
             ),
             key_value_table(training_rows, styles, column_width),
@@ -1799,8 +1854,7 @@ def build_page_columns(
             "6. Baseline and backbone comparison",
             styles,
             paragraph(
-                "The comparison below is reproduced from the saved model-selection artifact. "
-                "Its column labels preserve whether each score is validation or test evidence.",
+                "We compared the selected ViT head with a ResNet-50 baseline. Validation and test results stay in separate columns [5, 6].",
                 styles,
             ),
             evidence_table(
@@ -1855,14 +1909,21 @@ def build_page_columns(
             styles,
             key_value_table(measured.reproducibility_items, styles, column_width),
             paragraph(
-                "Every reported metric comes from outputs/evaluation. The formal dataset claim comes only from "
-                "data/capstone_registry.csv. The rejected Wikimedia registry is excluded from training and test evidence.",
+                "Performance and model metrics come from outputs/evaluation; formal dataset composition comes from "
+                "data/capstone_registry.csv. All 27 Wikimedia candidates were excluded from formal train, validation, "
+                "and test evidence; 26 were retained for external diagnosis and one was rejected.",
                 styles,
                 "small",
             ),
             paragraph(
-                "The Streamlit workspace visualizes the current case and saved benchmark context; its session charts are "
-                "descriptive interface evidence, not production throughput, monitoring, or population-level performance evidence.",
+                "For reproducibility, the main project records are the proposal PDF; data/capstone_registry.csv; "
+                "outputs/evaluation/evaluation_metrics.json, thresholds.csv, model_comparison.csv, latency.json, and "
+                "external_spot_check.json; plus DATASETS.md and NOTICE.md for rights.",
+                styles,
+                "small",
+            ),
+            paragraph(
+                "The app's session charts describe only the cases run in that session. They are interface summaries, not production monitoring, throughput, or population evidence.",
                 styles,
                 "small",
             ),
@@ -1885,15 +1946,15 @@ def draw_page_chrome(pdf: canvas.Canvas, page_number: int) -> None:
     pdf.setFillColor(Palette.NAVY)
     pdf.rect(0, height - 94, width, 94, fill=1, stroke=0)
     pdf.setFillColor(Palette.BLUE)
-    pdf.roundRect(34, height - 30, 70, 13, 6.5, fill=1, stroke=0)
+    pdf.roundRect(34, height - 30, 92, 13, 6.5, fill=1, stroke=0)
     pdf.setFillColor(Palette.WHITE)
-    pdf.setFont("Helvetica-Bold", 6.6)
-    pdf.drawCentredString(69, height - 25.5, "EVIDENCE-LED PILOT")
+    pdf.setFont("Helvetica-Bold", 6.4)
+    pdf.drawCentredString(80, height - 25.5, "CAPSTONE SYNOPSIS")
     pdf.setFont("Helvetica-Bold", 17.5)
     pdf.drawString(34, height - 51, "Ad Safety Moderation Pipeline")
     pdf.setFont("Helvetica", 7.2)
     pdf.setFillColor(colors.HexColor("#D7E1F5"))
-    pdf.drawString(34, height - 66, "Strict two-page technical synopsis | MS_DSP_462 Computer Vision")
+    pdf.drawString(34, height - 66, "Two-page technical synopsis | MS_DSP_462 Computer Vision")
     team = " | ".join(TEAM_NAMES)
     pdf.setFont("Helvetica", 6.5)
     pdf.drawString(34, height - 82, team)
@@ -1902,16 +1963,16 @@ def draw_page_chrome(pdf: canvas.Canvas, page_number: int) -> None:
     pdf.drawRightString(width - 34, height - 26, f"PAGE {page_number} / 2")
     pdf.setFont("Helvetica", 6.5)
     pdf.setFillColor(colors.HexColor("#D7E1F5"))
-    pdf.drawRightString(width - 34, height - 67, "Measured results | proposal benchmarks labeled")
+    pdf.drawRightString(width - 34, height - 67, "Results checked against proposal targets")
 
     footer_y = 19
     pdf.setStrokeColor(Palette.LINE)
     pdf.setLineWidth(0.5)
     pdf.line(34, footer_y + 9, width - 34, footer_y + 9)
     pdf.setFillColor(Palette.MUTED)
-    pdf.setFont("Helvetica", 6.0)
-    pdf.drawString(34, footer_y, "Generated from proposal, saved registry, policy, model manifest, sources, and evaluation artifacts")
-    pdf.drawRightString(width - 34, footer_y, "Course pilot | Not production-ready")
+    pdf.setFont("Helvetica", 6.4)
+    pdf.drawString(34, footer_y, "Evidence drawn from the proposal, registries, policy, model manifest, and saved evaluations")
+    pdf.drawRightString(width - 34, footer_y, "Course prototype | Not for production use")
 
 
 def _add_column(
@@ -1987,7 +2048,8 @@ def render_pdf(evidence: SynopsisEvidence, output: Path) -> None:
         pdf = canvas.Canvas(str(temporary), pagesize=LETTER, pageCompression=1)
         pdf.setTitle("Ad Safety Moderation Pipeline - Technical Synopsis")
         pdf.setAuthor(", ".join(TEAM_NAMES))
-        pdf.setSubject("Evidence-led two-page computer vision capstone synopsis")
+        pdf.setCreator("scripts/build_synopsis.py")
+        pdf.setSubject("Two-page computer vision capstone synopsis with measured results and limitations")
         for page_number, (left_story, right_story) in enumerate(pages, start=1):
             draw_page_chrome(pdf, page_number)
             _add_column(
